@@ -1,0 +1,43 @@
+{
+  "name": "slack_viz",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --ignore node_modules --ignore client index.js",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "keywords": [],
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "babel-core": "^6.7.6",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-3": "^6.5.0",
+    "kcors": "^2.0.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-generic-session": "^1.10.2",
+    "koa-mount": "^2.0.0",
+    "koa-passport": "^2.1.1",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "passport-slack": "0.0.6",
+    "pg-promise": "^3.7.7"
+  },
+  "devDependencies": {
+    "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.2",
+    "supertest": "^1.2.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015-node5",
+      "stage-3"
+    ]
+  }
+}

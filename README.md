@@ -8,7 +8,7 @@
 
 ## Development setup
 
-1. Clone this repository and `cd slack_viz`
+1. `git clone git@github.com:moovel/slack_viz.git` and `cd slack_viz`
 2. `npm install`
 3. `cd client`
 4. `npm install`
