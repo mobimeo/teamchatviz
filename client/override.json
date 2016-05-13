@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "lib/index.js": {
+      "deps": ["./definitions/init.js"],
+      "cjsDeferDepsExecute": true
+    },
+    "lib/definitions/init.js": {
+      "deps": ["./index", "./core", "./es2015", "./flow", "./jsx", "./misc", "./experimental"],
+      "cjsDeferDepsExecute": true
+    }
+  }
+}

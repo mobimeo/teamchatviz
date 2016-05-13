@@ -1,6 +1,9 @@
 import React from 'react';
-export class HelloWorld extends React.Component {
+export class Page extends React.Component {
   render() {
-    return React.createElement('h1', null, 'Hello World Slack Viz');
+    return <div>
+      <h1>Slack Viz</h1>
+      <a href="/api/auth/slack">Log in </a>
+    </div>;
   }
 }

@@ -5,16 +5,22 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ignore node_modules --ignore client index.js",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "up": "db-migrate up",
+    "down": "db-migrate down",
+    "create": "db-migrate create"
   },
   "keywords": [],
   "author": "",
   "private": true,
   "license": "UNLICENSED",
   "dependencies": {
+    "@slack/client": "^3.1.0",
     "babel-core": "^6.7.6",
     "babel-preset-es2015-node5": "^1.2.0",
     "babel-preset-stage-3": "^6.5.0",
+    "bluebird": "^3.3.5",
+    "dotenv": "^2.0.0",
     "kcors": "^2.0.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.0.0",
@@ -22,14 +28,18 @@
     "koa-generic-session": "^1.10.2",
     "koa-mount": "^2.0.0",
     "koa-passport": "^2.1.1",
+    "koa-pg-session": "^2.0.0",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
+    "moment-timezone": "^0.5.4",
     "passport-slack": "0.0.6",
-    "pg-promise": "^3.7.7"
+    "pg-promise": "^3.9.1"
   },
   "devDependencies": {
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "db-migrate": "^0.10.0-beta.11",
+    "db-migrate-pg": "^0.1.10",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.2",
     "supertest": "^1.2.0"

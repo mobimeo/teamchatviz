@@ -5,33 +5,25 @@ import cors from 'kcors';
 import convert from 'koa-convert';
 import session from 'koa-generic-session';
 import passport from 'koa-passport';
-import './auth';
 import koaStatic from 'koa-static';
 import mount from 'koa-mount';
+import pgStore from './pg-store';
+import './auth';
+import api from './api';
 
 const apiApp = new Koa();
-const api = KoaRouter();
-api.get('/health', async (ctx) => {
-  ctx.body = {
-    status: 'OK',
-  };
-})
-api.get('/auth/slack', passport.authenticate('slack'));
-api.get('/auth/slack/callback', passport.authenticate('slack', {
-  successRedirect: '/app',
-  failureRedirect: '/',
-}));
-
 apiApp.keys = ['secret'];
 apiApp.use(cors());
 apiApp.use(bodyParser());
-apiApp.use(convert(session()));
+apiApp.use(convert(session({ store: pgStore})));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
 apiApp.use(api.routes());
 apiApp.use(api.allowedMethods());
 
 const app = new Koa();
+
+app.keys = ['secret'];
 app.use(mount('/api', apiApp));
 app.use(mount('/', koaStatic(__dirname + '/../client')));
 
