@@ -19,8 +19,8 @@ export default async(token, teamId) => {
           }
           let promises = result.channels.map(channel => {
             return getChannelById(channel.id)
-              .then(channel => {
-                if (!channel) {
+              .then(ch => {
+                if (!ch) {
                   return saveChannel({
                     id: channel.id,
                     teamId: teamId,
