@@ -1,7 +1,7 @@
 import KoaRouter from 'koa-router';
 import passport from 'koa-passport';
 
-import { syncChannels } from './data';
+import { syncChannels, syncMessages, viz } from './data';
 
 const api = KoaRouter();
 
@@ -17,7 +17,8 @@ api.get('/auth/slack/callback', async (ctx) => {
     } else {
       ctx.login(user);
       ctx.redirect('/');
-      syncChannels(user.accessToken, user.teamId);
+      syncChannels(user.accessToken, user.teamId)
+        .then(channels => syncMessages(user.accessToken, user.teamId, channels));
     }
   })(ctx);
 });
@@ -25,5 +26,13 @@ api.get('/auth/slack/callback', async (ctx) => {
 api.get('/user', async(ctx) => {
   ctx.body = ctx.session;
 });
+
+api.get('/heartbeat', async(ctx) => {
+  const userId = ctx.session.passport ? ctx.session.passport.user : null;
+  if (!userId) {
+    return ctx.throw(401);
+  }
+  ctx.body = await viz.heartbeat(userId);
+})
 
 export default api;

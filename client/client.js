@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Page } from 'client/page.js';
+import { Routes } from 'client/routes.js';
 
 let container = document.getElementById('container');
-let component = ReactDOM.render(React.createElement(Page), container);
+let component = ReactDOM.render(React.createElement(Routes), container);

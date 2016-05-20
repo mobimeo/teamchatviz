@@ -3,11 +3,11 @@ import db from '../../db';
 import { save as saveChannel, getById as getChannelById } from '../../repositories/channel';
 import Promise from 'bluebird';
 
-export default async(token, teamId) => {
+export default (token, teamId) => {
   console.log('syncing channels', token, teamId);
   const web = new WebClient(token);
-  return await Promise.fromCallback(cb => {
-      console.log('Started syncing');
+  return Promise.fromCallback(cb => {
+      console.log('Started syncing channels');
       web
         .channels
         .list({
@@ -27,12 +27,12 @@ export default async(token, teamId) => {
                     name: channel.name,
                     topic: channel.topic,
                     purpose: channel.purpose,
-                    numberOfMembers: channel.numberOfMembers,
+                    numberOfMembers: channel.num_members,
                   });
                 }
               });
           });
-          return Promise.all(promises).then(() => cb()).catch(cb);
+          return Promise.all(promises).then(() => cb(null, result.channels)).catch(cb);
         });
     });
 }
