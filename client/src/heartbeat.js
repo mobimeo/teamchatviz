@@ -21,7 +21,7 @@ export const Heartbeat = React.createClass({
     .then(parseJSON)
     .then(data => {
       this.setState({
-        data: data.slice(0, 3),
+        data: data,
       });
     });
   },

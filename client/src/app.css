@@ -1,0 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+.hbt.channel {
+  width: 100%;
+  clear: both;
+}
+.hbt.channel-name {
+  width: 5em;
+  float: left;
+}
+.hbt.channel-chart {
+  float: left;
+}
