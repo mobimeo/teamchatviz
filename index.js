@@ -5,4 +5,7 @@ require('babel-core/register')({
 
 const app = require('./server').default;
 const pgStore = require('./server/pg-store');
-pgStore.setup().then(() => app.listen(3333));
+pgStore
+  .setup()
+  .then(() => app.listen(3333))
+  .catch(err => console.error(err));

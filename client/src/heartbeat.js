@@ -1,20 +1,12 @@
 import React from 'react';
-import rd3 from 'rd3';
 import moment from 'moment';
-
-var LineChart = rd3.LineChart;
+import { XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries } from 'react-vis';
+import 'react-vis/main.css!';
+import './app.css!';
 
 function parseJSON(response) {
   return response.json()
 }
-
-var lineData = [
-  {
-    name: 'Messages',
-    values : [ { x: '0', y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ]
-  }
-];
-
 export const Heartbeat = React.createClass({
   getInitialState() {
     return {
@@ -40,31 +32,24 @@ export const Heartbeat = React.createClass({
       <h1>Heartbeat</h1>
       {
         data.map(d => {
-          return <div>
-            <span>#{d.name}</span>
-            <LineChart
-              legend={true}
-              data={[
-                {
-                  name: 'Messages',
-                  values : d.heartbeat.map(i => ({
+          return <div className="hbt channel">
+            <div className="hbt channel-name">
+              <span>#{d.name}</span>
+            </div>
+            <div className="hbt channel-chart">
+              <XYPlot
+                width={window.innerWidth - 120}
+                height={100}>
+                <VerticalGridLines />
+                <LineSeries
+                  data={d.heartbeat.map(i => ({
                     x: moment(i.t).unix(),
                     y: i.count,
-                  }))
-                }
-              ]}
-              width='100%'
-              height={150}
-              viewBoxObject={{
-                x: 0,
-                y: 0,
-                width: window.innerWidth - 50,
-                height: 150
-              }}
-              yAccessor={(d)=>d.y}
-              xAxisTickInterval={{unit: 'year', interval: 2}}
-              gridHorizontal={true}
-            />
+                  }))}
+                  xType='time'
+                />
+              </XYPlot>
+            </div>
           </div>
         })
       }

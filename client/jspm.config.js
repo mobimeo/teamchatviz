@@ -29,6 +29,7 @@ SystemJS.config({
     "babel-types": "npm:babel-types@6.9.0",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "core-js": "npm:core-js@2.4.0",
+    "css": "github:systemjs/plugin-css@0.1.21",
     "d3": "npm:d3@3.5.17",
     "domain": "github:jspm/nodelibs-domain@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
@@ -40,10 +41,11 @@ SystemJS.config({
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.10",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
-    "rd3": "npm:rd3@0.6.3",
-    "react": "npm:react@15.0.2",
+    "react": "npm:react@15.1.0",
+    "react-addons-shallow-compare": "npm:react-addons-shallow-compare@15.1.0",
     "react-dom": "npm:react-dom@15.0.2",
     "react-router": "npm:react-router@2.4.1",
+    "react-vis": "npm:react-vis@0.3.4",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
@@ -193,6 +195,13 @@ SystemJS.config({
         "ua-parser-js": "npm:ua-parser-js@0.7.10"
       }
     },
+    "npm:global@4.3.0": {
+      "map": {
+        "min-document": "npm:min-document@2.18.0",
+        "node-min-document": "npm:min-document@2.18.0",
+        "process": "npm:process@0.5.2"
+      }
+    },
     "npm:has-ansi@2.0.0": {
       "map": {
         "ansi-regex": "npm:ansi-regex@2.0.0"
@@ -222,6 +231,11 @@ SystemJS.config({
         "js-tokens": "npm:js-tokens@1.0.3"
       }
     },
+    "npm:min-document@2.18.0": {
+      "map": {
+        "dom-walk": "npm:dom-walk@0.1.1"
+      }
+    },
     "npm:node-fetch@1.5.2": {
       "map": {
         "encoding": "npm:encoding@0.1.12",
@@ -230,7 +244,7 @@ SystemJS.config({
     },
     "npm:promise@7.1.1": {
       "map": {
-        "asap": "npm:asap@2.0.3"
+        "asap": "npm:asap@2.0.4"
       }
     },
     "npm:query-string@3.0.3": {
@@ -246,7 +260,15 @@ SystemJS.config({
         "warning": "npm:warning@2.1.0"
       }
     },
-    "npm:react@15.0.2": {
+    "npm:react-vis@0.3.4": {
+      "map": {
+        "d3": "npm:d3@3.5.17",
+        "deep-equal": "npm:deep-equal@1.0.1",
+        "global": "npm:global@4.3.0",
+        "warning": "npm:warning@2.1.0"
+      }
+    },
+    "npm:react@15.1.0": {
       "map": {
         "fbjs": "npm:fbjs@0.8.2",
         "loose-envify": "npm:loose-envify@1.2.0",
