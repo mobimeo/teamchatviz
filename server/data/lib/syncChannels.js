@@ -32,7 +32,7 @@ export default (token, teamId) => {
                 }
               });
           });
-          return Promise.all(promises).then(() => cb(null, result.channels)).catch(cb);
+          return Promise.all(promises).then(() => cb(null, result.channels)).catch(err => cb(err));
         });
     });
 }

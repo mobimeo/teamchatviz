@@ -9,8 +9,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  db
-    .one('SELECT * FROM users WHERE id = $1 LIMIT 1', id)
+  getById(id)
     .then(user => done(null, user))
     .catch(done);
 })

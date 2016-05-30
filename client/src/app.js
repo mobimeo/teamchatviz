@@ -3,11 +3,7 @@ import { Link } from 'react-router'
 
 export const App = React.createClass({
   render() {
-    return <div>
-      <h1>Slack Viz</h1>
-      <a href="/api/auth/slack">Log in </a>
-      <br />
-      <Link to={`/heartbeat`}>Heartbeat</Link>
+    return <div className="container wrap">
       {this.props.children}
     </div>;
   }

@@ -12,7 +12,12 @@
     "dependencies": {
       "babel-types": "npm:babel-types@6.9.0",
       "css": "github:systemjs/plugin-css@^0.1.21",
+      "flexboxgrid": "npm:flexboxgrid@^6.3.0",
+      "immutable": "npm:immutable@^3.8.1",
       "moment": "npm:moment@^2.13.0",
+      "normalize.css": "github:necolas/normalize.css@^4.1.1",
+      "react-addons-update": "npm:react-addons-update@^15.1.0",
+      "react-button-group": "npm:react-button-group@^1.0.2",
       "react-dom": "npm:react-dom@^15.0.2",
       "react-router": "npm:react-router@^2.4.1",
       "react-vis": "npm:react-vis@^0.3.4"
@@ -20,7 +25,6 @@
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.8.0",
       "core-js": "npm:core-js@^2.4.0",
-      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "net": "github:jspm/nodelibs-net@^0.2.0-alpha",
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.10",
@@ -29,9 +33,11 @@
     "peerDependencies": {
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
       "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+      "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
       "d3": "npm:d3@^3.5.0",
       "domain": "github:jspm/nodelibs-domain@^0.2.0-alpha",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
       "https": "github:jspm/nodelibs-https@^0.2.0-alpha",
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",

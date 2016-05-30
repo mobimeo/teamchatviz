@@ -1,10 +1,10 @@
 import PG from 'pg-promise';
 import config from './config';
 
-const pgp = PG();
+const pgp = PG({});
 
 // do not convert timestamp to date
-pgp.pg.types.setTypeParser(1114, str => {
+pgp.pg.types.setTypeParser(1114, function (str) {
   return str;
 });
 

@@ -1,15 +1,31 @@
-html, body {
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: 'DINWeb-Light';
+  src: url("/fonts/DINWeb-Light.eot") format('eot');
+  src: url("/fonts/DINWeb-Light.woff") format('woff');
 }
+
+@font-face {
+  font-family: 'DINWeb-Medium';
+  src: url("/fonts/DINWeb-Medium.eot") format('eot');
+  src: url("/fonts/DINWeb-Medium.woff") format('woff');
+}
+
+body {
+  font-family: 'DINWeb-Light'
+}
+
 .hbt.channel {
   width: 100%;
   clear: both;
 }
 .hbt.channel-name {
-  width: 5em;
+  width: 11em;
   float: left;
 }
 .hbt.channel-chart {
   float: left;
+}
+
+.img-circle {
+  border-radius: 50%;
 }

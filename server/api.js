@@ -17,8 +17,8 @@ api.get('/auth/slack/callback', async (ctx) => {
     } else {
       ctx.login(user);
       ctx.redirect('/');
-      syncChannels(user.accessToken, user.teamId)
-        .then(channels => syncMessages(user.accessToken, user.teamId, channels));
+      // syncChannels(user.accessToken, user.teamId)
+      //   .then(channels => syncMessages(user.accessToken, user.teamId, channels));
     }
   })(ctx);
 });
@@ -28,11 +28,12 @@ api.get('/user', async(ctx) => {
 });
 
 api.get('/heartbeat', async(ctx) => {
-  const userId = ctx.session.passport ? ctx.session.passport.user : null;
-  if (!userId) {
+  if (!ctx.req.user) {
     return ctx.throw(401);
   }
-  ctx.body = await viz.heartbeat(userId);
+  const startDate = ctx.query.startDate || null;
+  const endDate = ctx.query.endDate || null;
+  ctx.body = await viz.heartbeat(ctx.req.user.teamId, startDate, endDate);
 })
 
 export default api;

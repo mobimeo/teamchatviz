@@ -28,21 +28,27 @@ SystemJS.config({
     "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@6.8.0",
     "babel-types": "npm:babel-types@6.9.0",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
+    "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "core-js": "npm:core-js@2.4.0",
     "css": "github:systemjs/plugin-css@0.1.21",
     "d3": "npm:d3@3.5.17",
     "domain": "github:jspm/nodelibs-domain@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
+    "flexboxgrid": "npm:flexboxgrid@6.3.0",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
+    "immutable": "npm:immutable@3.8.1",
     "moment": "npm:moment@2.13.0",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",
+    "normalize.css": "github:necolas/normalize.css@4.1.1",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.10",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "react": "npm:react@15.1.0",
     "react-addons-shallow-compare": "npm:react-addons-shallow-compare@15.1.0",
+    "react-addons-update": "npm:react-addons-update@15.1.0",
+    "react-button-group": "npm:react-button-group@1.0.2",
     "react-dom": "npm:react-dom@15.0.2",
     "react-router": "npm:react-router@2.4.1",
     "react-vis": "npm:react-vis@0.3.4",
@@ -186,11 +192,13 @@ SystemJS.config({
         "iconv-lite": "npm:iconv-lite@0.4.13"
       }
     },
-    "npm:fbjs@0.8.2": {
+    "npm:fbjs@0.8.3": {
       "map": {
         "core-js": "npm:core-js@1.2.6",
+        "immutable": "npm:immutable@3.8.1",
         "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
         "loose-envify": "npm:loose-envify@1.2.0",
+        "object-assign": "npm:object-assign@4.1.0",
         "promise": "npm:promise@7.1.1",
         "ua-parser-js": "npm:ua-parser-js@0.7.10"
       }
@@ -222,7 +230,7 @@ SystemJS.config({
     },
     "npm:isomorphic-fetch@2.2.1": {
       "map": {
-        "node-fetch": "npm:node-fetch@1.5.2",
+        "node-fetch": "npm:node-fetch@1.5.3",
         "whatwg-fetch": "npm:whatwg-fetch@1.0.0"
       }
     },
@@ -236,7 +244,7 @@ SystemJS.config({
         "dom-walk": "npm:dom-walk@0.1.1"
       }
     },
-    "npm:node-fetch@1.5.2": {
+    "npm:node-fetch@1.5.3": {
       "map": {
         "encoding": "npm:encoding@0.1.12",
         "is-stream": "npm:is-stream@1.1.0"
@@ -252,12 +260,64 @@ SystemJS.config({
         "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
       }
     },
+    "npm:react-button-group@1.0.2": {
+      "map": {
+        "object-assign": "npm:object-assign@2.1.1",
+        "react-button": "npm:react-button@1.2.1",
+        "react-clonewithprops": "npm:react-clonewithprops@1.0.1",
+        "react-dropdown-button": "npm:react-dropdown-button@1.0.11",
+        "react-split-button": "npm:react-split-button@1.0.1",
+        "react-style-normalizer": "npm:react-style-normalizer@1.2.8"
+      }
+    },
+    "npm:react-button@1.2.1": {
+      "map": {
+        "object-assign": "npm:object-assign@2.1.1",
+        "react-style-normalizer": "npm:react-style-normalizer@1.2.8"
+      }
+    },
+    "npm:react-dropdown-button@1.0.11": {
+      "map": {
+        "has-touch": "npm:has-touch@1.0.1",
+        "object-assign": "npm:object-assign@2.1.1",
+        "react-button": "npm:react-button@1.2.1",
+        "react-clonewithprops": "npm:react-clonewithprops@1.0.1",
+        "react-menus": "npm:react-menus@1.1.1"
+      }
+    },
+    "npm:react-event-names@1.0.0": {
+      "map": {
+        "has-touch": "npm:has-touch@1.0.1"
+      }
+    },
+    "npm:react-menus@1.1.1": {
+      "map": {
+        "arrow-style": "npm:arrow-style@1.1.1",
+        "buffer-function": "npm:buffer-function@1.0.0",
+        "has-touch": "npm:has-touch@1.0.1",
+        "object-assign": "npm:object-assign@2.1.1",
+        "point-in-triangle": "npm:point-in-triangle@1.0.1",
+        "react-clonewithprops": "npm:react-clonewithprops@1.0.1",
+        "react-event-names": "npm:react-event-names@1.0.0",
+        "react-style-normalizer": "npm:react-style-normalizer@1.2.8",
+        "region-align": "npm:region-align@2.1.3",
+        "select-parent": "npm:select-parent@1.0.1"
+      }
+    },
     "npm:react-router@2.4.1": {
       "map": {
         "history": "npm:history@2.1.1",
         "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.6",
         "invariant": "npm:invariant@2.2.1",
         "warning": "npm:warning@2.1.0"
+      }
+    },
+    "npm:react-split-button@1.0.1": {
+      "map": {
+        "object-assign": "npm:object-assign@2.1.1",
+        "react-button": "npm:react-button@1.2.1",
+        "react-dropdown-button": "npm:react-dropdown-button@1.0.11",
+        "react-menus": "npm:react-menus@1.1.1"
       }
     },
     "npm:react-vis@0.3.4": {
@@ -270,7 +330,7 @@ SystemJS.config({
     },
     "npm:react@15.1.0": {
       "map": {
-        "fbjs": "npm:fbjs@0.8.2",
+        "fbjs": "npm:fbjs@0.8.3",
         "loose-envify": "npm:loose-envify@1.2.0",
         "object-assign": "npm:object-assign@4.1.0"
       }
@@ -284,6 +344,19 @@ SystemJS.config({
         "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "string_decoder": "npm:string_decoder@0.10.31",
         "util-deprecate": "npm:util-deprecate@1.0.2"
+      }
+    },
+    "npm:region-align@2.1.3": {
+      "map": {
+        "object-assign": "npm:object-assign@4.1.0",
+        "region": "npm:region@2.1.2"
+      }
+    },
+    "npm:region@2.1.2": {
+      "map": {
+        "hasown": "npm:hasown@1.0.1",
+        "newify": "npm:newify@1.1.9",
+        "object-assign": "npm:object-assign@2.1.1"
       }
     },
     "npm:stream-browserify@2.0.1": {
