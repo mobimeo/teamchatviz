@@ -17,8 +17,8 @@ api.get('/auth/slack/callback', async (ctx) => {
     } else {
       ctx.login(user);
       ctx.redirect('/');
-      // syncChannels(user.accessToken, user.teamId)
-      //   .then(channels => syncMessages(user.accessToken, user.teamId, channels));
+      syncChannels(user.accessToken, user.teamId)
+        .then(channels => syncMessages(user.accessToken, user.teamId, channels));
     }
   })(ctx);
 });

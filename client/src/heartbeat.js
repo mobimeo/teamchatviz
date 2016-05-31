@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries, Crosshair } from 'react-vis';
 import { DateRangePicker } from './components/DateRangePicker';
@@ -18,7 +19,7 @@ const HeartbeatPlot = React.createClass({
   _onNearestX(seriesIndex, value) {
     this._crosshairValues = this._crosshairValues.concat();
     this._crosshairValues[seriesIndex] = value;
-    this.setState({crosshairValues: this._crosshairValues});
+    this.setState({ crosshairValues: this._crosshairValues });
   },
 
   /**
@@ -27,7 +28,7 @@ const HeartbeatPlot = React.createClass({
    */
   _onMouseLeave() {
     this._crosshairValues = [];
-    this.setState({crosshairValues: this._crosshairValues});
+    this.setState({ crosshairValues: this._crosshairValues });
   },
 
   getInitialState() {
@@ -41,7 +42,14 @@ const HeartbeatPlot = React.createClass({
 
     return {
       crosshairValues: [],
+      width: 0,
     };
+  },
+
+  componentDidMount() {
+    this.setState({
+      width: ReactDOM.findDOMNode(this).parentNode.offsetWidth,
+    });
   },
 
   render() {
@@ -56,7 +64,7 @@ const HeartbeatPlot = React.createClass({
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
-        width={window.innerWidth - 240}
+        width={this.state.width}
         height={100}>
         <VerticalGridLines />
         <LineSeries
@@ -88,6 +96,15 @@ export const Heartbeat = React.createClass({
     fetch('/api/heartbeat', {
       credentials: 'same-origin'
     })
+    .then(response => {
+      if (!response.ok) {
+        if (response.status == 401) {
+          window.location = '/api/auth/slack';
+        }
+        throw Error(response.statusText);
+      }
+      return response;
+    })
     .then(parseJSON)
     .then(data => {
       this.setState({
@@ -118,11 +135,11 @@ export const Heartbeat = React.createClass({
         <DateRangePicker onChange={this.onDateChange} />
         {
           data.map((d, i) => {
-            return <div className="hbt channel" key={i}>
-              <div className="hbt channel-name">
-                <span>#{d.name} {d.heartbeat.length}</span>
+            return <div className="row middle-xs" key={i}>
+              <div className="col-xs-2">
+                <span>#{d.name}</span>
               </div>
-              <div className="hbt channel-chart">
+              <div className="col-xs-10">
                 <HeartbeatPlot data={d} />
               </div>
             </div>

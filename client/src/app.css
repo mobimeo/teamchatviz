@@ -10,22 +10,50 @@
   src: url("/fonts/DINWeb-Medium.woff") format('woff');
 }
 
+.client-app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: white;
+  padding: 1rem 0 1rem 0;
+}
+
 body {
+  font-family: 'DINWeb-Medium'
+  font-size: 16px;
+  background-color: #393b42;
+}
+
+.chart-title {
+  color: #00B7BF;
+  text-decoration: none;
+}
+
+.chart-description, .site-description {
+  color: #E6E6E6;
   font-family: 'DINWeb-Light'
 }
 
-.hbt.channel {
-  width: 100%;
-  clear: both;
-}
-.hbt.channel-name {
-  width: 11em;
-  float: left;
-}
-.hbt.channel-chart {
-  float: left;
+.site-header {
+  color: white;
 }
 
-.img-circle {
-  border-radius: 50%;
+.channels.row {
+  margin-top: 4rem;
 }
+
+.site-header {
+  padding-top: 1rem 0 2rem 0;
+  border-bottom: 2px #9B9B9B solid;
+}
+
+.site-header h1 img{width:1.7rem;float:right; margin-top:5px; margin-left: 1rem;}
+.site-header h1 { display: inline-block;  }
+
