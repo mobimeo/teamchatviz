@@ -20,6 +20,7 @@
       "react-button-group": "npm:react-button-group@^1.0.2",
       "react-dom": "npm:react-dom@^15.0.2",
       "react-router": "npm:react-router@^2.4.1",
+      "react-select": "npm:react-select@^1.0.0-beta13",
       "react-vis": "npm:react-vis@^0.3.4"
     },
     "devDependencies": {

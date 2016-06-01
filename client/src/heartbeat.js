@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries, Crosshair } from 'react-vis';
-import { DateRangePicker } from './components/DateRangePicker';
+import { DateRangePicker } from './components/DateRangePicker.js';
+import { SearchBox } from './components/SearchBox.js';
+import { SortDropdown } from './components/SortDropdown.js';
+
 import 'react-vis/main.css!';
 
 function parseJSON(response) {
@@ -64,7 +67,7 @@ const HeartbeatPlot = React.createClass({
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
-        width={this.state.width}
+        width={this.state.width - 30}
         height={100}>
         <VerticalGridLines />
         <LineSeries
@@ -89,6 +92,7 @@ export const Heartbeat = React.createClass({
   getInitialState() {
     return {
       data: [],
+      all: [],
     };
   },
 
@@ -108,7 +112,8 @@ export const Heartbeat = React.createClass({
     .then(parseJSON)
     .then(data => {
       this.setState({
-        data: data,
+        data: data.slice(0, 10),
+        all: data,
       });
     });
   },
@@ -120,19 +125,47 @@ export const Heartbeat = React.createClass({
     .then(parseJSON)
     .then(data => {
       this.setState({
-        data: data,
+        data: data.slice(0, 10),
+        all: data,
       });
+    });
+  },
+
+  onSearch(value) {
+    var result = this.state.all.filter(d => value === '' || d.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    this.setState({
+      data: result.slice(0, 10),
+      all: this.state.all,
+    });
+  },
+
+  onSort(option) {
+    var result = this.state.all.map(i => i);
+    result.sort(option.compare);
+    console.log(result);
+    this.setState({
+      data: result.slice(0, 10),
+      all: this.state.all,
     });
   },
 
   render() {
     const data = this.state.data;
     return <div>
-      <header>
-        <h1>channel heartbeat</h1>
+      <header className="site-header">
+        <h1>
+          channel heartbeat
+        </h1>
       </header>
       <main>
-        <DateRangePicker onChange={this.onDateChange} />
+        <div className="row between-xs widgets">
+          <div className="col-xs-6">
+            <SortDropdown onChange={this.onSort} /> <SearchBox onChange={this.onSearch} placeholder="search channel" />
+          </div>
+          <div className="col-xs-6" style={{textAlign: 'right'}}>
+            <DateRangePicker onChange={this.onDateChange} />
+          </div>
+        </div>
         {
           data.map((d, i) => {
             return <div className="row middle-xs" key={i}>

@@ -51,6 +51,7 @@ SystemJS.config({
     "react-button-group": "npm:react-button-group@1.0.2",
     "react-dom": "npm:react-dom@15.0.2",
     "react-router": "npm:react-router@2.4.1",
+    "react-select": "npm:react-select@1.0.0-beta13",
     "react-vis": "npm:react-vis@0.3.4",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
@@ -310,6 +311,12 @@ SystemJS.config({
         "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.6",
         "invariant": "npm:invariant@2.2.1",
         "warning": "npm:warning@2.1.0"
+      }
+    },
+    "npm:react-select@1.0.0-beta13": {
+      "map": {
+        "classnames": "npm:classnames@2.2.5",
+        "react-input-autosize": "npm:react-input-autosize@0.6.13"
       }
     },
     "npm:react-split-button@1.0.1": {

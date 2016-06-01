@@ -56,15 +56,17 @@ export const DateRangePicker = React.createClass({
   },
 
   render() {
-    return <div className="button-group">
-      {
-        this.state.data.get('buttons').map((button, key) => {
-          const onClick = this.onClick.bind(this, key);
-          return <button className={`button ${button.get('selected')?"selected":""}`} key={key} onClick={onClick}>
-            {button.get('title')}
-          </button>
-        })
-      }
+    return <div className="date-picker">
+      <div className="button-group">
+        {
+          this.state.data.get('buttons').map((button, key) => {
+            const onClick = this.onClick.bind(this, key);
+            return <button className={`button ${button.get('selected')?"selected":""}`} key={key} onClick={onClick}>
+              {button.get('title')}
+            </button>
+          })
+        }
+      </div>
     </div>;
   }
 });

@@ -3,8 +3,9 @@ import { Link } from 'react-router'
 
 export const App = React.createClass({
   render() {
-    return <div className="client-app">
+    return <div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
       <div className="container wrap content">
+        <div></div>
         {this.props.children}
       </div>
       <footer>
@@ -12,7 +13,7 @@ export const App = React.createClass({
           <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                  2016 (c) Made by Moovel Lab and Moovel Dev Team
+                  2016 (c) made by moovel lab and moovel dev. team
                 </div>
             </div>
           </div>

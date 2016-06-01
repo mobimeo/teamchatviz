@@ -27,7 +27,7 @@ export default (token, teamId) => {
                     name: channel.name,
                     topic: channel.topic,
                     purpose: channel.purpose,
-                    numberOfMembers: channel.num_members,
+                    numberOfMembers: channel.members.length,
                   });
                 }
               });

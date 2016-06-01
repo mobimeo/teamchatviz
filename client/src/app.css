@@ -10,6 +10,13 @@
   src: url("/fonts/DINWeb-Medium.woff") format('woff');
 }
 
+/* html, body main stiling */
+html, body {
+  font-family: 'DINWeb-Medium';
+  font-size: 16px;
+}
+
+/* footer/content set up */
 .client-app {
   display: flex;
   min-height: 100vh;
@@ -22,38 +29,201 @@
 
 footer {
   background-color: white;
-  padding: 1rem 0 1rem 0;
+  padding: 0.813rem 0 0.813rem 0;
+  font-size: 0.563em;
 }
+/* end footer/content set up */
 
-body {
-  font-family: 'DINWeb-Medium'
-  font-size: 16px;
-  background-color: #393b42;
-}
-
+/* chart icons and text styles */
 .chart-title {
   color: #00B7BF;
   text-decoration: none;
+  font-size: 0.875rem;
 }
 
 .chart-description, .site-description {
   color: #E6E6E6;
-  font-family: 'DINWeb-Light'
+  font-family: 'DINWeb-Light';
 }
 
-.site-header {
-  color: white;
+.site-description {
+  font-size: 0.875rem;
+}
+
+.chart-description {
+  font-size: 0.750rem;
 }
 
 .channels.row {
   margin-top: 4rem;
 }
 
-.site-header {
-  padding-top: 1rem 0 2rem 0;
-  border-bottom: 2px #9B9B9B solid;
+.chartImage {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 50%;
+  background-color: white;
 }
 
-.site-header h1 img{width:1.7rem;float:right; margin-top:5px; margin-left: 1rem;}
-.site-header h1 { display: inline-block;  }
+.chartImage:hover {
+  background-color: #FFCC33;
+}
 
+.chartHeartbeat {
+  background-image: url("/images/channels/01_hearbeat.png");
+}
+
+.chartPeopleLand {
+  background-image: url("/images/channels/02_people_land.png");
+}
+
+.chartChannelLand {
+  background-image: url("/images/channels/03_channel_land.png");
+}
+
+.chartMoodReactions {
+  background-image: url("/images/channels/04_moods_and_reactions.png");
+}
+
+.chartFrequentSpeakers {
+  background-image: url("/images/channels/05_frequent_speakers.png");
+}
+
+.chartEmojiTimeline {
+  background-image: url("/images/channels/06_emoji_timeline.png");
+}
+
+/* end chart icons and text styles */
+
+/* site-header */
+.site-header h1 img{width:1.7rem;float:right; margin-top:5px; margin-left: 1rem;}
+.site-header h1 { display: inline-block; font-size: 1.625em;  }
+
+.site-header {
+  padding: 0.406rem 0 0.406rem 0;
+  border-bottom: 2px #9B9B9B solid;
+}
+/* end site-header */
+
+/* main page colors */
+.client-app.dark {
+  background-color: #393b42;
+}
+
+.client-app.dark .site-header {
+  color: white;
+}
+/* end main page colors */
+
+
+/* datepicker */
+.date-picker .button-group .button {
+  background-color: white;
+  border: 1px solid #E6E6E6;
+  font-size: 0.875em;
+  font-family: 'DINWeb-Regular';
+  cursor: pointer;
+  padding: 0.2rem 2rem 0.2rem 2rem;
+  border-radius: 2px;
+}
+.date-picker .button-group .button:focus {
+  outline:0;
+}
+
+.date-picker .button-group .button.selected {
+  background-color: #FFCC33;
+}
+/* end datepicker */
+
+/* widgets rows with filters */
+.widgets {
+  margin: 1rem 0 1rem 0;
+}
+/* widgets rows with filters */
+
+/* search box */
+.search-box {
+  display: inline-block;
+}
+
+.search-box input {
+  background-color: white;
+  border: 1px solid #E6E6E6;
+  font-size: 0.875em;
+  font-family: 'DINWeb-Regular';
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.search-box input:focus {
+  outline: 0;
+}
+/* end search box */
+
+/* sort-dropdown */
+.sort-dropdown {
+  display: inline-block;
+}
+
+.select-box {
+  display: inline-block;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+}
+
+.select-box:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -6px;
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent black;
+}
+
+.select-box .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0; /* Size */
+  right: 0; /* Size */
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+.select-box .dropdown li {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+}
+
+/* Hover state */
+.select-box .dropdown li:hover {
+  background: #f3f8f8;
+}
+
+.select-box.active .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.select-box.active:after {
+  border-color: #9bc7de transparent;
+  border-width: 6px 6px 0 6px ;
+  margin-top: -3px;
+}
+
+.select-box.active {
+  background: #9bc7de;
+  background: linear-gradient(to right, #9bc7de 0%, #9bc7de 78%, #ffffff 78%, #ffffff 100%);
+}
+
+/* end sort-dropdown */
