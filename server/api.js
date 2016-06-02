@@ -6,7 +6,12 @@ import { syncChannels, syncMessages, viz } from './data';
 const api = KoaRouter();
 
 api.get('/health', async (ctx) => ctx.body = { status: 'OK' });
-api.get('/auth/slack', passport.authenticate('slack'));
+api.get('/auth/slack', passport.authenticate('slack', {
+  state: 'client'
+}));
+api.get('/auth/slack-admin', passport.authenticate('slack-admin', {
+  state: 'admin'
+}));
 api.get('/auth/slack/callback', async (ctx) => {
   await passport.authenticate('slack', {
     successRedirect: '/',
@@ -17,8 +22,10 @@ api.get('/auth/slack/callback', async (ctx) => {
     } else {
       ctx.login(user);
       ctx.redirect('/');
-      syncChannels(user.accessToken, user.teamId)
-        .then(channels => syncMessages(user.accessToken, user.teamId, channels));
+      if (ctx.query.state === 'admin') {
+        syncChannels(user.accessToken, user.teamId)
+          .then(channels => syncMessages(user.accessToken, user.teamId, channels));
+      }
     }
   })(ctx);
 });

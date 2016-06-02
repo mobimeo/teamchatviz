@@ -30,6 +30,7 @@ export const Main = React.createClass({
       <main>
         <p className="site-description">
           This tool enables you to explore how your Slack team works!
+          If you are an admin, click <a href="/api/auth/slack-admin">here</a>
         </p>
         <div className="channels row around-xs">
             <div className="col-xs-4">

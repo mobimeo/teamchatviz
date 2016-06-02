@@ -7,5 +7,5 @@ const app = require('./server').default;
 const pgStore = require('./server/pg-store');
 pgStore
   .setup()
-  .then(() => app.listen(3333))
+  .then(() => app.listen(process.env.PORT || 3333 ))
   .catch(err => console.error(err));
