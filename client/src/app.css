@@ -227,3 +227,11 @@ footer {
 }
 
 /* end sort-dropdown */
+
+/*cross-hair */
+.cross-hair {
+  font-size: 0.750rem;
+  padding: 0.1rem;
+  text-align: center;
+}
+/* end cross-hair */

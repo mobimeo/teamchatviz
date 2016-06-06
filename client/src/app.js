@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import Progress from 'react-progress-2';
 
 export const App = React.createClass({
   render() {
     return <div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
       <div className="container wrap content">
-        <div></div>
+        <Progress.Component/>
         {this.props.children}
       </div>
       <footer>

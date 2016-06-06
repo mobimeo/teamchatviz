@@ -15,6 +15,7 @@ passport.deserializeUser((id, done) => {
 });
 
 const handleUser = (accessToken, refreshToken, profile, done) => {
+  console.log(profile);
   profile.accessToken = accessToken;
   profile.refreshToken = refreshToken;
   return getById(profile.id)
@@ -31,34 +32,34 @@ const handleUser = (accessToken, refreshToken, profile, done) => {
         done(null, user);
       }
     })
-    .catch(done);
+    .catch(err => done(err));
 };
 
-passport.use('slack-admin', new PassportSlack.Strategy({
-    clientID: config.slackClientId,
-    clientSecret: config.slackClientSecret,
-    scope: [
-      'files:read',
-      'reactions:read',
-      'channels:history',
-      'channels:read',
-      'users:read',
-      'reminders:read',
-      'search:read',
-      'team:read',
-      'usergroups:read'
-    ].join(' '),
-  },
-  handleUser
-));
+// passport.use('slack-admin', new PassportSlack.Strategy({
+//     clientID: config.slackClientId,
+//     clientSecret: config.slackClientSecret,
+//     scope: [
+//       'files:read',
+//       'reactions:read',
+//       'channels:history',
+//       'channels:read',
+//       'users:read',
+//       'reminders:read',
+//       'search:read',
+//       'team:read',
+//       'usergroups:read'
+//     ].join(' '),
+//   },
+//   handleUser
+// ));
 
 passport.use('slack', new PassportSlack.Strategy({
     clientID: config.slackClientId,
     clientSecret: config.slackClientSecret,
-    skipUserProfile: false,
     scope: [
-      'identity.basic',
+      'identify',
     ].join(' '),
+    extendedUserProfile: false,
   },
   handleUser
 ));

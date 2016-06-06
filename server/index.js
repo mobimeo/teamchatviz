@@ -13,6 +13,14 @@ import api from './api';
 
 const apiApp = new Koa();
 apiApp.keys = ['secret'];
+apiApp.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+});
 apiApp.use(cors());
 apiApp.use(bodyParser());
 apiApp.use(convert(session({ store: pgStore})));

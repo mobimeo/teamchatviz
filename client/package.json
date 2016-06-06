@@ -19,9 +19,10 @@
       "react-addons-update": "npm:react-addons-update@^15.1.0",
       "react-button-group": "npm:react-button-group@^1.0.2",
       "react-dom": "npm:react-dom@^15.0.2",
+      "react-progress-2": "npm:react-progress-2@^4.2.1",
       "react-router": "npm:react-router@^2.4.1",
-      "react-select": "npm:react-select@^1.0.0-beta13",
-      "react-vis": "npm:react-vis@^0.3.4"
+      "react-vis": "npm:react-vis@^0.3.4",
+      "whatwg-fetch": "npm:whatwg-fetch@^1.0.0"
     },
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.8.0",
@@ -102,7 +103,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm dist; mkdir dist; cp index.prod.html dist/index.html; jspm bundle client.js app-bundle.js --minify; cp app-bundle.js dist/; cp jspm_packages/system.js dist/system.js; cp jspm.browser.prod.js dist/jspm.browser.js; cp jspm.config.js dist/jspm.config.js; cp -R fonts dist/fonts; cp -R images dist/images"
+    "build": "rm -rf dist; mkdir dist; cp index.prod.html dist/index.html; jspm bundle client.js app-bundle.js --minify; cp app-bundle.js dist/; cp jspm_packages/system.js dist/system.js; cp jspm.browser.prod.js dist/jspm.browser.js; cp jspm.config.js dist/jspm.config.js; cp -R fonts dist/fonts; cp -R images dist/images"
   },
   "keywords": [],
   "author": "",
