@@ -86,7 +86,7 @@ const HeartbeatPlot = React.createClass({
     const chStyle = {
       background: '#393B42',
       width: '90px',
-      color: 'white',a
+      color: 'white',
     };
     const width = (this.state.data.get('width') - 30) > 0 ? this.state.data.get('width') - 30 : 600;
     return <XYPlot

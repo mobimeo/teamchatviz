@@ -120,12 +120,12 @@ footer {
 /* datepicker */
 .date-picker .button-group .button {
   background-color: white;
-  border: 1px solid #E6E6E6;
+  border: 0.5px solid #E6E6E6;
   font-size: 0.875em;
-  font-family: 'DINWeb-Regular';
+  font-family: 'DINWeb-Light';
   cursor: pointer;
-  padding: 0.2rem 2rem 0.2rem 2rem;
-  border-radius: 2px;
+  padding: 0.4rem 2rem 0.4rem 2rem;
+  border-radius: 4px;
 }
 .date-picker .button-group .button:focus {
   outline:0;
@@ -149,11 +149,12 @@ footer {
 
 .search-box input {
   background-color: white;
-  border: 1px solid #E6E6E6;
+  border: 0.5px solid #E6E6E6;
   font-size: 0.875em;
-  font-family: 'DINWeb-Regular';
+  font-family: 'DINWeb-Light';
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 4px;
+  padding: 0.4em 8em 0.4em 1em;
 }
 
 .search-box input:focus {
@@ -164,6 +165,14 @@ footer {
 /* sort-dropdown */
 .sort-dropdown {
   display: inline-block;
+  background-color: white;
+  border: 0.5px solid #E6E6E6;
+  font-size: 0.875em;
+  font-family: 'DINWeb-Light';
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.4em 1em 0.4em 1em;
+  margin-right: 10px;
 }
 
 .select-box {
