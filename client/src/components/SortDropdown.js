@@ -16,7 +16,15 @@ export const SortDropdown = React.createClass({
             compare(a, b) {
               return b.numberOfMembers - a.numberOfMembers;
             }
-          })
+          }),
+          Map({
+            value: 2,
+            label: 'Members (fewest to most)',
+            selected: false,
+            compare(a, b) {
+              return a.numberOfMembers - b.numberOfMembers;
+            }
+          }),
         ])
       }),
     };
@@ -50,7 +58,9 @@ export const SortDropdown = React.createClass({
           {
             this.state.data.get('options').map((o, i) => {
               var handleClick = this.onItemClick.bind(this, i);
-              return <li onClick={handleClick} key={i}>{o.get('label')}</li>
+              return <li onClick={handleClick} key={i}>
+                {o.get('label')}
+              </li>
             })
           }
         </ul>

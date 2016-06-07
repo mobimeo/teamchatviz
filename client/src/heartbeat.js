@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import { XYPlot, XAxis, YAxis, VerticalGridLines, LineMarkSeries, Crosshair } from 'react-vis';
+import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries, Crosshair } from 'react-vis';
 import { DateRangePicker } from './components/DateRangePicker.js';
 import { SearchBox } from './components/SearchBox.js';
 import { SortDropdown } from './components/SortDropdown.js';
@@ -83,36 +83,54 @@ const HeartbeatPlot = React.createClass({
       heartbeat: [],
     };
     const chValues = this.state.data.get('crosshairValues');
-    const chStyle = {
+    const tooltipStyles = {
       background: '#393B42',
       width: '90px',
       color: 'white',
+      position: 'absolute',
+      left: '-47px',
+      top: '-50px',
     };
+    const pointerStyles = {
+      position: 'absolute',
+      left: '-13px',
+      top: '-13px',
+    };
+    const hints = [];
+    if (chValues[0]) {
+      hints.push(<Hint orientation="topleft" value={chValues[0]}>
+              <div style={tooltipStyles} className="cross-hair arrow_box">
+                {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
+                <br />
+                {chValues[0] ? chValues[0].y : 0} messages
+              </div>
+            </Hint>);
+      hints.push(<Hint orientation="topleft" value={chValues[0]}>
+              <img style={pointerStyles} width="25" src="/images/pointer.png" />
+            </Hint>);
+    }
     const width = (this.state.data.get('width') - 30) > 0 ? this.state.data.get('width') - 30 : 600;
+    const chartData = data.heartbeat.map(i => ({
+      x: moment(i.t).unix(),
+      y: i.count,
+    }));
+
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
         onMouseEnter={this._onMouseEnter}
-        margin={{left: 1, top: 1, right: 1, bottom: 1}}
         width={width}
-        height={100}>
+        height={100}
+        margin={{left: 0, top: 1, right: 0, bottom: 1}}
+        >
         <VerticalGridLines />
-        <LineMarkSeries
+        <LineSeries
           onNearestX={this._onNearestXs[0]}
-          data={data.heartbeat.map(i => ({
-            x: moment(i.t).unix(),
-            y: i.count,
-          }))}
+          data={chartData}
           color={this.state.data.get('seriesColor')}
           size='1px'
           xType='time'
         />
-        <Crosshair values={chValues}>
-          <div style={chStyle} className="cross-hair">
-            {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
-            <br />
-            {chValues[0] ? chValues[0].y : 0} messages
-          </div>
-        </Crosshair>
+        {hints}
       </XYPlot>;
   }
 });
