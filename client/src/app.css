@@ -277,7 +277,44 @@ footer {
 }
 /* end cross-hair */
 
+<<<<<<< HEAD
 /* helpers */
 .no-padding {
   padding: 0;
 }
+=======
+.arrow_box {
+  position: relative;
+  background: #393B42;
+  border: 1px solid #393B42;
+}
+.arrow_box:after, .arrow_box:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow_box:after {
+  border-color: rgba(57, 59, 66, 0);
+  border-top-color: #393B42;
+  border-width: 5px;
+  margin-left: -5px;
+}
+.arrow_box:before {
+  border-color: rgba(57, 59, 66, 0);
+  border-top-color: #393B42;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+.pointer-image {
+  position: relative;
+  top: -5px;
+  left: -7px;
+}
+>>>>>>> ba5f99fc835b62b6bb0be7db4ab536e06f4ed4f7

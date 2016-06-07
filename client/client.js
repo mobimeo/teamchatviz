@@ -1,3 +1,11 @@
+import 'systemjs-hot-reloader/default-listener.js';
+
+export function __reload(m) {
+  if (m.component.state)
+    component.setState(m.component.state);
+}
+
+
 import 'whatwg-fetch';
 
 import React from 'react';

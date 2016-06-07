@@ -39,7 +39,7 @@ async function getMaxDate(teamId) {
   return tmp.result;
 }
 
-export default async function(teamId, startDate = null, endDate = null, inteval = '1 day') {
+export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   if (!startDate) {
     startDate = await getMinDate(teamId);
   }
@@ -48,22 +48,29 @@ export default async function(teamId, startDate = null, endDate = null, inteval 
   }
   startDate = moment(startDate).utc().format();
   endDate = moment(endDate).utc().format();
+  const days = moment(endDate).diff(moment(startDate), 'days');
+  if (days > 30) {
+    interval = '5 days';
+  }
   console.log(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
   const tmp = await db.any(`
-    SELECT cr.t, cr.id, data.name, data.number_of_members, COALESCE(data.c, 0) as c FROM (
-      SELECT DATE(t) as t, id FROM generate_series($(startDate)::timestamp, $(endDate), interval $(inteval)) as t
-      CROSS JOIN (SELECT DISTINCT id FROM channels WHERE team_id = $(teamId)) channels
+    SELECT cr.t, cr.id, cr.name, cr.number_of_members, SUM(COALESCE(data.c, 0)) as c FROM (
+      SELECT DATE(t) as t, id, name, number_of_members FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t
+      CROSS JOIN (SELECT DISTINCT id, name, number_of_members FROM channels WHERE team_id = $(teamId)) channels
     ) cr LEFT JOIN (
-      SELECT DATE(messages.message_ts) as t, channels.id, channels.name, channels.number_of_members, COUNT(messages.id) as c
+      SELECT DATE(messages.message_ts) as t, channels.id, COUNT(messages.id) as c
         FROM channels INNER JOIN messages ON channels.id = messages.channel_id
         WHERE channels.team_id = $(teamId) AND messages.team_id = $(teamId)
+        AND DATE(messages.message_ts) BETWEEN $(startDate)::timestamp AND $(endDate)::timestamp
         GROUP BY t, channels.id, channels.name
-    ) data ON data.t = cr.t AND data.id = cr.id
+        ORDER BY t
+    ) data ON data.t BETWEEN cr.t and cr.t + $(interval)::INTERVAL AND data.id = cr.id
+    GROUP BY cr.t, cr.id, cr.name, cr.number_of_members
     ORDER BY cr.t`, {
       startDate,
       endDate,
       teamId,
-      inteval,
+      interval,
     });
   return groupByChannel(tmp);
 };
