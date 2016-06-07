@@ -45,7 +45,7 @@ export const SortDropdown = React.createClass({
   render() {
     return <div className="sort-dropdown">
       <div className={this.state.data.get('active') ? 'select-box active' : 'select-box'} onClick={this.onToggle}>
-        <span>{this.state.data.get('placeholder')}</span><span>(choose)</span>
+        <span className="sort-by">{this.state.data.get('placeholder')}</span><span> (choose)</span>
         <ul className="dropdown">
           {
             this.state.data.get('options').map((o, i) => {

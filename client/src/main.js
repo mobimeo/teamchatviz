@@ -28,10 +28,13 @@ export const Main = React.createClass({
         </h1>
       </header>
       <main>
-        <p className="site-description">
-          This tool enables you to explore how your Slack team works!
-          If you are an admin, click <a href="/api/auth/slack-admin">here</a>
-        </p>
+        <div className="site-description">
+          <h2>learn and explore your team´s slack jungle</h2>
+          <p>This tool enables you to explore how your Slack team works!
+            In order to see the vizualizations, you need to enter your team name here:</p>
+            <span></span><button>users</button>
+            <button>admins</button>
+        </div>
         <div className="channels row around-xs">
             <div className="col-xs-4">
                 <Channel imageName="chartHeartbeat" title="channel heartbeat" description="Compare multiple channel activity aggregated over hours to years" />

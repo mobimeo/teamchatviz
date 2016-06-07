@@ -13,7 +13,7 @@
 /* html, body main stiling */
 html, body {
   font-family: 'DINWeb-Medium';
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* footer/content set up */
@@ -31,6 +31,8 @@ footer {
   background-color: white;
   padding: 0.813rem 0 0.813rem 0;
   font-size: 0.563em;
+  border-top: 0.5px solid #9B9B9B;
+  margin-top: 20px;
 }
 /* end footer/content set up */
 
@@ -38,7 +40,7 @@ footer {
 .chart-title {
   color: #00B7BF;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .chart-description, .site-description {
@@ -48,8 +50,17 @@ footer {
 
 .site-description {
   font-size: 0.875rem;
+  border-bottom: 0.5px solid #9B9B9B;
+  padding: 40px 0;
 }
-
+.site-description h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.site-description p {
+  margin: 0;
+  max-width: 50%;
+}
 .chart-description {
   font-size: 0.750rem;
 }
@@ -97,8 +108,17 @@ footer {
 /* end chart icons and text styles */
 
 /* site-header */
-.site-header h1 img{width:1.7rem;float:right; margin-top:5px; margin-left: 1rem;}
-.site-header h1 { display: inline-block; font-size: 1.625em;  }
+.site-header h1 img{
+  width:1.7rem;
+  float:right; 
+  margin-top:5px; 
+  margin-left: 1rem;
+}
+.site-header h1 { 
+  display: inline-block; 
+  font-size: 1.625em;  
+  margin: 30px 0;
+}
 
 .site-header {
   padding: 0.406rem 0 0.406rem 0;
@@ -124,8 +144,17 @@ footer {
   font-size: 0.875em;
   font-family: 'DINWeb-Light';
   cursor: pointer;
-  padding: 0.4rem 2rem 0.4rem 2rem;
-  border-radius: 4px;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+}
+.date-picker .button-group .button:first-child{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-right: 0;
+}
+.date-picker .button-group .button:last-child{
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-left: 0;
 }
 .date-picker .button-group .button:focus {
   outline:0;
@@ -138,7 +167,7 @@ footer {
 
 /* widgets rows with filters */
 .widgets {
-  margin: 1rem 0 1rem 0;
+  margin: 20px 0;
 }
 /* widgets rows with filters */
 
@@ -154,7 +183,7 @@ footer {
   font-family: 'DINWeb-Light';
   cursor: pointer;
   border-radius: 4px;
-  padding: 0.4em 8em 0.4em 1em;
+  padding: 0.3em 8em 0.3em 1em;
 }
 
 .search-box input:focus {
@@ -171,8 +200,11 @@ footer {
   font-family: 'DINWeb-Light';
   cursor: pointer;
   border-radius: 4px;
-  padding: 0.4em 1em 0.4em 1em;
+  padding: 0.3em 1em 0.3em 1em;
   margin-right: 10px;
+}
+.sort-dropdown .sort-by {
+  color: #9B9B9B;
 }
 
 .select-box {
@@ -244,3 +276,8 @@ footer {
   text-align: center;
 }
 /* end cross-hair */
+
+/* helpers */
+.no-padding {
+  padding: 0;
+}

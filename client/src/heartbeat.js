@@ -190,10 +190,10 @@ export const Heartbeat = React.createClass({
       </header>
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-6">
+          <div className="col-xs-6 no-padding">
             <SortDropdown onChange={this.onSort} /> <SearchBox onChange={this.onSearch} placeholder="search channel" />
           </div>
-          <div className="col-xs-6" style={{textAlign: 'right'}}>
+          <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
             <DateRangePicker onChange={this.onDateChange} />
           </div>
         </div>
