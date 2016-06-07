@@ -277,12 +277,11 @@ footer {
 }
 /* end cross-hair */
 
-<<<<<<< HEAD
 /* helpers */
 .no-padding {
   padding: 0;
 }
-=======
+
 .arrow_box {
   position: relative;
   background: #393B42;
@@ -317,4 +316,3 @@ footer {
   top: -5px;
   left: -7px;
 }
->>>>>>> ba5f99fc835b62b6bb0be7db4ab536e06f4ed4f7
