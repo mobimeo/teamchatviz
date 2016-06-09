@@ -13,7 +13,7 @@
 /* html, body main stiling */
 html, body {
   font-family: 'DINWeb-Medium';
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* footer/content set up */
@@ -287,6 +287,7 @@ footer {
   background: #393B42;
   border: 1px solid #393B42;
 }
+
 .arrow_box:after, .arrow_box:before {
   top: 100%;
   left: 50%;

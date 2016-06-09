@@ -7,6 +7,7 @@ import { SearchBox } from './components/SearchBox.js';
 import { SortDropdown } from './components/SortDropdown.js';
 import Progress from 'react-progress-2';
 import { Map } from 'immutable';
+import { Link } from 'react-router';
 
 import 'react-vis/main.css!';
 
@@ -88,8 +89,9 @@ const HeartbeatPlot = React.createClass({
       width: '90px',
       color: 'white',
       position: 'absolute',
-      left: '-47px',
+      left: '-49px',
       top: '-50px',
+      fontSize: '10px'
     };
     const pointerStyles = {
       position: 'absolute',
@@ -120,7 +122,8 @@ const HeartbeatPlot = React.createClass({
         onMouseEnter={this._onMouseEnter}
         width={width}
         height={100}
-        margin={{left: 0, top: 1, right: 0, bottom: 1}}
+        padding={{left: 2, top: 2, right: 2, bottom: 2}}
+        margin={{left: 0, top: 0, right: 0, bottom: 0}}
         >
         <VerticalGridLines />
         <LineSeries
@@ -202,9 +205,11 @@ export const Heartbeat = React.createClass({
     const data = this.state.data;
     return <div>
       <header className="site-header">
-        <h1>
-          channel heartbeat
-        </h1>
+        <Link to="/">
+          <h1>
+            channel heartbeat
+          </h1>
+        </Link>
       </header>
       <main>
         <div className="row between-xs widgets">
