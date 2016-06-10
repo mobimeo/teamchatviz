@@ -8,8 +8,10 @@ import { SortDropdown } from './components/SortDropdown.js';
 import Progress from 'react-progress-2';
 import { Map } from 'immutable';
 import { Link } from 'react-router';
+import { VirtualScroll, AutoSizer } from 'react-virtualized';
 
 import 'react-vis/main.css!';
+import 'react-virtualized/styles.css!';
 
 function parseJSON(response) {
   return response.json()
@@ -117,13 +119,14 @@ const HeartbeatPlot = React.createClass({
       y: i.count,
     }));
 
+    const max = this.props.max || 1000;
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
         onMouseEnter={this._onMouseEnter}
         width={width}
         height={100}
-        padding={{left: 2, top: 2, right: 2, bottom: 2}}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
+        yDomain={[0, max]}
         >
         <VerticalGridLines />
         <LineSeries
@@ -138,15 +141,30 @@ const HeartbeatPlot = React.createClass({
   }
 });
 
+const ChartItem = React.createClass({
+  render() {
+    return <div className="row middle-xs" style={{ paddingRight: '20px' }}>
+      <div className="col-xs-2">
+        <span>#{this.props.data.name}</span>
+      </div>
+      <div className="col-xs-10">
+        <HeartbeatPlot data={this.props.data} max={this.props.max}/>
+      </div>
+    </div>
+  }
+});
+
 export const Heartbeat = React.createClass({
   getInitialState() {
     return {
       data: [],
       all: [],
+      max: 0,
     };
   },
 
   componentDidMount() {
+    Progress.show();
     fetch('/api/heartbeat', {
       credentials: 'same-origin'
     })
@@ -160,11 +178,13 @@ export const Heartbeat = React.createClass({
       return response;
     })
     .then(parseJSON)
-    .then(data => {
+    .then(result => {
       this.setState({
-        data: data.slice(0, 10),
-        all: data,
+        data: result.data,
+        all: result.data,
+        max: result.max,
       });
+      Progress.hide();
     });
   },
 
@@ -174,10 +194,11 @@ export const Heartbeat = React.createClass({
       credentials: 'same-origin'
     })
     .then(parseJSON)
-    .then(data => {
+    .then(result => {
       this.setState({
-        data: data.slice(0, 10),
-        all: data,
+        data: result.data,
+        all: result.data,
+        max: result.max,
       });
       Progress.hide();
     });
@@ -186,7 +207,7 @@ export const Heartbeat = React.createClass({
   onSearch(value) {
     var result = this.state.all.filter(d => value === '' || d.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
     this.setState({
-      data: result.slice(0, 10),
+      data: result,
       all: this.state.all,
     });
   },
@@ -196,9 +217,24 @@ export const Heartbeat = React.createClass({
     result.sort(option.compare);
     console.log(result);
     this.setState({
-      data: result.slice(0, 10),
+      data: result,
       all: this.state.all,
     });
+  },
+
+  renderItem({ index, isScrolling }) {
+    const data = this.state.data[index];
+    if (index === 0) {
+      return <div style={{ height: '20px' }}></div>
+    }
+    return <ChartItem data={data} key={index} max={this.state.max} />;
+  },
+
+  _getRowHeight({ index }) {
+    if (index === 0) {
+      return 50;
+    }
+    return 100;
   },
 
   render() {
@@ -220,18 +256,15 @@ export const Heartbeat = React.createClass({
             <DateRangePicker onChange={this.onDateChange} />
           </div>
         </div>
-        {
-          data.map((d, i) => {
-            return <div className="row middle-xs" key={i}>
-              <div className="col-xs-2">
-                <span>#{d.name}</span>
-              </div>
-              <div className="col-xs-10">
-                <HeartbeatPlot data={d} />
-              </div>
-            </div>
-          })
-        }
+          <VirtualScroll
+            ref='VirtualScroll'
+            height={window.innerHeight - 250}
+            overscanRowCount={10}
+            rowCount={data.length}
+            rowHeight={this._getRowHeight}
+            rowRenderer={this.renderItem}
+            width={1200}
+          />
       </main>
     </div>;
   }

@@ -39,8 +39,11 @@ SystemJS.config({
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "immutable": "npm:immutable@3.8.1",
+    "lodash": "npm:lodash@4.13.1",
+    "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "moment": "npm:moment@2.13.0",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",
+    "node-emoji": "npm:node-emoji@1.3.0",
     "normalize.css": "github:necolas/normalize.css@4.1.1",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.10",
@@ -52,6 +55,7 @@ SystemJS.config({
     "react-dom": "npm:react-dom@15.1.0",
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.4.1",
+    "react-virtualized": "npm:react-virtualized@7.3.3",
     "react-vis": "npm:react-vis@0.3.4",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
@@ -255,6 +259,11 @@ SystemJS.config({
         "dom-walk": "npm:dom-walk@0.1.1"
       }
     },
+    "npm:node-emoji@1.3.0": {
+      "map": {
+        "string.prototype.codepointat": "npm:string.prototype.codepointat@0.2.0"
+      }
+    },
     "npm:node-fetch@1.5.3": {
       "map": {
         "encoding": "npm:encoding@0.1.12",
@@ -269,6 +278,11 @@ SystemJS.config({
     "npm:query-string@3.0.3": {
       "map": {
         "strict-uri-encode": "npm:strict-uri-encode@1.1.0"
+      }
+    },
+    "npm:raf@3.2.0": {
+      "map": {
+        "performance-now": "npm:performance-now@0.2.0"
       }
     },
     "npm:react-button-group@1.0.2": {
@@ -329,6 +343,13 @@ SystemJS.config({
         "react-button": "npm:react-button@1.2.1",
         "react-dropdown-button": "npm:react-dropdown-button@1.0.11",
         "react-menus": "npm:react-menus@1.1.1"
+      }
+    },
+    "npm:react-virtualized@7.3.3": {
+      "map": {
+        "classnames": "npm:classnames@2.2.5",
+        "dom-helpers": "npm:dom-helpers@2.4.0",
+        "raf": "npm:raf@3.2.0"
       }
     },
     "npm:react-vis@0.3.4": {

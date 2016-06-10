@@ -35,23 +35,23 @@ const handleUser = (accessToken, refreshToken, profile, done) => {
     .catch(err => done(err));
 };
 
-// passport.use('slack-admin', new PassportSlack.Strategy({
-//     clientID: config.slackClientId,
-//     clientSecret: config.slackClientSecret,
-//     scope: [
-//       'files:read',
-//       'reactions:read',
-//       'channels:history',
-//       'channels:read',
-//       'users:read',
-//       'reminders:read',
-//       'search:read',
-//       'team:read',
-//       'usergroups:read'
-//     ].join(' '),
-//   },
-//   handleUser
-// ));
+passport.use('slack-admin', new PassportSlack.Strategy({
+    clientID: config.slackClientId,
+    clientSecret: config.slackClientSecret,
+    scope: [
+      'files:read',
+      'reactions:read',
+      'channels:history',
+      'channels:read',
+      'users:read',
+      'reminders:read',
+      'search:read',
+      'team:read',
+      'usergroups:read'
+    ].join(', '),
+  },
+  handleUser
+));
 
 passport.use('slack', new PassportSlack.Strategy({
     clientID: config.slackClientId,

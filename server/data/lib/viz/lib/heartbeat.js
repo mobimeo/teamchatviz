@@ -4,6 +4,7 @@ import moment from 'moment-timezone';
 
 const groupByChannel = (results) => {
   const channels = {};
+  let max = 0;
   results.forEach(r => {
     if (!(r.id in channels)) {
       channels[r.id] = {
@@ -17,12 +18,19 @@ const groupByChannel = (results) => {
       channels[r.id].name = r.name;
       channels[r.id].numberOfMembers = r.number_of_members;
     }
+    const count = parseInt(r.c);
+    if (count > max) {
+      max = count;
+    }
     channels[r.id].heartbeat.push({
       t: r.t,
-      count: parseInt(r.c),
+      count: count,
     })
   });
-  return Object.keys(channels).map(key => channels[key]);
+  return {
+    data: Object.keys(channels).map(key => channels[key]),
+    max: max,
+  };
 };
 
 async function getMinDate(teamId) {

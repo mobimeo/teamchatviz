@@ -1,7 +1,23 @@
 import { WebClient } from '@slack/client';
 import db from '../../db';
 import { save as saveMessage, getById as getMessageById } from '../../repositories/message';
+import { save as saveReaction } from '../../repositories/reaction';
 import Promise from 'bluebird';
+
+const syncReactions = (teamId, channelId, message) => {
+  if (!message.reactions) {
+    return Promise.resolve();
+  }
+  return Promise.all(message.reactions.map(reaction => {
+    return saveReaction({
+      teamId,
+      messageId: message.ts,
+      channelId: channelId,
+      name: reaction.name,
+      count: reaction.count,
+    });
+  }));
+};
 
 const fetchPage = (web, channel, teamId, params) => {
   return Promise.fromCallback(cb => {
@@ -24,7 +40,9 @@ const fetchPage = (web, channel, teamId, params) => {
                     text: message.text,
                     isStarred: message.is_starred === true ? true : false,
                     reactions: JSON.stringify(message.reactions),
-                  }).catch(err => console.error(err));
+                  })
+                  .then(() => syncReactions(teamId, channel.id, message))
+                  .catch(err => console.error(err));
                 }
               });
           });

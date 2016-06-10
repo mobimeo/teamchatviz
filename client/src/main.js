@@ -5,12 +5,12 @@ import { Link } from 'react-router'
 const Channel = React.createClass({
   render() {
     return <div>
-        <Link to="/heartbeat" style={{float: 'left', margin: '0 1rem 1rem 0'}}>
+        <Link to={this.props.linkTo} style={{float: 'left', margin: '0 1rem 1rem 0'}}>
             <div className={this.props.imageName + ' chartImage'} style={{width: '7.813rem', height: '7.813rem'}}>
             </div>
         </Link>
         <div>
-            <Link to="/heartbeat" className="chart-title">{this.props.title}</Link>
+            <Link to={this.props.linkTo} className="chart-title">{this.props.title}</Link>
             <p className="chart-description">
                 {this.props.description}
             </p>
@@ -37,24 +37,24 @@ export const Main = React.createClass({
         </div>
         <div className="channels row around-xs">
             <div className="col-xs-4">
-                <Channel imageName="chartHeartbeat" title="channel heartbeat" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/heartbeat" imageName="chartHeartbeat" title="channel heartbeat" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel imageName="chartPeopleLand" title="people land" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/heartbeat" imageName="chartPeopleLand" title="people land" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel imageName="chartChannelLand" title="channel land" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/heartbeat" imageName="chartChannelLand" title="channel land" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
         </div>
         <div className="channels row around-xs">
             <div className="col-xs-4">
-                <Channel imageName="chartMoodReactions" title="modes & reactions" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/heartbeat" imageName="chartMoodReactions" title="modes & reactions" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel imageName="chartFrequentSpeakers" title="frequent speakers" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/frequent-speakers" imageName="chartFrequentSpeakers" title="frequent speakers" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel imageName="chartEmojiTimeline"  title="emoji timeline" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/emoji-timeline" imageName="chartEmojiTimeline"  title="emoji timeline" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
         </div>
       </main>
