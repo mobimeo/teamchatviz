@@ -15,9 +15,9 @@ passport.deserializeUser((id, done) => {
 });
 
 const handleUser = (accessToken, refreshToken, profile, done) => {
-  console.log(profile);
   profile.accessToken = accessToken;
   profile.refreshToken = refreshToken;
+  console.log(profile);
   return getById(profile.id)
     .then(user => {
       if (!user) {

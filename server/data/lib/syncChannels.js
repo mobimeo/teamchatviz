@@ -17,6 +17,7 @@ export default (token, teamId) => {
           if (err) {
             return cb(err);
           }
+          console.log(result);
           let promises = result.channels.map(channel => {
             return getChannelById(channel.id)
               .then(ch => {
