@@ -1,6 +1,7 @@
 import { WebClient } from '@slack/client';
 import db from '../../db';
 import { save as saveChannel, getById as getChannelById } from '../../repositories/channel';
+
 import Promise from 'bluebird';
 
 export default (token, teamId) => {
@@ -17,7 +18,6 @@ export default (token, teamId) => {
           if (err) {
             return cb(err);
           }
-          console.log(result);
           let promises = result.channels.map(channel => {
             return getChannelById(channel.id)
               .then(ch => {

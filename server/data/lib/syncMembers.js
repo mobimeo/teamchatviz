@@ -38,7 +38,7 @@ export default (token, teamId) => {
                 }
               });
           });
-          return Promise.all(promises).then(() => cb(null, result.users)).catch(err => cb(err));
+          return Promise.all(promises).then(() => cb(null, result.members)).catch(err => cb(err));
         });
     });
 }

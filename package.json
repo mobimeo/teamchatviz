@@ -31,6 +31,7 @@
     "koa-pg-session": "^2.0.0",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
+    "lodash": "^4.13.1",
     "moment-timezone": "^0.5.4",
     "passport-slack": "0.0.6",
     "pg-promise": "^3.9.1"

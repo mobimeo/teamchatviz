@@ -1,7 +1,7 @@
 import KoaRouter from 'koa-router';
 import passport from 'koa-passport';
 
-import { syncChannels, syncMessages, viz, syncMembers } from './data';
+import { syncChannels, syncMessages, viz, syncMembers, syncMembership } from './data';
 
 const api = KoaRouter();
 
@@ -27,9 +27,16 @@ api.get('/auth/slack/callback', async (ctx) => {
         ctx.login(user);
         ctx.redirect('/');
         if (ctx.query.state === 'admin') {
-          syncMembers(user.accessToken, user.teamId);
-          syncChannels(user.accessToken, user.teamId)
-            .then(channels => syncMessages(user.accessToken, user.teamId, channels));
+          const promises = Promise.all([
+            syncMembers(user.accessToken, user.teamId),
+            syncChannels(user.accessToken, user.teamId)
+          ]).then(([ members, channels ]) => {
+            return Promise.all([
+              syncMessages(user.accessToken, user.teamId, channels),
+              syncMembership(user.accessToken, user.teamId, members, channels),
+            ]);
+          })
+          .catch(err => console.log(err));
         }
       }
     })(ctx);
@@ -67,6 +74,15 @@ api.get('/emoji-timeline', async(ctx) => {
   const startDate = ctx.query.startDate || null;
   const endDate = ctx.query.endDate || null;
   ctx.body = await viz.emojiTimeline(ctx.req.user.teamId, startDate, endDate);
+});
+
+api.get('/channel-land', async(ctx) => {
+  if (!ctx.req.user) {
+    return ctx.throw(401);
+  }
+  const startDate = ctx.query.startDate || null;
+  const endDate = ctx.query.endDate || null;
+  ctx.body = await viz.channelLand(ctx.req.user.teamId, startDate, endDate);
 });
 
 export default api;

@@ -43,7 +43,7 @@ export const Main = React.createClass({
                 <Channel linkTo="/heartbeat" imageName="chartPeopleLand" title="people land" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel linkTo="/heartbeat" imageName="chartChannelLand" title="channel land" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/channel-land" imageName="chartChannelLand" title="channel land" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
         </div>
         <div className="channels row around-xs">
