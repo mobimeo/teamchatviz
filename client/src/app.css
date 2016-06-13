@@ -115,6 +115,7 @@ footer {
   margin-left: 1rem;
 }
 .site-header h1 { 
+  color: #393B42;
   display: inline-block; 
   font-size: 1.625em;  
   margin: 30px 0;
@@ -131,7 +132,7 @@ footer {
   background-color: #393b42;
 }
 
-.client-app.dark .site-header {
+.client-app.dark .site-header h1{
   color: white;
 }
 /* end main page colors */
@@ -230,9 +231,10 @@ footer {
 
 .select-box .dropdown {
   position: absolute;
-  top: 100%;
-  left: 0; /* Size */
+  top: 140%;
+  left: -7.5%; /* Size */
   right: 0; /* Size */
+  width: 100%;
   background: #fff;
   opacity: 0;
   pointer-events: none;
@@ -252,8 +254,13 @@ footer {
 }
 
 .select-box.active .dropdown {
-  opacity: 1;
+  background-color: white;
+  opacity: 0.96;
   pointer-events: auto;
+  border: 0.5px solid #E6E6E6;  
+  border-radius: 4px;
+  padding: 0.3em 1em 0.3em 1em;
+  z-index: 200;
 }
 
 .select-box.active:after {
@@ -266,7 +273,6 @@ footer {
   background: #9bc7de;
   background: linear-gradient(to right, #9bc7de 0%, #9bc7de 78%, #ffffff 78%, #ffffff 100%);
 }
-
 /* end sort-dropdown */
 
 /*cross-hair */
@@ -276,11 +282,6 @@ footer {
   text-align: center;
 }
 /* end cross-hair */
-
-/* helpers */
-.no-padding {
-  padding: 0;
-}
 
 .arrow_box {
   position: relative;
@@ -298,7 +299,14 @@ footer {
   position: absolute;
   pointer-events: none;
 }
-
+/* helpers */
+.no-padding {
+  padding: 0;
+}
+button:focus{
+  outline: 0;
+}
+/* end helpers*/
 .arrow_box:after {
   border-color: rgba(57, 59, 66, 0);
   border-top-color: #393B42;
@@ -316,4 +324,36 @@ footer {
   position: relative;
   top: -5px;
   left: -7px;
+}
+
+/* channel list */
+.channel-list-element {
+  background-color: transparent;
+  display: inline-block;
+  margin: 0.2rem 0;
+  border: solid transparent;
+  border-radius: 4px;
+}
+.channel-list-element:hover {
+  background-color: #FFCC33;
+  outline: 0;
+  pointer-events: auto;
+}
+.channel-list-element:focus {
+  background-color: #FFCC33;
+  outline: 0;
+}
+.channel-list-element:active {
+  background-color: #FFCC33;
+  outline: 0;
+}
+/*end channel list*/
+
+.emoji {
+  display: inline-block;
+  margin-right: 0.5rem;
+  border: 0.5px solid #E6E6E6;  
+  border-radius: 4px;
+  padding: 0em 0.3em;
+
 }

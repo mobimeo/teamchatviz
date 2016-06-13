@@ -11,6 +11,30 @@ export const SortDropdown = React.createClass({
         options: List([
           Map({
             value: 1,
+            label: 'Channel Name & Membership',
+            selected: false,
+            compare(a, b) {
+              return a.name - b.name;
+            }
+          }),
+          Map({
+            value: 2,
+            label: 'Name of Creator)',
+            selected: false,
+            compare(a, b) {
+              return b.numberOfMembers - a.numberOfMembers;
+            }
+          }),
+          Map({
+            value: 3,
+            label: 'Creation Date (newsest first)',
+            selected: false,
+            compare(a, b) {
+              return b.numberOfMembers - a.numberOfMembers;
+            }
+          }),
+          Map({
+            value: 4,
             label: 'Members (most to fewest)',
             selected: false,
             compare(a, b) {
@@ -18,7 +42,7 @@ export const SortDropdown = React.createClass({
             }
           }),
           Map({
-            value: 2,
+            value: 5,
             label: 'Members (fewest to most)',
             selected: false,
             compare(a, b) {

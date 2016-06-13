@@ -80,14 +80,14 @@ export const FrequentSpeakers = React.createClass({
           </div>
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
-          <div className="col-xs-2">
+          <div className="col-xs-3">
             {
               data.channels.map((d, i) => {
-                return <div key={i}><span>#{d.name}</span></div>;
+                return <div key={i}><button className="channel-list-element">#{d.name}</button></div>;
               })
             }
           </div>
-          <div className="col-xs-10">
+          <div className="col-xs-9">
             <p>
               This page shows the most keen slack writers within specific channels. It also shows the amount of messages within the user's most used five channels.
             </p>

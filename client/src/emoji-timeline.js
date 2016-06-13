@@ -85,14 +85,14 @@ export const EmojiTimeline = React.createClass({
           </div>
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
-          <div className="col-xs-2">
+          <div className="col-xs-3">
             {
               data.channels.map((d, i) => {
-                return <div key={i}><span>#{d.name}</span></div>;
+                return <div key={i}><button className="channel-list-element">#{d.name}</button></div>;
               })
             }
           </div>
-          <div className="col-xs-10">
+          <div className="col-xs-9">
             <div>
               All channels. <br />
               Last 10 days. <br />
@@ -100,7 +100,7 @@ export const EmojiTimeline = React.createClass({
                 data.rating
                 .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                 .map((reaction, i) => {
-                  return <span>{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</span>;
+                  return <span className="emoji">{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</span>;
                 })
               }
             </div>
