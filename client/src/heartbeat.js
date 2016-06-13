@@ -248,11 +248,20 @@ export const Heartbeat = React.createClass({
     const data = this.state.data;
     return <div>
       <header className="site-header">
-        <Link to="/">
-          <h1>
-            channel heartbeat
-          </h1>
-        </Link>
+        <div className="row">
+          <div className="col-xs-10">
+            <Link to="/">
+              <h1>
+                channel heartbeat
+              </h1>
+            </Link>
+          </div>
+          <div className="col-xs-2">
+            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-16.png" alt="home"></img></Link>
+            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-17.png" alt="info"></img></Link>
+            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-18.png" alt="menu"></img></Link>
+          </div>
+        </div>
       </header>
       <main>
         <div className="row between-xs widgets">

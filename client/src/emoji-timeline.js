@@ -100,7 +100,7 @@ export const EmojiTimeline = React.createClass({
                 data.rating
                 .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                 .map((reaction, i) => {
-                  return <span className="emoji">{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</span>;
+                  return <span className="emoji" style={{ display: 'inline-block' }}>{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</span>;
                 })
               }
             </div>
@@ -113,7 +113,7 @@ export const EmojiTimeline = React.createClass({
                   d.emojis
                   .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                   .map((reaction, i) => {
-                    return <div style={{ textAlign: 'center' }}>{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</div>;
+                    return <div className="emoji">{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</div>;
                   })
                 }
                 {moment(d.id).format('DD/MM/YY')}

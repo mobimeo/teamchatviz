@@ -12,7 +12,7 @@
 
 /* html, body main stiling */
 html, body {
-  font-family: 'DINWeb-Medium';
+  font-family: 'DINWeb-Light';
   font-size: 16px;
 }
 
@@ -30,7 +30,7 @@ html, body {
 footer {
   background-color: white;
   padding: 0.813rem 0 0.813rem 0;
-  font-size: 0.563em;
+  font-size: 0.8em;
   border-top: 0.5px solid #9B9B9B;
   margin-top: 20px;
 }
@@ -115,6 +115,7 @@ footer {
   margin-left: 1rem;
 }
 .site-header h1 { 
+  font-family: 'DINWeb-Medium';
   color: #393B42;
   display: inline-block; 
   font-size: 1.625em;  
@@ -215,6 +216,9 @@ footer {
   cursor: pointer;
   width: 200px;
 }
+.select-box:active {
+  background-color: transparent;
+}
 
 .select-box:after {
   content: "";
@@ -246,16 +250,17 @@ footer {
   display: block;
   text-decoration: none;
   width: 100%;
+  line-height: 1.5rem;
 }
 
 /* Hover state */
 .select-box .dropdown li:hover {
-  background: #f3f8f8;
+  color: #9b9b9b;
 }
 
 .select-box.active .dropdown {
   background-color: white;
-  opacity: 0.96;
+  opacity: 0.95;
   pointer-events: auto;
   border: 0.5px solid #E6E6E6;  
   border-radius: 4px;
@@ -347,13 +352,35 @@ button:focus{
   background-color: #FFCC33;
   outline: 0;
 }
-/*end channel list*/
+/* end channel list */
 
 .emoji {
-  display: inline-block;
-  margin-right: 0.5rem;
+  margin: 0.5rem 0.2rem;
+  width: 3.4rem;
   border: 0.5px solid #E6E6E6;  
   border-radius: 4px;
-  padding: 0em 0.3em;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
+}
 
+/* frequent speakers */
+.member{
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.member-img {
+  margin: 1rem 0;
+}
+.member-index {
+  display: inline-block;
+  font-family: 'DINWeb-Medium';
+  font-size: 1.5rem;
+}
+/* end frequent speakers */
+
+.nav-buttons {
+  text-align: right;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  margin: 2.2rem 0 0 2.2rem;
 }

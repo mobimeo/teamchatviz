@@ -96,10 +96,10 @@ export const FrequentSpeakers = React.createClass({
                 return <div className="row" key={index}>
                     {
                       chunk.map((member, memberIndex) => {
-                        return <div className="col-xs-3" key={memberIndex} style={{ textAlign: 'center' }}>
-                          {member.count}
+                        return <div className="col-xs-3 member" key={memberIndex} style={{ textAlign: 'center' }}>
+                          <span className="member-index">{member.count}</span>
                           <br />
-                          <img src={member.image72} style={{ borderRadius: '50%' }} />
+                          <img className="member-img" src={member.image72} style={{ borderRadius: '50%' }} />
                           <br />
                           {member.realname}
                           <br />
