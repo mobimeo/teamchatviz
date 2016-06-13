@@ -211,27 +211,29 @@ export const Heartbeat = React.createClass({
   },
 
   onSearch(value) {
-    var result = this.state.all.filter(d => value === '' || d.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    this.setState({
-      data: result,
-      all: this.state.all,
-    });
+    var result = this.state.data.get('items').toJS().filter(d => value === '' || d.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    this.setState(({data}) => ({
+      data: data
+        .set('displayedItems', List(result))
+    }));
+    this.refs.VirtualScroll.forceUpdate();
   },
 
   onSort(option) {
-    var result = this.state.all.map(i => i);
+    var result = this.state.data.get('items').toJS();
     result.sort(option.compare);
-    this.setState({
-      data: result,
-      all: this.state.all,
-    });
+    this.setState(({data}) => ({
+      data: data
+        .set('displayedItems', List(result))
+    }));
+    this.refs.VirtualScroll.forceUpdate();
   },
 
   renderItem({ index, isScrolling }) {
-    const data = this.state.data.get('displayedItems').get(index);
     if (index === 0) {
-      return <div key={'scrollRow' + data.id} style={{ height: '20px' }}></div>
+      return <div key={'scrollRow0'} style={{ height: '20px' }}></div>
     }
+    const data = this.state.data.get('displayedItems').get(index - 1);
     return <ChartItem data={data} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} max={this.state.data.get('max')} />;
   },
 
