@@ -6,9 +6,9 @@ import { DateRangePicker } from './components/DateRangePicker.js';
 import { SearchBox } from './components/SearchBox.js';
 import { SortDropdown } from './components/SortDropdown.js';
 import Progress from 'react-progress-2';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 import { Link } from 'react-router';
-import { VirtualScroll, AutoSizer } from 'react-virtualized';
+import { VirtualScroll } from 'react-virtualized';
 
 import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
@@ -102,14 +102,14 @@ const HeartbeatPlot = React.createClass({
     };
     const hints = [];
     if (chValues[0]) {
-      hints.push(<Hint orientation="topleft" value={chValues[0]}>
+      hints.push(<Hint orientation="topleft" value={chValues[0]} key={'xyPlotHint' + this.props.parentKey}>
               <div style={tooltipStyles} className="cross-hair arrow_box">
                 {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
                 <br />
                 {chValues[0] ? chValues[0].y : 0} messages
               </div>
             </Hint>);
-      hints.push(<Hint orientation="topleft" value={chValues[0]}>
+      hints.push(<Hint orientation="topleft" value={chValues[0]}  key={'xyPlotHint2' + this.props.parentKey}>
               <img style={pointerStyles} width="25" src="/images/pointer.png" />
             </Hint>);
     }
@@ -127,14 +127,16 @@ const HeartbeatPlot = React.createClass({
         height={100}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
         yDomain={[0, max]}
+        key={'xyPlot' + this.props.parentKey}
         >
-        <VerticalGridLines />
+        <VerticalGridLines key={'xyPlotVerticalGrids' + this.props.parentKey} />
         <LineSeries
           onNearestX={this._onNearestXs[0]}
           data={chartData}
           color={this.state.data.get('seriesColor')}
           size='1px'
           xType='time'
+          key={'xyPlotLineSeries' + this.props.parentKey}
         />
         {hints}
       </XYPlot>;
@@ -148,7 +150,7 @@ const ChartItem = React.createClass({
         <span>#{this.props.data.name}</span>
       </div>
       <div className="col-xs-10">
-        <HeartbeatPlot data={this.props.data} max={this.props.max}/>
+        <HeartbeatPlot data={this.props.data} max={this.props.max} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>
   }
@@ -157,9 +159,10 @@ const ChartItem = React.createClass({
 export const Heartbeat = React.createClass({
   getInitialState() {
     return {
-      data: [],
-      all: [],
-      max: 0,
+      data: Map({
+        displayedItems: List([]),
+        items: List([]),
+      })
     };
   },
 
@@ -179,11 +182,12 @@ export const Heartbeat = React.createClass({
     })
     .then(parseJSON)
     .then(result => {
-      this.setState({
-        data: result.data,
-        all: result.data,
-        max: result.max,
-      });
+      this.setState(({data}) => ({
+        data: data
+          .set('items', List(result.data))
+          .set('displayedItems', List(result.data))
+          .set('max', result.max)
+      }));
       Progress.hide();
     });
   },
@@ -195,11 +199,13 @@ export const Heartbeat = React.createClass({
     })
     .then(parseJSON)
     .then(result => {
-      this.setState({
-        data: result.data,
-        all: result.data,
-        max: result.max,
-      });
+      this.setState(({data}) => ({
+        data: data
+          .set('items', List(result.data))
+          .set('displayedItems', List(result.data))
+          .set('max', result.max)
+      }));
+      this.refs.VirtualScroll.forceUpdate();
       Progress.hide();
     });
   },
@@ -215,7 +221,6 @@ export const Heartbeat = React.createClass({
   onSort(option) {
     var result = this.state.all.map(i => i);
     result.sort(option.compare);
-    console.log(result);
     this.setState({
       data: result,
       all: this.state.all,
@@ -223,11 +228,11 @@ export const Heartbeat = React.createClass({
   },
 
   renderItem({ index, isScrolling }) {
-    const data = this.state.data[index];
+    const data = this.state.data.get('displayedItems').get(index);
     if (index === 0) {
-      return <div style={{ height: '20px' }}></div>
+      return <div key={'scrollRow' + data.id} style={{ height: '20px' }}></div>
     }
-    return <ChartItem data={data} key={index} max={this.state.max} />;
+    return <ChartItem data={data} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} max={this.state.data.get('max')} />;
   },
 
   _getRowHeight({ index }) {
@@ -260,7 +265,7 @@ export const Heartbeat = React.createClass({
             ref='VirtualScroll'
             height={window.innerHeight - 250}
             overscanRowCount={10}
-            rowCount={data.length}
+            rowCount={data.get('displayedItems').size}
             rowHeight={this._getRowHeight}
             rowRenderer={this.renderItem}
             width={1200}

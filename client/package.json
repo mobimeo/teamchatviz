@@ -49,7 +49,7 @@
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
       "react": "npm:react@^15.1.0",
-      "react-addons-shallow-compare": "npm:react-addons-shallow-compare@^15",
+      "react-addons-shallow-compare": "npm:react-addons-shallow-compare@^15.1.0",
       "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
       "string_decoder": "github:jspm/nodelibs-string_decoder@^0.2.0-alpha",
       "url": "github:jspm/nodelibs-url@^0.2.0-alpha",
