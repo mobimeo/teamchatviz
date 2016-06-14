@@ -40,21 +40,21 @@ export const Main = React.createClass({
                 <Channel linkTo="/heartbeat" imageName="chartHeartbeat" title="channel heartbeat" description="Compare multiple channel activity aggregated over hours to years" />
             </div>
             <div className="col-xs-4">
-                <Channel linkTo="/heartbeat" imageName="chartPeopleLand" title="people land" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/heartbeat" imageName="chartPeopleLand" title="people land" description="Learn how connections between people are strengthened through similar channel and communication interests." />
             </div>
             <div className="col-xs-4">
-                <Channel linkTo="/channel-land" imageName="chartChannelLand" title="channel land" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/channel-land" imageName="chartChannelLand" title="channel land" description="Explore your channel land arranged by similarity to find additional interesting channels" />
             </div>
         </div>
         <div className="channels row around-xs">
             <div className="col-xs-4">
-                <Channel linkTo="/moods-and-reactions" imageName="chartMoodReactions" title="moods & reactions" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/moods-and-reactions" imageName="chartMoodReactions" title="moods & reactions" description="Explore what messages were most influential during the last days, weeks and months rated by comments and reactions." />
             </div>
             <div className="col-xs-4">
-                <Channel linkTo="/frequent-speakers" imageName="chartFrequentSpeakers" title="frequent speakers" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/frequent-speakers" imageName="chartFrequentSpeakers" title="frequent speakers" description="Learn who populates which channels summed up over time and find out communication hubs. " />
             </div>
             <div className="col-xs-4">
-                <Channel linkTo="/emoji-timeline" imageName="chartEmojiTimeline"  title="emoji timeline" description="Compare multiple channel activity aggregated over hours to years" />
+                <Channel linkTo="/emoji-timeline" imageName="chartEmojiTimeline"  title="emoji timeline" description="See the top ten of the most used icons and have an overview of the emoji’s use over time." />
             </div>
         </div>
       </main>

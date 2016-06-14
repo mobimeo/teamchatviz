@@ -2,6 +2,7 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import tsnejs from './tsne';
 import { groupBy } from 'lodash';
+import clustering from 'density-clustering';
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
@@ -33,12 +34,32 @@ export default async function(teamId, startDate = null, endDate = null, interval
     teamId,
   });
 
-  const data = tsne.getSolution().map((row, i) => ({
+  const solution = tsne.getSolution();
+  const dbscan = new clustering.DBSCAN();
+  const clusters = dbscan.run(solution, 0.1, 2);
+  const data = solution.map((row, i) => ({
     channelId: channelIds[i],
     name: channels.find(ch => ch.id === channelIds[i]).name,
     x: row[0]*1000,
-    y: row[1]*1000,
+    y: row[1]*1000
   }));
+
+  const colors = [
+    'red',
+    'green',
+    'blue',
+    'yellow',
+    'grey',
+    'violet',
+  ];
+
+  clusters.forEach((cluster, i) => {
+    const name = `Group ${i+1}`;
+    cluster.forEach(index => {
+      data[index].group = name;
+      data[index].color = colors[i];
+    });
+  });
 
   return {
     data,

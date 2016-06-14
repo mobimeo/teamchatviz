@@ -40,27 +40,87 @@ const yScale = (props) => {
     .range([props.height - props.padding, props.padding]);
 };
 
-const renderCircles = (props) => {
+const Circle = (props) => {
   return (coords, index) => {
     const circleProps = {
-      x: props.xScale(coords.x),
-      y: props.yScale(coords.y),
+      cx: props.xScale(coords.x),
+      cy: props.yScale(coords.y),
+      r: 5,
       key: index,
+      fill: coords.color,
+      'data-name': coords.name,
+      stroke: 'black',
+      strokeWidth: '3',
     };
-    return <text {...circleProps} fontSize="9px">#{coords.name}</text>
+    return <circle style={{cursor: 'pointer'}} {...circleProps} onMouseOver={props.showToolTip} onMouseOut={props.hideToolTip} />;
   };
 };
 
 const DataCircles = (props) => {
-  return <g>{ props.data.map(renderCircles(props)) }</g>
+  return <g>{ props.data.map(Circle(props)) }</g>
 }
 
-const Chart = (props) => {
-  const scales = { xScale: xScale(props), yScale: yScale(props) };
-  return <svg width={props.width} height={props.height}>
-    <DataCircles {...props} {...scales} />
-  </svg>
-};
+const ToolTip = React.createClass({
+  propTypes: {
+    tooltip: React.PropTypes.object,
+  },
+  render() {
+    if (this.props.tooltip.display ===  true) {
+      const { x, y } = this.props.tooltip;
+      const textStyle = {
+        fontSize: 24,
+        fontWeight: 'bold',
+        stroke: '#FFFFFF',
+        strokeWidth: '1px',
+        fill: '#333',
+      }
+      return <text style={textStyle} x={parseFloat(x)+5} y={y}>#{this.props.tooltip.name}</text>;
+    } else {
+      return <text />;
+    }
+  }
+});
+
+const Chart = React.createClass({
+  getInitialState() {
+    return {
+      tooltip: {
+        display: false,
+        name: '',
+        x: 0,
+        y: 0,
+      },
+    };
+  },
+  showToolTip(e) {
+    this.setState({
+      tooltip: {
+        display: true,
+        name: e.target.getAttribute('data-name'),
+        x: e.target.getAttribute('cx'),
+        y: e.target.getAttribute('cy'),
+      }
+    });
+  },
+  hideToolTip(e) {
+    this.setState({
+      tooltip: {
+        display:false,
+        name: '',
+        x: 0,
+        y: 0,
+      }
+    });
+  },
+  render() {
+    const props = this.props;
+    const scales = { xScale: xScale(props), yScale: yScale(props) };
+    return <svg width={props.width} height={props.height}>
+      <DataCircles {...props} {...scales} showToolTip={this.showToolTip} hideToolTip={this.hideToolTip} />
+      <ToolTip tooltip={this.state.tooltip} />
+    </svg>
+  }
+});
 
 export const ChannelLand = React.createClass({
   getInitialState() {
