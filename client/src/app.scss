@@ -1,7 +1,391 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #FF0000;
-
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+// Variables
+@font-face {
+  font-family: 'DINWeb-Light';
+  src: url("/fonts/DINWeb-Light.eot") format('eot');
+  src: url("/fonts/DINWeb-Light.woff") format('woff');
 }
+
+@font-face {
+  font-family: 'DINWeb-Medium';
+  src: url("/fonts/DINWeb-Medium.eot") format('eot');
+  src: url("/fonts/DINWeb-Medium.woff") format('woff');
+}
+$font-light: 'DINWeb-Light';
+$font-medium: 'DINWeb-Medium';
+
+$color-brand: #00B7BF;
+$color-accent: #FFCC33;
+$color-grey-dark: #393B42;
+$color-grey-medium: #9B9B9B;
+$color-grey-light: #E6E6E6;
+
+
+// html, body main stiling
+html, body {
+  font-family: $font-light;
+  font-size: 16px;
+}
+
+// footer/content set up
+.client-app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: white;
+  padding: 0.813rem 0 0.813rem 0;
+  font-size: 0.8em;
+  border-top: 0.5px solid $color-grey-medium;
+  margin-top: 20px;
+}
+// end footer/content set up
+
+// chart icons and text styles
+.chart-title {
+  color: $color-brand;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.chart-description, .site-description {
+  color: $color-grey-light;
+  font-family: $font-light;
+}
+
+.site-description {
+  font-size: 0.875rem;
+  border-bottom: 0.5px solid $color-grey-medium;
+  padding: 40px 0;
+}
+.site-description h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.site-description p {
+  margin: 0;
+  max-width: 50%;
+}
+.chart-description {
+  font-size: 0.750rem;
+}
+
+.channels.row {
+  margin-top: 4rem;
+}
+
+.chartImage {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.chartImage:hover {
+  background-color: $color-accent;
+}
+
+.chartHeartbeat {
+  background-image: url("/images/channels/01_hearbeat.png");
+}
+
+.chartPeopleLand {
+  background-image: url("/images/channels/02_people_land.png");
+}
+
+.chartChannelLand {
+  background-image: url("/images/channels/03_channel_land.png");
+}
+
+.chartMoodReactions {
+  background-image: url("/images/channels/04_moods_and_reactions.png");
+}
+
+.chartFrequentSpeakers {
+  background-image: url("/images/channels/05_frequent_speakers.png");
+}
+
+.chartEmojiTimeline {
+  background-image: url("/images/channels/06_emoji_timeline.png");
+}
+
+// end chart icons and text styles 
+
+// site-header 
+.site-header h1 img{
+  width:1.7rem;
+  float:right; 
+  margin-top:5px; 
+  margin-left: 1rem;
+}
+.site-header h1 { 
+  font-family: $font-medium;
+  color: $color-grey-dark;
+  display: inline-block; 
+  font-size: 1.625em;  
+  margin: 30px 0;
+}
+
+.site-header {
+  padding: 0.406rem 0 0.406rem 0;
+  border-bottom: 1px $color-grey-medium solid;
+}
+// end site-header 
+
+// main page colors 
+.client-app.dark {
+  background-color: $color-grey-dark;
+}
+
+.client-app.dark .site-header h1{
+  color: white;
+}
+// end main page colors 
+
+
+// datepicker 
+.date-picker .button-group .button {
+  background-color: white;
+  border: 0.5px solid $color-grey-light;
+  font-size: 0.875em;
+  font-family: $font-light;
+  cursor: pointer;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+}
+.date-picker .button-group .button:first-child{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-right: 0;
+}
+.date-picker .button-group .button:last-child{
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-left: 0;
+}
+.date-picker .button-group .button:focus {
+  outline:0;
+}
+
+.date-picker .button-group .button.selected {
+  background-color: $color-accent;
+}
+// end datepicker 
+
+// widgets rows with filters 
+.widgets {
+  margin: 20px 0;
+}
+// widgets rows with filters 
+
+// search box
+.search-box {
+  display: inline-block;
+}
+
+.search-box input {
+  background-color: white;
+  border: 0.5px solid $color-grey-light;
+  font-size: 0.875em;
+  font-family: $font-light;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.3em 8em 0.3em 1em;
+}
+
+.search-box input:focus {
+  outline: 0;
+}
+// end search box
+
+// sort-dropdown
+.sort-dropdown {
+  display: inline-block;
+  background-color: white;
+  border: 0.5px solid $color-grey-light;
+  font-size: 0.875em;
+  font-family: $font-light;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.3em 1em 0.3em 1em;
+  margin-right: 10px;
+}
+.sort-dropdown .sort-by {
+  color: $color-grey-medium;
+}
+
+.select-box {
+  display: inline-block;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+}
+.select-box:active {
+  background-color: transparent;
+}
+
+.select-box:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -6px;
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent black;
+}
+
+.select-box .dropdown {
+  position: absolute;
+  top: 140%;
+  left: -7.5%; /* Size */
+  right: 0; /* Size */
+  width: 100%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+.select-box .dropdown li {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  line-height: 1.5rem;
+}
+
+// Hover state
+.select-box .dropdown li:hover {
+  color: $color-grey-medium;
+}
+
+.select-box.active .dropdown {
+  background-color: white;
+  opacity: 0.95;
+  pointer-events: auto;
+  border: 0.5px solid $color-grey-light;  
+  border-radius: 4px;
+  padding: 0.3em 1em 0.3em 1em;
+  z-index: 200;
+}
+
+// end sort-dropdown
+
+// cross-hair
+.cross-hair {
+  font-size: 0.750rem;
+  padding: 0.1rem;
+  text-align: center;
+}
+// end cross-hair
+
+.arrow_box {
+  position: relative;
+  background: $color-grey-dark;
+  border: 1px solid $color-grey-dark;
+}
+
+.arrow_box:after, .arrow_box:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+// helpers
+.no-padding {
+  padding: 0;
+}
+button:focus{
+  outline: 0;
+}
+// end helpers
+
+.arrow_box:after {
+  border-color: rgba(57, 59, 66, 0);
+  border-top-color: $color-grey-dark;
+  border-width: 5px;
+  margin-left: -5px;
+}
+.arrow_box:before {
+  border-color: rgba(57, 59, 66, 0);
+  border-top-color: $color-grey-dark;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+.pointer-image {
+  position: relative;
+  top: -5px;
+  left: -7px;
+}
+
+// channel list
+.channel-list-element {
+  background-color: transparent;
+  display: inline-block;
+  margin: 0.2rem 0;
+  border: solid transparent;
+  border-radius: 4px;
+}
+.channel-list-element:hover {
+  background-color: $color-accent;
+  outline: 0;
+  pointer-events: auto;
+}
+.channel-list-element:focus {
+  background-color: $color-accent;
+  outline: 0;
+}
+.channel-list-element:active {
+  background-color: $color-accent;
+  outline: 0;
+}
+// end channel list
+
+.emoji {
+  margin: 0.5rem 0.2rem;
+  width: 3.4rem;
+  border: 0.5px solid $color-grey-light;  
+  border-radius: 4px;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
+}
+
+// frequent speakers
+.member{
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.member-img {
+  margin: 1rem 0;
+}
+.member-index {
+  display: inline-block;
+  font-family: $font-medium;
+  font-size: 1.5rem;
+}
+// end frequent speakers
+
+.nav-buttons {
+  text-align: right;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  margin: 2.2rem 0 0 2.2rem;
+}
+
+
+

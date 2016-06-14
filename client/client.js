@@ -14,7 +14,6 @@ import { Routes } from 'client/routes.js';
 
 import 'normalize.css!';
 import 'flexboxgrid!css';
-import 'client/app.css!';
 import "react-progress-2/main.css!"
 import 'client/app.scss!';
 
