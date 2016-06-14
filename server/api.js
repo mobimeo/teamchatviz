@@ -85,4 +85,13 @@ api.get('/channel-land', async(ctx) => {
   ctx.body = await viz.channelLand(ctx.req.user.teamId, startDate, endDate);
 });
 
+api.get('/moods-and-reactions', async(ctx) => {
+  if (!ctx.req.user) {
+    return ctx.throw(401);
+  }
+  const startDate = ctx.query.startDate || null;
+  const endDate = ctx.query.endDate || null;
+  ctx.body = await viz.moodsAndReactions(ctx.req.user.teamId, startDate, endDate);
+});
+
 export default api;

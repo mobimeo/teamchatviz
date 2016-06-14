@@ -122,7 +122,7 @@ export const ChannelLand = React.createClass({
           <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
             <DateRangePicker onChange={this.onDateChange} />
           </div>
-          <Chart data={data} width={1200} height={800} padding={100} />
+          <Chart data={data} width={1200} height={600} padding={100} />
         </div>
       </main>
     </div>;

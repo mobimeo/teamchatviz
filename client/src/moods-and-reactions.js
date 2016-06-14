@@ -28,7 +28,7 @@ export const MoodsAndReactions = React.createClass({
 
   componentDidMount() {
     Progress.show();
-    fetch('/api/emoji-timeline', {
+    fetch('/api/moods-and-reactions', {
       credentials: 'same-origin'
     })
     .then(response => {
@@ -97,6 +97,33 @@ export const MoodsAndReactions = React.createClass({
               All channels. <br />
               Last 10 days. <br />
             </div>
+            {
+              data.data.map(message => {
+                return <div className="message">
+                  <div className="row">
+                    <div className="message-body col-xs-8">
+                      {message.text}
+                    </div>
+                    <div className="message-reactions col-xs-4">
+                      {
+                        message.reactions.map(reaction => {
+                          return <div>{reaction.name} {reaction.count}</div>
+                        })
+                      }
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="message-meta col-xs-3">
+                      {moment(message.message_ts).format()}
+                      <br />
+                      {message.real_name}
+                      <br />
+                      <img src={message.image32} />
+                    </div>
+                  </div>
+                </div>
+              })
+            }
           </div>
         </div>
       </main>

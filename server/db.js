@@ -11,3 +11,4 @@ pgp.pg.types.setTypeParser(1114, function (str) {
 const db = pgp(config.dbUrl);
 
 export default db;
+export { pgp };
