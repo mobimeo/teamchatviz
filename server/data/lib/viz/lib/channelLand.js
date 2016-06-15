@@ -23,7 +23,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   const channelIds = Object.keys(groupedByChannel);
   const dists = channelIds.map(key => {
-    return groupedByChannel[key].map(row => row.is_member === true ? 0.1 : 0);
+    return groupedByChannel[key].map(row => row.is_member === true ? 10 : 0);
   });
 
   tsne.initDataDist(dists);
