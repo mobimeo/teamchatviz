@@ -1,7 +1,7 @@
 import { WebClient } from '@slack/client';
 import db from '../../db';
 import { save as saveChannel, getById as getChannelById } from '../../repositories/channel';
-
+import moment from 'moment-timezone';
 import Promise from 'bluebird';
 
 export default (token, teamId) => {
@@ -29,6 +29,8 @@ export default (token, teamId) => {
                     topic: channel.topic,
                     purpose: channel.purpose,
                     numberOfMembers: channel.members.length,
+                    creationDate: moment.unix(channel.created),
+                    createdBy: channel.creator,
                   });
                 }
               });

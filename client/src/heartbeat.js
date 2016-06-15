@@ -8,7 +8,8 @@ import { SortDropdown } from './components/SortDropdown.js';
 import Progress from 'react-progress-2';
 import { Map, List } from 'immutable';
 import { Link } from 'react-router';
-import { VirtualScroll } from 'react-virtualized';
+import { VirtualScroll, WindowScroller, AutoSizer } from 'react-virtualized';
+import { maxBy } from 'lodash';
 
 import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
@@ -119,7 +120,8 @@ const HeartbeatPlot = React.createClass({
       y: i.count,
     }));
 
-    const max = this.props.max || 1000;
+    const max = maxBy(chartData, i => i.y).y + 50;
+
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
         onMouseEnter={this._onMouseEnter}
@@ -150,7 +152,7 @@ const ChartItem = React.createClass({
         <span>#{this.props.data.name}</span>
       </div>
       <div className="col-xs-10">
-        <HeartbeatPlot data={this.props.data} max={this.props.max} key={this.props.parentKey} parentKey={this.props.parentKey}/>
+        <HeartbeatPlot data={this.props.data} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>
   }
@@ -186,7 +188,6 @@ export const Heartbeat = React.createClass({
         data: data
           .set('items', List(result.data))
           .set('displayedItems', List(result.data))
-          .set('max', result.max)
       }));
       Progress.hide();
     });
@@ -203,9 +204,8 @@ export const Heartbeat = React.createClass({
         data: data
           .set('items', List(result.data))
           .set('displayedItems', List(result.data))
-          .set('max', result.max)
       }));
-      this.refs.VirtualScroll.forceUpdate();
+      this._VirtualScroll.forceUpdate();
       Progress.hide();
     });
   },
@@ -216,7 +216,7 @@ export const Heartbeat = React.createClass({
       data: data
         .set('displayedItems', List(result))
     }));
-    this.refs.VirtualScroll.forceUpdate();
+    this._VirtualScroll.forceUpdate();
   },
 
   onSort(option) {
@@ -226,7 +226,7 @@ export const Heartbeat = React.createClass({
       data: data
         .set('displayedItems', List(result))
     }));
-    this.refs.VirtualScroll.forceUpdate();
+    this._VirtualScroll.forceUpdate();
   },
 
   renderItem({ index, isScrolling }) {
@@ -234,7 +234,7 @@ export const Heartbeat = React.createClass({
       return <div key={'scrollRow0'} style={{ height: '20px' }}></div>
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
-    return <ChartItem data={data} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} max={this.state.data.get('max')} />;
+    return <ChartItem data={data} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
   },
 
   _getRowHeight({ index }) {
@@ -272,15 +272,27 @@ export const Heartbeat = React.createClass({
             <DateRangePicker onChange={this.onDateChange} />
           </div>
         </div>
-          <VirtualScroll
-            ref='VirtualScroll'
-            height={window.innerHeight - 250}
-            overscanRowCount={10}
-            rowCount={data.get('displayedItems').size}
-            rowHeight={this._getRowHeight}
-            rowRenderer={this.renderItem}
-            width={1200}
-          />
+        <div>
+          <WindowScroller>
+            {({ height, scrollTop }) => (
+              <AutoSizer disableHeight>
+                {({ width }) => (
+                  <VirtualScroll
+                    ref={(v) => this._VirtualScroll = v}
+                    autoHeight
+                    height={height}
+                    scrollTop={scrollTop}
+                    overscanRowCount={20}
+                    rowCount={data.get('displayedItems').size}
+                    rowHeight={this._getRowHeight}
+                    rowRenderer={this.renderItem}
+                    width={width}
+                  />
+                )}
+              </AutoSizer>
+            )}
+          </WindowScroller>
+        </div>
       </main>
     </div>;
   }

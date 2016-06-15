@@ -4,13 +4,14 @@ import moment from 'moment-timezone';
 
 const groupByChannel = (results) => {
   const channels = {};
-  let max = 0;
   results.forEach(r => {
     if (!(r.id in channels)) {
       channels[r.id] = {
         id: r.id,
         name: r.name,
         numberOfMembers: r.number_of_members,
+        creationDate: r.creation_date,
+        creatorName: r.real_name,
         heartbeat: [],
       };
     }
@@ -19,9 +20,6 @@ const groupByChannel = (results) => {
       channels[r.id].numberOfMembers = r.number_of_members;
     }
     const count = parseInt(r.c);
-    if (count > max) {
-      max = count;
-    }
     channels[r.id].heartbeat.push({
       t: r.t,
       count: count,
@@ -29,7 +27,6 @@ const groupByChannel = (results) => {
   });
   return {
     data: Object.keys(channels).map(key => channels[key]),
-    max: max,
   };
 };
 
@@ -62,9 +59,9 @@ export default async function(teamId, startDate = null, endDate = null, interval
   }
   console.log(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
   const tmp = await db.any(`
-    SELECT cr.t, cr.id, cr.name, cr.number_of_members, SUM(COALESCE(data.c, 0)) as c FROM (
-      SELECT DATE(t) as t, id, name, number_of_members FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t
-      CROSS JOIN (SELECT DISTINCT id, name, number_of_members FROM channels WHERE team_id = $(teamId)) channels
+    SELECT cr.t, cr.id, cr.name, cr.number_of_members, cr.creation_date, cr.created_by, members.real_name, SUM(COALESCE(data.c, 0)) as c FROM (
+      SELECT DATE(t) as t, id, name, number_of_members, creation_date, created_by FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t
+      CROSS JOIN (SELECT DISTINCT id, name, number_of_members, creation_date, created_by FROM channels WHERE team_id = $(teamId)) channels
     ) cr LEFT JOIN (
       SELECT DATE(messages.message_ts) as t, channels.id, COUNT(messages.id) as c
         FROM channels INNER JOIN messages ON channels.id = messages.channel_id
@@ -73,7 +70,8 @@ export default async function(teamId, startDate = null, endDate = null, interval
         GROUP BY t, channels.id, channels.name
         ORDER BY t
     ) data ON data.t BETWEEN cr.t and cr.t + $(interval)::INTERVAL AND data.id = cr.id
-    GROUP BY cr.t, cr.id, cr.name, cr.number_of_members
+    INNER JOIN members ON members.id = cr.created_by
+    GROUP BY cr.t, cr.id, cr.name, cr.number_of_members, cr.creation_date, cr.created_by, members.real_name
     ORDER BY cr.t`, {
       startDate,
       endDate,

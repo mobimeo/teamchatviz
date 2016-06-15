@@ -70,10 +70,7 @@ const ToolTip = React.createClass({
       const textStyle = {
         fontSize: 24,
         fontWeight: 'bold',
-        stroke: '#FFFFFF',
-        strokeWidth: '1px',
-        fill: '#333',
-      }
+      };
       return <text style={textStyle} x={parseFloat(x)+5} y={y}>#{this.props.tooltip.name}</text>;
     } else {
       return <text />;

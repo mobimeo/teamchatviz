@@ -10,6 +10,7 @@
   src: url("/fonts/DINWeb-Medium.eot") format('eot');
   src: url("/fonts/DINWeb-Medium.woff") format('woff');
 }
+
 $font-light: 'DINWeb-Light';
 $font-medium: 'DINWeb-Medium';
 
@@ -18,7 +19,6 @@ $color-accent: #FFCC33;
 $color-grey-dark: #393B42;
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
-
 
 // html, body main stiling
 html, body {

@@ -57,7 +57,7 @@ SystemJS.config({
     "react-dom": "npm:react-dom@15.1.0",
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.4.1",
-    "react-virtualized": "npm:react-virtualized@7.3.3",
+    "react-virtualized": "npm:react-virtualized@7.7.0",
     "react-vis": "npm:react-vis@0.3.4",
     "scss": "github:mobilexag/plugin-sass@0.4.5",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
@@ -550,7 +550,7 @@ SystemJS.config({
         "react-menus": "npm:react-menus@1.1.1"
       }
     },
-    "npm:react-virtualized@7.3.3": {
+    "npm:react-virtualized@7.7.0": {
       "map": {
         "classnames": "npm:classnames@2.2.5",
         "dom-helpers": "npm:dom-helpers@2.4.0",
