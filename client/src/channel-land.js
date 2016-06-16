@@ -9,6 +9,7 @@ import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import d3 from 'd3';
+import ReactDom from 'react-dom';
 
 function parseJSON(response) {
   return response.json()
@@ -78,6 +79,18 @@ const ToolTip = React.createClass({
   }
 });
 
+const Hull = React.createClass({
+  render() {
+    const data = d3.geom.hull(this.props.points);
+    let attr = '';
+    if (data.length > 0) {
+      attr = `M ${data[0][0]} ${data[0][1]} ${data.slice(0, data.length).map(d => 'L ' + d[0] + ' ' + d[1]).join(' ')} Z`;
+    }
+    return <path className="hull" d={attr} stroke={this.props.color}>
+    </path>
+  }
+});
+
 const Chart = React.createClass({
   getInitialState() {
     return {
@@ -109,12 +122,40 @@ const Chart = React.createClass({
       }
     });
   },
+
+  componentDidMount: function() {
+    var el = ReactDom.findDOMNode(this);
+    var selection = d3.select(el).select('g');
+    var zoom = d3.behavior.zoom()
+      .scaleExtent([1, 10])
+      .on("zoom", this.onZoom);
+    selection.call(zoom);
+  },
+
+  onZoom() {
+    var el = ReactDom.findDOMNode(this);
+    var selection = d3.select(el).select('g');
+    selection.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
+  },
+
   render() {
     const props = this.props;
     const scales = { xScale: xScale(props), yScale: yScale(props) };
+    const points = props.data.slice(0, 10);
+    const groups = _.groupBy(props.data, 'group');
+    const hulls = Object.keys(groups).map(key => {
+      const points = groups[key].map(p => [scales.xScale(p.x), scales.yScale(p.y)]);
+      return <Hull points={points} color={groups[key].color} />
+    });
+
     return <svg width={props.width} height={props.height}>
-      <DataCircles {...props} {...scales} showToolTip={this.showToolTip} hideToolTip={this.hideToolTip} />
-      <ToolTip tooltip={this.state.tooltip} />
+      <g>
+        {
+          hulls
+        }
+        <DataCircles {...props} {...scales} showToolTip={this.showToolTip} hideToolTip={this.hideToolTip} />
+        <ToolTip tooltip={this.state.tooltip} />
+      </g>
     </svg>
   }
 });

@@ -7,7 +7,9 @@ import clustering from 'density-clustering';
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
 
-  const rawData = await db.any(`SELECT channel_id, user_id, is_member FROM membership WHERE team_id = $(teamId) ORDER BY channel_id, user_id;`,
+  const rawData = await db.any(`SELECT membership.channel_id, membership.user_id, membership.is_member FROM membership
+    INNER JOIN channels ON membership.channel_id = channels.id AND channels.team_id = $(teamId)
+    WHERE membership.team_id = $(teamId) ORDER BY membership.channel_id, membership.user_id;`,
     {
       teamId,
     });
@@ -35,14 +37,17 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   const solution = tsne.getSolution();
-  const dbscan = new clustering.DBSCAN();
-  const clusters = dbscan.run(solution, 0.1, 2);
-  const data = solution.map((row, i) => ({
-    channelId: channelIds[i],
-    name: channels.find(ch => ch.id === channelIds[i]).name,
-    x: row[0]*1000,
-    y: row[1]*1000
-  }));
+  const dbscan = new clustering.KMEANS();
+  const clusters = dbscan.run(solution, 5);
+
+  const data = solution.map((row, i) => {
+    return {
+      channelId: channelIds[i],
+      name: channels.find(ch => ch.id === channelIds[i]).name,
+      x: row[0]*1000,
+      y: row[1]*1000
+    }
+  });
 
   const colors = [
     'red',
@@ -51,6 +56,8 @@ export default async function(teamId, startDate = null, endDate = null, interval
     'yellow',
     'grey',
     'violet',
+    '#00B7BF',
+    '#9B9B9B'
   ];
 
   clusters.forEach((cluster, i) => {
@@ -60,6 +67,13 @@ export default async function(teamId, startDate = null, endDate = null, interval
       data[index].color = colors[i];
     });
   });
+
+  data.forEach(i => {
+    if (!i.group) {
+      i.group = 'Group X',
+      i.color = 'black';
+    }
+  })
 
   return {
     data,
