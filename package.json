@@ -35,6 +35,7 @@
     "lodash": "^4.13.1",
     "moment-timezone": "^0.5.4",
     "passport-slack": "0.0.6",
+    "pg-monitor": "^0.5.8",
     "pg-promise": "^3.9.1"
   },
   "devDependencies": {

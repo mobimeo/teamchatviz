@@ -5,18 +5,15 @@ import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries, Crosshair } 
 import { DateRangePicker } from './components/DateRangePicker.js';
 import { SearchBox } from './components/SearchBox.js';
 import { SortDropdown } from './components/SortDropdown.js';
-import Progress from 'react-progress-2';
 import { Map, List } from 'immutable';
 import { Link } from 'react-router';
 import { VirtualScroll, WindowScroller, AutoSizer } from 'react-virtualized';
 import { maxBy } from 'lodash';
+import { fetchHeartbeat } from './networking/index';
 
 import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
 
-function parseJSON(response) {
-  return response.json()
-}
 
 const HeartbeatPlot = React.createClass({
 
@@ -169,45 +166,26 @@ export const Heartbeat = React.createClass({
   },
 
   componentDidMount() {
-    Progress.show();
-    fetch('/api/heartbeat', {
-      credentials: 'same-origin'
-    })
-    .then(response => {
-      if (!response.ok) {
-        if (response.status == 401) {
-          window.location = '/api/auth/slack';
-        }
-        throw Error(response.statusText);
-      }
-      return response;
-    })
-    .then(parseJSON)
-    .then(result => {
-      this.setState(({data}) => ({
-        data: data
-          .set('items', List(result.data))
-          .set('displayedItems', List(result.data))
-      }));
-      Progress.hide();
-    });
+    fetchHeartbeat()
+      .then(result => {
+        this.setState(({data}) => ({
+          data: data
+            .set('items', List(result.data))
+            .set('displayedItems', List(result.data))
+        }));
+      })
   },
 
   onDateChange(range) {
-    Progress.show();
-    fetch(`/api/heartbeat?startDate=${range.startDate?range.startDate:''}&endDate=${range.endDate?range.endDate:''}`, {
-      credentials: 'same-origin'
-    })
-    .then(parseJSON)
-    .then(result => {
-      this.setState(({data}) => ({
-        data: data
-          .set('items', List(result.data))
-          .set('displayedItems', List(result.data))
-      }));
-      this._VirtualScroll.forceUpdate();
-      Progress.hide();
-    });
+    fetchHeartbeat(range.startDate, range.endDate)
+      .then(result => {
+        this.setState(({data}) => ({
+          data: data
+            .set('items', List(result.data))
+            .set('displayedItems', List(result.data))
+        }));
+        this._VirtualScroll.forceUpdate();
+      });
   },
 
   onSearch(value) {
@@ -220,11 +198,9 @@ export const Heartbeat = React.createClass({
   },
 
   onSort(option) {
-    var result = this.state.data.get('items').toJS();
-    result.sort(option.compare);
     this.setState(({data}) => ({
       data: data
-        .set('displayedItems', List(result))
+        .set('displayedItems', data.get('items').sort(option.compare))
     }));
     this._VirtualScroll.forceUpdate();
   },

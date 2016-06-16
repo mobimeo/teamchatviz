@@ -53,6 +53,14 @@ footer {
   border-top: 0.5px solid $color-grey-medium;
   margin-top: 20px;
 }
+
+.github-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  width: 149px;
+}
 // end footer/content set up
 
 // chart icons and text styles
@@ -88,7 +96,12 @@ footer {
   margin-top: 4rem;
 }
 
-.chartImage {
+.chart-container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.chart-image {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -96,8 +109,13 @@ footer {
   background-color: white;
 }
 
-.chartImage:hover {
+.chart-image:hover {
   background-color: $color-accent;
+}
+
+.chart-image-link {
+  float: left;
+  margin: 0 1rem 1rem 0;
 }
 
 .chartHeartbeat {

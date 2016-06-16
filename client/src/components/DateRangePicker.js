@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, List } from 'immutable';
 import moment from 'moment';
+import { DateRange } from 'react-date-range';
 
 export const DateRangePicker = React.createClass({
   getInitialState() {
@@ -41,6 +42,15 @@ export const DateRangePicker = React.createClass({
     };
   },
 
+  handleSelect(range){
+    if (range.startDate.format() !== range.endDate.format()) {
+      this.props.onChange({
+        startDate: range.startDate.format(),
+        endDate: range.endDate.format()
+      });
+    }
+  },
+
   onClick(i) {
     let range = this.state.data.get('buttons').get(i).get('range')();
     this.props.onChange(range);
@@ -57,6 +67,7 @@ export const DateRangePicker = React.createClass({
 
   render() {
     return <div className="date-picker">
+      <DateRange onChange={this.handleSelect} />
       <div className="button-group">
         {
           this.state.data.get('buttons').map((button, key) => {

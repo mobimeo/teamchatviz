@@ -54,6 +54,7 @@ SystemJS.config({
     "react-addons-shallow-compare": "npm:react-addons-shallow-compare@15.1.0",
     "react-addons-update": "npm:react-addons-update@15.1.0",
     "react-button-group": "npm:react-button-group@1.0.2",
+    "react-date-range": "npm:react-date-range@0.2.4",
     "react-dom": "npm:react-dom@15.1.0",
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.4.1",
@@ -504,6 +505,13 @@ SystemJS.config({
       "map": {
         "object-assign": "npm:object-assign@2.1.1",
         "react-style-normalizer": "npm:react-style-normalizer@1.2.8"
+      }
+    },
+    "npm:react-date-range@0.2.4": {
+      "map": {
+        "classnames": "npm:classnames@2.2.5",
+        "moment": "npm:moment@2.13.0",
+        "react": "npm:react@15.1.0"
       }
     },
     "npm:react-dropdown-button@1.0.11": {

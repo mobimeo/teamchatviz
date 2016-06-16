@@ -1,12 +1,10 @@
 import 'systemjs-hot-reloader/default-listener.js';
 
 export function __reload(m) {
-  if (m.component.state)
+  if (m.component.state && typeof component.setState === 'function') {
     component.setState(m.component.state);
+  }
 }
-
-
-import 'whatwg-fetch';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

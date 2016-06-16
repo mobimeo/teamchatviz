@@ -12,7 +12,7 @@ export const SortDropdown = React.createClass({
           Map({
             value: 1,
             label: 'Channel Name & Membership',
-            selected: false,
+            selected: true,
             compare(a, b) {
               return a.name - b.name;
             }
@@ -70,7 +70,6 @@ export const SortDropdown = React.createClass({
 
   onItemClick(i) {
     let option = this.state.data.get('options').get(i).toJS();
-    this.props.onChange(option);
     this.setState(({data}) => ({
       data: data.update('options', options => options.map((b, index) => {
         if (index === i) {
@@ -80,12 +79,17 @@ export const SortDropdown = React.createClass({
         }
       }))
     }));
+    this.props.onChange(option);
   },
 
   render() {
+    var data = this.state.data;
+    var active = data.get('active');
+    var selected = data.get('options').find(option => option.get('selected') === true);
+    var placeholder = data.get('placeholder');
     return <div className="sort-dropdown">
-      <div className={this.state.data.get('active') ? 'select-box active' : 'select-box'} onClick={this.onToggle}>
-        <span className="sort-by">{this.state.data.get('placeholder')}</span><span> (choose)</span>
+      <div className={ active ? 'select-box active' : 'select-box'} onClick={this.onToggle} >
+        <span className="sort-by">{placeholder}</span><span> {selected ? selected.get('label') : '(choose)' }</span>
         <ul className="dropdown">
           {
             this.state.data.get('options').map((o, i) => {

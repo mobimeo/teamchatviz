@@ -38,7 +38,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   const solution = tsne.getSolution();
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 5);
+  const clusters = dbscan.run(solution, 10);
 
   const data = solution.map((row, i) => {
     return {
