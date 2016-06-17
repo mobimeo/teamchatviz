@@ -7,7 +7,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
   const ids = await db.any(`SELECT messages.id, SUM(reactions.count) as c FROM messages
     INNER JOIN reactions ON messages.id = reactions.message_id
-    WHERE messages.team_id = $(teamId)
+    WHERE messages.team_id = $(teamId) AND messages.user_id <> 'USLACKBOT'
     GROUP BY messages.id
     ORDER BY c DESC LIMIT 20`, {
       // startDate,

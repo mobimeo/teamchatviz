@@ -8,6 +8,7 @@ import Progress from 'react-progress-2';
 import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import { Header } from './components/Header.js';
 
 import 'react-vis/main.css!';
 
@@ -63,13 +64,7 @@ export const FrequentSpeakers = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <Link to="/">
-          <h1>
-            frequent speakers
-          </h1>
-        </Link>
-      </header>
+      <Header title="frequent speakers" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
@@ -81,6 +76,8 @@ export const FrequentSpeakers = React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
+            <div><button className="channel-list-element">All channels</button></div>
+            <hr />
             {
               data.channels.map((d, i) => {
                 return <div key={i}><button className="channel-list-element">#{d.name}</button></div>;

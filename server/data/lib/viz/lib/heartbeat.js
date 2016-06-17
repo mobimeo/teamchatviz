@@ -13,6 +13,7 @@ const groupByChannel = (results) => {
         creationDate: r.creation_date,
         creatorName: r.real_name,
         heartbeat: [],
+        max: 0,
       };
     }
     if (!channels[r.id].name && r.name) {
@@ -20,6 +21,9 @@ const groupByChannel = (results) => {
       channels[r.id].numberOfMembers = r.number_of_members;
     }
     const count = parseInt(r.c);
+    if (count > channels[r.id].max) {
+      channels[r.id].max = count;
+    }
     channels[r.id].heartbeat.push({
       t: r.t,
       count: count,
@@ -51,12 +55,32 @@ export default async function(teamId, startDate = null, endDate = null, interval
   if (!endDate) {
     endDate = await getMaxDate(teamId);
   }
-  startDate = moment(startDate).utc().format();
-  endDate = moment(endDate).utc().format();
+  startDate = moment.utc(startDate).format();
+  endDate = moment.utc(endDate).format();
   const days = moment(endDate).diff(moment(startDate), 'days');
+  let numberOfChunks = 6;
   if (days > 30) {
     interval = '5 days';
+    numberOfChunks = 10;
   }
+  if (days < 15) {
+    numberOfChunks = days;
+  }
+  const chunkLength = Math.floor(days / numberOfChunks);
+  const chunks = [];
+
+  for (var i = 0; i < numberOfChunks; i++) {
+    chunks[i] = {
+      ts: moment.utc(startDate).add(i*chunkLength, 'days').format(),
+      label: moment.utc(startDate).add(i*chunkLength, 'days').format(),
+    };
+  }
+
+  // chunks.push({
+  //   ts: moment(endDate).utc().subtract(1, 'day').format(),
+  //   label: moment(endDate).utc().subtract(1, 'day').format(),
+  // });
+
   console.log(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
   const tmp = await db.any(`
     SELECT cr.t, cr.id, cr.name, cr.number_of_members, cr.creation_date, cr.created_by, members.real_name, SUM(COALESCE(data.c, 0)) as c FROM (
@@ -78,5 +102,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
       teamId,
       interval,
     });
-  return groupByChannel(tmp);
+  const result = groupByChannel(tmp);
+  result.chunks = chunks;
+  return result;
 };

@@ -9,6 +9,7 @@ import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import d3 from 'd3';
+import { Header } from './components/Header.js';
 
 function parseJSON(response) {
   return response.json()
@@ -164,13 +165,7 @@ export const PeopleLand = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <Link to="/">
-          <h1>
-            people land
-          </h1>
-        </Link>
-      </header>
+      <Header title="people land" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">

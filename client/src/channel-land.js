@@ -10,6 +10,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 import d3 from 'd3';
 import ReactDom from 'react-dom';
+import { Header } from './components/Header.js';
 
 function parseJSON(response) {
   return response.json()
@@ -205,13 +206,7 @@ export const ChannelLand = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <Link to="/">
-          <h1>
-            channel land
-          </h1>
-        </Link>
-      </header>
+      <Header title="channel land" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">

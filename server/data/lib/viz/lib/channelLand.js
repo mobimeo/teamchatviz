@@ -9,7 +9,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   const rawData = await db.any(`SELECT membership.channel_id, membership.user_id, membership.is_member FROM membership
     INNER JOIN channels ON membership.channel_id = channels.id AND channels.team_id = $(teamId)
-    WHERE membership.team_id = $(teamId) ORDER BY membership.channel_id, membership.user_id;`,
+    WHERE membership.team_id = $(teamId) AND membership.user_id <> 'USLACKBOT';`,
     {
       teamId,
     });
@@ -29,7 +29,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   tsne.initDataDist(dists);
-  for(let k = 0; k < 1000; k++) {
+  for(let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
   const channels = await db.any(`SELECT * FROM channels WHERE team_id=$(teamId)`, {

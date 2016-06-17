@@ -7,6 +7,7 @@ export const DateRangePicker = React.createClass({
   getInitialState() {
     return {
       data: Map({
+        expanded: false,
         buttons: List([Map({
           id: 1,
           title: 'Last 10 Days',
@@ -48,6 +49,9 @@ export const DateRangePicker = React.createClass({
         startDate: range.startDate.format(),
         endDate: range.endDate.format()
       });
+      this.setState(({data}) => ({
+        data: data.update('expanded', expanded => !expanded)
+      }));
     }
   },
 
@@ -65,9 +69,17 @@ export const DateRangePicker = React.createClass({
     }));
   },
 
+  onToggle() {
+    this.setState(({data}) => ({
+      data: data.update('expanded', expanded => !expanded)
+    }));
+  },
+
   render() {
     return <div className="date-picker">
-      <DateRange onChange={this.handleSelect} />
+      <div style={{ display: 'inline-block' }}>
+        <a onClick={this.onToggle}><img className="nav-buttons" src="../../images/navbuttons-19.png" alt="menu"></img></a>
+      </div>
       <div className="button-group">
         {
           this.state.data.get('buttons').map((button, key) => {
@@ -78,6 +90,7 @@ export const DateRangePicker = React.createClass({
           })
         }
       </div>
+      { this.state.data.get('expanded') ? <div className="date-range-container"> <DateRange onChange={this.handleSelect} /> </div> : null }
     </div>;
   }
 });

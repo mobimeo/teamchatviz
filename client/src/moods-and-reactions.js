@@ -10,6 +10,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 import emoji from 'node-emoji';
 import 'react-vis/main.css!';
+import { Header } from './components/Header.js';
 
 function parseJSON(response) {
   return response.json()
@@ -68,13 +69,7 @@ export const MoodsAndReactions = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <Link to="/">
-          <h1>
-            moods & reactions
-          </h1>
-        </Link>
-      </header>
+      <Header title="comments & reactions" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
@@ -86,6 +81,8 @@ export const MoodsAndReactions = React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-2">
+            <div><button className="channel-list-element">All channels</button></div>
+            <hr />
             {
               data.channels.map((d, i) => {
                 return <div key={i}><span>#{d.name}</span></div>;

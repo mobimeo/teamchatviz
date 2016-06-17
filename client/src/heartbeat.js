@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, LineSeries, Crosshair } from 'react-vis';
+import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Crosshair } from 'react-vis';
 import { DateRangePicker } from './components/DateRangePicker.js';
 import { SearchBox } from './components/SearchBox.js';
 import { SortDropdown } from './components/SortDropdown.js';
@@ -10,6 +10,7 @@ import { Link } from 'react-router';
 import { VirtualScroll, WindowScroller, AutoSizer } from 'react-virtualized';
 import { maxBy } from 'lodash';
 import { fetchHeartbeat } from './networking/index';
+import { Header } from './components/Header.js';
 
 import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
@@ -31,7 +32,7 @@ const HeartbeatPlot = React.createClass({
         crosshairValues: [],
         width: 0,
         seriesColor: '#9B9B9B',
-      }),
+      })
     };
   },
 
@@ -83,19 +84,20 @@ const HeartbeatPlot = React.createClass({
     const data = this.props.data || {
       heartbeat: [],
     };
+    const showChunkHints = this.props.showChunkHints || false;
     const chValues = this.state.data.get('crosshairValues');
     const tooltipStyles = {
       background: '#393B42',
       width: '90px',
       color: 'white',
       position: 'absolute',
-      left: '-49px',
+      left: '-47px',
       top: '-50px',
       fontSize: '10px'
     };
     const pointerStyles = {
       position: 'absolute',
-      left: '-13px',
+      left: '-12px',
       top: '-13px',
     };
     const hints = [];
@@ -111,9 +113,17 @@ const HeartbeatPlot = React.createClass({
               <img style={pointerStyles} width="25" src="/images/pointer.png" />
             </Hint>);
     }
+    if (showChunkHints) {
+      const chunks = this.props.chunks;
+      chunks.forEach((ch, i) => {
+        hints.push(<Hint orientation={ (i < chunks.length - 1) ? 'topright' : 'topright' } value={{ x: moment.utc(ch.ts).unix(), y: data.max + 30 }}>
+          <span style={{ fontSize: '0.5rem', position: 'relative', top: '-20px' }}>{moment.utc(ch.ts).format('ll')}</span>
+        </Hint>);
+      });
+    }
     const width = (this.state.data.get('width') - 30) > 0 ? this.state.data.get('width') - 30 : 600;
     const chartData = data.heartbeat.map(i => ({
-      x: moment(i.t).unix(),
+      x: moment.utc(i.t).unix(),
       y: i.count,
     }));
 
@@ -128,7 +138,9 @@ const HeartbeatPlot = React.createClass({
         yDomain={[0, max]}
         key={'xyPlot' + this.props.parentKey}
         >
-        <VerticalGridLines key={'xyPlotVerticalGrids' + this.props.parentKey} />
+        <HorizontalGridLines className="low-boundary" key={'xyPlotHorizontalGrids' + this.props.parentKey} values={[0]} />
+        <HorizontalGridLines className="higher-boundary" key={'xyPlotHorizontalGrids2' + this.props.parentKey} values={[max]} />
+        <VerticalGridLines key={'xyPlotVerticalGrids' + this.props.parentKey} values={this.props.chunks.map(ch => moment.utc(ch.ts).unix())} />
         <LineSeries
           onNearestX={this._onNearestXs[0]}
           data={chartData}
@@ -144,12 +156,13 @@ const HeartbeatPlot = React.createClass({
 
 const ChartItem = React.createClass({
   render() {
+    const showChunkHints = this.props.showChunkHints;
     return <div className="row middle-xs" style={{ paddingRight: '20px' }}>
       <div className="col-xs-2">
         <span>#{this.props.data.name}</span>
       </div>
       <div className="col-xs-10">
-        <HeartbeatPlot data={this.props.data} key={this.props.parentKey} parentKey={this.props.parentKey}/>
+        <HeartbeatPlot data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>
   }
@@ -161,6 +174,7 @@ export const Heartbeat = React.createClass({
       data: Map({
         displayedItems: List([]),
         items: List([]),
+        chunks: List([])
       })
     };
   },
@@ -172,6 +186,7 @@ export const Heartbeat = React.createClass({
           data: data
             .set('items', List(result.data))
             .set('displayedItems', List(result.data))
+            .set('chunks', result.chunks)
         }));
       })
   },
@@ -183,6 +198,7 @@ export const Heartbeat = React.createClass({
           data: data
             .set('items', List(result.data))
             .set('displayedItems', List(result.data))
+            .set('chunks', result.chunks)
         }));
         this._VirtualScroll.forceUpdate();
       });
@@ -210,7 +226,8 @@ export const Heartbeat = React.createClass({
       return <div key={'scrollRow0'} style={{ height: '20px' }}></div>
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
-    return <ChartItem data={data} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
+    const chunks = this.state.data.get('chunks');
+    return <ChartItem data={data} chunks={chunks} showChunkHints={index === 1 ? true : false} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
   },
 
   _getRowHeight({ index }) {
@@ -223,22 +240,7 @@ export const Heartbeat = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <div className="row">
-          <div className="col-xs-10">
-            <Link to="/">
-              <h1>
-                channel heartbeat
-              </h1>
-            </Link>
-          </div>
-          <div className="col-xs-2">
-            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-16.png" alt="home"></img></Link>
-            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-17.png" alt="info"></img></Link>
-            <Link to ="/"><img className="nav-buttons" src="../../images/navbuttons-18.png" alt="menu"></img></Link>
-          </div>
-        </div>
-      </header>
+      <Header title="channel heartbeat" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">

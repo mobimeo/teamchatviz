@@ -8,7 +8,10 @@ import Progress from 'react-progress-2';
 import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import { Header } from './components/Header.js';
+import { Emoji } from './components/Emoji.js';
 import emoji from 'node-emoji';
+
 import 'react-vis/main.css!';
 
 function parseJSON(response) {
@@ -68,13 +71,7 @@ export const EmojiTimeline = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <header className="site-header">
-        <Link to="/">
-          <h1>
-            emoji timeline
-          </h1>
-        </Link>
-      </header>
+      <Header title="emoji timeline" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
@@ -100,7 +97,7 @@ export const EmojiTimeline = React.createClass({
                 data.rating
                 .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                 .map((reaction, i) => {
-                  return <span className="emoji" style={{ display: 'inline-block' }}>{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</span>;
+                  return <Emoji name={reaction.name} count={reaction.count} />;
                 })
               }
             </div>
@@ -113,7 +110,7 @@ export const EmojiTimeline = React.createClass({
                   d.emojis
                   .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                   .map((reaction, i) => {
-                    return <div className="emoji">{emoji.get(reaction.name.split('::')[0])} &nbsp; {reaction.count}</div>;
+                    return <Emoji style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
                   })
                 }
                 {moment(d.id).format('DD/MM/YY')}

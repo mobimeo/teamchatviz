@@ -177,6 +177,10 @@ footer {
 
 
 // datepicker 
+.date-picker .button-group {
+  display: inline-block;
+}
+
 .date-picker .button-group .button {
   background-color: white;
   border: 0.5px solid $color-grey-light;
@@ -201,6 +205,12 @@ footer {
 
 .date-picker .button-group .button.selected {
   background-color: $color-accent;
+}
+
+.date-range-container {
+  position: absolute;
+  background-color: white;
+  z-index: 10;
 }
 // end datepicker 
 
@@ -251,7 +261,7 @@ footer {
   position: relative;
   outline: none;
   cursor: pointer;
-  width: 200px;
+  width: 17.5rem;
 }
 .select-box:active {
   background-color: transparent;
@@ -414,5 +424,19 @@ button:focus{
   margin: 2.2rem 0 0 2.2rem;
 }
 
+.rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
+.rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
+  stroke-dasharray: 5, 5;
+}
+
+.menu-buttons a {
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  background-color: white;
+  z-index: 20;
+}
 
 

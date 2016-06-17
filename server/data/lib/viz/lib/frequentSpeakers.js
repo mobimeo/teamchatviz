@@ -6,7 +6,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
   const data = await db.any(`SELECT messages.user_id, members.name, members.real_name as realName, members.image72, COUNT(messages.id) as count
     FROM messages INNER JOIN members ON messages.user_id = members.id
-    WHERE messages.team_id=$(teamId) AND messages.user_id IS NOT NULL
+    WHERE messages.team_id=$(teamId) AND messages.user_id IS NOT NULL AND messages.user_id <> 'USLACKBOT'
     GROUP BY messages.user_id, members.name, members.real_name, members.image72;`, {
       // startDate,
       // endDate,
