@@ -13,7 +13,7 @@ const syncReactions = (teamId, channelId, message) => {
       teamId,
       messageId: message.ts,
       channelId: channelId,
-      name: reaction.name,
+      name: reaction.name.split('::')[0],
       count: reaction.count,
     });
   }));

@@ -46,7 +46,8 @@ passport.use('slack-admin', new PassportSlack.Strategy({
       'reminders:read',
       'search:read',
       'team:read',
-      'usergroups:read'
+      'usergroups:read',
+      'emoji:read',
     ].join(', '),
   },
   handleUser

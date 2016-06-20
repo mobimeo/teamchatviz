@@ -28,7 +28,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
     return groupedByChannel[key].map(row => row.is_member === true ? 10 : 0);
   });
 
-  tsne.initDataDist(dists);
+  tsne.initDataRaw(dists);
   for(let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }

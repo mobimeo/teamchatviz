@@ -31,7 +31,8 @@ export default api => {
           if (ctx.query.state === 'admin') {
             const promises = Promise.all([
               sync.members(user.accessToken, user.teamId),
-              sync.channels(user.accessToken, user.teamId)
+              sync.channels(user.accessToken, user.teamId),
+              sync.emojis(user.accessToken, user.teamId),
             ]).then(([ members, channels ]) => {
               return Promise.all([
                 sync.messages(user.accessToken, user.teamId, channels),

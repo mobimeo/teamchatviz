@@ -15,7 +15,6 @@ export default (token, teamId, members, channels) => {
       channelId,
       isMember: channelMembers.indexOf(userId) !== -1,
     }));
-    console.log(membership);
     return Promise.all(membership.map(saveMembership));
   }));
 };

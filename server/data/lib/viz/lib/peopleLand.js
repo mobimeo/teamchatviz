@@ -24,22 +24,37 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   const userIds = Object.keys(groupedByUser);
   const dists = userIds.map(key => {
-    return groupedByUser[key].map(row => row.is_member === true ? 10 : 0);
+    return groupedByUser[key].map(row => row.is_member === true ? 1 : 0.1);
   });
 
   // console.log(dists.slice(0, 3));
-  tsne.initDataDist(dists);
+  console.time('tsne');
 
-  for(let k = 0; k < 500; k++) {
+  console.log(dists.length);
+  dists.forEach(d => console.log(d.length, d.reduce((k, c) => k + c, 0)));
+
+  debugger;
+
+  tsne.initDataRaw(dists);
+
+  for (let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
+
+  const solution = tsne.getSolution();
+
+  console.log(solution);
+
+  console.timeEnd('tsne');
+
   const members = await db.any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
     teamId,
   });
 
-  const solution = tsne.getSolution();
+  console.time('k-means');
   const dbscan = new clustering.KMEANS();
   const clusters = dbscan.run(solution, 10);
+  console.timeEnd('k-means');
 
   const data = solution.map((row, i) => {
     return {
