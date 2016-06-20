@@ -24,14 +24,13 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   const userIds = Object.keys(groupedByUser);
   const dists = userIds.map(key => {
-    const result = groupedByUser[key].map(row => row.is_member === true ? 2 : 1);
-    return result;
+    return groupedByUser[key].map(row => row.is_member === true ? 10 : 0);
   });
 
   // console.log(dists.slice(0, 3));
   tsne.initDataDist(dists);
 
-  for(let k = 0; k < 1000; k++) {
+  for(let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
   const members = await db.any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
@@ -39,15 +38,17 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   const solution = tsne.getSolution();
-  // console.log(solution.slice(0, 3));
-  const dbscan = new clustering.DBSCAN();
-  const clusters = dbscan.run(solution, 0.1, 2);
-  const data = solution.map((row, i) => ({
-    channelId: userIds[i],
-    name: members.find(member => member.id === userIds[i]).real_name,
-    x: row[0]*1000,
-    y: row[1]*1000
-  }));
+  const dbscan = new clustering.KMEANS();
+  const clusters = dbscan.run(solution, 10);
+
+  const data = solution.map((row, i) => {
+    return {
+      channelId: userIds[i],
+      name: members.find(ch => ch.id === userIds[i]).name,
+      x: row[0]*1000,
+      y: row[1]*1000
+    }
+  });
 
   const colors = [
     'red',
@@ -56,6 +57,8 @@ export default async function(teamId, startDate = null, endDate = null, interval
     'yellow',
     'grey',
     'violet',
+    '#00B7BF',
+    '#9B9B9B'
   ];
 
   clusters.forEach((cluster, i) => {
@@ -65,6 +68,13 @@ export default async function(teamId, startDate = null, endDate = null, interval
       data[index].color = colors[i];
     });
   });
+
+  data.forEach(i => {
+    if (!i.group) {
+      i.group = 'Group X',
+      i.color = 'black';
+    }
+  })
 
   return {
     data,

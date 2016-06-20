@@ -1,4 +1,4 @@
-import { viz, sync } from '../../data';
+import { viz } from '../../data';
 
 export default api => {
   api.get('/heartbeat', async(ctx) => {
