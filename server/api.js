@@ -75,7 +75,8 @@ api.get('/frequent-speakers', async(ctx) => {
   }
   const startDate = ctx.query.startDate || null;
   const endDate = ctx.query.endDate || null;
-  ctx.body = await viz.frequentSpeakers(ctx.req.user.teamId, startDate, endDate);
+  const channelId = ctx.query.channelId || null;
+  ctx.body = await viz.frequentSpeakers(ctx.req.user.teamId, startDate, endDate, channelId);
 });
 
 api.get('/emoji-timeline', async(ctx) => {

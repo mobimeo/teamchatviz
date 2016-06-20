@@ -56,3 +56,16 @@ export const fetchUser = () => {
     return result;
   });
 };
+
+export const fetchFrequentSpeakers = (startDate, endDate, channelId) => {
+  Progress.show();
+  return fetch(`/api/frequent-speakers?startDate=${startDate?startDate:''}&endDate=${endDate?endDate:''}&channelId=${channelId?channelId:''}`, {
+    credentials: 'same-origin'
+  })
+  .then(onFailure)
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}
