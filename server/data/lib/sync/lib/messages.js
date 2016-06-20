@@ -1,7 +1,7 @@
 import { WebClient } from '@slack/client';
-import db from '../../db';
-import { save as saveMessage, getById as getMessageById } from '../../repositories/message';
-import { save as saveReaction } from '../../repositories/reaction';
+import db from '../../../../db';
+import { save as saveMessage, getById as getMessageById } from '../../../../repositories/message';
+import { save as saveReaction } from '../../../../repositories/reaction';
 import Promise from 'bluebird';
 
 const syncReactions = (teamId, channelId, message) => {

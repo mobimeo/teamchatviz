@@ -1,6 +1,6 @@
 import { WebClient } from '@slack/client';
-import db from '../../db';
-import { save as saveMember, getById as getMemberById } from '../../repositories/member';
+import db from '../../../../db';
+import { save as saveMember, getById as getMemberById } from '../../../../repositories/member';
 import Promise from 'bluebird';
 
 export default (token, teamId) => {
