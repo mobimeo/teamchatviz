@@ -1,6 +1,7 @@
 import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
+import { getMinDate, getMaxDate } from './utils';
 
 const groupByChannel = (results) => {
   const channels = {};
@@ -33,20 +34,6 @@ const groupByChannel = (results) => {
     data: Object.keys(channels).map(key => channels[key]),
   };
 };
-
-async function getMinDate(teamId) {
-  const tmp = await db.one(`SELECT MIN(message_ts) as result FROM messages WHERE team_id = $(teamId)`, {
-    teamId: teamId
-  });
-  return tmp.result;
-}
-
-async function getMaxDate(teamId) {
-  const tmp = await db.one(`SELECT MAX(message_ts) as result FROM messages WHERE team_id = $(teamId)`, {
-    teamId: teamId
-  });
-  return tmp.result;
-}
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   if (!startDate) {

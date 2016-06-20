@@ -1,6 +1,6 @@
 import { WebClient } from '@slack/client';
-import db from '../../db';
-import { save as saveChannel, getById as getChannelById } from '../../repositories/channel';
+import db from '../../../../db';
+import { save as saveChannel, getById as getChannelById } from '../../../../repositories/channel';
 import moment from 'moment-timezone';
 import Promise from 'bluebird';
 

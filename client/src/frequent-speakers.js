@@ -9,8 +9,10 @@ import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import { Header } from './components/Header.js';
-
+import { Treemap } from 'react-vis';
+import { AutoSizer } from 'react-virtualized';
 import 'react-vis/main.css!';
+import { fetchFrequentSpeakers } from './networking/index.js';
 
 function parseJSON(response) {
   return response.json()
@@ -22,35 +24,33 @@ export const FrequentSpeakers = React.createClass({
       data: {
         channels: [],
         data: [],
+        allChannels: true,
       },
+      filters: {
+        channelId: null,
+        sortOptionId: 1,
+        startDate: moment().subtract(10, 'days').format(),
+        endDate: moment().format()
+      }
     };
   },
 
   componentDidMount() {
-    Progress.show();
-    fetch('/api/frequent-speakers', {
-      credentials: 'same-origin'
-    })
-    .then(response => {
-      if (!response.ok) {
-        if (response.status == 401) {
-          window.location = '/api/auth/slack';
-        }
-        throw Error(response.statusText);
-      }
-      return response;
-    })
-    .then(parseJSON)
-    .then(result => {
-      this.setState({
-        data: result,
-      });
-      Progress.hide();
-    });
+    fetchFrequentSpeakers()
+      .then(result => {
+        this.setState({
+          data: result,
+        });
+      })
   },
 
   onDateChange(range) {
-
+    fetchFrequentSpeakers(range.startDate, range.endDate)
+      .then(result => {
+        this.setState({
+          data: result,
+        });
+      });
   },
 
   onSearch(value) {
@@ -59,6 +59,19 @@ export const FrequentSpeakers = React.createClass({
 
   onSort(option) {
 
+  },
+
+  onChannelClick(channel) {
+    fetchFrequentSpeakers(null, null, channel.id)
+      .then(result => {
+        this.setState({
+          data: result,
+        });
+      })
+  },
+
+  partial(fn, ...params) {
+    return _.bind(fn, this, ...params);
   },
 
   render() {
@@ -80,7 +93,7 @@ export const FrequentSpeakers = React.createClass({
             <hr />
             {
               data.channels.map((d, i) => {
-                return <div key={i}><button className="channel-list-element">#{d.name}</button></div>;
+                return <div onClick={this.partial(this.onChannelClick, d)} key={i}><button className="channel-list-element">#{d.name}</button></div>;
               })
             }
           </div>
@@ -89,7 +102,7 @@ export const FrequentSpeakers = React.createClass({
               This page shows the most keen slack writers within specific channels. It also shows the amount of messages within the user's most used five channels.
             </p>
             {
-              _.chunk(data.data, 4).map((chunk, index) => {
+              data.allChannels ? _.chunk(data.data, 4).map((chunk, index) => {
                 return <div className="row" key={index}>
                     {
                       chunk.map((member, memberIndex) => {
@@ -105,8 +118,17 @@ export const FrequentSpeakers = React.createClass({
                       })
                     }
                   </div>
-              })
-            }
+              }) : <AutoSizer>
+                    {({ height, width }) => (
+                      <Treemap height={600} width={width} data={{ title: '', opacity: 1,
+                                  children: data.data.slice(0, 10).map((member, i) => ({
+                                    title: <div>@{member.name} <br /> {member.count} </div>,
+                                    size: member.count,
+                                  }))
+                                }} />
+                    )}
+                </AutoSizer>
+              }
           </div>
         </div>
       </main>

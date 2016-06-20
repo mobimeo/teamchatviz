@@ -7,11 +7,11 @@ import { MoodsAndReactions } from 'client/moods-and-reactions.js';
 import { ChannelLand } from 'client/channel-land.js';
 import { PeopleLand } from 'client/people-land.js';
 import { Main } from 'client/main.js';
-import { Router, Route, Link, hashHistory } from 'react-router';
+import { Router, Route, Link, hashHistory, browserHistory } from 'react-router';
 
 export const Routes = React.createClass({
   render() {
-    return <Router history={hashHistory}>
+    return <Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={Main} />
         <Route path="/heartbeat" component={Heartbeat} />
