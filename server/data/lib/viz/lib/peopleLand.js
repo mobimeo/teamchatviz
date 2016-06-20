@@ -32,9 +32,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   console.log(dists.length);
   dists.forEach(d => console.log(d.length, d.reduce((k, c) => k + c, 0)));
-
-  debugger;
-
   tsne.initDataRaw(dists);
 
   for (let k = 0; k < 500; k++) {
@@ -42,9 +39,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
   }
 
   const solution = tsne.getSolution();
-
-  console.log(solution);
-
   console.timeEnd('tsne');
 
   const members = await db.any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
