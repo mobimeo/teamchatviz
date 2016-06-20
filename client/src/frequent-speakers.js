@@ -26,6 +26,12 @@ export const FrequentSpeakers = React.createClass({
         data: [],
         allChannels: true,
       },
+      filters: {
+        channelId: null,
+        sortOptionId: 1,
+        startDate: moment().subtract(10, 'days').format(),
+        endDate: moment().format()
+      }
     };
   },
 
@@ -39,7 +45,12 @@ export const FrequentSpeakers = React.createClass({
   },
 
   onDateChange(range) {
-
+    fetchFrequentSpeakers(range.startDate, range.endDate)
+      .then(result => {
+        this.setState({
+          data: result,
+        });
+      });
   },
 
   onSearch(value) {
