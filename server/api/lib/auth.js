@@ -1,5 +1,7 @@
 import passport from 'koa-passport';
 
+import { sync } from '../../data';
+
 export default api => {
   api.get('/auth/slack',
     async (ctx, next) => {
