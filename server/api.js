@@ -7,7 +7,13 @@ const api = KoaRouter();
 
 api.get('/health', async (ctx) => ctx.body = { status: 'OK' });
 
-api.get('/auth/slack', passport.authenticate('slack'));
+api.get('/auth/slack',
+  async (ctx, next) => {
+    ctx.session.returnURL = ctx.query.returnURL;
+    delete ctx.query.returnURL;
+    await next();
+  },
+  passport.authenticate('slack'));
 
 api.get('/auth/slack-admin', passport.authenticate('slack-admin', {
   state: 'admin'
@@ -25,7 +31,7 @@ api.get('/auth/slack/callback', async (ctx) => {
         ctx.redirect('/error')
       } else {
         ctx.login(user);
-        ctx.redirect('/');
+        ctx.redirect(ctx.session.returnURL ? ctx.session.returnURL : '/');
         if (ctx.query.state === 'admin') {
           const promises = Promise.all([
             syncMembers(user.accessToken, user.teamId),
@@ -46,7 +52,12 @@ api.get('/auth/slack/callback', async (ctx) => {
 });
 
 api.get('/user', async(ctx) => {
-  ctx.body = ctx.session;
+  if (!ctx.req.user) {
+    return ctx.throw(401);
+  }
+  ctx.body = {
+    loading: false,
+  };
 });
 
 api.get('/heartbeat', async(ctx) => {

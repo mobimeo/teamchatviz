@@ -7,7 +7,8 @@ import clustering from 'density-clustering';
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
 
-  const rawData = await db.any(`SELECT user_id, channel_id, is_member FROM membership WHERE team_id = $(teamId) AND user_id <> 'USLACKBOT' ORDER BY user_id, channel_id;`,
+  const rawData = await db.any(`SELECT user_id, channel_id, is_member FROM membership
+    WHERE team_id = $(teamId) AND user_id <> 'USLACKBOT';`,
     {
       teamId,
     });

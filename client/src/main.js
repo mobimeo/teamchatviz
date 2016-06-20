@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router'
-
+import { Link, withRouter } from 'react-router'
+import { fetchUser } from './networking/index.js';
 
 const Channel = React.createClass({
   render() {
@@ -19,7 +19,28 @@ const Channel = React.createClass({
   }
 });
 
-export const Main = React.createClass({
+export const Main = withRouter(React.createClass({
+  getInitialState() {
+    return {
+      loggedIn: false,
+      loading: false,
+    }
+  },
+
+  componentDidMount() {
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
+    fetchUser().then(result => {
+      this.setState(result);
+    });
+  },
+
+  routerWillLeave(nextLocation) {
+    if (this.state.loggedIn === false) {
+      window.location = `/api/auth/slack?returnURL=${encodeURIComponent(nextLocation.pathname)}`;
+      return false;
+    }
+  },
+
   render() {
     return <div className="page">
       <header className="site-header">
@@ -63,4 +84,4 @@ export const Main = React.createClass({
       <a href="https://github.com/moovel/slack_viz"><img className="github-ribbon" src="/images/github-ribbon.png" alt="Fork me on GitHub" /></a>
     </div>;
   }
-});
+}));

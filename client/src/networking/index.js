@@ -26,4 +26,33 @@ export const fetchHeartbeat = (startDate, endDate) => {
     Progress.hide();
     return result;
   });
-}
+};
+
+export const fetchUser = () => {
+  Progress.show();
+  return fetch(`/api/user`, {
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (!response.ok) {
+      if (response.status == 401) {
+        return {
+          loggedIn: false,
+          loading: false,
+        }
+      }
+      throw Error(response.statusText);
+    } else {
+      return response
+        .json()
+        .then(json => ({
+          loggedIn: true,
+          loading: false,
+        }));
+    }
+  })
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+};
