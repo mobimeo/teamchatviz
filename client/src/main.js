@@ -50,7 +50,7 @@ export const Main = React.createClass({
         </div>
         <div className="channels row around-xs">
           <div className="col-xs-4">
-            <Channel linkTo="/moods-and-reactions" imageName="chartMoodReactions" title="moods & reactions" description="Explore what messages were most influential during the last days, weeks and months rated by comments and reactions." />
+            <Channel linkTo="/moods-and-reactions" imageName="chartMoodReactions" title="messages and reactions" description="Explore what messages were most influential during the last days, weeks and months rated by comments and reactions." />
           </div>
           <div className="col-xs-4">
             <Channel linkTo="/frequent-speakers" imageName="chartFrequentSpeakers" title="frequent speakers" description="Learn who populates which channels summed up over time and find out communication hubs. " />

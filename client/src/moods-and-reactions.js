@@ -8,6 +8,7 @@ import Progress from 'react-progress-2';
 import { Map } from 'immutable';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import { Emoji } from './components/Emoji.js';
 import emoji from 'node-emoji';
 import 'react-vis/main.css!';
 import { Header } from './components/Header.js';
@@ -69,7 +70,7 @@ export const MoodsAndReactions = React.createClass({
   render() {
     const data = this.state.data;
     return <div>
-      <Header title="comments & reactions" />
+      <Header title="messages and reactions" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
@@ -89,10 +90,10 @@ export const MoodsAndReactions = React.createClass({
               })
             }
           </div>
-          <div className="col-xs-10">
+          <div className="col-xs-9 messages-reactions">
+            <h2>All channels</h2>
             <div>
-              All channels. <br />
-              Last 10 days. <br />
+              Top rated messages in the last 10 days
             </div>
             {
               data.data.map(message => {
@@ -101,22 +102,25 @@ export const MoodsAndReactions = React.createClass({
                     <div className="message-body col-xs-8">
                       {message.text}
                     </div>
-                    <div className="message-reactions col-xs-4">
+                    <div className="reactions col-xs-4">
+                    {message.reactions.length} reactions
+                    <br />
                       {
-                        message.reactions.map(reaction => {
-                          return <div>{reaction.name} {reaction.count}</div>
+                        message
+                        .reactions
+                        .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
+                        .map((reaction, i) => {
+                          return <Emoji name={reaction.name} count={reaction.count} />;
                         })
                       }
                     </div>
                   </div>
                   <div className="row">
                     <div className="message-meta col-xs-3">
-                      {moment(message.message_ts).format()}
-                      <br />
-                      {message.real_name}
-                      <br />
-                      <img src={message.image32} />
+                      <div className="user-name">{message.real_name}</div>
+                      <div className="message-time">{moment(message.message_ts).format()}</div>
                     </div>
+                    <img className="user-img" src={message.image32}/>
                   </div>
                 </div>
               })
