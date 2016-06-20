@@ -25,6 +25,7 @@ export const EmojiTimeline = React.createClass({
         channels: [],
         data: [],
         rating: [],
+        emojis: {},
       },
     };
   },
@@ -50,6 +51,10 @@ export const EmojiTimeline = React.createClass({
           data: result.data,
           channels: result.channels,
           rating: result.rating,
+          emojis: result.emojis.reduce((obj, val, key) => {
+            obj[`${val.name}`] = val.url;
+            return obj;
+          }, {}),
         },
       });
       Progress.hide();
@@ -95,9 +100,8 @@ export const EmojiTimeline = React.createClass({
               Last 10 days. <br />
               {
                 data.rating
-                .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                 .map((reaction, i) => {
-                  return <Emoji name={reaction.name} count={reaction.count} />;
+                  return <Emoji emojis={data.emojis} name={reaction.name} count={reaction.count} />;
                 })
               }
             </div>
@@ -108,9 +112,8 @@ export const EmojiTimeline = React.createClass({
                 return <div key={i} style={{ display: 'inline-block', minWidth: '4.5rem' }}>
                 {
                   d.emojis
-                  .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                   .map((reaction, i) => {
-                    return <Emoji style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
+                    return <Emoji emojis={data.emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
                   })
                 }
                 {moment(d.id).format('DD/MM/YY')}

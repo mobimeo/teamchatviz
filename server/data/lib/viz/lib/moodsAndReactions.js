@@ -15,16 +15,27 @@ export default async function(teamId, startDate = null, endDate = null, interval
       teamId,
     });
 
+  console.log(ids);
+
   const data = await db.any(`SELECT * FROM messages
     INNER JOIN members ON members.id = messages.user_id
-    WHERE messages.id IN ($1^)`, pgp.as.csv(ids.map(item => item.id)));
+    WHERE messages.id IN ($1:csv)
+    ORDER BY
+     CASE messages.id
+      ${ids.map((item, i) => 'WHEN \'' + item.id + '\' THEN ' + i ).join('\n')}
+     END ASC`, [ids.map(i => i.id)]);
 
   const channels = await db.any(`SELECT * FROM channels WHERE team_id=$(teamId)`, {
       teamId,
     });
 
+  const emojis = await db.any(`SELECT * FROM emojis WHERE team_id = $(teamId)`, {
+    teamId,
+  });
+
   return {
     data,
     channels,
+    emojis,
   };
 };

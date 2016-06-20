@@ -24,6 +24,7 @@ export const MoodsAndReactions = React.createClass({
         channels: [],
         data: [],
         rating: [],
+        emojis: {},
       },
     };
   },
@@ -49,6 +50,10 @@ export const MoodsAndReactions = React.createClass({
           data: result.data,
           channels: result.channels,
           rating: result.rating,
+          emojis: result.emojis.reduce((obj, val, key) => {
+            obj[`${val.name}`] = val.url;
+            return obj;
+          }, {}),
         },
       });
       Progress.hide();
@@ -100,7 +105,7 @@ export const MoodsAndReactions = React.createClass({
                 return <div className="message">
                   <div className="row">
                     <div className="message-body col-xs-8">
-                      {message.text}
+                      {emoji.emojify(message.text)}
                     </div>
                     <div className="reactions col-xs-4">
                     {message.reactions.length} reactions
@@ -108,9 +113,8 @@ export const MoodsAndReactions = React.createClass({
                       {
                         message
                         .reactions
-                        .filter(r => !emoji.get(r.name.split('::')[0]).startsWith(':'))
                         .map((reaction, i) => {
-                          return <Emoji name={reaction.name} count={reaction.count} />;
+                          return <Emoji emojis={data.emojis} name={reaction.name} count={reaction.count} />;
                         })
                       }
                     </div>

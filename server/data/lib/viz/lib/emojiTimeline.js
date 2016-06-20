@@ -2,7 +2,7 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 
-const groupByDate = (results, channels) => {
+const groupByDate = (results, channels, emojis) => {
   const timeline = {};
   let max = 0;
   const rating = {};
@@ -42,6 +42,7 @@ const groupByDate = (results, channels) => {
     max: max,
     channels: channels,
     rating: emojiRating.filter(item => item.count > 0).slice(0, 10),
+    emojis: emojis,
   };
 };
 
@@ -89,5 +90,9 @@ export default async function(teamId, startDate = null, endDate = null, interval
     WHERE channels.team_id = $(teamId) AND id IN (SELECT channel_id FROM reactions WHERE team_id = $(teamId))`, {
       teamId,
     });
-  return groupByDate(tmp, channels);
+
+  const emojis = await db.any(`SELECT * FROM emojis WHERE team_id = $(teamId)`, {
+    teamId,
+  });
+  return groupByDate(tmp, channels, emojis);
 };
