@@ -36,7 +36,7 @@ export const MoodsAndReactions = React.createClass({
     })
     .then(response => {
       if (!response.ok) {
-        if (response.status == 401) {
+        if (response.status == 403) {
           window.location = '/api/auth/slack';
         }
         throw Error(response.statusText);

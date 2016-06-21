@@ -7,7 +7,7 @@ api.get('/health', async (ctx) => ctx.body = { status: 'OK' });
 
 api.get('/user', async(ctx) => {
   if (!ctx.req.user) {
-    return ctx.throw(401);
+    return ctx.throw(403);
   }
   ctx.body = {
     loading: false,

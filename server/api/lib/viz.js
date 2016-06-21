@@ -3,7 +3,7 @@ import { viz } from '../../data';
 export default api => {
   api.get('/heartbeat', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
@@ -12,7 +12,7 @@ export default api => {
 
   api.get('/frequent-speakers', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
@@ -22,7 +22,7 @@ export default api => {
 
   api.get('/emoji-timeline', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
@@ -31,7 +31,7 @@ export default api => {
 
   api.get('/channel-land', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
@@ -40,7 +40,7 @@ export default api => {
 
   api.get('/moods-and-reactions', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
@@ -49,7 +49,7 @@ export default api => {
 
   api.get('/people-land', async(ctx) => {
     if (!ctx.req.user) {
-      return ctx.throw(401);
+      return ctx.throw(403);
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;

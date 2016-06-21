@@ -7,7 +7,7 @@ function parseJSON(response) {
 
 function onFailure(response){
   if (!response.ok) {
-    if (response.status == 401) {
+    if (response.status == 403) {
       window.location = '/api/auth/slack';
     }
     throw Error(response.statusText);
@@ -35,7 +35,7 @@ export const fetchUser = () => {
   })
   .then(response => {
     if (!response.ok) {
-      if (response.status == 401) {
+      if (response.status == 403) {
         return {
           loggedIn: false,
           loading: false,

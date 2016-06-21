@@ -13,17 +13,29 @@ import api from './api';
 import send from 'koa-send';
 import Promise from 'bluebird';
 import fs from 'fs';
+import auth from 'koa-basic-auth';
 
 const apiApp = new Koa();
-apiApp.keys = ['secret'];
-apiApp.use(async (ctx, next) => {
+const app = new Koa();
+apiApp.keys = app.keys = ['secret'];
+const basicAuth = auth({ name: 'lab', pass: 'topsecret' });
+
+const errorHandler = async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    console.log(err);
-    throw err;
+    console.log(err, ctx.path);
+    if (401 == err.status) {
+      ctx.status = 401;
+      ctx.set('WWW-Authenticate', 'Basic');
+      ctx.body = 'cant haz that';
+    } else {
+      throw err;
+    }
   }
-});
+};
+
+apiApp.use(errorHandler);
 apiApp.use(cors());
 apiApp.use(bodyParser());
 apiApp.use(convert(session({ store: pgStore, cookies: { maxage: 1000*60*60*24*10 }})));
@@ -32,9 +44,8 @@ apiApp.use(passport.session());
 apiApp.use(api.routes());
 apiApp.use(api.allowedMethods());
 
-const app = new Koa();
-
-app.keys = ['secret'];
+app.use(errorHandler);
+app.use(basicAuth);
 app.use(mount('/api', apiApp));
 app.use(mount('/', koaStatic(__dirname + '/../client')));
 app.use(async (ctx) => {
