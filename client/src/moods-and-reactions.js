@@ -107,9 +107,8 @@ export const MoodsAndReactions = React.createClass({
                     <div className="message-body col-xs-8">
                       {emoji.emojify(message.text)}
                     </div>
-                    <div className="reactions col-xs-4">
-                    {message.reactions.length} reactions
-                    <br />
+                    <div className="col-xs-4">
+                      <div className="reactions">{message.reactions.length} reactions</div>
                       {
                         message
                         .reactions
