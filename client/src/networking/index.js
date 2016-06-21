@@ -15,8 +15,10 @@ function onFailure(response){
   return response;
 }
 
-export const fetchHeartbeat = (startDate, endDate) => {
+export const fetchHeartbeat = (filters) => {
   Progress.show();
+  const startDate = filters.startDate;
+  const endDate = filters.endDate;
   return fetch(`/api/heartbeat?startDate=${startDate?startDate:''}&endDate=${endDate?endDate:''}`, {
     credentials: 'same-origin'
   })

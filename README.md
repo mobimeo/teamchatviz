@@ -1,4 +1,13 @@
-# Slack Viz
+# Slack Visualization Tool
+
+Slack Viz enables you to explore how your Slack team works:
+
+ - channel heartbeat
+ - people land
+ - channel land
+ - frequent speakers
+ - messages & reactions
+ - emoji timeline
 
 ## Dependencies
 

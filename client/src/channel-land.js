@@ -101,6 +101,7 @@ const Chart = React.createClass({
         x: 0,
         y: 0,
       },
+      scale: 1,
     };
   },
   showToolTip(e) {
@@ -136,13 +137,14 @@ const Chart = React.createClass({
   onZoom() {
     var el = ReactDom.findDOMNode(this);
     var selection = d3.select(el).select('g');
-    selection.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
+    var scale = d3.event.scale;
+    selection.attr("transform", "translate(" + d3.event.translate + ")scale(" + scale + ")")
   },
 
   render() {
     const props = this.props;
     const scales = { xScale: xScale(props), yScale: yScale(props) };
-    const points = props.data.slice(0, 10);
+    const points = props.data;
     const groups = _.groupBy(props.data, 'group');
     const hulls = Object.keys(groups).map(key => {
       const points = groups[key].map(p => [scales.xScale(p.x), scales.yScale(p.y)]);
