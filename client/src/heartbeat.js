@@ -127,7 +127,7 @@ const HeartbeatPlot = React.createClass({
       y: i.count,
     }));
 
-    const max = maxBy(chartData, i => i.y).y + 50;
+    const max = maxBy(chartData, i => i.y).y;
 
     return <XYPlot
         onMouseLeave={this._onMouseLeave}
@@ -135,7 +135,7 @@ const HeartbeatPlot = React.createClass({
         width={width}
         height={100}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
-        yDomain={[0, max]}
+        yDomain={[0, max + 50]}
         key={'xyPlot' + this.props.parentKey}
         >
         <HorizontalGridLines className="low-boundary" key={'xyPlotHorizontalGrids' + this.props.parentKey} values={[0]} />
