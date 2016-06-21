@@ -56,6 +56,7 @@ SystemJS.config({
     "react-button-group": "npm:react-button-group@1.0.2",
     "react-date-range": "npm:react-date-range@0.2.4",
     "react-dom": "npm:react-dom@15.1.0",
+    "react-modal": "npm:react-modal@1.3.0",
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.4.1",
     "react-virtualized": "npm:react-virtualized@7.7.0",
@@ -419,6 +420,33 @@ SystemJS.config({
         "whatwg-fetch": "npm:whatwg-fetch@1.0.0"
       }
     },
+    "npm:lodash._baseassign@3.2.0": {
+      "map": {
+        "lodash._basecopy": "npm:lodash._basecopy@3.0.1",
+        "lodash.keys": "npm:lodash.keys@3.1.2"
+      }
+    },
+    "npm:lodash._createassigner@3.1.1": {
+      "map": {
+        "lodash._bindcallback": "npm:lodash._bindcallback@3.0.1",
+        "lodash._isiterateecall": "npm:lodash._isiterateecall@3.0.9",
+        "lodash.restparam": "npm:lodash.restparam@3.6.1"
+      }
+    },
+    "npm:lodash.assign@3.2.0": {
+      "map": {
+        "lodash._baseassign": "npm:lodash._baseassign@3.2.0",
+        "lodash._createassigner": "npm:lodash._createassigner@3.1.1",
+        "lodash.keys": "npm:lodash.keys@3.1.2"
+      }
+    },
+    "npm:lodash.keys@3.1.2": {
+      "map": {
+        "lodash._getnative": "npm:lodash._getnative@3.9.1",
+        "lodash.isarguments": "npm:lodash.isarguments@3.0.8",
+        "lodash.isarray": "npm:lodash.isarray@3.0.4"
+      }
+    },
     "npm:loose-envify@1.2.0": {
       "map": {
         "js-tokens": "npm:js-tokens@1.0.3"
@@ -540,6 +568,13 @@ SystemJS.config({
         "react-style-normalizer": "npm:react-style-normalizer@1.2.8",
         "region-align": "npm:region-align@2.1.3",
         "select-parent": "npm:select-parent@1.0.1"
+      }
+    },
+    "npm:react-modal@1.3.0": {
+      "map": {
+        "element-class": "npm:element-class@0.2.2",
+        "exenv": "npm:exenv@1.2.0",
+        "lodash.assign": "npm:lodash.assign@3.2.0"
       }
     },
     "npm:react-router@2.4.1": {

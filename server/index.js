@@ -26,7 +26,7 @@ apiApp.use(async (ctx, next) => {
 });
 apiApp.use(cors());
 apiApp.use(bodyParser());
-apiApp.use(convert(session({ store: pgStore})));
+apiApp.use(convert(session({ store: pgStore, cookies: { maxage: 1000*60*60*24*10 }})));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
 apiApp.use(api.routes());
