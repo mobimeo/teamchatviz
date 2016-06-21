@@ -45,7 +45,7 @@ SystemJS.config({
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "moment": "npm:moment@2.13.0",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",
-    "node-emoji": "npm:node-emoji@1.3.0",
+    "node-emoji": "npm:node-emoji@1.3.1",
     "normalize.css": "github:necolas/normalize.css@4.1.1",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.10",
@@ -435,7 +435,7 @@ SystemJS.config({
         "dom-walk": "npm:dom-walk@0.1.1"
       }
     },
-    "npm:node-emoji@1.3.0": {
+    "npm:node-emoji@1.3.1": {
       "map": {
         "string.prototype.codepointat": "npm:string.prototype.codepointat@0.2.0"
       }
