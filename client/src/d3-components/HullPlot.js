@@ -10,8 +10,8 @@ const Circle = (props) => {
     const circleProps = {
       x: props.xScale(coords.x) - 12 / props.zoom,
       y: props.yScale(coords.y) - 12 / props.zoom,
-      cx: props.xScale(coords.x) - 12 / props.zoom,
-      cy: props.yScale(coords.y) - 12 / props.zoom,
+      cx: props.xScale(coords.x),
+      cy: props.yScale(coords.y),
       key: index,
       'data-name': coords.name,
       width: (24 / props.zoom) + 'px',
