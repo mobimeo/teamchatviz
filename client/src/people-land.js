@@ -11,6 +11,7 @@ import _ from 'lodash';
 import d3 from 'd3';
 import ReactDom from 'react-dom';
 import { Header } from './components/Header.js';
+import { AutoSizer, WindowScroller, VirtualScroll } from 'react-virtualized';
 
 function parseJSON(response) {
   return response.json()
@@ -45,21 +46,38 @@ const yScale = (props) => {
 const Circle = (props) => {
   return (coords, index) => {
     const circleProps = {
-      cx: props.xScale(coords.x),
-      cy: props.yScale(coords.y),
-      r: 5,
+      x: props.xScale(coords.x) - 12,
+      y: props.yScale(coords.y) - 12,
+      cx: props.xScale(coords.x) - 12,
+      cy: props.yScale(coords.y) - 12,
       key: index,
-      fill: coords.color,
       'data-name': coords.name,
-      stroke: 'black',
-      strokeWidth: '3',
+      width: '24px',
+      height: '24px',
     };
-    return <circle style={{cursor: 'pointer'}} {...circleProps} onMouseOver={props.showToolTip} onMouseOut={props.hideToolTip} />;
+    return <g>
+      <defs>
+        <clipPath id={'circlePath' + index}>
+          <circle cx={circleProps.x + 12} cy={circleProps.y + 12} r="12" />
+        </clipPath>
+      </defs>
+      <image
+        clipPath={'url(#circlePath' + index + ')'}
+        xlinkHref={coords.image24}
+        style={{cursor: 'pointer'}}
+        {...circleProps}
+        onMouseOver={props.showToolTip}
+        onMouseOut={props.hideToolTip} />
+    </g>;
   };
 };
 
 const DataCircles = (props) => {
-  return <g>{ props.data.map(Circle(props)) }</g>
+  return <g>
+    {
+      props.data.map(Circle(props))
+    }
+  </g>;
 }
 
 const ToolTip = React.createClass({
@@ -165,6 +183,7 @@ export const PeopleLand = React.createClass({
   getInitialState() {
     return {
       data: [],
+      members: [],
     };
   },
 
@@ -186,6 +205,7 @@ export const PeopleLand = React.createClass({
     .then(result => {
       this.setState({
         data: result.data,
+        members: result.members,
       });
       Progress.hide();
     });
@@ -205,17 +225,32 @@ export const PeopleLand = React.createClass({
 
   render() {
     const data = this.state.data;
+    const members = this.state.members;
     return <div>
       <Header title="people land" />
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
-            <SortDropdown onChange={this.onSort} /> <SearchBox onChange={this.onSearch} placeholder="search channel" />
+            <SearchBox onChange={this.onSearch} placeholder="search members" />
           </div>
           <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
-            <DateRangePicker onChange={this.onDateChange} />
           </div>
-          <Chart data={data} width={1200} height={600} padding={100} />
+        </div>
+        <div className="row">
+          <div className="col-xs-3">
+            {
+              members.map((item, index) => {
+                return <div key={index}><button className="channel-list-element">{item.name}</button></div>
+              })
+            }
+          </div>
+          <div className="col-xs-9">
+            <AutoSizer>
+              {({ height, width }) => (
+                  <Chart data={data} width={width} height={600} padding={100} />
+                )}
+            </AutoSizer>
+          </div>
         </div>
       </main>
     </div>;

@@ -51,9 +51,11 @@ export default async function(teamId, startDate = null, endDate = null, interval
   console.timeEnd('k-means');
 
   const data = solution.map((row, i) => {
+    const member = members.find(ch => ch.id === userIds[i]);
     return {
       channelId: userIds[i],
-      name: members.find(ch => ch.id === userIds[i]).name,
+      name: member.name,
+      image24: member.image24,
       x: row[0]*1000,
       y: row[1]*1000
     }
