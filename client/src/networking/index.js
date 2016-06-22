@@ -71,3 +71,24 @@ export const fetchFrequentSpeakers = (startDate, endDate, channelId) => {
     return result;
   });
 }
+
+export const fetchPeopleLand = () => {
+  Progress.show();
+  return fetch('/api/people-land', {
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (!response.ok) {
+      if (response.status == 403) {
+        window.location = '/api/auth/slack';
+      }
+      throw Error(response.statusText);
+    }
+    return response;
+  })
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}

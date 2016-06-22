@@ -53,7 +53,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const data = solution.map((row, i) => {
     const member = members.find(ch => ch.id === userIds[i]);
     return {
-      channelId: userIds[i],
+      id: userIds[i],
       name: member.name,
       image24: member.image24,
       x: row[0]*1000,

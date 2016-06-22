@@ -27,12 +27,10 @@ html, body {
 }
 
 .hull {
-  fill: steelblue;
-  stroke: steelblue;
-  stroke-width: 32px;
+  fill: #fcf2f7;
+  stroke: #fcf2f7;
   stroke-linejoin: round;
-  opacity: 0.5;
-  stroke-opacity: 0.5;
+  stroke-width: 32px;
 }
 
 // footer/content set up
@@ -379,7 +377,6 @@ button:focus{
 // channel list
 .channel-list-element {
   background-color: transparent;
-  display: inline-block;
   margin: 0.2rem 0;
   border: solid transparent;
   border-radius: 4px;
@@ -498,3 +495,5 @@ button:focus{
 }
 
 // end messages and reactions
+
+// tooltips
