@@ -6,7 +6,16 @@ export const Emoji = (props) => {
   const emojis = props.emojis || {};
   let character = emoji.get(props.name);
   if (character.startsWith(':')) {
-    character = <img style={{ width: '1.25rem' }} src={emojis[props.name]} />
+    character = <img src={emojis[props.name]} />
   }
-  return <span style={props.style} className="emoji">{character}&nbsp;{props.count}</span>
+  return <div style={props.style} className="emoji">
+    <div className="emoji-container">
+      <span className="emoji-character">
+        {character}
+      </span>
+      <span className="emoji-count">
+        {props.count}
+      </span>
+    </div>
+  </div>;
 }

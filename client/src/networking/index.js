@@ -77,15 +77,7 @@ export const fetchPeopleLand = () => {
   return fetch('/api/people-land', {
     credentials: 'same-origin'
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status == 403) {
-        window.location = '/api/auth/slack';
-      }
-      throw Error(response.statusText);
-    }
-    return response;
-  })
+  .then(onFailure)
   .then(parseJSON)
   .then(result => {
     Progress.hide();
@@ -98,15 +90,20 @@ export const fetchChannelLand = () => {
   return fetch('/api/channel-land', {
     credentials: 'same-origin'
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status == 403) {
-        window.location = '/api/auth/slack';
-      }
-      throw Error(response.statusText);
-    }
-    return response;
+  .then(onFailure)
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}
+
+export const fetchMoodsAndReactions = ({ channel, startDate, endDate }) => {
+  Progress.show();
+  return fetch(`/api/moods-and-reactions?channelId=${channel ? channel.id : ''}&startDate=${startDate ? startDate : ''}&endDate=${endDate ? endDate : ''}`, {
+    credentials: 'same-origin'
   })
+  .then(onFailure)
   .then(parseJSON)
   .then(result => {
     Progress.hide();

@@ -3,6 +3,7 @@ import Promise from 'bluebird';
 import tsnejs from './tsne';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
+import colors from './clusterColors.js';
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
@@ -48,14 +49,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
       y: row[1]*1000
     }
   });
-
-  const colors = [
-    '#CD0269',
-    '#EE7913',
-    '#04948F',
-    '#116AC9',
-    '#9202BF',
-  ];
 
   clusters.forEach((cluster, i) => {
     const name = `Group ${i+1}`;

@@ -78,7 +78,7 @@ export default React.createClass({
                 channels.map((item, index) => {
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
-                  return <div key={index} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">@{item.name}</div>
+                  return <div key={index} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">#{item.name}</div>
                 })
               }
             </div>

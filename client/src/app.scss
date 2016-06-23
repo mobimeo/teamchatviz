@@ -133,20 +133,20 @@ footer {
   background-image: url("/images/channels/06_emoji_timeline.png");
 }
 
-// end chart icons and text styles 
+// end chart icons and text styles
 
-// site-header 
+// site-header
 .site-header h1 img{
   width:1.7rem;
-  float:right; 
-  margin-top:5px; 
+  float:right;
+  margin-top:5px;
   margin-left: 1rem;
 }
-.site-header h1 { 
+.site-header h1 {
   font-family: $font-medium;
   color: $color-grey-dark;
-  display: inline-block; 
-  font-size: 1.625em;  
+  display: inline-block;
+  font-size: 1.625em;
   margin: 30px 0;
 }
 
@@ -154,9 +154,9 @@ footer {
   padding: 0.406rem 0 0.406rem 0;
   border-bottom: 1px $color-grey-medium solid;
 }
-// end site-header 
+// end site-header
 
-// main page colors 
+// main page colors
 .client-app.dark {
   background-color: $color-grey-dark;
 }
@@ -164,10 +164,10 @@ footer {
 .client-app.dark .site-header h1{
   color: white;
 }
-// end main page colors 
+// end main page colors
 
 
-// datepicker 
+// datepicker
 .date-picker .button-group {
   display: inline-block;
   margin-left: 1rem;
@@ -209,13 +209,13 @@ footer {
   max-width: 1.5rem;
   max-height: 1.5rem;
 }
-// end datepicker 
+// end datepicker
 
-// widgets rows with filters 
+// widgets rows with filters
 .widgets {
   margin: 20px 0;
 }
-// widgets rows with filters 
+// widgets rows with filters
 
 // search box
 .search-box {
@@ -306,7 +306,7 @@ footer {
   background-color: white;
   opacity: 0.95;
   pointer-events: auto;
-  border: 0.5px solid $color-grey-light;  
+  border: 0.5px solid $color-grey-light;
   border-radius: 4px;
   padding: 0.3em 1em 0.3em 1em;
   z-index: 200;
@@ -390,13 +390,37 @@ button:focus{
 // end channel list
 
 .emoji {
+  box-sizing: content-box;
+  display: inline-block;
   margin: 0.5rem 0.2rem;
-  width: 3.4rem;
-  border: 0.5px solid $color-grey-light;  
+  width: 3rem;
+  border: 0.5px solid $color-grey-light;
   border-radius: 4px;
-  padding: 0.2rem 0.3rem;
   text-align: center;
-  line-height: 2rem;
+  white-space: nowrap;
+  font-size: 1rem;
+  padding: 0.05rem 0.1rem;
+
+  .emoji-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    .emoji-character {
+      align-self: center;
+      vertical-align: middle;
+      line-height: 1.75rem;
+      img {
+        vertical-align: middle;
+        position: relative;
+        top: -0.15rem; // fix, todo
+        width: 1.25rem;
+      }
+    }
+    .emoji-count {
+      align-self: center;
+      vertical-align: middle;
+    }
+  }
 }
 
 // frequent speakers
@@ -469,15 +493,15 @@ button:focus{
     bottom: -15px;
     left: 10%;
   }
-  .message-meta .user-name{ 
+  .message-meta .user-name{
     font-size: 0.8rem;
     color: $color-grey-dark;
   }
-  .message-meta .message-time{ 
+  .message-meta .message-time{
     font-size: 0.7rem;
     color: $color-grey-medium;
   }
-  .message-meta .user-img{ 
+  .message-meta .user-img{
     display: inline-block;
   }
   .user-img {
