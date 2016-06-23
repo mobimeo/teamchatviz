@@ -92,3 +92,24 @@ export const fetchPeopleLand = () => {
     return result;
   });
 }
+
+export const fetchChannelLand = () => {
+  Progress.show();
+  return fetch('/api/channel-land', {
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (!response.ok) {
+      if (response.status == 403) {
+        window.location = '/api/auth/slack';
+      }
+      throw Error(response.statusText);
+    }
+    return response;
+  })
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}

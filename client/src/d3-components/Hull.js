@@ -8,7 +8,8 @@ export default React.createClass({
     if (data.length > 0) {
       attr = `M ${data[0][0]} ${data[0][1]} ${data.slice(0, data.length).map(d => 'L ' + d[0] + ' ' + d[1]).join(' ')} Z`;
     }
-    return <path className="hull" d={attr} stroke="#fcf2f7">
+    const color = this.props.color;
+    return <path className="hull" d={attr} fill={color} stroke={color} strokeWidth="0.25pt" strokeLinejoin="round" fillOpacity=".05">
     </path>
   }
 });

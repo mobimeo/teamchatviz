@@ -38,11 +38,11 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   const solution = tsne.getSolution();
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 10);
+  const clusters = dbscan.run(solution, 5);
 
   const data = solution.map((row, i) => {
     return {
-      channelId: channelIds[i],
+      id: channelIds[i],
       name: channels.find(ch => ch.id === channelIds[i]).name,
       x: row[0]*1000,
       y: row[1]*1000
@@ -50,14 +50,11 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   const colors = [
-    'red',
-    'green',
-    'blue',
-    'yellow',
-    'grey',
-    'violet',
-    '#00B7BF',
-    '#9B9B9B'
+    '#CD0269',
+    '#EE7913',
+    '#04948F',
+    '#116AC9',
+    '#9202BF',
   ];
 
   clusters.forEach((cluster, i) => {

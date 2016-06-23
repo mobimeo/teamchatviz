@@ -47,7 +47,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   console.time('k-means');
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 10);
+  const clusters = dbscan.run(solution, 5);
   console.timeEnd('k-means');
 
   const data = solution.map((row, i) => {
@@ -62,14 +62,11 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   const colors = [
-    'red',
-    'green',
-    'blue',
-    'yellow',
-    'grey',
-    'violet',
-    '#00B7BF',
-    '#9B9B9B'
+    '#CD0269',
+    '#EE7913',
+    '#04948F',
+    '#116AC9',
+    '#9202BF',
   ];
 
   clusters.forEach((cluster, i) => {
@@ -79,13 +76,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
       data[index].color = colors[i];
     });
   });
-
-  data.forEach(i => {
-    if (!i.group) {
-      i.group = 'Group X',
-      i.color = 'black';
-    }
-  })
 
   return {
     data,
