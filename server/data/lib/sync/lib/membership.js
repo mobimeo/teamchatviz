@@ -9,12 +9,13 @@ export default (token, teamId, members, channels) => {
   return Promise.all(channels.map(channel => {
     const channelMembers = channel.members || [];
     const channelId = channel.id;
-    const membership = ids.map(userId => ({
-      userId,
-      teamId,
-      channelId,
-      isMember: channelMembers.indexOf(userId) !== -1,
-    }));
+    const membership = ids
+      .map(userId => ({
+        userId,
+        teamId,
+        channelId,
+        isMember: channelMembers.indexOf(userId) !== -1,
+      }));
     return Promise.all(membership.map(saveMembership));
   }));
 };

@@ -28,13 +28,8 @@ export default async function(teamId, startDate = null, endDate = null, interval
     return groupedByUser[key].map(row => row.is_member === true ? 1 : 0.1);
   });
 
-  // console.log(dists.slice(0, 3));
   console.time('tsne');
-
-  console.log(dists.length);
-  dists.forEach(d => console.log(d.length, d.reduce((k, c) => k + c, 0)));
   tsne.initDataRaw(dists);
-
   for (let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
