@@ -51,6 +51,12 @@ npm test
 
 ## Roadmap
 
+High-levels goals of the project:
+
+- improve performance
+- develop better visualizations
+- make the client responsive
+
 ## LICENSE
 
 [LGPLv2.1](LICENSE)
