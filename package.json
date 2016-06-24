@@ -8,7 +8,8 @@
     "test": "mocha --compilers js:babel-register",
     "up": "db-migrate up",
     "down": "db-migrate down",
-    "create": "db-migrate create"
+    "create": "db-migrate create",
+    "install": "napa karpathy/tsnejs:tsne"
   },
   "keywords": [],
   "author": "Moovel GmbH",
@@ -44,6 +45,7 @@
     "db-migrate": "^0.10.0-beta.11",
     "db-migrate-pg": "^0.1.10",
     "mocha": "^2.4.5",
+    "napa": "^2.3.0",
     "nodemon": "^1.9.2",
     "supertest": "^1.2.0"
   },
