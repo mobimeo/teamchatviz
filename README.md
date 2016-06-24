@@ -25,3 +25,7 @@ Slack Viz enables you to explore how your Slack team works:
 6. `cd ..`
 7. `npm start`
 8.  Open http://localhost:3333 in your browser
+
+## LICENSE
+
+[LGPLv2.1](LICENSE)
