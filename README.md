@@ -9,6 +9,10 @@ Slack Viz enables you to explore how your Slack team works:
  - messages & reactions
  - emoji timeline
 
+Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/). Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/). Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/). PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise).
+
+See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
+
 ## Dependencies
 
 1. node@4.4.3
