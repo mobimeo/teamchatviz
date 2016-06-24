@@ -13,22 +13,43 @@ Client app is built with [React](https://facebook.github.io/react/) and [JSPM](h
 
 See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
 
-## Dependencies
+## Run on Heroku
 
-1. node@4.4.3
-2. npm@latest (`npm install npm -g`)
-3. jspm@beta (`npm install jspm@beta -g`)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/moovel/slack_viz/tree/master)
 
-## Development setup
+## Development Setup
+
+You need a recent Node JS version installed and JSPM 0.17 Beta (`npm install jspm@beta -g`).
 
 1. `git clone git@github.com:moovel/slack_viz.git` and `cd slack_viz`
-2. `npm install`
-3. `cd client`
-4. `npm install`
-5. `jspm install`
-6. `cd ..`
-7. `npm start`
-8.  Open http://localhost:3333 in your browser
+2. `npm install` - install server npm dependencies
+3. `cd client && npm install && jspm install` - install client dependencies
+4. `cd ..`
+5. Create `.env` file with the following content:
+
+```
+PORT=3333 # port for the server
+SLACK_CLIENT_ID="<client id of your slack app>"
+SLACK_CLIENT_SECRET="<slack app secret>"
+DATABASE_URL="<postgresqlq database URL e.g. postgres://slack_viz:slack_viz@localhost/slack_viz>"
+```
+
+The database needs to be created first.
+
+6. `npm start` - start the server
+7.  Open http://localhost:$PORT in your browser
+
+## Creating a Slack app
+
+Go to https://api.slack.com/apps/new and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret.
+
+## Testing
+
+```sh
+npm test
+```
+
+## Roadmap
 
 ## LICENSE
 
