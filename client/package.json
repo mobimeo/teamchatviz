@@ -1,8 +1,21 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "description": "",
+  "description": "Client Web App for Slack Viz",
   "main": "index.js",
+  "contributors": [{
+    "name": "Oleksii Rudenko",
+    "email": "oleksii.rudenko@moovel.com"
+  }, {
+    "name": "Flore De Crombrugghe",
+    "email": "flore.crombrugghe@moovel.com"
+  }, {
+    "name": "Josefine Hartung",
+    "email": "josefine.hartung@moovel.com"
+  }, {
+    "name": "Benedikt Groß",
+    "email": "benedikt.gross@moovel.com"
+  }],
   "jspm": {
     "name": "client",
     "main": "client.js",
