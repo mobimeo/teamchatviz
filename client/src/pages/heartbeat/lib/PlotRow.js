@@ -21,7 +21,7 @@
 import React from 'react';
 import HeartbeatPlot from './HeartbeatPlot.js';
 
-const ChannelChart = React.createClass({
+const PlotRow = React.createClass({
   render() {
     const showChunkHints = this.props.showChunkHints;
     return <div className="row middle-xs" style={{ paddingRight: '20px' }}>
@@ -35,4 +35,4 @@ const ChannelChart = React.createClass({
   }
 });
 
-export default ChannelChart;
+export default PlotRow;

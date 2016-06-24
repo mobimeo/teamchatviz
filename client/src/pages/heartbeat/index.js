@@ -33,7 +33,7 @@ import { Header } from 'client/components/Header.js';
 import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
 
-import ChannelChart from './lib/ChannelChart';
+import PlotRow from './lib/PlotRow';
 
 export default React.createClass({
   getInitialState() {
@@ -115,7 +115,7 @@ export default React.createClass({
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
     const chunks = this.state.data.get('chunks');
-    return <ChannelChart data={data} chunks={chunks} showChunkHints={index === 1 ? true : false} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
+    return <PlotRow data={data} chunks={chunks} showChunkHints={index === 1 ? true : false} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
   },
 
   _getRowHeight({ index }) {

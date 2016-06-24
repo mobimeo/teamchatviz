@@ -21,6 +21,7 @@
 import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
+import { getMinDate, getMaxDate } from './utils';
 
 const groupByDate = (results, channels, emojis) => {
   const timeline = {};
@@ -41,7 +42,7 @@ const groupByDate = (results, channels, emojis) => {
       rating[r.name] = 0;
     }
     rating[r.name] += count;
-    if (count > 4) {
+    if (count > 0) {
       timeline[r.t].emojis.push({
         name: r.name,
         count: count,
@@ -66,15 +67,7 @@ const groupByDate = (results, channels, emojis) => {
   };
 };
 
-async function getMinDate(teamId) {
-  return moment().subtract(30, 'days').format();
-}
-
-async function getMaxDate(teamId) {
-  return moment().format();
-}
-
-export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
+export default async function(teamId, startDate = null, endDate = null, interval = '1 day', channelId = null) {
   if (!startDate) {
     startDate = await getMinDate(teamId);
   }
@@ -84,27 +77,32 @@ export default async function(teamId, startDate = null, endDate = null, interval
   startDate = moment(startDate).utc().format();
   endDate = moment(endDate).utc().format();
   const days = moment(endDate).diff(moment(startDate), 'days');
-  const intervalDays = parseInt(days / 10) + 1;
+  const intervalDays = days <= 10 ? 1 : parseInt(days / 10) + 1;
   interval =  intervalDays + ' days';
   console.log(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}, ${interval}, ${days}`);
+  const opts = {
+    startDate,
+    endDate,
+    teamId,
+    interval,
+  };
+  if (channelId) {
+    opts.channelId = channelId;
+  }
   const tmp = await db.any(`
     SELECT cr.t, cr.name, SUM(COALESCE(data.c, 0)) as c FROM (
       SELECT DATE(t) as t, name FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t
-      CROSS JOIN (SELECT DISTINCT name FROM reactions WHERE team_id = $(teamId)) reactions
+      CROSS JOIN (SELECT DISTINCT name FROM reactions WHERE team_id = $(teamId) ${ channelId ? ' AND reactions.channel_id = $(channelId)' : ''} ) reactions
     ) cr LEFT JOIN (
       SELECT DATE(reactions.message_ts) as t, reactions.name, SUM(reactions.count) as c
         FROM reactions
         WHERE reactions.team_id = $(teamId) AND DATE(reactions.message_ts) BETWEEN $(startDate)::timestamp AND $(endDate)::timestamp
+        ${ channelId ? ' AND reactions.channel_id = $(channelId)' : ''}
         GROUP BY t, reactions.name
         ORDER BY t
     ) data ON data.t BETWEEN cr.t and cr.t + $(interval)::INTERVAL AND data.name = cr.name
     GROUP BY cr.t, cr.name
-    ORDER BY cr.t`, {
-      startDate,
-      endDate,
-      teamId,
-      interval,
-    });
+    ORDER BY cr.t`, opts);
 
   const channels = await db.any(`SELECT channels.id, channels.name, creation_date as "creationDate",
     members.real_name as "creatorName", number_of_members as "numberOfMembers"

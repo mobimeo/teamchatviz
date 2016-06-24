@@ -98,6 +98,24 @@ export default React.createClass({
     }));
   },
 
+  onChannelClick(channel) {
+    const filters = this.filters;
+    filters.channelId = channel.id
+    fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
+      .then(result => {
+        this.updateState(result);
+      });
+  },
+
+  onAllChannelsClick() {
+    const filters = this.filters;
+    filters.channelId = null;
+    fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
+      .then(result => {
+        this.updateState(result);
+      });
+  },
+
   render() {
     const data = this.state.data;
     const channels = data.get('channels');
@@ -117,18 +135,18 @@ export default React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
+            <div className="channel-list-element" onClick={this.onAllChannelsClick}>All channels </div>
             <div style={{ height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
               {
                 channels.map((item, index) => {
-                  return <div key={index} className="channel-list-element">{item.name}</div>
+                  const onClick = _.bind(this.onChannelClick, this, item);
+                  return <div key={index} onClick={onClick} className="channel-list-element">{item.name}</div>
                 })
               }
             </div>
           </div>
           <div className="col-xs-9">
             <div>
-              All channels. <br />
-              Last 10 days. <br />
               {
                 rating
                   .slice(0, 3)
@@ -146,7 +164,9 @@ export default React.createClass({
                       .slice(0, 10)
                       .map((reaction, i) => {
                         let multiply = 1;
-                        if (reaction.count > 10) {
+                        if (reaction.count > 100) {
+                          multiply = reaction.count / 30;
+                        } else if (reaction.count > 10) {
                           multiply = reaction.count / 10;
                         }
                         return <Emoji emojis={emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} multiply={multiply} />;

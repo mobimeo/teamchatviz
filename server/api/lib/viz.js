@@ -46,7 +46,8 @@ export default api => {
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
-    ctx.body = await viz.emojiTimeline(ctx.req.user.teamId, startDate, endDate);
+    const channelId = ctx.query.channelId || null;
+    ctx.body = await viz.emojiTimeline(ctx.req.user.teamId, startDate, endDate, null, channelId);
   });
 
   api.get('/channel-land', async(ctx) => {
