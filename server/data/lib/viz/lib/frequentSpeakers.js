@@ -22,7 +22,7 @@ export default async function(teamId, startDate = null, endDate = null, channelI
     endDate,
     teamId,
   };
-  
+
   if (!allChannels) {
     options.channelId = channelId;
   }
@@ -38,7 +38,9 @@ export default async function(teamId, startDate = null, endDate = null, channelI
   data.forEach(d => d.count = parseInt(d.count));
   data.sort((a, b) => b.count - a.count);
 
-  const channels = await db.any(`SELECT * FROM channels WHERE team_id=$(teamId)`, {
+  const channels = await db.any(`SELECT channels.id, channels.name, creation_date as "creationDate",
+    members.real_name as "creatorName", number_of_members as "numberOfMembers"
+    FROM channels INNER JOIN members ON channels.created_by = members.id WHERE channels.team_id=$(teamId)`, {
       teamId,
     });
 

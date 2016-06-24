@@ -50,7 +50,11 @@ export const DateRangePicker = React.createClass({
         endDate: range.endDate.format()
       });
       this.setState(({data}) => ({
-        data: data.update('expanded', expanded => !expanded)
+        data: data
+          .update('expanded', expanded => !expanded)
+          .update('buttons', buttons => buttons.map(b => {
+            return b.update('selected', () => false);
+          }))
       }));
     }
   },

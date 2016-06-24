@@ -11,9 +11,8 @@
     "create": "db-migrate create"
   },
   "keywords": [],
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "author": "Moovel GmbH",
+  "license": "LGPLv2.1",
   "dependencies": {
     "@slack/client": "^3.1.0",
     "babel-core": "^6.7.6",

@@ -110,27 +110,27 @@ footer {
 }
 
 .chartHeartbeat {
-  background-image: url("/images/channels/01_hearbeat.png");
+  background-image: url("/images/channels/01_heartbeat.svg");
 }
 
 .chartPeopleLand {
-  background-image: url("/images/channels/02_people_land.png");
+  background-image: url("/images/channels/02_people_land.svg");
 }
 
 .chartChannelLand {
-  background-image: url("/images/channels/03_channel_land.png");
+  background-image: url("/images/channels/03_channel_land.svg");
 }
 
 .chartMoodReactions {
-  background-image: url("/images/channels/04_moods_and_reactions.png");
+  background-image: url("/images/channels/04_moods_and_reactions.svg");
 }
 
 .chartFrequentSpeakers {
-  background-image: url("/images/channels/05_frequent_speakers.png");
+  background-image: url("/images/channels/05_frequent_speakers.svg");
 }
 
 .chartEmojiTimeline {
-  background-image: url("/images/channels/06_emoji_timeline.png");
+  background-image: url("/images/channels/06_emoji_timeline.svg");
 }
 
 // end chart icons and text styles
@@ -414,6 +414,30 @@ button:focus{
         position: relative;
         top: -0.15rem; // fix, todo
         width: 1.25rem;
+      }
+    }
+    .emoji-stack {
+      .emoji-character:first-child {
+        position: relative;
+        top: 10px;
+        z-index: 1;
+        line-height: 1.75rem;
+      }
+
+      .emoji-character:last-child {
+        position: relative;
+        top: -10px;
+        opacity: 0.4;
+        height: 1rem;
+        line-height: 1rem;
+      }
+
+      .emoji-character:not(:first-child):not(:last-child) {
+        height: 6px;
+        position: relative;
+        top: -10px;
+        opacity: 0.5;
+        line-height: 0.6rem;
       }
     }
     .emoji-count {

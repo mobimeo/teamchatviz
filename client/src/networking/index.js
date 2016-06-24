@@ -110,3 +110,16 @@ export const fetchMoodsAndReactions = ({ channel, startDate, endDate }) => {
     return result;
   });
 }
+
+export const fetchEmojiTimeline = (startDate, endDate, channelId) => {
+  Progress.show();
+  return fetch(`/api/emoji-timeline?startDate=${startDate?startDate:''}&endDate=${endDate?endDate:''}&channelId=${channelId?channelId:''}`, {
+    credentials: 'same-origin'
+  })
+  .then(onFailure)
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}

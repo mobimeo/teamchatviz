@@ -54,7 +54,7 @@ async function getMaxDate(teamId) {
   return moment().format();
 }
 
-export default async function(teamId, startDate = null, endDate = null, interval = '3 days') {
+export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   if (!startDate) {
     startDate = await getMinDate(teamId);
   }
@@ -64,10 +64,9 @@ export default async function(teamId, startDate = null, endDate = null, interval
   startDate = moment(startDate).utc().format();
   endDate = moment(endDate).utc().format();
   const days = moment(endDate).diff(moment(startDate), 'days');
-  if (days > 30) {
-    interval = '5 days';
-  }
-  console.log(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}`);
+  const intervalDays = parseInt(days / 10) + 1;
+  interval =  intervalDays + ' days';
+  console.log(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}, ${interval}, ${days}`);
   const tmp = await db.any(`
     SELECT cr.t, cr.name, SUM(COALESCE(data.c, 0)) as c FROM (
       SELECT DATE(t) as t, name FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t
@@ -86,8 +85,10 @@ export default async function(teamId, startDate = null, endDate = null, interval
       teamId,
       interval,
     });
-  const channels = await db.any(`SELECT * FROM channels
-    WHERE channels.team_id = $(teamId) AND id IN (SELECT channel_id FROM reactions WHERE team_id = $(teamId))`, {
+
+  const channels = await db.any(`SELECT channels.id, channels.name, creation_date as "creationDate",
+    members.real_name as "creatorName", number_of_members as "numberOfMembers"
+    FROM channels INNER JOIN members ON channels.created_by = members.id WHERE channels.team_id=$(teamId)`, {
       teamId,
     });
 
