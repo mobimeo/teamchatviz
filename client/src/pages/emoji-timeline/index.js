@@ -78,23 +78,32 @@ export default React.createClass({
   },
 
   onSearch(value) {
-
+    this.filters.channelName = value;
+    const result = this.state.data.toJS();
+    result.channels = this.allChannels;
+    this.updateState(result);
   },
 
   onSort(option) {
-
+    this.filters.sortOption = option;
+    const result = this.state.data.toJS();
+    result.channels = this.allChannels;
+    this.updateState(result);
   },
 
   updateState(result) {
+    var sortOption = this.filters.sortOption;
+    var channelName = this.filters.channelName;
+    var sortedChannels = sortOption ? result.channels.sort(sortOption.compare) : result.channels;
+    this.allChannels = sortedChannels;
+
     this.setState(({data}) => ({
       data: data
-        .set('channels', result.channels)
+        .set('channels', sortedChannels.filter(channel => channelName === ''
+          || channel.name.toLowerCase().indexOf(channelName.toLowerCase()) !== -1))
         .set('data', result.data)
         .set('rating', result.rating)
-        .set('emojis', result.emojis.reduce((obj, val, key) => {
-          obj[`${val.name}`] = val.url;
-          return obj;
-        }, {}))
+        .set('emojis', result.emojis)
     }));
   },
 

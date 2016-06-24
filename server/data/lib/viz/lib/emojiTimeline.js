@@ -112,6 +112,10 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   const emojis = await db.any(`SELECT * FROM emojis WHERE team_id = $(teamId)`, {
     teamId,
-  });
+  }).reduce((obj, val, key) => {
+    obj[`${val.name}`] = val.url;
+    return obj;
+  }, {});
+
   return groupByDate(tmp, channels, emojis);
 };
