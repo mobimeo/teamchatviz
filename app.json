@@ -1,9 +1,15 @@
 {
-  "name": "Slack Viz",
-  "description": "Slack Vizualization Tool",
-  "repository": "https://github.com/moovel/slack_viz",
+  "name": "slackviz",
+  "description": "Slack Data Vizualization App",
+  "repository": "https://github.com/moovel/slackviz",
   "logo": "",
-  "keywords": ["slack"],
+  "keywords": [
+    "slack",
+    "visualization",
+    "react",
+    "es6",
+    "babel"
+  ],
   "success_url": "/",
   "addons": [
     "heroku-postgresql"
