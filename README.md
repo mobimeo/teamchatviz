@@ -3,7 +3,7 @@
 
 by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://developers.moovel.com)
 
-&#35;slackviz enables you to explore how your Slack team works:
+&#35;slackviz enables you to explore how your [Slack](https://slack.com/) team works:
 
  - channel heartbeat
  - people land
@@ -15,6 +15,11 @@ by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://developers.
 Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/). Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/). Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/). PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise).
 
 See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
+
+Project Page
+------------
+See the project page [moovel.github.io/slackviz](http://moovel.github.io/slackviz/) for more infos.
+
 
 Run on Heroku
 -------------
