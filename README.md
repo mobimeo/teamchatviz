@@ -1,6 +1,9 @@
-# Slack Visualization Tool
+&#35;slackviz
+==============
 
-Slack Viz enables you to explore how your Slack team works:
+by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://developers.moovel.com)
+
+&#35;slackviz enables you to explore how your Slack team works:
 
  - channel heartbeat
  - people land
@@ -13,15 +16,17 @@ Client app is built with [React](https://facebook.github.io/react/) and [JSPM](h
 
 See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
 
-## Run on Heroku
+Run on Heroku
+-------------
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/moovel/slack_viz/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/moovel/slackviz/tree/master)
 
-## Development Setup
+Development Setup
+-----------------
 
 You need a recent Node JS version installed and JSPM 0.17 Beta (`npm install jspm@beta -g`).
 
-1. `git clone git@github.com:moovel/slack_viz.git` and `cd slack_viz`
+1. `git clone git@github.com:moovel/slackviz.git` and `cd slackviz`
 2. `npm install` - install server npm dependencies
 3. `cd client && npm install && jspm install` - install client dependencies
 4. `cd ..`
@@ -31,7 +36,7 @@ You need a recent Node JS version installed and JSPM 0.17 Beta (`npm install jsp
 PORT=3333 # port for the server
 SLACK_CLIENT_ID="<client id of your slack app>"
 SLACK_CLIENT_SECRET="<slack app secret>"
-DATABASE_URL="<postgresqlq database URL e.g. postgres://slack_viz:slack_viz@localhost/slack_viz>"
+DATABASE_URL="<postgresqlq database URL e.g. postgres://slackviz:slackviz@localhost/slackviz>"
 ```
 
 The database needs to be created first.
@@ -39,17 +44,20 @@ The database needs to be created first.
 6. `npm start` - start the server
 7.  Open http://localhost:$PORT in your browser
 
-## Creating a Slack app
+Creating a Slack app
+--------------------
 
 Go to https://api.slack.com/apps/new and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret.
 
-## Testing
+Testing
+-------
 
 ```sh
 npm test
 ```
 
-## Roadmap
+Roadmap
+-------
 
 High-levels goals of the project:
 
@@ -57,6 +65,7 @@ High-levels goals of the project:
 - develop better visualizations
 - make the client responsive
 
-## LICENSE
+LICENSE
+-------
 
 [LGPLv2.1](LICENSE)
