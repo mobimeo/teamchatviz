@@ -28,6 +28,9 @@ export const Header = (props) => {
     <div className="row">
       <div className="col-xs-10">
         <Link to="/">
+          <img className="back" src="../images/back.png"></img>
+        </Link>
+        <Link to="/">
           <h1>
             {props.title}
           </h1>

@@ -169,10 +169,16 @@ footer {
   font-size: 1.625em;
   margin: 30px 0;
 }
-
 .site-header {
   padding: 0.406rem 0 0.406rem 0;
   border-bottom: 1px $color-grey-medium solid;
+
+  .back{
+    width: 1.5rem;
+    margin-right: 1.8rem;
+    margin-bottom: -0.3rem;
+
+  }
 }
 // end site-header
 
