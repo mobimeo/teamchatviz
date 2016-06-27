@@ -112,7 +112,8 @@ export default React.createClass({
 
   onChannelClick(channel) {
     const filters = this.filters;
-    filters.channelId = channel.id
+    filters.channelId = channel.id;
+    filters.channel = channel;
     fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
       .then(result => {
         this.updateState(result);
@@ -122,6 +123,7 @@ export default React.createClass({
   onAllChannelsClick() {
     const filters = this.filters;
     filters.channelId = null;
+    filters.channel = null;
     fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
       .then(result => {
         this.updateState(result);
@@ -130,6 +132,9 @@ export default React.createClass({
 
   render() {
     const data = this.state.data;
+    const channel = this.filters.channel;
+    const startDate = this.filters.startDate;
+    const endDate = this.filters.endDate;
     const channels = data.get('channels');
     const emojis = data.get('emojis');
     const rating = data.get('rating');
@@ -163,7 +168,21 @@ export default React.createClass({
             </div>
           </div>
           <div className="col-xs-9">
-            <div>
+            <div className="row">
+              <div className="col-xs-3">
+                { channel ? '#'+ channel.name : 'all channels' }
+              </div>
+              <div className="col-xs-3">
+              {
+                (startDate && endDate) ? moment(startDate).format('ll') + ' - ' + moment(endDate).format('ll') : 'all times'
+              }
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-3">
+                most used emojis
+              </div>
+              <div className="col-xs-3">
               {
                 rating
                   .slice(0, 3)
@@ -171,6 +190,7 @@ export default React.createClass({
                     return <Emoji emojis={emojis} name={reaction.name} count={reaction.count} />;
                   })
               }
+              </div>
             </div>
             <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
               <XYPlot
