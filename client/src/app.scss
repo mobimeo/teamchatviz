@@ -46,6 +46,15 @@ html, body {
   font-size: 16px;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a:focus { 
+  outline: none; 
+}
+
 // footer/content set up
 .client-app {
   display: flex;
@@ -196,47 +205,67 @@ footer {
 
 
 // datepicker
-.date-picker .button-group {
-  display: inline-block;
-  margin-left: 1rem;
-  vertical-align: text-bottom;
+.date-picker {
+  .calendar {
+    text-align: right;
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+    cursor: pointer;
+  }
+  .button-group {
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: text-bottom;
+    
+    .button {
+      background-color: white;
+      border: 0.5px solid $color-grey-light;
+      font-size: 0.875em;
+      font-family: $font-light;
+      cursor: pointer;
+      padding: 0.3rem 2rem 0.3rem 2rem;
+    }
+    .button:first-child{
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border-right: 0;
+    }
+    .button:last-child{
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-left: 0;
+    }
+    .button:focus {
+      outline:0;
+    }
+    .button.selected {
+      background-color: $color-accent;
+    }
+  }
 }
-
-.date-picker .button-group .button {
-  background-color: white;
-  border: 0.5px solid $color-grey-light;
-  font-size: 0.875em;
-  font-family: $font-light;
-  cursor: pointer;
-  padding: 0.3rem 2rem 0.3rem 2rem;
-}
-.date-picker .button-group .button:first-child{
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-right: 0;
-}
-.date-picker .button-group .button:last-child{
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-left: 0;
-}
-.date-picker .button-group .button:focus {
-  outline:0;
-}
-
-.date-picker .button-group .button.selected {
-  background-color: $color-accent;
-}
-
 .date-range-container {
   position: absolute;
   background-color: white;
   z-index: 10;
-}
-.date-picker .calendar {
-  text-align: right;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
+  
+  .rdr-DateRange {
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+
+    span.is-selected {
+      background: $color-accent !important;
+      color: $color-grey-dark !important;
+    }
+    button {
+      background: $color-brand !important;
+
+      &.prev i{
+        border-color: transparent white transparent transparent !important;
+      }
+      &.next i{
+        border-color: transparent transparent transparent white !important;
+      }
+    }
+  }
 }
 // end datepicker
 
@@ -607,8 +636,8 @@ button:focus{
   }
 
 }
-
 // end messages and reactions
+
 
 @media only screen and (min-width: 75rem) {
   .container {
