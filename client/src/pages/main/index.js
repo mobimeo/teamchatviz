@@ -106,7 +106,7 @@ export default withRouter(React.createClass({
           </div>
         </div>
       </main>
-      <a href="https://github.com/moovel/slack_viz"><img className="github-ribbon" src="/images/github-ribbon.png" alt="Fork me on GitHub" /></a>
+      <a href="https://github.com/moovel/slackviz"><img className="github-ribbon" src="/images/github-ribbon.png" alt="Fork me on GitHub" /></a>
     </div>;
   }
 }));

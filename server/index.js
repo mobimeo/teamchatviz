@@ -34,6 +34,7 @@ import send from 'koa-send';
 import Promise from 'bluebird';
 import fs from 'fs';
 import auth from 'koa-basic-auth';
+import ms from 'ms';
 
 const apiApp = new Koa();
 const app = new Koa();
@@ -58,7 +59,13 @@ const errorHandler = async (ctx, next) => {
 apiApp.use(errorHandler);
 apiApp.use(cors());
 apiApp.use(bodyParser());
-apiApp.use(convert(session({ store: pgStore, ttl: 1000*60*60*24*10 })));
+apiApp.use(convert(session({
+  store: pgStore,
+  rolling: true,
+  cookie: {
+    maxage: ms('7 days'),
+  },
+})));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
 apiApp.use(api.routes());

@@ -36,6 +36,8 @@ import 'react-virtualized/styles.css!';
 import PlotRow from './lib/PlotRow';
 import PlotHeaderRow from './lib/PlotHeaderRow';
 
+import shallowCompare from 'react-addons-shallow-compare'
+
 export default React.createClass({
   getInitialState() {
     this.filters = {
@@ -138,6 +140,10 @@ export default React.createClass({
     return 100;
   },
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  },
+
   render() {
     const data = this.state.data;
     return <div>
@@ -162,7 +168,7 @@ export default React.createClass({
                     autoHeight
                     height={height}
                     scrollTop={scrollTop}
-                    overscanRowCount={20}
+                    overscanRowCount={5}
                     rowCount={data.get('displayedItems').size + 1}
                     rowHeight={this._getRowHeight}
                     rowRenderer={this.renderItem}

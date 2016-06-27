@@ -32,6 +32,9 @@ import { Header } from 'client/components/Header.js';
 import { Emoji } from 'client/components/Emoji.js';
 import { fetchEmojiTimeline } from 'client/networking/index.js';
 import { AutoSizer } from 'react-virtualized';
+import EmojiColumn from './lib/EmojiColumn.js';
+
+import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Crosshair } from 'react-vis';
 
 import 'react-vis/main.css!';
 
@@ -109,7 +112,8 @@ export default React.createClass({
 
   onChannelClick(channel) {
     const filters = this.filters;
-    filters.channelId = channel.id
+    filters.channelId = channel.id;
+    filters.channel = channel;
     fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
       .then(result => {
         this.updateState(result);
@@ -119,6 +123,7 @@ export default React.createClass({
   onAllChannelsClick() {
     const filters = this.filters;
     filters.channelId = null;
+    filters.channel = null;
     fetchEmojiTimeline(filters.startDate, filters.endDate, filters.channelId)
       .then(result => {
         this.updateState(result);
@@ -127,10 +132,18 @@ export default React.createClass({
 
   render() {
     const data = this.state.data;
+    const channel = this.filters.channel;
+    const startDate = this.filters.startDate;
+    const endDate = this.filters.endDate;
     const channels = data.get('channels');
     const emojis = data.get('emojis');
     const rating = data.get('rating');
     const chartData = data.get('data');
+    const max = _.maxBy(chartData, item => item.total);
+    let maxY = 0;
+    if (max) {
+      maxY = max.total;
+    }
     return <div>
       <Header title="emoji timeline" />
       <main>
@@ -155,7 +168,21 @@ export default React.createClass({
             </div>
           </div>
           <div className="col-xs-9">
-            <div>
+            <div className="row">
+              <div className="col-xs-3">
+                { channel ? '#'+ channel.name : 'all channels' }
+              </div>
+              <div className="col-xs-3">
+              {
+                (startDate && endDate) ? moment(startDate).format('ll') + ' - ' + moment(endDate).format('ll') : 'all times'
+              }
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-3">
+                most used emojis
+              </div>
+              <div className="col-xs-3">
               {
                 rating
                   .slice(0, 3)
@@ -163,29 +190,42 @@ export default React.createClass({
                     return <Emoji emojis={emojis} name={reaction.name} count={reaction.count} />;
                   })
               }
+              </div>
             </div>
-            <div style={{ textAlign: 'center' }} >
-              {
-                chartData.map((d, i) => {
-                  return <div key={i} style={{ display: 'inline-block', minWidth: '4.5rem' }}>
-                  {
-                    d.emojis
-                      .slice(0, 10)
-                      .map((reaction, i) => {
-                        let multiply = 1;
-                        if (reaction.count > 100) {
-                          multiply = reaction.count / 30;
-                        } else if (reaction.count > 10) {
-                          multiply = reaction.count / 10;
-                        }
-                        return <Emoji emojis={emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} multiply={multiply} />;
-                      })
-                  }
-                  { d.emojis.length > 10 ? <Emoji style={{ display: 'block' }} name={'...'} count={''} />: <div></div> }
-                  {moment(d.id).format('DD/MM/YY')}
-                  </div>;
-                })
-              }
+            <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
+              <XYPlot
+                width={800}
+                height={600}
+                >
+                <LineSeries
+                  data={chartData.map(i => ({
+                    x: moment.utc(i.id).unix(),
+                    y: i.total,
+                  }))}
+                  color='white'
+                  size='1px'
+                  xType='time'
+                  key={'xyPlotLineSeries' + this.props.parentKey}
+                />
+                <HorizontalGridLines  />
+                <XAxis title="time"
+                  labelValues={chartData.map(i => moment.utc(i.id).unix())}
+                  tickValues={chartData.map(i => moment.utc(i.id).unix())}
+                  labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
+                  />
+                <YAxis title="total emoji count" />
+                {
+                  chartData.map((d, i) => {
+                    var value = {
+                      x: moment.utc(d.id).unix(),
+                      y: d.total,
+                    };
+                    return <Hint value={value} orientation="bottomright">
+                      <EmojiColumn key={i} item={d} emojis={emojis} maxY={maxY} />
+                    </Hint>;
+                  })
+                }
+              </XYPlot>
             </div>
           </div>
         </div>

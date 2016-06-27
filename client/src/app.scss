@@ -419,6 +419,16 @@ button:focus{
 }
 // end channel list
 
+.emoji-timeline-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines {
+  stroke-dasharray: 2, 2;
+}
+
+.emoji-timeline-column {
+  border-top: black 0.25rem solid;
+  // margin: 0.25rem;
+  background-color: #fafafa;
+}
+
 .emoji {
   box-sizing: content-box;
   display: inline-block;
@@ -430,6 +440,8 @@ button:focus{
   white-space: nowrap;
   font-size: 1rem;
   padding: 0.05rem 0.1rem;
+  z-index: 5;
+  background-color: white;
 
   .emoji-container {
     display: flex;

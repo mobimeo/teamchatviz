@@ -32,6 +32,7 @@ const groupByDate = (results, channels, emojis) => {
       timeline[r.t] = {
         id: r.t,
         emojis: [],
+        total: 0,
       };
     }
     const count = parseInt(r.c);
@@ -47,6 +48,7 @@ const groupByDate = (results, channels, emojis) => {
         name: r.name,
         count: count,
       });
+      timeline[r.t].total += count;
     }
   });
 
