@@ -44,6 +44,8 @@ SLACK_CLIENT_SECRET="<slack app secret>"
 DATABASE_URL="<postgresql database URL e.g. postgres://slackviz:slackviz@localhost/slackviz>"
 ```
 
+6. Run db migrations `npm run up`
+
 The database needs to be created first.
 
 6. `npm start` - start the server
