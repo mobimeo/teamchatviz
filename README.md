@@ -41,7 +41,7 @@ You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm instal
 PORT=3333 # port for the server
 SLACK_CLIENT_ID="<client id of your slack app>"
 SLACK_CLIENT_SECRET="<slack app secret>"
-DATABASE_URL="<postgresqlq database URL e.g. postgres://slackviz:slackviz@localhost/slackviz>"
+DATABASE_URL="<postgresql database URL e.g. postgres://slackviz:slackviz@localhost/slackviz>"
 ```
 
 The database needs to be created first.
