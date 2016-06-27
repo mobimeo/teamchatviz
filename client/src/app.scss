@@ -596,7 +596,10 @@ button:focus{
     padding: 1rem;
     margin: 2rem 0 1.5rem 0;
     background-color: $color-grey-light;
-    overflow: hidden;
+
+    div {
+      overflow: scroll;
+    }
   }
   .message-body:after {
     content: '';
