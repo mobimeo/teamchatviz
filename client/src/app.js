@@ -25,7 +25,7 @@ import Progress from 'react-progress-2';
 
 export const App = React.createClass({
   render() {
-    return <div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
+    return (<div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
       <div className="container wrap content">
         <Progress.Component/>
         {this.props.children}
@@ -35,12 +35,14 @@ export const App = React.createClass({
           <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                  2016 (c) made by <a href="http://lab.moovel.com/" target="_blank">moovel lab</a> & <a href="https://developers.moovel.com/" target="_blank">moovel dev team</a>
+                  2016 (c) made by
+                  <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>
+                  and <a href="https://developers.moovel.com/" target="_blank">moovel dev team</a>
                 </div>
             </div>
           </div>
         </div>
       </footer>
-    </div>
+    </div>)
   }
 });

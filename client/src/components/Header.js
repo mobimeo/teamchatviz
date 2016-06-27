@@ -28,7 +28,7 @@ export const Header = (props) => {
     <div className="row">
       <div className="col-xs-10">
         <Link to="/">
-          <img className="back" src="../images/back.png"></img>
+          <img className="back" src="../images/back.png" />
         </Link>
         <Link to="/">
           <h1>
@@ -40,5 +40,5 @@ export const Header = (props) => {
         <MenuButtons />
       </div>
     </div>
-  </header>
+  </header>;
 }

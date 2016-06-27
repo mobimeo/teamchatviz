@@ -36,8 +36,7 @@ export const MenuButtons = React.createClass({
     });
   },
   render() {
-    return 
-    <div className="menu-buttons" style={{ display: 'inline-block' }}>
+    return <div className="menu-buttons" style={{ display: 'inline-block' }}>
       <Link to="/"><img className="nav-buttons" src="/images/navbuttons-16.png" alt="home" /></Link>
       <a onClick={this.toggleMenu} > <img className="nav-buttons" src="/images/navbuttons-18.png" alt="menu" /> </a>
       { this.state.menuOpened ? <Menu /> : null }

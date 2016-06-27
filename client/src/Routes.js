@@ -31,7 +31,7 @@ import { Router, Route, Link, hashHistory, browserHistory } from 'react-router';
 
 export default React.createClass({
   render() {
-    return <Router history={browserHistory}>
+    return (<Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={MainPage} />
         <Route path="/heartbeat" component={HeartbeatPage} />
@@ -41,6 +41,6 @@ export default React.createClass({
         <Route path="/frequent-speakers" component={FrequentSpeakersPage} />
         <Route path="/emoji-timeline" component={EmojiTimelinePage} />
       </Route>
-    </Router>;
+    </Router>);
   }
 });
