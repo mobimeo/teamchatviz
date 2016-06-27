@@ -34,6 +34,7 @@ import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
 
 import PlotRow from './lib/PlotRow';
+import PlotHeaderRow from './lib/PlotHeaderRow';
 
 export default React.createClass({
   getInitialState() {
@@ -110,17 +111,29 @@ export default React.createClass({
   },
 
   renderItem({ index, isScrolling }) {
+    const chunks = this.state.data.get('chunks').toJS();
     if (index === 0) {
-      return <div key={'scrollRow0'} style={{ height: '20px' }}></div>
+      const data = this.state.data.get('displayedItems').get(0);
+      return <PlotHeaderRow
+        data={data}
+        chunks={chunks}
+        parentKey={'scrollRow' + index}
+        key={'scrollRow' + index}
+        />
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
-    const chunks = this.state.data.get('chunks');
-    return <PlotRow data={data} chunks={chunks} showChunkHints={index === 1 ? true : false} parentKey={'scrollRow' + data.id} key={'scrollRow' + data.id} />;
+    return <div className="heartbeat-plot">
+      <PlotRow
+        data={data}
+        chunks={chunks}
+        parentKey={'scrollRow' + data.id}
+        key={'scrollRow' + data.id} />
+    </div>;
   },
 
   _getRowHeight({ index }) {
     if (index === 0) {
-      return 50;
+      return 40;
     }
     return 100;
   },
@@ -132,7 +145,8 @@ export default React.createClass({
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-6 no-padding">
-            <SortDropdown onChange={this.onSort} /> <SearchBox onChange={this.onSearch} placeholder="search channel" />
+            <SortDropdown onChange={this.onSort} />
+            <SearchBox onChange={this.onSearch} placeholder="search channel" />
           </div>
           <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
             <DateRangePicker onChange={this.onDateChange} />

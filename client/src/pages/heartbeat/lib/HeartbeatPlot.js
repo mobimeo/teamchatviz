@@ -111,26 +111,24 @@ export default React.createClass({
     };
     const hints = [];
     if (chValues[0]) {
-      hints.push(<Hint orientation="topleft" value={chValues[0]} key={'xyPlotHint' + this.props.parentKey}>
-              <div style={tooltipStyles} className="cross-hair arrow_box">
-                {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
-                <br />
-                {chValues[0] ? chValues[0].y : 0} messages
-              </div>
-            </Hint>);
-      hints.push(<Hint orientation="topleft" value={chValues[0]}  key={'xyPlotHint2' + this.props.parentKey}>
-              <img style={pointerStyles} width="25" src="/images/pointer.png" />
-            </Hint>);
+      hints.push(<Hint
+        orientation="topleft"
+        value={chValues[0]}
+        key={'xyPlotHint' + this.props.parentKey}>
+        <div style={tooltipStyles} className="cross-hair arrow_box">
+          {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
+          <br />
+          {chValues[0] ? chValues[0].y : 0} messages
+        </div>
+      </Hint>);
+      hints.push(<Hint
+        orientation="topleft"
+        value={chValues[0]}
+        key={'xyPlotHint2' + this.props.parentKey}>
+          <img style={pointerStyles} width="25" src="/images/pointer.png" />
+      </Hint>);
     }
 
-    if (showChunkHints) {
-      const chunks = this.props.chunks;
-      chunks.forEach((ch, i) => {
-        hints.push(<Hint orientation={ (i < chunks.length - 1) ? 'topright' : 'topright' } value={{ x: moment.utc(ch.ts).unix(), y: data.max + 30 }}>
-          <span style={{ fontSize: '0.5rem', position: 'relative', top: '-20px' }}>{moment.utc(ch.ts).format('ll')}</span>
-        </Hint>);
-      });
-    }
     const width = (this.state.data.get('width') - 30) > 0 ? this.state.data.get('width') - 30 : 600;
     const chartData = data.heartbeat.map(i => ({
       x: moment.utc(i.t).unix(),
@@ -145,12 +143,12 @@ export default React.createClass({
         width={width}
         height={100}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
-        yDomain={[0, max + 50]}
+        yDomain={[0, max + ( max * 0.1 ) ]}
         key={'xyPlot' + this.props.parentKey}
         >
         <HorizontalGridLines className="low-boundary" key={'xyPlotHorizontalGrids' + this.props.parentKey} values={[0]} />
         <HorizontalGridLines className="higher-boundary" key={'xyPlotHorizontalGrids2' + this.props.parentKey} values={[max]} />
-        <VerticalGridLines key={'xyPlotVerticalGrids' + this.props.parentKey} values={this.props.chunks.map(ch => moment.utc(ch.ts).unix()).toJS()} />
+        <VerticalGridLines key={'xyPlotVerticalGrids' + this.props.parentKey} values={this.props.chunks.map(ch => moment.utc(ch.ts).unix())} />
         <LineSeries
           onNearestX={this._onNearestXs[0]}
           data={chartData}

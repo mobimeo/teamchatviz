@@ -58,7 +58,7 @@ const errorHandler = async (ctx, next) => {
 apiApp.use(errorHandler);
 apiApp.use(cors());
 apiApp.use(bodyParser());
-apiApp.use(convert(session({ store: pgStore, cookies: { maxage: 1000*60*60*24*10 }})));
+apiApp.use(convert(session({ store: pgStore, ttl: 1000*60*60*24*10 })));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
 apiApp.use(api.routes());
