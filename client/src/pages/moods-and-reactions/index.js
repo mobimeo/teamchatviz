@@ -175,7 +175,7 @@ export default React.createClass({
                     </div>
                     <div className="col-xs-4">
                       <div className="reactions">{message.reactions.length} reactions</div>
-                      <div>
+                      <div className="message-emoji-wrapper">
                         {
                           message
                           .reactions

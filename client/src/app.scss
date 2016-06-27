@@ -82,6 +82,8 @@ footer {
   color: $color-brand;
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
 }
 
 .chart-description,
@@ -104,8 +106,9 @@ footer {
     max-width: 50%;
   }
 }
-.chart-description {
+p.chart-description {
   font-size: 0.750rem;
+  line-height: 1.1rem;
 }
 
 .channels.row {
@@ -586,12 +589,14 @@ button:focus{
     font-family: sans-serif;
     padding-left: 1rem;
     margin: 2rem 0 1.5rem 0;
+    font-weight: bold;
   }
   .message-body {
     position:relative;
     padding: 1rem;
     margin: 2rem 0 1.5rem 0;
     background-color: $color-grey-light;
+    overflow: hidden;
   }
   .message-body:after {
     content: '';
@@ -620,6 +625,13 @@ button:focus{
   .user-img {
    width: 30px;
    height: 30px;
+  }
+  .message-emoji-wrapper {
+    margin-left: 1rem;
+
+    .emoji {
+      margin: 0 0.3rem 0.5rem 0;
+    }
   }
 
 }
