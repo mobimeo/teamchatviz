@@ -497,8 +497,8 @@ button:focus{
   margin: 2.2rem 0 0 2.2rem;
 }
 
-.rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
-.rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
+.heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
+.heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
   stroke-dasharray: 5, 5;
 }
 
@@ -569,4 +569,8 @@ button:focus{
   .container {
     width: 70rem;
   }
+}
+
+.VirtualScroll {
+  outline: 0;
 }
