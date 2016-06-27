@@ -32,6 +32,7 @@ import { Header } from 'client/components/Header.js';
 import { Emoji } from 'client/components/Emoji.js';
 import { fetchEmojiTimeline } from 'client/networking/index.js';
 import { AutoSizer } from 'react-virtualized';
+import EmojiColumn from './lib/EmojiColumn.js';
 
 import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Crosshair } from 'react-vis';
 
@@ -171,10 +172,11 @@ export default React.createClass({
                   })
               }
             </div>
-            <div style={{ textAlign: 'center' }} >
+            <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
               <XYPlot
                 width={800}
-                height={600} >
+                height={600}
+                >
                 <LineSeries
                   data={chartData.map(i => ({
                     x: moment.utc(i.id).unix(),
@@ -190,7 +192,7 @@ export default React.createClass({
                   labelValues={chartData.map(i => moment.utc(i.id).unix())}
                   tickValues={chartData.map(i => moment.utc(i.id).unix())}
                   labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
-                  tickSize={5} />
+                  />
                 <YAxis title="total emoji count" />
                 {
                   chartData.map((d, i) => {
@@ -199,20 +201,7 @@ export default React.createClass({
                       y: d.total,
                     };
                     return <Hint value={value} orientation="bottomright">
-                      <div key={i} >
-                        {
-                          d.emojis
-                            .slice(0, parseInt(d.total / maxY * 600 / 50))
-                            .map((reaction, i) => {
-                              return <Emoji emojis={emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
-                            })
-                        }
-                        {
-                          d.emojis.length > 10 ?
-                          <Emoji style={{ display: 'block' }} name={'...'} count={''} />
-                          : <div></div>
-                        }
-                      </div>
+                      <EmojiColumn key={i} item={d} emojis={emojis} maxY={maxY} />
                     </Hint>;
                   })
                 }
