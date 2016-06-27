@@ -197,6 +197,7 @@ footer {
 .date-picker .button-group {
   display: inline-block;
   margin-left: 1rem;
+  vertical-align: text-bottom;
 }
 
 .date-picker .button-group .button {
@@ -246,6 +247,7 @@ footer {
 // search box
 .search-box {
   display: inline-block;
+  width: 0;
 }
 
 .search-box input {
