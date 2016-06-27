@@ -510,9 +510,66 @@ button:focus{
 
 .menu {
   position: absolute;
-  background-color: white;
+  top: 0;
+  background-color: $color-grey-dark;
+  line-height: 4rem;
   z-index: 20;
+  height: 100%;
+  width: 16rem;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      padding-left: 3rem;
+    }
+    a{
+      color: white;
+      text-decoration: none;
+    }
+    a:hover {
+    }
+    a:focus{
+    }
+    li:hover {
+      background-color: $color-accent;
+      color: $color-grey-dark;
+    }
+    li:focus {
+      background-color: $color-accent;
+      color: $color-grey-dark;
+    }
+  }
 }
+
+
+  .close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    z-index: 30;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
 
 // messages and reactions
 .messages-reactions{

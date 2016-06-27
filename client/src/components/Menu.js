@@ -27,15 +27,16 @@ export const Menu = React.createClass({
   },
   render() {
     return <div className="menu">
+      <a class="close"></a>
       <ul>
-        <li>home</li>
-        <li>channel heartbeat</li>
-        <li>channel land</li>
-        <li>people land</li>
-        <li>comments & reactions</li>
-        <li>frequent speakers</li>
-        <li>emoji timeline</li>
-        <li>about</li>
+        <a href="/"><li>home</li></a>
+        <a href="/heartbeat"><li>channel heartbeat</li></a>
+        <a href="/channel-land"><li>channel land</li></a>
+        <a href="/people-land"><li>people land</li></a>
+        <a href="/messages-and-reactions"><li>messages & reactions</li></a>
+        <a href="/frequent-speakers"><li>frequent speakers</li></a>
+        <a href="/heartbeat"><li>emoji timeline</li></a>
+        <a href="/about"><li>about</li></a>
       </ul>
     </div>;
   }
