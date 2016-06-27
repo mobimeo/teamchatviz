@@ -21,19 +21,24 @@
   ],
   "author": "moovel GmbH",
   "license": "LGPLv2.1",
-  "contributors": [{
-    "name": "Oleksii Rudenko",
-    "email": "oleksii.rudenko@moovel.com"
-  }, {
-    "name": "Flore De Crombrugghe",
-    "email": "flore.crombrugghe@moovel.com"
-  }, {
-    "name": "Josefine Hartung",
-    "email": "josefine.hartung@moovel.com"
-  }, {
-    "name": "Benedikt Groß",
-    "email": "benedikt.gross@moovel.com"
-  }],
+  "contributors": [
+    {
+      "name": "Oleksii Rudenko",
+      "email": "oleksii.rudenko@moovel.com"
+    },
+    {
+      "name": "Flore De Crombrugghe",
+      "email": "flore.crombrugghe@moovel.com"
+    },
+    {
+      "name": "Josefine Hartung",
+      "email": "josefine.hartung@moovel.com"
+    },
+    {
+      "name": "Benedikt Groß",
+      "email": "benedikt.gross@moovel.com"
+    }
+  ],
   "dependencies": {
     "@slack/client": "^3.1.0",
     "babel-core": "^6.7.6",
@@ -55,6 +60,7 @@
     "koa-static": "^3.0.0",
     "lodash": "^4.13.1",
     "moment-timezone": "^0.5.4",
+    "ms": "^0.7.1",
     "passport-slack": "0.0.6",
     "pg-monitor": "^0.5.8",
     "pg-promise": "^4.7.5"
