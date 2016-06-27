@@ -35,7 +35,7 @@ export const App = React.createClass({
           <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                  2016 (c) made by moovel lab and moovel dev. team
+                  2016 (c) made by moovel lab & moovel dev team
                 </div>
             </div>
           </div>

@@ -61,8 +61,10 @@ footer {
   background-color: white;
   padding: 0.813rem 0 0.813rem 0;
   font-size: 0.8em;
-  border-top: 0.5px solid $color-grey-medium;
-  margin-top: 20px;
+  border-top: 0.5px solid $color-grey-light;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .github-ribbon {
