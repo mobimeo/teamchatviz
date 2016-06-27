@@ -30,7 +30,6 @@ import mount from 'koa-mount';
 import pgStore from './pg-store';
 import './auth';
 import api from './api';
-import send from 'koa-send';
 import Promise from 'bluebird';
 import fs from 'fs';
 import auth from 'koa-basic-auth';

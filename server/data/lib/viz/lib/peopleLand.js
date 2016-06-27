@@ -45,7 +45,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   const userIds = Object.keys(groupedByUser);
   const dists = userIds.map(key => {
-    return groupedByUser[key].map(row => row.is_member === true ? 1 : 0.1);
+    return groupedByUser[key].map(row => row.is_member === true ? 10 : 5);
   });
 
   console.time('tsne');
@@ -63,7 +63,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
 
   console.time('k-means');
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 5);
+  const clusters = dbscan.run(solution, 2);
   console.timeEnd('k-means');
 
   const data = solution.map((row, i) => {

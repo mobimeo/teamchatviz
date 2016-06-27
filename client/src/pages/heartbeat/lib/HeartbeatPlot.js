@@ -143,7 +143,7 @@ export default React.createClass({
         width={width}
         height={100}
         margin={{left: 0, top: 0, right: 0, bottom: 0}}
-        yDomain={[0, max + ( max * 0.1 ) ]}
+        yDomain={[0, max + ( max * 0.3 ) ]}
         key={'xyPlot' + this.props.parentKey}
         >
         <HorizontalGridLines className="low-boundary" key={'xyPlotHorizontalGrids' + this.props.parentKey} values={[0]} />
