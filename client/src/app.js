@@ -35,8 +35,8 @@ export const App = React.createClass({
           <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                  2016 (c) made by
-                  <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>
+                  2016 &copy; made by&nbsp;
+                  <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>&nbsp;
                   and <a href="https://developers.moovel.com/" target="_blank">moovel dev team</a>
                 </div>
             </div>

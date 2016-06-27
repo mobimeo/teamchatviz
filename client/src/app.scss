@@ -19,18 +19,6 @@
 */
 
 // Variables
-// @font-face {
-//   font-family: 'DINWeb-Light';
-//   src: url("/fonts/DINWeb-Light.eot") format('eot');
-//   src: url("/fonts/DINWeb-Light.woff") format('woff');
-// }
-
-// @font-face {
-//   font-family: 'DINWeb-Medium';
-//   src: url("/fonts/DINWeb-Medium.eot") format('eot');
-//   src: url("/fonts/DINWeb-Medium.woff") format('woff');
-// }
-
 $font-light: 'DINWeb-Light';
 $font-medium: 'DINWeb-Medium';
 
@@ -42,7 +30,7 @@ $color-grey-light: #E6E6E6;
 
 // html, body main stiling
 html, body {
-  font-family: $font-light;
+  font-family: sans-serif;
   font-size: 16px;
 }
 
@@ -51,7 +39,9 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a,
 a:focus { 
+  color: $color-grey-dark;
   outline: none; 
 }
 
@@ -61,7 +51,9 @@ a:focus {
   min-height: 100vh;
   flex-direction: column;
 }
-
+main {
+  padding-bottom: 50px;
+}
 .content {
   flex: 1;
 }
@@ -70,7 +62,7 @@ footer {
   background-color: white;
   padding: 0.813rem 0 0.813rem 0;
   font-size: 0.8em;
-  border-top: 0.5px solid $color-grey-light;
+  border-top: 1px solid $color-grey-light;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -92,23 +84,25 @@ footer {
   font-size: 1rem;
 }
 
-.chart-description, .site-description {
+.chart-description,
+.site-description {
   color: $color-grey-light;
-  font-family: $font-light;
+  font-family: sans-serif;
 }
 
 .site-description {
   font-size: 0.875rem;
-  border-bottom: 0.5px solid $color-grey-medium;
+  border-bottom: 1px solid $color-grey-light;
   padding: 40px 0;
-}
-.site-description h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-.site-description p {
-  margin: 0;
-  max-width: 50%;
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+  }
+  p {
+    margin: 0;
+    max-width: 50%;
+  }
 }
 .chart-description {
   font-size: 0.750rem;
@@ -129,12 +123,11 @@ footer {
   background-position: center center;
   border-radius: 50%;
   background-color: white;
+  
+  &:hover {
+    background-color: $color-accent;
+  }
 }
-
-.chart-image:hover {
-  background-color: $color-accent;
-}
-
 .chart-image-link {
   float: left;
   margin: 0 1rem 1rem 0;
@@ -143,47 +136,42 @@ footer {
 .chartHeartbeat {
   background-image: url("/images/channels/01_heartbeat.svg");
 }
-
 .chartPeopleLand {
   background-image: url("/images/channels/02_people_land.svg");
 }
-
 .chartChannelLand {
   background-image: url("/images/channels/03_channel_land.svg");
 }
-
 .chartMoodReactions {
   background-image: url("/images/channels/04_moods_and_reactions.svg");
 }
-
 .chartFrequentSpeakers {
   background-image: url("/images/channels/05_frequent_speakers.svg");
 }
-
 .chartEmojiTimeline {
   background-image: url("/images/channels/06_emoji_timeline.svg");
 }
-
 // end chart icons and text styles
 
 // site-header
-.site-header h1 img{
-  width:1.7rem;
-  float:right;
-  margin-top:5px;
-  margin-left: 1rem;
-}
-.site-header h1 {
-  font-family: $font-medium;
-  color: $color-grey-dark;
-  display: inline-block;
-  font-size: 1.625em;
-  margin: 30px 0;
-}
 .site-header {
   padding: 0.406rem 0 0.406rem 0;
-  border-bottom: 1px $color-grey-medium solid;
+  border-bottom: 1px $color-grey-light solid;
 
+  h1 {
+    font-family: sans-serif;
+    color: $color-grey-dark;
+    display: inline-block;
+    font-size: 1.625em;
+    margin: 30px 0;
+
+    img{
+      width:1.7rem;
+      float:right;
+      margin-top:5px;
+      margin-left: 1rem;
+    }
+  }
   .back{
     width: 1.5rem;
     margin-right: 1.8rem;
@@ -219,9 +207,9 @@ footer {
     
     .button {
       background-color: white;
-      border: 0.5px solid $color-grey-light;
+      border: 1px solid $color-grey-light;
       font-size: 0.875em;
-      font-family: $font-light;
+      font-family: sans-serif;
       cursor: pointer;
       padding: 0.3rem 2rem 0.3rem 2rem;
     }
@@ -283,9 +271,9 @@ footer {
 
 .search-box input {
   background-color: white;
-  border: 0.5px solid $color-grey-light;
+  border: 1px solid $color-grey-light;
   font-size: 0.875em;
-  font-family: $font-light;
+  font-family: sans-serif;
   cursor: pointer;
   border-radius: 4px;
   padding: 0.3em 8em 0.3em 1em;
@@ -300,16 +288,17 @@ footer {
 .sort-dropdown {
   display: inline-block;
   background-color: white;
-  border: 0.5px solid $color-grey-light;
+  border: 1px solid $color-grey-light;
   font-size: 0.875em;
-  font-family: $font-light;
+  font-family: sans-serif;
   cursor: pointer;
   border-radius: 4px;
   padding: 0.3em 1em 0.3em 1em;
   margin-right: 10px;
-}
-.sort-dropdown .sort-by {
-  color: $color-grey-medium;
+  
+  .sort-by {
+    color: $color-grey-medium;
+  }
 }
 
 .select-box {
@@ -318,60 +307,57 @@ footer {
   outline: none;
   cursor: pointer;
   width: 17.5rem;
-}
-.select-box:active {
-  background-color: transparent;
-}
 
-.select-box:after {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  margin-top: -6px;
-  border-width: 6px 0 6px 6px;
-  border-style: solid;
-  border-color: transparent black;
-}
+  &:active {
+    background-color: transparent;
+  }
+  &:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -6px;
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent black;
+  }
+  .dropdown {
+    position: absolute;
+    top: 140%;
+    left: -7.5%; /* Size */
+    right: 0; /* Size */
+    width: 100%;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
 
-.select-box .dropdown {
-  position: absolute;
-  top: 140%;
-  left: -7.5%; /* Size */
-  right: 0; /* Size */
-  width: 100%;
-  background: #fff;
-  opacity: 0;
-  pointer-events: none;
-  margin: 0;
-  padding: 0;
+    li {
+      display: block;
+      text-decoration: none;
+      width: 100%;
+      line-height: 1.5rem;
+      
+      &:hover {
+        color: $color-grey-medium;
+      }
+    }
+  }
+  &.active .dropdown {
+    background-color: white;
+    opacity: 0.95;
+    pointer-events: auto;
+    border: 1px solid $color-grey-light;
+    border-radius: 4px;
+    padding: 0.3em 1em 0.3em 1em;
+    z-index: 200;
+  }
 }
-
-.select-box .dropdown li {
-  display: block;
-  text-decoration: none;
-  width: 100%;
-  line-height: 1.5rem;
-}
-
-// Hover state
-.select-box .dropdown li:hover {
-  color: $color-grey-medium;
-}
-
-.select-box.active .dropdown {
-  background-color: white;
-  opacity: 0.95;
-  pointer-events: auto;
-  border: 0.5px solid $color-grey-light;
-  border-radius: 4px;
-  padding: 0.3em 1em 0.3em 1em;
-  z-index: 200;
-}
-
 // end sort-dropdown
+
 
 // cross-hair
 .cross-hair {
@@ -381,21 +367,22 @@ footer {
 }
 // end cross-hair
 
+
 .arrow_box {
   position: relative;
   background: $color-grey-dark;
   border: 1px solid $color-grey-dark;
-}
 
-.arrow_box:after, .arrow_box:before {
-  top: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+  &:after, .arrow_box:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
 }
 
 // helpers
@@ -463,7 +450,7 @@ button:focus{
   display: inline-block;
   margin: 0.5rem 0.2rem;
   width: 3rem;
-  border: 0.5px solid $color-grey-light;
+  border: 1px solid $color-grey-light;
   border-radius: 4px;
   text-align: center;
   white-space: nowrap;
@@ -528,7 +515,7 @@ button:focus{
 }
 .member-index {
   display: inline-block;
-  font-family: $font-medium;
+  font-family: sans-serif;
   font-size: 1.5rem;
 }
 // end frequent speakers
@@ -591,12 +578,12 @@ button:focus{
   padding-left: 2rem;
 
   h2{
-    font-family: $font-medium;
+    font-family: sans-serif;
     font-size: 1.2rem;
     margin-top: 0.4rem;
   }
   .reactions{
-    font-family: $font-medium;
+    font-family: sans-serif;
     padding-left: 1rem;
     margin: 2rem 0 1.5rem 0;
   }
