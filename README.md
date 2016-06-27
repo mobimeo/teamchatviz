@@ -29,7 +29,7 @@ Run on Heroku
 Development Setup
 -----------------
 
-You need a recent Node JS version installed and JSPM 0.17 Beta (`npm install jspm@beta -g`).
+You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm install jspm@beta -g`).
 
 1. `git clone git@github.com:moovel/slackviz.git` and `cd slackviz`
 2. `npm install` - install server npm dependencies
