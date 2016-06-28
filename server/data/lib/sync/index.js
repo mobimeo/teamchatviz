@@ -79,7 +79,9 @@ const configure = (user, anonymize) => {
           }
           return memberIds[id];
         },
-        getChannelName: () => faker.lorem.words(1),
+        getChannelName: () => Math.random() > 0.3
+          ? faker.commerce.productName()
+          : faker.address.city(),
         getChannelTopic: () => {
           return {
             value: faker.lorem.words(3),
