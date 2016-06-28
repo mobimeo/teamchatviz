@@ -422,19 +422,22 @@ button:focus{
   margin: 0.2rem 0;
   border: solid transparent;
   border-radius: 4px;
-}
-.channel-list-element:hover {
-  background-color: $color-accent;
-  outline: 0;
-  pointer-events: auto;
-}
-.channel-list-element:focus {
-  background-color: $color-accent;
-  outline: 0;
-}
-.channel-list-element:active {
-  background-color: $color-accent;
-  outline: 0;
+  padding: 0.1rem;
+
+  &:hover {
+    background-color: $color-accent;
+    outline: 0;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  &:focus {
+    background-color: $color-accent;
+    outline: 0;
+  }
+  &:active {
+    background-color: $color-accent;
+    outline: 0;
+  }
 }
 // end channel list
 
