@@ -34,10 +34,13 @@ import Promise from 'bluebird';
 import fs from 'fs';
 import auth from 'koa-basic-auth';
 import ms from 'ms';
+import config from './config';
 
 const apiApp = new Koa();
 const app = new Koa();
+
 apiApp.keys = app.keys = ['secret'];
+
 const basicAuth = auth({ name: 'lab', pass: 'topsecret' });
 
 const errorHandler = async (ctx, next) => {
@@ -67,6 +70,19 @@ apiApp.use(convert(session({
 })));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
+
+import { getOne as getOneUser } from './repositories/user';
+
+apiApp.use(async (ctx, next) => {
+  if (config.public) {
+    const user = await getOneUser();
+    ctx.login(user);
+    await next();
+  } else {
+    await next();
+  }
+});
+
 apiApp.use(api.routes());
 apiApp.use(api.allowedMethods());
 

@@ -22,6 +22,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router'
 import { fetchUser } from 'client/networking/index.js';
 import Channel from './lib/Channel.js';
+import config from 'client/config.js';
 
 export default withRouter(React.createClass({
   getInitialState() {
@@ -39,6 +40,11 @@ export default withRouter(React.createClass({
   },
 
   routerWillLeave(nextLocation) {
+    const isPublic = this.props.config.public;
+    if (isPublic) {
+      return true;
+    }
+
     if (this.state.loggedIn === false) {
       window.location = `/api/auth/slack?returnURL=${encodeURIComponent(nextLocation.pathname)}`;
       return false;
@@ -46,6 +52,7 @@ export default withRouter(React.createClass({
   },
 
   render() {
+    const isPublic = this.props.config.public;
     return <div className="page">
       <header className="site-header">
         <h1>
@@ -58,13 +65,17 @@ export default withRouter(React.createClass({
             <h2>learn and explore your team´s slack jungle</h2>
             <p>This tool enables you to explore how your Slack team works!</p>
           </div>
-          <div className="col-xs-2">
-            <a href="/api/auth/slack-admin">
-              <img alt="Add to Slack" height="40" width="139"
-                src="https://platform.slack-edge.com/img/add_to_slack.png"
-                srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
-            </a>
-          </div>
+          {
+            isPublic
+              ? <div className="col-xs-2"></div>
+              : <div className="col-xs-2">
+                  <a href="/api/auth/slack-admin">
+                    <img alt="Add to Slack" height="40" width="139"
+                      src="https://platform.slack-edge.com/img/add_to_slack.png"
+                      srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
+                  </a>
+                </div>
+          }
         </div>
         <div className="channels row around-xs">
           <div className="col-xs-4">

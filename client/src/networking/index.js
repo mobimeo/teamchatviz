@@ -19,6 +19,7 @@
 */
 
 import Progress from 'react-progress-2';
+import config from 'client/config.js';
 import 'whatwg-fetch';
 
 function parseJSON(response) {
@@ -134,6 +135,19 @@ export const fetchMessagesAndReactions = ({ channel, startDate, endDate }) => {
 export const fetchEmojiTimeline = (startDate, endDate, channelId) => {
   Progress.show();
   return fetch(`/api/emoji-timeline?startDate=${startDate?startDate:''}&endDate=${endDate?endDate:''}&channelId=${channelId?channelId:''}`, {
+    credentials: 'same-origin'
+  })
+  .then(onFailure)
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}
+
+export const fetchConfig = () => {
+  Progress.show();
+  return fetch(`/api/config`, {
     credentials: 'same-origin'
   })
   .then(onFailure)

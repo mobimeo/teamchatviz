@@ -95,12 +95,21 @@ export default React.createClass({
   },
 
   incrementZoom() {
-    this.z.scale(this.state.data.get('zoom') + 1);
+    var newZoom = this.state.data.get('zoom') + 1;
+    if (newZoom > 10) {
+      newZoom = 10;
+    }
+    this.z.scale(newZoom);
+    this.onZoom();
     this.onZoom();
   },
 
   decrementZoom() {
-    this.z.scale(this.state.data.get('zoom') - 1);
+    var newZoom = this.state.data.get('zoom') - 1;
+    if (newZoom < 1) {
+      newZoom = 1;
+    }
+    this.z.scale(newZoom);
     this.onZoom();
   },
 
