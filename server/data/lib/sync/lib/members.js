@@ -23,7 +23,7 @@ import db from '../../../../db';
 import { save as saveMember, getById as getMemberById } from '../../../../repositories/member';
 import Promise from 'bluebird';
 
-export default (token, teamId) => {
+export default (token, teamId, getters) => {
   console.log('syncing users', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
@@ -34,6 +34,9 @@ export default (token, teamId) => {
           if (err) {
             return cb(err);
           }
+          if (result.ok === false) {
+            return cb(new Error(result.error));
+          }
           let promises = result
             .members
               .filter(member => member.deleted === false)
@@ -42,21 +45,21 @@ export default (token, teamId) => {
                 .then(ch => {
                   if (!ch) {
                     return saveMember({
-                      id: member.id,
-                      teamId: teamId,
-                      name: member.name,
+                      id: getters.getMemberId(member.id),
+                      teamId: getters.getTeamId(teamId),
+                      name: getters.getMemberName(member.name),
                       color: member.color,
-                      firstName: member.profile.first_name,
-                      lastName: member.profile.last_name,
-                      realName: member.profile.real_name,
-                      skype: member.profile.skype,
-                      email: member.profile.email,
-                      phone: member.profile.phone,
-                      image24: member.profile.image_24,
-                      image32: member.profile.image_32,
-                      image48: member.profile.image_48,
-                      image72: member.profile.image_72,
-                      image192: member.profile.image_192,
+                      firstName: getters.getMemberFirstName(member.profile.first_name),
+                      lastName: getters.getMemberLastName(member.profile.last_name),
+                      realName: getters.getMemberRealName(member.profile.real_name),
+                      skype: getters.getSkype(member.profile.skype),
+                      email: getters.getEmail(member.profile.email),
+                      phone: getters.getPhone(member.profile.phone),
+                      image24: getters.getImage24(member.profile.image_24),
+                      image32: getters.getImage32(member.profile.image_32),
+                      image48: getters.getImage48(member.profile.image_48),
+                      image72: getters.getImage72(member.profile.image_72),
+                      image192: getters.getImage192(member.profile.image_192),
                     }).catch(err => console.error(err));
                   }
                 });

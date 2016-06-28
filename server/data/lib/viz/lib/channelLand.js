@@ -58,8 +58,9 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   const solution = tsne.getSolution();
+  const numberOfClusters = 2 + Math.floor(channels.length / 50);
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 2);
+  const clusters = dbscan.run(solution, numberOfClusters);
 
   const data = solution.map((row, i) => {
     return {

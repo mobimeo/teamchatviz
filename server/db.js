@@ -33,8 +33,8 @@ pgp.pg.types.setTypeParser(1114, function (str) {
 
 const db = pgp(config.dbUrl);
 
-monitor.attach(options);
-monitor.setTheme('matrix');
+// monitor.attach(options);
+// monitor.setTheme('matrix');
 
 export default db;
 export { pgp };

@@ -25,6 +25,9 @@ export const Menu = React.createClass({
   getInitialState() {
     return {};
   },
+  onClose() {
+    this.props.onClose();
+  },
   render() {
     return <div className="menu">
       <ul>

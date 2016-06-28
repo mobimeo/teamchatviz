@@ -62,8 +62,9 @@ export default async function(teamId, startDate = null, endDate = null, interval
   });
 
   console.time('k-means');
+  const numberOfClusters = 2 + Math.floor(members.length / 50);
   const dbscan = new clustering.KMEANS();
-  const clusters = dbscan.run(solution, 2);
+  const clusters = dbscan.run(solution, numberOfClusters);
   console.timeEnd('k-means');
 
   const data = solution.map((row, i) => {
