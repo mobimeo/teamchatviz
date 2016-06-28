@@ -171,12 +171,12 @@ export default React.createClass({
                 return <div className="message">
                   <div className="row">
                     <div className="message-body col-xs-8">
-                      <div> 
+                      <div>
                         {emoji.emojify(message.text, (unknown) => emojis[unknown])}
                       </div>
                     </div>
                     <div className="col-xs-4">
-                      <div className="reactions">{message.reactions.length} reactions</div>
+                      <div className="reactions">{message.reactions.reduce((p, e) => e.count + p, 0)} reactions</div>
                       <div className="message-emoji-wrapper">
                         {
                           message
