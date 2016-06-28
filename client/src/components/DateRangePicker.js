@@ -102,7 +102,7 @@ export const DateRangePicker = React.createClass({
   render() {
     return <div className="date-picker">
       <div style={{ display: 'inline-block' }}>
-        <a onClick={this.onToggle}><img className="calendar" src="../../images/navbuttons-19.png" alt="menu"></img></a>
+        <a onClick={this.onToggle}><img className="calendar" src="/images/calendar.png" alt="menu"></img></a>
       </div>
       <div className="button-group">
         {
