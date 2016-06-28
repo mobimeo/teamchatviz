@@ -25,7 +25,7 @@ import { save as saveChannel, getById as getChannelById } from '../../../../repo
 import moment from 'moment-timezone';
 import Promise from 'bluebird';
 
-export default (token, teamId) => {
+export default (token, teamId, getters) => {
   console.log('syncing channels', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
@@ -39,19 +39,22 @@ export default (token, teamId) => {
           if (err) {
             return cb(err);
           }
+          if (result.ok === false) {
+            return cb(new Error(result.error));
+          }
           let promises = result.channels.map(channel => {
             return getChannelById(channel.id)
               .then(ch => {
                 if (!ch) {
                   return saveChannel({
-                    id: channel.id,
-                    teamId: teamId,
-                    name: channel.name,
-                    topic: channel.topic,
-                    purpose: channel.purpose,
+                    id: getters.getChannelId(channel.id),
+                    teamId: getters.getTeamId(teamId),
+                    name: getters.getChannelName(channel.name),
+                    topic: getters.getChannelTopic(channel.topic),
+                    purpose: getters.getChannelPurpose(channel.purpose),
                     numberOfMembers: channel.members.length,
                     creationDate: moment.unix(channel.created),
-                    createdBy: channel.creator,
+                    createdBy: getters.getMemberId(channel.creator),
                   });
                 }
               });

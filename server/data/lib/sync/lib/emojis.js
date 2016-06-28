@@ -25,7 +25,7 @@ import { save as saveEmoji, getAll as getAll, deleteAll as deleteAll } from '../
 import moment from 'moment-timezone';
 import Promise from 'bluebird';
 
-export default (token, teamId) => {
+export default (token, teamId, getters) => {
   console.log('syncing emojis', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
@@ -36,15 +36,17 @@ export default (token, teamId) => {
           if (err) {
             return cb(err);
           }
+          if (result.ok === false) {
+            return cb(new Error(result.error));
+          }
           return deleteAll(teamId).then(() => {
             let emojis = Object.keys(result.emoji);
             let promises = emojis.map(name => {
               if (result.emoji[name].startsWith('alias:')) {
-                console.log(result.emoji[name]);
                 name = result.emoji[name].replace('alias:', '');
               }
               return saveEmoji({
-                teamId,
+                teamId: getters.getTeamId(teamId),
                 name: name,
                 url: result.emoji[name],
               });

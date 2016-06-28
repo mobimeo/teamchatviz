@@ -25,22 +25,22 @@ import { save as saveMessage, getById as getMessageById } from '../../../../repo
 import { save as saveReaction } from '../../../../repositories/reaction';
 import Promise from 'bluebird';
 
-const syncReactions = (teamId, channelId, message) => {
+const syncReactions = (teamId, channelId, message, getters) => {
   if (!message.reactions) {
     return Promise.resolve();
   }
   return Promise.all(message.reactions.map(reaction => {
     return saveReaction({
-      teamId,
+      teamId: getters.getTeamId(teamId),
       messageId: message.ts,
-      channelId: channelId,
+      channelId: getters.getChannelId(channelId),
       name: reaction.name.split('::')[0],
       count: reaction.count,
     });
   }));
 };
 
-const fetchPage = (web, channel, teamId, params) => {
+const fetchPage = (web, channel, teamId, getters, params) => {
   return Promise.fromCallback(cb => {
       web
         .channels
@@ -48,21 +48,24 @@ const fetchPage = (web, channel, teamId, params) => {
           if (err) {
             return cb(err);
           }
+          if (result.ok === false) {
+            return cb(new Error(result.error));
+          }
           let promises = result.messages.map(message => {
             return getMessageById(message.ts)
               .then(ch => {
                 if (!ch) {
                   return saveMessage({
                     id: message.ts,
-                    channelId: channel.id,
-                    teamId: teamId,
-                    userId: message.user,
+                    channelId: getters.getChannelId(channel.id),
+                    teamId: getters.getTeamId(teamId),
+                    userId: getters.getMemberId(message.user),
                     type: message.type,
-                    text: message.text,
+                    text: getters.getMessageText(message.text),
                     isStarred: message.is_starred === true ? true : false,
                     reactions: JSON.stringify(message.reactions),
                   })
-                  .then(() => syncReactions(teamId, channel.id, message))
+                  .then(() => syncReactions(teamId, channel.id, message, getters))
                   .catch(err => console.error(err));
                 }
               });
@@ -72,10 +75,10 @@ const fetchPage = (web, channel, teamId, params) => {
     });
 }
 
-const recursiveFetch = (web, channel, teamId, params) => {
-  return fetchPage(web, channel, teamId, params).then(result => {
+const recursiveFetch = (web, channel, teamId, getters, params) => {
+  return fetchPage(web, channel, teamId, getters, params).then(result => {
     if (result.has_more) {
-      return recursiveFetch(web, channel, teamId, {
+      return recursiveFetch(web, channel, teamId, getters, {
         count: 1000,
         latest: result.messages[result.messages.length - 1].ts,
       });
@@ -83,20 +86,20 @@ const recursiveFetch = (web, channel, teamId, params) => {
   });
 }
 
-const syncChannelHistory = (web, channel, teamId) => {
-  return recursiveFetch(web, channel, teamId, {
+const syncChannelHistory = (web, channel, teamId, getters) => {
+  return recursiveFetch(web, channel, teamId, getters, {
     count: 1000,
   });
 }
 
-export default async(token, teamId, channels) => {
+export default async(token, teamId, channels, getters) => {
   console.log('syncing messages', token, teamId);
   const web = new WebClient(token);
   return await Promise.fromCallback(cb => {
       console.log('Started syncing messages');
       console.time('messageSync');
       return Promise.all(channels.map(channel => {
-        return syncChannelHistory(web, channel, teamId);
+        return syncChannelHistory(web, channel, teamId, getters);
       })).then(() => {
         console.log('Done syncing messages');
         console.timeEnd('messageSync');

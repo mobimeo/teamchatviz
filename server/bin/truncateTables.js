@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
   Slack Viz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
@@ -18,24 +20,20 @@
   USA
 */
 
-import { WebClient } from '@slack/client';
-import { save as saveMembership } from '../../../../repositories/membership';
-import Promise from 'bluebird';
+require('dotenv').config();
+require('babel-core/register')({
+  presets: ['es2015-node5', 'stage-3']
+});
 
-export default (token, teamId, members, channels, getters) => {
-  console.log('syncing membership', token, teamId);
-  const web = new WebClient(token);
-  const ids = members.map(member => member.id);
-  return Promise.all(channels.map(channel => {
-    const channelMembers = channel.members || [];
-    const channelId = channel.id;
-    const membership = ids
-      .map(userId => ({
-        userId: getters.getMemberId(userId),
-        teamId: getters.getTeamId(teamId),
-        channelId: getters.getChannelId(channelId),
-        isMember: channelMembers.indexOf(userId) !== -1,
-      }));
-    return Promise.all(membership.map(saveMembership));
-  }));
-};
+var db = require('../db').default;
+
+Promise.all([
+  db.none('TRUNCATE channels;'),
+  db.none('TRUNCATE members;'),
+  db.none('TRUNCATE users;'),
+  db.none('TRUNCATE session;'),
+  db.none('TRUNCATE membership;'),
+  db.none('TRUNCATE reactions;'),
+  db.none('TRUNCATE messages;'),
+  db.none('TRUNCATE emojis;'),
+]).then(() => process.exit(0));
