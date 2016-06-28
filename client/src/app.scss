@@ -28,6 +28,9 @@ $color-grey-dark: #393B42;
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
 
+$speed-faster: 0.2s;
+$speed-fast: 0.3s;
+
 // html, body main stiling
 html, body {
   font-family: sans-serif;
@@ -543,23 +546,30 @@ button:focus{
 }
 
 // menu
-.menu-buttons a {
-  cursor: pointer;
-}
 .menu-buttons {
   padding-left: 3rem;
-}
 
+  a {
+    cursor: pointer;
+  }
+}
 .menu {
-  display: none;
+  opacity: 0;
   position: absolute;
-  top: 0;
+  top: 0px;
   right: 0rem;
   background-color: $color-grey-dark;
   line-height: 4rem;
   z-index: 20;
   height: 100%;
-  width: 16rem;
+  width: 0;
+  transition: all $speed-faster ease-in-out;
+
+  &.actv {
+    opacity: 1;
+    width: 16rem;
+    transition: all $speed-faster ease-in-out;
+  }
 
   ul {
     list-style-type: none;
@@ -572,10 +582,6 @@ button:focus{
     a{
       color: white;
       text-decoration: none;
-    }
-    a:hover {
-    }
-    a:focus{
     }
     li:hover {
       background-color: $color-accent;
@@ -685,13 +691,7 @@ button:focus{
 
 
 
-/*!
- * Hamburgers
- * @description Tasty CSS-animated hamburgers
- * @author Jonathan Suh @jonsuh
- * @site https://jonsuh.com/hamburgers
- * @link https://github.com/jonsuh/hamburgers
- */
+
 .hamburger {
   padding: 1rem;
   display: inline-block;
@@ -733,7 +733,7 @@ button:focus{
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;
-  transition-duration: 0.15s;
+  transition-duration: $speed-faster;
   transition-timing-function: ease;
 }
 .hamburger-inner::before,
@@ -749,45 +749,53 @@ button:focus{
 } 
   
 
-  /*
-   * Spring
-   */
-  .hamburger--spring .hamburger-inner {
-    top: 2px;
-    transition: background-color 0s 0.15s linear;
-  }
-  .hamburger--spring .hamburger-inner::before {
-    top: 10px;
-    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), -webkit-transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition: top 0.12s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  .hamburger--spring .hamburger-inner::after {
-    top: 20px;
-    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), -webkit-transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition: top 0.3s 0.3s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: white;
+  z-index: 10;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  transition: opacity $speed-faster ease-in-out;
 
-  .hamburger--spring.is-active .hamburger-inner {
-    transition-delay: 0.15s;
-    background-color: transparent;
+  &.actv {
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    transition: opacity $speed-faster ease-in-out;
   }
-  .hamburger--spring.is-active .hamburger-inner::before {
-    top: 0;
-    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transform: translate3d(0, 10px, 0) rotate(45deg);
-            transform: translate3d(0, 10px, 0) rotate(45deg);
-  }
-  .hamburger--spring.is-active .hamburger-inner::after {
-    top: 0;
-    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition: top 0.3s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.32s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
-            transform: translate3d(0, 10px, 0) rotate(-45deg);
-  }
+}
+.hamburger--spring .hamburger-inner {
+  top: 2px;
+  transition: opacity $speed-faster ease-in-out;
+}
+.hamburger--spring .hamburger-inner::before {
+  top: 9px;
+  transition: opacity $speed-faster ease-in-out;
+}
+.hamburger--spring .hamburger-inner::after {
+  top: 18px;
+  transition: opacity $speed-faster ease-in-out;
+}
+
+.hamburger--spring.is-active .hamburger-inner {
+  background-color: transparent;
+}
+.hamburger--spring.is-active .hamburger-inner::before {
+  top: 0;
+  transition: opacity $speed-faster ease-in-out;
+  -webkit-transform: translate3d(0, 10px, 0) rotate(45deg);
+          transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.hamburger--spring.is-active .hamburger-inner::after {
+  top: 0;
+  transition: opacity $speed-faster ease-in-out;
+  -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
+          transform: translate3d(0, 10px, 0) rotate(-45deg);
+}
 
 

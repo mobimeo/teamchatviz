@@ -29,7 +29,8 @@ export const Menu = React.createClass({
     this.props.onClose();
   },
   render() {
-    return <div className="menu">
+    return
+    <div className="menu">
       <ul>
         <a href="/"><li>home</li></a>
         <a href="/heartbeat"><li>channel heartbeat</li></a>
