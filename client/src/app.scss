@@ -601,7 +601,7 @@ button:focus{
     background-color: $color-grey-light;
 
     div {
-      overflow: scroll;
+      overflow-x: scroll;
     }
   }
   .message-body:after {
