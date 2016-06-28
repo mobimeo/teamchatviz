@@ -576,20 +576,17 @@ button:focus{
     padding: 0;
     margin-top: 6.45rem;
 
-    li {
-      padding-left: 3rem;
-    }
-    a{
+    a {
       color: white;
       text-decoration: none;
-    }
-    li:hover {
-      background-color: $color-accent;
-      color: $color-grey-dark;
-    }
-    li:focus {
-      background-color: $color-accent;
-      color: $color-grey-dark;
+      display: block;
+      padding-left: 3rem;
+
+      &:hover,
+      &:focus {
+        background-color: $color-accent;
+        color: $color-grey-dark;
+      }
     }
   }
 }
