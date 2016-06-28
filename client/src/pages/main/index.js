@@ -88,7 +88,7 @@ export default withRouter(React.createClass({
         </div>
         <div className="channels row around-xs">
           <div className="col-xs-4">
-            <Channel linkTo="/moods-and-reactions"
+            <Channel linkTo="/messages-and-reactions"
               imageName="chartMoodReactions"
               title="messages and reactions"
               description="Explore what messages were most influential during the last days, weeks and months rated by comments and reactions." />

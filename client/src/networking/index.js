@@ -118,9 +118,9 @@ export const fetchChannelLand = () => {
   });
 }
 
-export const fetchMoodsAndReactions = ({ channel, startDate, endDate }) => {
+export const fetchMessagesAndReactions = ({ channel, startDate, endDate }) => {
   Progress.show();
-  return fetch(`/api/moods-and-reactions?channelId=${channel ? channel.id : ''}&startDate=${startDate ? startDate : ''}&endDate=${endDate ? endDate : ''}`, {
+  return fetch(`/api/messages-and-reactions?channelId=${channel ? channel.id : ''}&startDate=${startDate ? startDate : ''}&endDate=${endDate ? endDate : ''}`, {
     credentials: 'same-origin'
   })
   .then(onFailure)

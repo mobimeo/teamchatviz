@@ -59,7 +59,7 @@ export default api => {
     ctx.body = await viz.channelLand(ctx.req.user.teamId, startDate, endDate);
   });
 
-  api.get('/moods-and-reactions', async(ctx) => {
+  api.get('/messages-and-reactions', async(ctx) => {
     if (!ctx.req.user) {
       return ctx.throw(403);
     }
