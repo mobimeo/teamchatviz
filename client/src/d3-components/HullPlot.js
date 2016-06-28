@@ -71,7 +71,7 @@ export default React.createClass({
   },
 
   componentDidMount: function() {
-    this.updateZoom = _.debounce((zoom) => {
+    this.updateZoom = _.throttle((zoom) => {
       this.setState(({data}) => ({
         data: data.update('zoom', () => zoom)
       }));
@@ -82,14 +82,31 @@ export default React.createClass({
       .scaleExtent([1, 10])
       .on('zoom', this.onZoom);
     selection.call(zoom);
+    this.z = zoom;
   },
 
   onZoom() {
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
-    var zoom = d3.event.scale;
+    var z = this.z;
+    var zoom = z.scale();
     this.updateZoom(zoom);
-    selection.attr('transform', 'translate(' + d3.event.translate + ')scale(' + zoom + ')')
+    selection.attr('transform', 'translate(' + z.translate() + ')scale(' + z.scale() + ')')
+  },
+
+  incrementZoom() {
+    this.z.scale(this.state.data.get('zoom') + 1);
+    this.onZoom();
+  },
+
+  decrementZoom() {
+    this.z.scale(this.state.data.get('zoom') - 1);
+    this.onZoom();
+  },
+
+  resetZoom() {
+    this.z.scale(1);
+    this.onZoom();
   },
 
   render() {
@@ -142,21 +159,28 @@ export default React.createClass({
       ? props.data
       : props.data.filter(p => shownGroupNames.indexOf(p.group) !== -1);
 
-    return <svg width={props.width} height={props.height}>
-      <g>
-        {
-          hulls
-        }
-        <PointGroup
-          zoom={this.state.data.get('zoom')}
-          {...props}
-          {...scales}
-          data={points}
-          point={this.props.point}
-          showTooltip={this.showTooltip}
-          hideTooltip={this.hideTooltip} />
-        <Tooltip zoom={this.state.data.get('zoom')} tooltip={tooltip} />
-      </g>
-    </svg>
+    return <div className="cluster-plot" style={{ width: props.width + 4, height: props.height + 4 }}>
+      <svg width={props.width} height={props.height}>
+        <g>
+          {
+            hulls
+          }
+          <PointGroup
+            zoom={this.state.data.get('zoom')}
+            {...props}
+            {...scales}
+            data={points}
+            point={this.props.point}
+            showTooltip={this.showTooltip}
+            hideTooltip={this.hideTooltip} />
+          <Tooltip zoom={this.state.data.get('zoom')} tooltip={tooltip} />
+        </g>
+      </svg>
+      <div className="zoom-controls">
+        <button onClick={this.resetZoom}>[]</button>
+        <button onClick={this.incrementZoom}>+</button>
+        <button onClick={this.decrementZoom}>-</button>
+      </div>
+    </div>
   }
 });

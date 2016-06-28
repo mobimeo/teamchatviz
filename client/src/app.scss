@@ -665,6 +665,17 @@ button:focus{
   display: inline-block;
 }
 
+.cluster-plot {
+  position: relative;
+  svg {
+    border: 0.1rem solid grey;
+  }
+  .zoom-controls  {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
 
 
 
