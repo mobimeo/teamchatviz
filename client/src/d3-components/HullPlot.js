@@ -172,10 +172,10 @@ export default React.createClass({
       ? props.data
       : props.data.filter(p => shownGroupNames.indexOf(p.group) !== -1);
 
-    return <div className="cluster-plot" style={{ width: props.width + 4, height: props.height + 4 }}>
-      <svg ref="svg" width={props.width} height={props.height}>
+    return <div className="cluster-plot" style={{ width: props.width, height: props.height }}>
+      <svg ref="svg" width={props.width - 2} height={props.height - 2}>
         <g>
-          <path fill="transparent" d={`M0 0 H ${props.width} V ${props.height} H 0 L 0 0`}> </path>
+          <path fill="transparent" d={`M0 0 H ${props.width - 2} V ${props.height - 2} H 0 L 0 0`}> </path>
           {
             hulls
           }
