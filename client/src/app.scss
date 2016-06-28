@@ -76,7 +76,7 @@ footer {
 }
 
 .github-ribbon {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   border: 0;
@@ -574,7 +574,7 @@ button:focus{
   ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 6rem;
+    margin-top: 6.45rem;
 
     li {
       padding-left: 3rem;
@@ -696,7 +696,7 @@ button:focus{
   transition-property: opacity, -webkit-filter;
   transition-property: opacity, filter;
   transition-property: opacity, filter, -webkit-filter;
-  transition-duration: 0.05s;
+  transition-duration: $speed-faster;
   transition-timing-function: linear;
   font: inherit;
   color: inherit;
@@ -766,31 +766,31 @@ button:focus{
     transition: opacity $speed-faster ease-in-out;
   }
 }
-.hamburger--spring .hamburger-inner {
+.hamburger .hamburger-inner {
   top: 2px;
-  transition: opacity $speed-faster ease-in-out;
+  transition: all $speed-faster ease-in-out;
 }
-.hamburger--spring .hamburger-inner::before {
+.hamburger .hamburger-inner::before {
   top: 9px;
-  transition: opacity $speed-faster ease-in-out;
+  transition: all $speed-faster ease-in-out;
 }
-.hamburger--spring .hamburger-inner::after {
+.hamburger .hamburger-inner::after {
   top: 18px;
-  transition: opacity $speed-faster ease-in-out;
+  transition: all $speed-faster ease-in-out;
 }
 
-.hamburger--spring.is-active .hamburger-inner {
+.hamburger.is-active .hamburger-inner {
   background-color: transparent;
 }
-.hamburger--spring.is-active .hamburger-inner::before {
+.hamburger.is-active .hamburger-inner::before {
   top: 0;
-  transition: opacity $speed-faster ease-in-out;
-  -webkit-transform: translate3d(0, 10px, 0) rotate(45deg);
+  transition: all $speed-faster ease-in-out;
+    -webkit-transform: translate3d(0, 10px, 0) rotate(45deg);
           transform: translate3d(0, 10px, 0) rotate(45deg);
 }
-.hamburger--spring.is-active .hamburger-inner::after {
+.hamburger.is-active .hamburger-inner::after {
   top: 0;
-  transition: opacity $speed-faster ease-in-out;
+  transition: all $speed-faster ease-in-out;
   -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
           transform: translate3d(0, 10px, 0) rotate(-45deg);
 }
