@@ -32,7 +32,7 @@ import { Emoji } from 'client/components/Emoji.js';
 import emoji from 'node-emoji';
 import 'react-vis/main.css!';
 import { Header } from 'client/components/Header.js';
-import { fetchMoodsAndReactions } from 'client/networking/index.js';
+import { fetchMessagesAndReactions } from 'client/networking/index.js';
 
 function indexEmojis(emojis) {
   return emojis.reduce((obj, val, key) => {
@@ -64,7 +64,7 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    fetchMoodsAndReactions(this.filters)
+    fetchMessagesAndReactions(this.filters)
       .then(result => {
         result.emojis = indexEmojis(result.emojis);
         this.updateState(result);
@@ -74,7 +74,7 @@ export default React.createClass({
   onDateChange(range) {
     this.filters.startDate = range.startDate;
     this.filters.endDate = range.endDate;
-    fetchMoodsAndReactions(this.filters)
+    fetchMessagesAndReactions(this.filters)
       .then(result => {
         result.emojis = indexEmojis(result.emojis);
         this.updateState(result);
@@ -107,7 +107,7 @@ export default React.createClass({
 
   onChannelClick(channel) {
     this.filters.channel = channel;
-    fetchMoodsAndReactions(this.filters)
+    fetchMessagesAndReactions(this.filters)
       .then(result => {
         result.emojis = indexEmojis(result.emojis);
         result.channel = this.filters.channel;
@@ -117,7 +117,7 @@ export default React.createClass({
 
   onAllChannelsClick() {
     this.filters.channel = null;
-    fetchMoodsAndReactions(this.filters)
+    fetchMessagesAndReactions(this.filters)
       .then(result => {
         result.emojis = indexEmojis(result.emojis);
         result.channel = this.filters.channel;
