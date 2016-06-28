@@ -22,11 +22,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Progress from 'react-progress-2';
+import { Menu } from 'client/components/menu';
 
 export const App = React.createClass({
   render() {
     return (<div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
       <div className="container wrap content">
+        <Menu />
         <Progress.Component/>
         {this.props.children}
       </div>

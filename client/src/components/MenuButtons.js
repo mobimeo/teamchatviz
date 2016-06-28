@@ -20,7 +20,6 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import { Menu } from './menu';
 
 export const MenuButtons = React.createClass({
   getInitialState() {
