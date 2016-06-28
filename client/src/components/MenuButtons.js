@@ -45,14 +45,14 @@ export const MenuButtons = React.createClass({
       </button>
       <div className = { this.state.menuOpened ? 'menu actv' : 'menu' } >
         <ul>
-          <li><a href="/">home</a></li>
-          <li><a href="/heartbeat">channel heartbeat</a></li>
-          <li><a href="/channel-land">channel land</a></li>
-          <li><a href="/people-land">people land</a></li>
-          <li><a href="/messages-and-reactions">messages & reactions</a></li>
-          <li><a href="/frequent-speakers">frequent speakers</a></li>
-          <li><a href="/heartbeat">emoji timeline</a></li>
-          <li><a href="/about">about</a></li>
+          <li><Link to="/">home</Link></li>
+          <li><Link to="/heartbeat">channel heartbeat</Link></li>
+          <li><Link to="/channel-land">channel land</Link></li>
+          <li><Link to="/people-land">people land</Link></li>
+          <li><Link to="/messages-and-reactions">messages & reactions</Link></li>
+          <li><Link to="/frequent-speakers">frequent speakers</Link></li>
+          <li><Link to="/heartbeat">emoji timeline</Link></li>
+          <li><Link to="/about">about</Link></li>
         </ul>
       </div>
       <div className = { this.state.menuOpened ? 'overlay actv' : 'overlay' } onClick={this.toggleMenu}></div>
