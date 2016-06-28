@@ -35,6 +35,7 @@ import 'normalize.css!';
 import 'flexboxgrid!css';
 import "react-progress-2/main.css!"
 import 'client/app.scss!';
+import 'src/burger.scss!';
 
 let container = document.getElementById('client-app');
 let component = ReactDOM.render(React.createElement(routes), container);
