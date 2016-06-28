@@ -57,9 +57,14 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const solution = tsne.getSolution();
   console.timeEnd('tsne');
 
-  const members = await db.any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
-    teamId,
-  });
+  const members = (await db
+    .any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
+      teamId,
+    }))
+    .map(member => {
+      member.name = `${member.first_name} ${member.last_name}`;
+      return member;
+    });
 
   console.time('k-means');
   const numberOfClusters = 2 + Math.floor(members.length / 50);
