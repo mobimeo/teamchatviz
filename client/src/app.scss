@@ -555,6 +555,7 @@ button:focus{
 }
 .menu {
   opacity: 0;
+  overflow: hidden;
   position: absolute;
   top: 0px;
   right: 0rem;
