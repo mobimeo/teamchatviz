@@ -21,17 +21,30 @@
 
 import KoaRouter from 'koa-router';
 import passport from 'koa-passport';
+import config from '../config';
 
 const api = KoaRouter();
 
 api.get('/health', async (ctx) => ctx.body = { status: 'OK' });
 
 api.get('/user', async(ctx) => {
+  if (config.public) {
+    ctx.body = {
+      loading: false,
+    };
+    return;
+  }
   if (!ctx.req.user) {
     return ctx.throw(403);
   }
   ctx.body = {
     loading: false,
+  };
+});
+
+api.get('/config', async(ctx) => {
+  ctx.body = {
+    public: config.public,
   };
 });
 

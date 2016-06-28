@@ -22,15 +22,25 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Progress from 'react-progress-2';
-import { Menu } from 'client/components/menu';
+import { fetchConfig } from './networking/index.js';
+import config from './config.js';
 
 export const App = React.createClass({
+  getInitialState() {
+    return config;
+  },
+  componentDidMount() {
+    fetchConfig()
+      .then(cfg => {
+        config.public = cfg.public;
+        this.setState(config);
+      });
+  },
   render() {
     return (<div className={this.props.location.pathname === '/' ? 'client-app dark' : 'client-app white'}>
       <div className="container wrap content">
-        <Menu />
         <Progress.Component/>
-        {this.props.children}
+        { React.cloneElement(this.props.children, { config: config }) }
       </div>
       <footer>
         <div className="container wrap content">

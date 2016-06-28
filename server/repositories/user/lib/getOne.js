@@ -18,6 +18,10 @@
   USA
 */
 
-export { default as getById } from './lib/getById';
-export { default as save } from './lib/save';
-export { default as getOne } from './lib/getOne';
+import db from '../../../db';
+import toModel from './mappers/toModel';
+
+export default async() => {
+  const user = await db.one('SELECT * FROM users LIMIT 1');
+  return user ? toModel(user) : null;
+};

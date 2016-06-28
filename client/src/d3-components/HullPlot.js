@@ -83,9 +83,13 @@ export default React.createClass({
       .on('zoom', this.onZoom);
     selection.call(zoom);
     this.z = zoom;
+    ReactDOM.findDOMNode(this.refs.svg).focus();
   },
 
   onZoom() {
+    if (d3.event) {
+      d3.event.sourceEvent.preventDefault()
+    }
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
     var z = this.z;
@@ -95,12 +99,21 @@ export default React.createClass({
   },
 
   incrementZoom() {
-    this.z.scale(this.state.data.get('zoom') + 1);
+    var newZoom = this.state.data.get('zoom') + 1;
+    if (newZoom > 10) {
+      newZoom = 10;
+    }
+    this.z.scale(newZoom);
+    this.onZoom();
     this.onZoom();
   },
 
   decrementZoom() {
-    this.z.scale(this.state.data.get('zoom') - 1);
+    var newZoom = this.state.data.get('zoom') - 1;
+    if (newZoom < 1) {
+      newZoom = 1;
+    }
+    this.z.scale(newZoom);
     this.onZoom();
   },
 
@@ -160,8 +173,9 @@ export default React.createClass({
       : props.data.filter(p => shownGroupNames.indexOf(p.group) !== -1);
 
     return <div className="cluster-plot" style={{ width: props.width + 4, height: props.height + 4 }}>
-      <svg width={props.width} height={props.height}>
+      <svg ref="svg" width={props.width} height={props.height}>
         <g>
+          <path fill="transparent" d={`M0 0 H ${props.width} V ${props.height} H 0 L 0 0`}> </path>
           {
             hulls
           }
