@@ -29,6 +29,7 @@ import { fetchChannelLand } from 'client/networking/index.js';
 import _ from 'lodash';
 import { Map } from 'immutable';
 import ChannelPoint from 'client/d3-components/ChannelPoint.js';
+import ClusterGroups from 'client/components/ClusterGroups.js';
 
 export default React.createClass({
   getInitialState() {
@@ -39,6 +40,7 @@ export default React.createClass({
         data: [],
         channels: [],
         tooltipIndex: null,
+        shownGroups: [],
       })
     };
   },
@@ -77,10 +79,18 @@ export default React.createClass({
     }));
   },
 
+  onGroupSelection(selection) {
+    this.setState(({data}) => ({
+      data: data
+        .set('shownGroups', selection)
+    }));
+  },
+
   render() {
     const data = this.state.data.get('data');
     const channels = this.state.data.get('channels');
     const tooltipIndex = this.state.data.get('tooltipIndex');
+    const shownGroups = this.state.data.get('shownGroups');
     return <div>
       <Header title="channel land" />
       <main>
@@ -89,6 +99,7 @@ export default React.createClass({
             <SearchBox onChange={this.onSearch} placeholder="search channels" />
           </div>
           <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
+            <ClusterGroups data={data} onChange={this.onGroupSelection} />
           </div>
         </div>
         <div className="row">
@@ -106,7 +117,7 @@ export default React.createClass({
           <div className="col-xs-9">
             <AutoSizer>
               {({ height, width }) => (
-                <HullPlot point={ChannelPoint} showTooltipFor={tooltipIndex} data={data} width={width} height={height} padding={100} />
+                <HullPlot shownGroups={shownGroups} point={ChannelPoint} showTooltipFor={tooltipIndex} data={data} width={width} height={height} padding={100} />
               )}
             </AutoSizer>
           </div>

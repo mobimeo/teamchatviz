@@ -32,6 +32,7 @@ import Tooltip from 'client/d3-components/Tooltip.js';
 export default React.createClass({
   propTypes: {
     showTooltipFor: React.PropTypes.string,
+    shownGroups: React.PropTypes.array,
   },
   getInitialState() {
     return {
@@ -94,6 +95,7 @@ export default React.createClass({
   render() {
     const props = this.props;
     const showTooltipFor = this.props.showTooltipFor;
+    const shownGroups = this.props.shownGroups;
     let tooltip = this.state.data.get('tooltip');
     const scales = { xScale: xScale(props), yScale: yScale(props) };
     if (showTooltipFor && tooltip.display === false) {
@@ -114,12 +116,32 @@ export default React.createClass({
         };
       }
     }
-    const points = props.data;
-    const groups = _.groupBy(props.data, 'group');
-    const hulls = Object.keys(groups).map(key => {
-      const points = groups[key].map(p => [scales.xScale(p.x), scales.yScale(p.y)]);
-      return <Hull points={points} color={groups[key][0].color} />
+
+    const groupData = _.groupBy(props.data, 'group');
+    const groups = Object.keys(groupData)
+      .filter((group, id) => {
+        if (shownGroups.length === 0) {
+          return true;
+        }
+        return shownGroups.indexOf(id+1) !== -1;
+      })
+      .map(key => {
+        const points = groupData[key].map(p => [scales.xScale(p.x), scales.yScale(p.y)]);
+        return {
+          points,
+          groupName: key,
+        }
+      });
+    const hulls = groups.map(gr => {
+      return <Hull points={gr.points} color={gr.points[0].color} />
     });
+
+    const shownGroupNames = groups.map(gr => gr.groupName);
+
+    const points = shownGroups.length === 0
+      ? props.data
+      : props.data.filter(p => shownGroupNames.indexOf(p.group) !== -1);
+
     return <svg width={props.width} height={props.height}>
       <g>
         {
@@ -129,6 +151,7 @@ export default React.createClass({
           zoom={this.state.data.get('zoom')}
           {...props}
           {...scales}
+          data={points}
           point={this.props.point}
           showTooltip={this.showTooltip}
           hideTooltip={this.hideTooltip} />
