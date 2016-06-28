@@ -37,7 +37,7 @@ export const MenuButtons = React.createClass({
   },
   render() {
     return <div className="menu-buttons" style={{ display: 'inline-block' }}>
-      <Link to="/"><img className="nav-buttons" src="/images/navbuttons-16.png" alt="home" /></Link>
+      <Link to="/"><img className="nav-buttons" src="/images/home.png" alt="home" /></Link>
       <button onClick={this.toggleMenu} className={'hamburger' + ((this.state.menuOpened) ? ' is-active' : '')} type="button">
         <span className="hamburger-box">
           <span className="hamburger-inner"></span>
