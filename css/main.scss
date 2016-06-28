@@ -1,0 +1,46 @@
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_variables.scss";
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_normalize.scss";
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_mixins.scss";
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_scaffolding.scss";
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_grid.scss";
+@import "lib/bootstrap/assets/stylesheets/bootstrap/_responsive-utilities.scss";
+
+
+$clr-brnd: #00b7bf;
+$clr-gry-lght: #f9f9f9;
+
+html {
+	font-family: sans-serif;
+}
+
+.bnnr {
+	background-image: url();
+	width: 100%;
+	height: 800px;
+
+	background-color: black;
+
+	h1 {
+		color: $clr-brnd;
+		text-align: center;
+		margin: 0;
+		padding-top: 500px;
+	}
+	p {
+	color: white;
+	text-align: center;
+	}
+}
+
+.lght {
+	margin: 80px 10%;
+	background-color: $clr-gry-lght;
+	padding: 50px 5%;
+}
+	
+
+
+
+
+
+
