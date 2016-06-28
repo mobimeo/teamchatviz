@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 29 29" style="enable-background:new 0 0 29 29;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#393B42;}
+	.st1{fill:#FFFFFF;stroke:#A7A7AA;stroke-width:0.5;stroke-miterlimit:10;}
+	.st2{fill:#FFCC33;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#FFCC33;stroke:#A7A7AA;stroke-width:0.5;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#A7A7AA;stroke-width:0.5;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#A7A7AA;stroke-miterlimit:10;}
+	.st7{fill:#A7A7AA;}
+	.st8{fill:#F2F2F2;}
+	.st9{fill:none;stroke:#25262E;stroke-width:0.461;stroke-miterlimit:10;}
+	.st10{fill:none;stroke:#393B42;stroke-width:0.5;stroke-miterlimit:10;}
+	.st11{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st12{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st13{clip-path:url(#SVGID_2_);fill:none;stroke:#979797;stroke-miterlimit:10;}
+	.st14{fill:none;stroke:#A7A7AA;stroke-width:0.5;stroke-miterlimit:10;stroke-dasharray:1,3,1,3,1,3;}
+	.st15{fill:none;}
+	.st16{fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st17{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+	.st18{fill:#E6E6E6;}
+	.st19{fill:#E5E5E5;}
+	.st20{fill:#25262E;stroke:#25262E;stroke-width:0.5;stroke-miterlimit:10;}
+	.st21{fill:#25262E;stroke:#393B42;stroke-miterlimit:10;}
+	.st22{fill:#25262E;stroke:#25262E;stroke-miterlimit:10;}
+	.st23{fill:#FFFFFF;stroke:#25262E;stroke-width:0.25;stroke-miterlimit:10;}
+	.st24{fill:#F5F5F5;}
+	.st25{fill:#FFFFFF;stroke:#393B42;stroke-width:0.25;stroke-miterlimit:10;}
+	.st26{fill:#E6E6E6;stroke:#393B42;stroke-width:0.25;stroke-miterlimit:10;}
+	.st27{fill:#E5E5E5;stroke:#393B42;stroke-width:0.25;stroke-miterlimit:10;}
+	.st28{fill:#616268;}
+	.st29{fill:#88898E;}
+	.st30{fill:none;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+	.st31{fill:#25262E;}
+	.st32{fill:none;stroke:#DE1F12;stroke-miterlimit:10;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="-67.9" y="-275" width="1280" height="779"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+</g>
+<g>
+	<path class="st3" d="M5.5,29c-3.3,0-5.9-2.6-5.9-5.9V5.9C-0.4,2.6,2.3,0,5.5,0h17.2c3.3,0,5.9,2.6,5.9,5.9v17.2
+		c0,3.3-2.6,5.9-5.9,5.9H5.5z"/>
+	<path class="st18" d="M22.7,27H5.5c-2.2,0-3.9-1.7-3.9-3.9V5.9C1.6,3.7,3.4,2,5.5,2h17.2c2.2,0,3.9,1.7,3.9,3.9v17.2
+		C26.6,25.3,24.9,27,22.7,27z"/>
+</g>
+<g>
+	<g>
+		<polygon class="st20" points="21.2,13.1 20.8,13.1 20.8,7.9 16.2,7.9 16.2,7.4 21.2,7.4 		"/>
+		<polygon class="st20" points="21.2,21.6 16.2,21.6 16.2,21.1 20.8,21.1 20.8,15.9 21.2,15.9 		"/>
+	</g>
+	<g>
+		<polygon class="st20" points="7.5,13.1 7,13.1 7,7.4 12.1,7.4 12.1,7.9 7.5,7.9 		"/>
+		<polygon class="st20" points="12.1,21.6 7,21.6 7,15.9 7.5,15.9 7.5,21.1 12.1,21.1 		"/>
+	</g>
+</g>
+</svg>
