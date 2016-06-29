@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>&#35;slackviz</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="scss/main.css">
   </head>
   <body>
 	<!-- BANNER -->
@@ -16,15 +16,15 @@
 		<div class="sctn">
 			<div class="container lght">
 				<h2>&#35;slackviz by moovel</h2>
-				<p>Have a deep dive intor your team`s slack communication statistics. Explore how communication works in your team and learn how communication shapes culture.
+				<h3>Have a deep dive intor your team`s slack communication statistics. Explore how communication works in your team and learn how communication shapes culture.</h3>
 		
 		<!-- ROW ONE -->
 				<div class="row">
 					<div class="col-md-6">
-						<iframe src="//player.vimeo.com/video/160762908" width="500px" height="300px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+						<iframe class="shdw" src="//player.vimeo.com/video/160762908" width="500px" height="300px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 					</div>
 					<div class="col-md-6">
-						<h3>How it Works!</h3>
+						<h4>How it Works!</h4>
 						<p>This tool enables you to explore your teams slack jungle by creating unique statistics. Analize your erpsonal graphs and gain insights of your very own slack team. <br/>
 						By integrating this tool to your slack a number of data visualizations will automatically be created for your team. See yourself! </p>
 					</div>
@@ -33,17 +33,17 @@
 		<!-- ROW TWO -->
 				<div class="row">
 					<div class="col-md-6">
-						<h3>View the live demo!</h3>
+						<h4>View the live demo!</h4>
 						<p>Not sure what you´re getting? We´ve created a demo #slackviu that you can explore right now!</p>
 						<a target="_blank" href="http://52.48.107.145/" class="demo-bttn">OPEN LIVE DEMO</a>
 					</div>
 					<div class="col-md-6">
-						<img src="images/landing-page-slackviz.png" alt="screenshot landing page slackviz"/>
+						<img class="img-rght shdw" src="images/landing-page-slackviz.png" alt="screenshot landing page slackviz"/>
 					</div>
 				</div>
 
 		<!-- ROW THREE -->
-				<h3>Get started with your own team!</h3>
+				<h4>Get started with your own team!</h4>
 				<div class="row">
 					<div class="col-md-6">
 						There are two ways to get started with your #slackviz. Either you host the tool on your own Server, or use a Heroku platform to deploy #slackviz. Don't worry, there is a readme on how this works.
@@ -80,35 +80,217 @@
 		<div class="sctn">
 			<div class="container lght">
 				<h2>We´ve created six different visualizations of slack-chat data</h2>
-				<p>Check out the different visualizations to explore and learn from your team´s slack jungle!</p>
+				<h3>Check out the different visualizations to explore and learn from your team´s slack jungle!</h3>
 
-		<!-- ROW ONE -->
+		<!-- ROW ONE: HEARTBEAT-->
 				<div class="row">
 					<div class="col-md-6">
 						<img class="img-lft" src="images/heartbeat-slackviz.png" alt="screenshot heartbeat slackviz"/>
 					</div>
 					<div class="col-md-6">
-						<h3>How it Works!</h3>
-						<p>This tool enables you to explore your teams slack jungle by creating unique statistics. Analize your erpsonal graphs and gain insights of your very own slack team. <br/>
-						By integrating this tool to your slack a number of data visualizations will automatically be created for your team. See yourself! </p>
+						<h4>Channel Heartbeat</h4>
+						<p>How much activity is there in the different channels? Find out what influential events created a buzz in different channels and receive direct links into the message archive. If you know what you're looking for you can filter by channels and look at a dedicated time frame.</p>
+						<a target="_blank" href="http://52.48.107.145/heartbeat" class="demo-bttn">OPEN IN DEMO</a>
 					</div>
 				</div>
 
-		<!-- ROW TWO -->
+		<!-- ROW TWO: PEOPLE LAND -->
 				<div class="row">
 					<div class="col-md-6">
-						<h3>View the live demo!</h3>
-						<p>Not sure what you´re getting? We´ve created a demo #slackviu that you can explore right now!</p>
-						<a target="_blank" href="http://52.48.107.145/" class="demo-bttn">OPEN LIVE DEMO</a>
+						<h4>People Land</h4>
+						<p>People Land is a cluster analysis of your team's members. Clusters are created on different parameters of similarity like joined channels. Cluster analyisis only works if you make sense to it - if done right, this will reveal a lot of lived culture thorugh communication patterns. Zoom into each cluster and try to bring them to life.</p>
+						<a target="_blank" href="http://52.48.107.145/people-land" class="demo-bttn">OPEN IN DEMO</a>
 					</div>
 					<div class="col-md-6">
-						<img src="images/landing-page-slackviz.png" alt="screenshot landing page slackviz"/>
+						<img class="img-rght" src="images/people-land-slackviz.png" alt="screenshot people land slackviz"/>
 					</div>
 				</div>
 
+		<!-- ROW THREE: CHANNEL LAND -->
+				<div class="row">
+					<div class="col-md-6">
+						<img class="img-lft" src="images/channel-land-slackviz.png" alt="screenshot channel land slackviz"/>
+					</div>
+					<div class="col-md-6">
+						<h4>Channel Land</h4>
+						<p>People land also creates a cluster analysis, similar to people land. Clusters are created upon parameters channel member listening. Like above you can zoom into each cluster and bring life by making sense to the details. Similar channels will give you a great insight into how teams are aligned to eachother.</p>
+						<a target="_blank" href="http://52.48.107.145/channel-land" class="demo-bttn">OPEN IN DEMO</a>
+					</div>
+				</div>
+
+		<!-- ROW FOUR: TOP REACTIONS -->
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Top Reactions</h4>
+						<p>Ever wonder what moves your team? In Top Reactions you can find messages filtered by reactions. Maybe you missed a birthday or an important realease? You'll find them filtered by time and channel in this section.</p>
+						<a target="_blank" href="http://52.48.107.145/messages-and-reactions" class="demo-bttn">OPEN IN DEMO</a>
+					</div>
+					<div class="col-md-6">
+						<img class="img-rght" src="images/channel-land-slackviz.png" alt="screenshot landing page slackviz"/>
+					</div>
+				</div>
+
+		<!-- ROW FIVE: FREQUENT SPEAKERS -->
+				<div class="row">
+					<div class="col-md-6">
+						<img class="img-lft" src="images/heartbeat-slackviz.png" alt="screenshot heartbeat slackviz"/>
+					</div>
+					<div class="col-md-6">
+						<h4>Frequent Speakers</h4>
+						<p>Find out who the key contributors and communication hubs on your team are. Filtered by time and on channel basis this visualization will help you understand team and channel structures.</p>
+						<a target="_blank" href="http://52.48.107.145/frequent-speakers" class="demo-bttn">OPEN IN DEMO</a>
+					</div>
+				</div>
+
+		<!-- ROW SIX: EMOJI TIMELINE -->
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Emoji Timeline</h4>
+						<p>Feelin' great feelin' good! By collecting all emojis posted in your team the emojo timeline will help you understand the vibes of your team. Gain insights from individual channels and find out when the good times roll.</p>
+						<a target="_blank" href="http://52.48.107.145/emoji-timeline" class="demo-bttn">OPEN IN DEMO</a>
+					</div>
+					<div class="col-md-6">
+						<img class="img-rght" src="images/channel-land-slackviz.png" alt="screenshot landing page slackviz"/>
+					</div>
+				</div>
+			</div>
+
+		<!-- PEOPLE -->
+			<div class="container lght">
+				<h2>People involved</h2>
+				<h3>The &#35;slackviz was made by the moovel development team with support of moovel lab.</h3>
+				<p>people involved:</p>
+				<div class="row">
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Eileen Mandir"/>
+						<center>Eileen Mandir</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Thorsten Heilig"/>
+						<center>Thorsten Heilig</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Benedikt Groß"/>
+						<center>Benedikt Groß</center>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Flore de Combrugghe"/>
+						<center>Flore de Combrugghe</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Raphael Reimann"/>
+						<center>Raphael Reimann</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Tilmann Häuser"/>
+						<center>Tilmann Häuser</center>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Oleksii Rudenko"/>
+						<center>Oleksii Rudenko</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Tobias Lauer"/>
+						<center>Tobias Lauer</center>
+					</div>
+					<div class="col-md-4">
+						<img class="ppl" src="images/reimann.png" alt="picture Josefine Hartung"/>
+						<center>Josefine Hartung</center>
+					</div>
+				</div>
 			</div>
 		</div>
 
+<!-- FOOTER -->
+	  <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-md-push-1 col-sm-7">
+            <div class="cntnt">
+            <h2 class="cptn">About</h2>
+              <h3>moovel Group</h3>
+              <p class="sm">
+                moovel Group GmbH<br>
+                Hauptstätter Straße 149<br>
+                70178 Stuttgart<br>
+                Germany<br>
+              </p>
+              <br/>
+              <p class="sm">
+                <a href="https://twitter.com/moovel" target="_blank"><img src="images/i-twitter-2x.png" alt="Twitter moovel Group"></a>
+                <a href="https://www.linkedin.com/company/moovelgroup" target="_blank"><img src="images/i-linkedin-2x.png" alt="LinkedIn moovel Group"></a>
+                <a href="https://www.instagram.com/moovel/" target="_blank"><img src="images/i-instagram-2x.png" alt="Instagram moovel Group"></a>
+                <a href="https://www.youtube.com/channel/UCJ1xHmVWOQaPJfAG7km_E4A" target="_blank"><img src="images/i-youtube-2x.png" alt="YouTube moovel Group"></a>
+              </p>
+              <a href="mailto:hello@moovel.com">hello@moovel.com</a>
+            </div>
+          </div>
+          <div class="col-md-3 col-md-push-1 col-sm-7">
+            <h2 class="cptn">Our products</h2>
+            <div class="cntnt">
+              <h3><a href="https://www.moovel.com" target="_blank">moovel app</a></h3>
+              <p class="sm oneln">The Mobilitäts-App for your city</p>
+              <p class="sm icns">
+                <a href="https://www.facebook.com/moovel.de" target="_blank"><img src="images/i-facebook-2x.png" alt="Facebook moovel app"></a>
+                <a href="https://twitter.com/moovelDE" target="_blank"><img src="images/i-twitter-2x.png" alt="Twitter moovel app"></a>
+                <a href="https://www.instagram.com/moovel/" target="_blank"><img src="images/i-instagram-2x.png" alt="Instagram moovel Group"></a>
+                <a href="https://www.youtube.com/channel/UCJ1xHmVWOQaPJfAG7km_E4A" target="_blank"><img src="images/i-youtube-2x.png" alt="YouTube moovel Group"></a>
+                <a href="http://magazine.moovel.com" target="_blank"><img src="images/i-moovel-2x.png" alt="moovel app"></a>
+                <a href="https://www.xing.com/companies/moovelgroupgmbh" target="_blank"><img src="images/i-xing-2x.png" alt="moovel app"></a>
+              </p>
+
+              <h3><a href="http://moovel-transit.com/" target="_blank">moovel transit</a></h3>
+              <p class="sm oneln">The next generation of mobile ticketing</p>
+              <p class="sm icns">
+                <a href="http://twitter.com/mooveltransit" target="_blank"><img src="images/i-twitter-2x.png" alt="Twitter moovel transit"></a>
+              </p>
+
+              <h3><a href="http://ridetap.io/" target="_blank">moovel RideTap</a></h3>
+              <p class="sm oneln">The online information hub</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-md-push-1 col-sm-7">
+            <h2 class="cptn">Innovation</h2>
+            <div class="cntnt">
+              <h3><a href="http://lab.moovel.com/" target="_blank">moovel lab</a></h3>
+              <p class="sm oneln">Exploring urban mobility</p>
+              <p class="sm icns">
+                <a href="http://twitter.com/moovelLab" target="_blank"><img src="images/i-twitter-2x.png" alt="Twitter moovel lab"></a>
+                <a href="https://vimeo.com/moovellab" target="_blank"><img src="images/i-vimeo-2x.png" alt="Vimeo moovel lab"></a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-md-push-1 col-sm-7">
+            <h2 class="cptn">Legal Note</h2>
+            <p class="sm">
+              Board of Directors:<br>
+              Jörg Lamparter, Dr. Sebastian Dehnen<br>
+              Domicile: Stuttgart<br>
+              Court of Registry: District Court Stuttgart<br>
+              Commercial Register No.: 753820<br>
+              VAT-No.: DE 301445428
+            </p>
+            <br/>
+            <a href="cookies.html">Cookies</a><br>
+            <a href="privacy-policy.html">Privacy Policy</a><br><br>
+            <a href="https://moovel-group.com/" target="_blank"><img class="sign" src="images/sign-s.png" alt="moovel logo"/></a>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-md-push-1">
+          <br>
+          <br>
+          <p>
+            © 2016 moovel Group GmbH, All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>

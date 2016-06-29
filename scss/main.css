@@ -1178,9 +1178,86 @@ html {
 
 .img-lft {
   margin-left: -30%;
-  width: 120%;
+  width: 120%; }
+
+.img-rght {
+  margin-left: 10%;
+  width: 120%; }
+
+.shdw {
   -webkit-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
   -moz-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
   box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52); }
+
+.ppl {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100px; }
+
+footer {
+  background: #25262e;
+  color: white;
+  padding: 120px 0 180px; }
+  footer h2 {
+    font-size: 24px;
+    text-transform: none;
+    letter-spacing: 0em;
+    margin: 10px 0 40px; }
+    @media screen and (max-width: 991px) {
+      footer h2 {
+        margin: 0 0 30px; } }
+  footer h3 {
+    font-size: 18px;
+    color: #00b7bf;
+    margin: 30px 0 10px; }
+    footer h3 a,
+    footer h3 a:hover,
+    footer h3 a:active,
+    footer h3 a:focus {
+      color: #00b7bf; }
+    footer h3:first-child {
+      margin-top: 0; }
+    @media screen and (max-width: 991px) {
+      footer h3 {
+        margin: 30px 0 10px; } }
+  footer p {
+    margin: 0 0 10px;
+    color: #f9f9f9; }
+    footer p.sm {
+      font-size: 14px;
+      line-height: 2em; }
+    footer p.oneln {
+      line-height: 0.4em; }
+      @media screen and (max-width: 1199px) {
+        footer p.oneln {
+          line-height: 2em; } }
+    footer p.icns {
+      margin: 20px 0 50px; }
+  footer a,
+  footer a:focus,
+  footer a:hover {
+    color: #00b7bf;
+    display: inline-block;
+    margin-right: 18px; }
+  footer a img {
+    max-width: 25px;
+    max-height: 20px; }
+  footer img.sign {
+    max-width: 80px;
+    max-height: 80px; }
+  @media screen and (max-width: 991px) {
+    footer .row > div {
+      margin-bottom: 60px; } }
+  @media screen and (max-width: 767px) {
+    footer div.actv .cntnt {
+      height: auto;
+      opacity: 1;
+      filter: alpha(opacity=100); } }
+  @media screen and (max-width: 568px) {
+    footer {
+      padding: 50px 0; }
+      footer h2 {
+        margin-top: 20px; } }
 
 /*# sourceMappingURL=main.css.map */
