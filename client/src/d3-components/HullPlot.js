@@ -95,7 +95,6 @@ export default React.createClass({
     this.updateZoom(zoom);
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
-    console.log(z.translate());
     selection.attr('transform', 'translate(' + z.translate() + ')scale(' + z.scale() + ')')
   },
 

@@ -23,17 +23,21 @@ import moment from 'moment';
 
 export default (props) => {
   return (coords, index) => {
+    const diameter = (props.zoom > 4 ? 0.2 * props.zoom : 1) * (coords.highlighted ? 18 : 10);
+    const radius = diameter / 2;
     const circleProps = {
       x: props.xScale(coords.x),
       y: props.yScale(coords.y),
       cx: props.xScale(coords.x),
       cy: props.yScale(coords.y),
-      r: 5 / props.zoom,
+      r: radius / props.zoom,
       key: index,
       fill: coords.color,
       'data-name': coords.name,
     };
-    return <circle style={{cursor: 'pointer'}} {...circleProps}
+    return <circle
+      style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
+      {...circleProps}
       onMouseOver={props.showTooltip}
       onMouseOut={props.hideTooltip} />;
   };

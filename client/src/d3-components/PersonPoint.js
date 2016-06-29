@@ -23,7 +23,7 @@ import moment from 'moment';
 
 export default (props) => {
   return (coords, index) => {
-    const diameter = coords.highlighted ? 32 : 18;
+    const diameter = (props.zoom > 4 ? 0.2 * props.zoom : 1) * (coords.highlighted ? 32 : 18);
     const radius = diameter / 2;
     const circleProps = {
       x: props.xScale(coords.x) - radius / props.zoom,
