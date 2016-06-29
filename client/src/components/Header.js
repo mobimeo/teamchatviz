@@ -1,4 +1,4 @@
-j/*
+/*
   Slack Viz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
