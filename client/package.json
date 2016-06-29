@@ -173,6 +173,6 @@
   "author": "Moovel GmbH",
   "license": "LGPLv2.1",
   "devDependencies": {
-    "jspm": "^0.17.0-beta.14"
+    "jspm": "^0.17.0-beta.22"
   }
 }
