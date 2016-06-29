@@ -37,7 +37,7 @@ export default api => {
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
     const channelId = ctx.query.channelId || null;
-    ctx.body = await viz.frequentSpeakers(ctx.req.user.teamId, startDate, endDate, channelId);
+    ctx.body = await viz.frequentSpeakers(ctx.req.user.teamId, startDate, endDate, channelId, ctx.req.user);
   });
 
   api.get('/emoji-timeline', async(ctx) => {

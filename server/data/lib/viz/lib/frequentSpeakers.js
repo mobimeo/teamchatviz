@@ -23,7 +23,7 @@ import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
 
-export default async function(teamId, startDate = null, endDate = null, channelId = null, interval = '1 day') {
+export default async function(teamId, startDate = null, endDate = null, channelId = null, currentUser = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}, ${channelId}, ${interval}`);
 
   if (!startDate) {
@@ -41,18 +41,21 @@ export default async function(teamId, startDate = null, endDate = null, channelI
     startDate,
     endDate,
     teamId,
+    thisUserId: currentUser.id,
   };
 
   if (!allChannels) {
     options.channelId = channelId;
   }
 
-  const data = await db.any(`SELECT messages.user_id, members.name, members.real_name as realName, members.image72, COUNT(messages.id) as count
+  const data = await db.any(`SELECT messages.user_id,
+    (CASE members.id WHEN $(thisUserId) THEN 1 ELSE 0 END) as is_current_user,
+    members.name, members.real_name as realName, members.image72, COUNT(messages.id) as count
     FROM messages INNER JOIN members ON messages.user_id = members.id
     WHERE messages.team_id=$(teamId) AND messages.user_id IS NOT NULL AND messages.user_id <> 'USLACKBOT'
     AND DATE(messages.message_ts) BETWEEN $(startDate)::timestamp AND $(endDate)::timestamp
     ${allChannels ? '' : ' AND messages.channel_id=$(channelId) '}
-    GROUP BY messages.user_id, members.name, members.real_name, members.image72;`, options);
+    GROUP BY messages.user_id, is_current_user, members.name, members.real_name, members.image72;`, options);
 
 
   data.forEach(d => d.count = parseInt(d.count));
