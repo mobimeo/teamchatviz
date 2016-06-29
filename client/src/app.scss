@@ -239,7 +239,7 @@ p.chart-description {
 }
 .cluster-plot {
   position: relative;
-  
+
   svg {
     border: 0.1rem solid $color-grey-light;
   }
@@ -608,7 +608,8 @@ button:focus{
 
 // menu
 .menu-buttons {
-  padding-left: 3rem;
+  padding: 0;
+  float: right;
 
   a {
     cursor: pointer;
@@ -731,7 +732,7 @@ button:focus{
 
 
 .hamburger {
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   display: inline-block;
   cursor: pointer;
   transition-property: opacity, -webkit-filter;
@@ -750,7 +751,7 @@ button:focus{
   position: relative;
 }
 .hamburger-box {
-  width: 1.9rem;
+  width: 1.7rem;
   height: 1.4rem;
   display: inline-block;
   position: relative;
@@ -763,7 +764,7 @@ button:focus{
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
-  width: 1.9rem;
+  width: 1.7rem;
   height: 0.2rem;
   background-color: $color-brand;
   border-radius: 4px;
