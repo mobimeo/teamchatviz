@@ -100,6 +100,19 @@ export default React.createClass({
     const members = this.state.data.get('members');
     const tooltipIndex = this.state.data.get('tooltipIndex');
     const shownGroups = this.state.data.get('shownGroups');
+    data.forEach(item => {
+      let found = false;
+      members.forEach(member => {
+        if (member.id == item.id) {
+          found = true;
+        }
+      });
+      if (!found) {
+        item.grayedOut = true;
+      } else {
+        item.grayedOut = false;
+      }
+    });
     return <div>
       <Header title="people land" />
       <main>

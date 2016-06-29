@@ -90,11 +90,11 @@ export default React.createClass({
     if (d3.event) {
       d3.event.sourceEvent.preventDefault()
     }
-    var el = ReactDOM.findDOMNode(this);
-    var selection = d3.select(el).select('g');
     var z = this.z;
     var zoom = z.scale();
     this.updateZoom(zoom);
+    var el = ReactDOM.findDOMNode(this);
+    var selection = d3.select(el).select('g');
     selection.attr('transform', 'translate(' + z.translate() + ')scale(' + z.scale() + ')')
   },
 
@@ -104,6 +104,7 @@ export default React.createClass({
       newZoom = 10;
     }
     this.z.scale(newZoom);
+    this.z.translate([ - this.props.width / 2 * (newZoom - 1), - this.props.height / 2 * (newZoom - 1)]);
     this.onZoom();
     this.onZoom();
   },
@@ -113,12 +114,14 @@ export default React.createClass({
     if (newZoom < 1) {
       newZoom = 1;
     }
+    this.z.translate([ - this.props.width / 2 * (newZoom - 1), - this.props.height / 2 * (newZoom - 1)]);
     this.z.scale(newZoom);
     this.onZoom();
   },
 
   resetZoom() {
     this.z.scale(1);
+    this.z.translate([0, 0]);
     this.onZoom();
   },
 

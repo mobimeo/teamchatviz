@@ -91,6 +91,19 @@ export default React.createClass({
     const channels = this.state.data.get('channels');
     const tooltipIndex = this.state.data.get('tooltipIndex');
     const shownGroups = this.state.data.get('shownGroups');
+    data.forEach(item => {
+      let found = false;
+      channels.forEach(channel => {
+        if (channel.id == item.id) {
+          found = true;
+        }
+      });
+      if (!found) {
+        item.grayedOut = true;
+      } else {
+        item.grayedOut = false;
+      }
+    });
     return <div>
       <Header title="channel land" />
       <main>

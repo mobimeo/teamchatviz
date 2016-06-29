@@ -32,9 +32,9 @@ export default React.createClass({
         fontSize: 15 / zoom,
         fontWeight: 'bold',
       };
-      var width = 150 / zoom;
-      var height = 70 / zoom;
-      var transformText = `translate(${width/2}, ${height/2 - 5/zoom})`;
+      var width = 170 / zoom;
+      var height = 30 / zoom;
+      var transformText = `translate(${width/2}, ${height/2 + 5/zoom})`;
       var transformArrow = '';
       var transform;
       if (y > height) {
