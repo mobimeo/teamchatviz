@@ -194,7 +194,7 @@ export default React.createClass({
         </g>
       </svg>
       <div className="zoom-controls">
-        <button onClick={this.resetZoom}>[]</button>
+        <button onClick={this.resetZoom}><img src='/images/zoom-reset.svg' /></button>
         <button onClick={this.incrementZoom}>+</button>
         <button onClick={this.decrementZoom}>-</button>
       </div>

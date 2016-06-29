@@ -3,8 +3,9 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="-581 406.9 29 29" style="enable-background:new -581 406.9 29 29;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#393B42;}
+	.st0{fill:#25262E;stroke:#393B42;stroke-miterlimit:10;}
 </style>
-<path id="checkbox-7" class="st0" d="M-561.9,412.2h4.6v4.6h-1.5v-3.1h-3.1V412.2z M-575.7,416.8v-4.6h4.6v1.5h-3.1v3.1H-575.7z
-	 M-557.3,426v4.6h-4.6v-1.5h3.1V426H-557.3z M-571.1,430.6h-4.6V426h1.5v3.1h3.1V430.6z"/>
+<g>
+	<path class="st0" d="M-567,421.9h-2.5v-1h2.5v-2.5h1v2.5h2.4v1h-2.4v2.5h-1V421.9z"/>
+</g>
 </svg>
