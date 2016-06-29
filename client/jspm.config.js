@@ -17,7 +17,7 @@ SystemJS.config({
       "github:capaj/systemjs-hot-reloader@0.6.0": {
         "map": {
           "debug": "npm:debug@2.2.0",
-          "socket.io-client": "github:socketio/socket.io-client@1.4.6",
+          "socket.io-client": "github:socketio/socket.io-client@1.4.8",
           "weakee": "npm:weakee@1.0.0"
         }
       },
@@ -98,10 +98,10 @@ SystemJS.config({
     "react-dom": "npm:react-dom@15.1.0",
     "react-modal": "npm:react-modal@1.3.0",
     "react-progress-2": "npm:react-progress-2@4.2.1",
-    "react-router": "npm:react-router@2.4.1",
-    "react-virtualized": "npm:react-virtualized@7.7.0",
+    "react-router": "npm:react-router@2.5.1",
+    "react-virtualized": "npm:react-virtualized@7.11.5",
     "react-vis": "npm:react-vis@0.3.4",
-    "scss": "github:mobilexag/plugin-sass@0.4.5",
+    "scss": "github:mobilexag/plugin-sass@0.4.6",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
     "timers": "github:jspm/nodelibs-timers@0.2.0-alpha",
@@ -114,7 +114,7 @@ SystemJS.config({
   packages: {
     "github:jspm/nodelibs-buffer@0.2.0-alpha": {
       "map": {
-        "buffer-browserify": "npm:buffer@4.6.0"
+        "buffer-browserify": "npm:buffer@4.7.0"
       }
     },
     "github:jspm/nodelibs-crypto@0.2.0-alpha": {
@@ -167,18 +167,6 @@ SystemJS.config({
         "zlib-browserify": "npm:browserify-zlib@0.1.4"
       }
     },
-    "github:mobilexag/plugin-sass@0.4.5": {
-      "map": {
-        "autoprefixer": "npm:autoprefixer@6.3.6",
-        "fs": "github:jspm/nodelibs-fs@0.1.2",
-        "lodash": "npm:lodash@4.13.1",
-        "path": "github:jspm/nodelibs-path@0.1.0",
-        "postcss": "npm:postcss@5.0.21",
-        "reqwest": "github:ded/reqwest@2.0.5",
-        "sass.js": "npm:sass.js@0.9.10",
-        "url": "github:jspm/nodelibs-url@0.1.0"
-      }
-    },
     "npm:asn1.js@4.6.2": {
       "map": {
         "bn.js": "npm:bn.js@4.11.4",
@@ -188,20 +176,12 @@ SystemJS.config({
     },
     "npm:autoprefixer@6.3.6": {
       "map": {
-        "browserslist": "npm:browserslist@1.3.2",
-        "caniuse-db": "npm:caniuse-db@1.0.30000479",
+        "browserslist": "npm:browserslist@1.3.4",
+        "caniuse-db": "npm:caniuse-db@1.0.30000488",
         "normalize-range": "npm:normalize-range@0.1.2",
         "num2fraction": "npm:num2fraction@1.2.2",
         "postcss": "npm:postcss@5.0.21",
         "postcss-value-parser": "npm:postcss-value-parser@3.3.0"
-      }
-    },
-    "npm:babel-code-frame@6.8.0": {
-      "map": {
-        "babel-runtime": "npm:babel-runtime@6.9.2",
-        "chalk": "npm:chalk@1.1.3",
-        "esutils": "npm:esutils@2.0.2",
-        "js-tokens": "npm:js-tokens@1.0.3"
       }
     },
     "npm:babel-messages@6.8.0": {
@@ -215,31 +195,13 @@ SystemJS.config({
         "regenerator-runtime": "npm:regenerator-runtime@0.9.5"
       }
     },
-    "npm:babel-traverse@6.9.0": {
-      "map": {
-        "babel-code-frame": "npm:babel-code-frame@6.8.0",
-        "babel-messages": "npm:babel-messages@6.8.0",
-        "babel-runtime": "npm:babel-runtime@6.9.2",
-        "babel-types": "npm:babel-types@6.9.0",
-        "babylon": "npm:babylon@6.8.0",
-        "debug": "npm:debug@2.2.0",
-        "globals": "npm:globals@8.18.0",
-        "invariant": "npm:invariant@2.2.1",
-        "lodash": "npm:lodash@4.13.1"
-      }
-    },
     "npm:babel-types@6.9.0": {
       "map": {
         "babel-runtime": "npm:babel-runtime@6.9.2",
-        "babel-traverse": "npm:babel-traverse@6.9.0",
+        "babel-traverse": "npm:babel-traverse@6.10.4",
         "esutils": "npm:esutils@2.0.2",
         "lodash": "npm:lodash@4.13.1",
         "to-fast-properties": "npm:to-fast-properties@1.0.2"
-      }
-    },
-    "npm:babylon@6.8.0": {
-      "map": {
-        "babel-runtime": "npm:babel-runtime@6.9.2"
       }
     },
     "npm:browserify-aes@1.0.6": {
@@ -277,7 +239,7 @@ SystemJS.config({
         "browserify-rsa": "npm:browserify-rsa@4.0.1",
         "create-hash": "npm:create-hash@1.1.2",
         "create-hmac": "npm:create-hmac@1.1.4",
-        "elliptic": "npm:elliptic@6.3.0",
+        "elliptic": "npm:elliptic@6.3.1",
         "inherits": "npm:inherits@2.0.1",
         "parse-asn1": "npm:parse-asn1@5.0.0"
       }
@@ -286,18 +248,6 @@ SystemJS.config({
       "map": {
         "pako": "npm:pako@0.2.8",
         "readable-stream": "npm:readable-stream@2.1.4"
-      }
-    },
-    "npm:browserslist@1.3.2": {
-      "map": {
-        "caniuse-db": "npm:caniuse-db@1.0.30000479"
-      }
-    },
-    "npm:buffer@4.6.0": {
-      "map": {
-        "base64-js": "npm:base64-js@1.1.2",
-        "ieee754": "npm:ieee754@1.1.6",
-        "isarray": "npm:isarray@1.0.0"
       }
     },
     "npm:chalk@1.1.3": {
@@ -317,7 +267,7 @@ SystemJS.config({
     "npm:create-ecdh@4.0.0": {
       "map": {
         "bn.js": "npm:bn.js@4.11.4",
-        "elliptic": "npm:elliptic@6.3.0"
+        "elliptic": "npm:elliptic@6.3.1"
       }
     },
     "npm:create-hash@1.1.2": {
@@ -364,14 +314,6 @@ SystemJS.config({
         "bn.js": "npm:bn.js@4.11.4",
         "miller-rabin": "npm:miller-rabin@4.0.0",
         "randombytes": "npm:randombytes@2.0.3"
-      }
-    },
-    "npm:elliptic@6.3.0": {
-      "map": {
-        "bn.js": "npm:bn.js@4.11.4",
-        "brorand": "npm:brorand@1.0.5",
-        "hash.js": "npm:hash.js@1.0.3",
-        "inherits": "npm:inherits@2.0.1"
       }
     },
     "npm:encoding@0.1.12": {
@@ -588,27 +530,12 @@ SystemJS.config({
         "lodash.assign": "npm:lodash.assign@3.2.0"
       }
     },
-    "npm:react-router@2.4.1": {
-      "map": {
-        "history": "npm:history@2.1.2",
-        "hoist-non-react-statics": "npm:hoist-non-react-statics@1.0.6",
-        "invariant": "npm:invariant@2.2.1",
-        "warning": "npm:warning@2.1.0"
-      }
-    },
     "npm:react-split-button@1.0.1": {
       "map": {
         "object-assign": "npm:object-assign@2.1.1",
         "react-button": "npm:react-button@1.2.1",
         "react-dropdown-button": "npm:react-dropdown-button@1.0.11",
         "react-menus": "npm:react-menus@1.1.1"
-      }
-    },
-    "npm:react-virtualized@7.7.0": {
-      "map": {
-        "classnames": "npm:classnames@2.2.5",
-        "dom-helpers": "npm:dom-helpers@2.4.0",
-        "raf": "npm:raf@3.2.0"
       }
     },
     "npm:react-vis@0.3.4": {
@@ -700,6 +627,80 @@ SystemJS.config({
     "npm:warning@2.1.0": {
       "map": {
         "loose-envify": "npm:loose-envify@1.2.0"
+      }
+    },
+    "npm:babel-traverse@6.10.4": {
+      "map": {
+        "babel-runtime": "npm:babel-runtime@6.9.2",
+        "babel-types": "npm:babel-types@6.9.0",
+        "lodash": "npm:lodash@4.13.1",
+        "babel-messages": "npm:babel-messages@6.8.0",
+        "babel-code-frame": "npm:babel-code-frame@6.11.0",
+        "globals": "npm:globals@8.18.0",
+        "debug": "npm:debug@2.2.0",
+        "babylon": "npm:babylon@6.8.2",
+        "invariant": "npm:invariant@2.2.1"
+      }
+    },
+    "npm:react-router@2.5.1": {
+      "map": {
+        "history": "npm:history@2.1.2",
+        "loose-envify": "npm:loose-envify@1.2.0",
+        "warning": "npm:warning@2.1.0",
+        "hoist-non-react-statics": "npm:hoist-non-react-statics@1.2.0",
+        "invariant": "npm:invariant@2.2.1"
+      }
+    },
+    "npm:react-virtualized@7.11.5": {
+      "map": {
+        "dom-helpers": "npm:dom-helpers@2.4.0",
+        "raf": "npm:raf@3.2.0",
+        "classnames": "npm:classnames@2.2.5"
+      }
+    },
+    "npm:babel-code-frame@6.11.0": {
+      "map": {
+        "babel-runtime": "npm:babel-runtime@6.9.2",
+        "esutils": "npm:esutils@2.0.2",
+        "chalk": "npm:chalk@1.1.3",
+        "js-tokens": "npm:js-tokens@2.0.0"
+      }
+    },
+    "npm:babylon@6.8.2": {
+      "map": {
+        "babel-runtime": "npm:babel-runtime@6.9.2"
+      }
+    },
+    "github:mobilexag/plugin-sass@0.4.6": {
+      "map": {
+        "lodash": "npm:lodash@4.13.1",
+        "fs": "github:jspm/nodelibs-fs@0.1.2",
+        "path": "github:jspm/nodelibs-path@0.1.0",
+        "url": "github:jspm/nodelibs-url@0.1.0",
+        "postcss": "npm:postcss@5.0.21",
+        "sass.js": "npm:sass.js@0.9.10",
+        "autoprefixer": "npm:autoprefixer@6.3.6",
+        "reqwest": "github:ded/reqwest@2.0.5"
+      }
+    },
+    "npm:buffer@4.7.0": {
+      "map": {
+        "base64-js": "npm:base64-js@1.1.2",
+        "isarray": "npm:isarray@1.0.0",
+        "ieee754": "npm:ieee754@1.1.6"
+      }
+    },
+    "npm:elliptic@6.3.1": {
+      "map": {
+        "bn.js": "npm:bn.js@4.11.4",
+        "inherits": "npm:inherits@2.0.1",
+        "brorand": "npm:brorand@1.0.5",
+        "hash.js": "npm:hash.js@1.0.3"
+      }
+    },
+    "npm:browserslist@1.3.4": {
+      "map": {
+        "caniuse-db": "npm:caniuse-db@1.0.30000488"
       }
     }
   }

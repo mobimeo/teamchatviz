@@ -1,4 +1,4 @@
-/*
+j/*
   Slack Viz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
@@ -26,7 +26,7 @@ import { MenuButtons } from './MenuButtons';
 export const Header = (props) => {
   return <header className="site-header">
     <div className="row">
-      <div className="col-xs-10">
+      <div className="col-xs-9">
         <Link to="/">
           <img className="back" src="../images/back.png" />
         </Link>
@@ -36,7 +36,7 @@ export const Header = (props) => {
           </h1>
         </Link>
       </div>
-      <div className="col-xs-2">
+      <div className="col-xs-3">
         <MenuButtons />
       </div>
     </div>

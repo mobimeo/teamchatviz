@@ -239,6 +239,7 @@ p.chart-description {
 }
 .cluster-plot {
   position: relative;
+  
   svg {
     border: 0.1rem solid $color-grey-light;
   }
@@ -246,6 +247,18 @@ p.chart-description {
     position: absolute;
     right: 1rem;
     bottom: 1rem;
+
+    button {
+      padding: 0;
+      line-height: 30px;
+      width: 30px;
+      height: 30px;
+      margin: 0 0 0 4px;
+      border-radius: 4px;
+      background: $color-grey-light;
+      border: none;
+      cursor: pointer;
+    }
   }
 }
 
