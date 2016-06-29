@@ -83,6 +83,8 @@ export default async function(teamId, startDate = null, endDate = null, currentU
       id: userIds[i],
       name: member.name,
       image24: member.image24,
+      image48: member.image48,
+      highlighted: member.is_current_user,
       x: row[0]*1000,
       y: row[1]*1000
     }

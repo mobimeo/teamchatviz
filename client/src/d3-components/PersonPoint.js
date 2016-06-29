@@ -1,6 +1,6 @@
 /*
   Slack Viz
-  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
+  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70width8, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -23,26 +23,28 @@ import moment from 'moment';
 
 export default (props) => {
   return (coords, index) => {
+    const diameter = coords.highlighted ? 32 : 18;
+    const radius = diameter / 2;
     const circleProps = {
-      x: props.xScale(coords.x) - 9 / props.zoom,
-      y: props.yScale(coords.y) - 9 / props.zoom,
+      x: props.xScale(coords.x) - radius / props.zoom,
+      y: props.yScale(coords.y) - radius / props.zoom,
       cx: props.xScale(coords.x),
       cy: props.yScale(coords.y),
       key: index,
       'data-name': coords.name,
-      width: (18 / props.zoom) + 'px',
-      height: (18 / props.zoom) + 'px',
+      width: (diameter / props.zoom) + 'px',
+      height: (diameter / props.zoom) + 'px',
     };
     return <g>
       <defs>
         <clipPath id={'circlePath' + index}>
-          <circle cx={circleProps.x + 9 / props.zoom} cy={circleProps.y + 9 / props.zoom} r={ 9 / props.zoom } />
+          <circle cx={circleProps.x + radius / props.zoom} cy={circleProps.y + radius / props.zoom} r={ radius / props.zoom } />
         </clipPath>
       </defs>
       <image
         clipPath={'url(#circlePath' + index + ')'}
-        xlinkHref={coords.image24}
-        style={{cursor: 'pointer'}}
+        xlinkHref={coords.highlighted ? coords.image48 : coords.image24}
+        style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
         {...circleProps}
         onMouseOver={props.showTooltip}
         onMouseOut={props.hideTooltip} />
