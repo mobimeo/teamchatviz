@@ -54,7 +54,7 @@ The database needs to be created first.
 Creating a Slack app
 --------------------
 
-Go to https://api.slack.com/apps/new and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret.
+Go to https://api.slack.com/apps/new and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret. Specify the following Redirect URI for your Slack App: `http://<your hostname>:<port>/api/auth/slack/callback`
 
 Testing
 -------
