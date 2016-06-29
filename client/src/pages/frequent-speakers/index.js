@@ -132,8 +132,8 @@ export default React.createClass({
             <DateRangePicker onChange={this.onDateChange} />
           </div>
         </div>
-        <div className="row" style={{ paddingRight: '20px' }}>
-          <div className="col-xs-3">
+        <div className="row" style={{ paddingRight: '20px'}}>
+          <div className="col-xs-3" style={{  height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
             <div><button onClick={this.onAllChannelsClick} className="channel-list-element">All channels</button></div>
             <hr />
             {
@@ -142,7 +142,7 @@ export default React.createClass({
               })
             }
           </div>
-          <div className="col-xs-9">
+          <div className="col-xs-9" style={{ height: 'calc(100vh - 15rem)' }}>
             <p>
               { !filters.channelId ? 'all channels' : selectedChannelName} {moment(filters.startDate).format('ll')} - {moment(filters.endDate).format('ll')}
             </p>
@@ -165,7 +165,7 @@ export default React.createClass({
                   </div>
               }) : <AutoSizer>
                     {({ height, width }) => (
-                      <Treemap height={600} width={width} data={{ title: '', opacity: 1,
+                      <Treemap height={height} width={width} data={{ title: '', opacity: 1,
                                   children: chartData.slice(0, 10).map((member, i) => ({
                                     title: <div>@{member.name} <br /> {member.count} </div>,
                                     size: member.count,

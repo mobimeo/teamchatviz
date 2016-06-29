@@ -33,7 +33,7 @@ export default (props) => {
       r: radius / props.zoom,
       key: index,
       fill: coords.color,
-      'data-name': coords.name,
+      'data-name': '#' + coords.name,
     };
     return <circle
       style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
