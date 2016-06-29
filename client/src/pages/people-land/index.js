@@ -50,11 +50,15 @@ export default React.createClass({
   componentDidMount() {
     fetchPeopleLand()
       .then(result => {
-        this.allMembers = result.members;
+        const currentUser = _.remove(result.members, item => {
+          return item.is_current_user === 1;
+        });
+        const sortedMembers = currentUser.concat(result.members);
+        this.allMembers = sortedMembers;
         this.setState(({data}) => ({
           data: data
             .set('data', result.data)
-            .set('members', result.members)
+            .set('members', sortedMembers)
         }));
       })
   },
@@ -62,7 +66,10 @@ export default React.createClass({
   onSearch(value) {
     this.setState(({data}) => ({
       data: data
-        .set('members', this.allMembers.filter(member => (value === '' || member.name.toLowerCase().indexOf(value) !== -1)))
+        .set('members', this
+            .allMembers
+            .filter(member =>
+              (value === '' || member.name.toLowerCase().indexOf(value) !== -1)))
     }));
   },
 
@@ -108,10 +115,17 @@ export default React.createClass({
           <div className="col-xs-3">
             <div style={{ height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
               {
-                members.map((item, index) => {
+                members
+                .map((item, index) => {
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
-                  return <div key={index} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">{item.name}</div>
+                  return <div
+                    key={index}
+                    onMouseOver={onMouseOver}
+                    onMouseOut={onMouseOut}
+                    className="channel-list-element">
+                    {item.name} {item.is_current_user ? ' (you)' : ''}
+                  </div>
                 })
               }
             </div>

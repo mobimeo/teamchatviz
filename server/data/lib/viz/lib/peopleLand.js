@@ -25,7 +25,7 @@ import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
 
-export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
+export default async function(teamId, startDate = null, endDate = null, currentUser = null, interval = '1 day') {
   console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
 
   const rawData = await db.any(`SELECT user_id, channel_id, is_member FROM membership
@@ -58,11 +58,16 @@ export default async function(teamId, startDate = null, endDate = null, interval
   console.timeEnd('tsne');
 
   const members = (await db
-    .any(`SELECT * FROM members WHERE team_id=$(teamId) AND id <> 'USLACKBOT'`, {
+    .any(`SELECT *, (CASE id WHEN $(thisUserId) THEN 1 ELSE 0 END) as is_current_user FROM members
+        WHERE team_id=$(teamId)
+          AND id <> 'USLACKBOT'`, {
       teamId,
+      thisUserId: currentUser.id,
     }))
     .map(member => {
-      member.name = `${member.first_name} ${member.last_name}`;
+      member.name = member.first_name && member.last_name
+        ? `${member.first_name} ${member.last_name}`
+        : `${member.name}`;
       return member;
     });
 

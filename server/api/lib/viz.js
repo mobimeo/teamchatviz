@@ -75,6 +75,6 @@ export default api => {
     }
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
-    ctx.body = await viz.peopleLand(ctx.req.user.teamId, startDate, endDate);
+    ctx.body = await viz.peopleLand(ctx.req.user.teamId, startDate, endDate, ctx.req.user);
   });
 }
