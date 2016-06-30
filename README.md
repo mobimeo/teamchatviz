@@ -51,7 +51,13 @@ PORT=3333
 SLACK_CLIENT_ID="<client id of your slack app>"
 SLACK_CLIENT_SECRET="<slack app secret>"
 DATABASE_URL="<postgresql database URL e.g. postgres://slackviz:slackviz@localhost/slackviz>"
+PUBLIC="false"
+ANONYMIZE="false"
 ```
+
+If PUBLIC === true the data loaded into the system will be public and will not require authentication via Slack. If ANONYMIZE === true the data loaded into the system will be replaced with the fake data using Faker.js. Anonymization will happen only on the initial data loading and before the data reaches the database.
+
+If PUBLIC === true, Add to Slack button on the Main page is hidden and login is disabled. If you change the PUBLIC setting for an existing instance, the changes will apply only after a restart of the server. 
 
 6. Run db migrations `npm run up`
 
