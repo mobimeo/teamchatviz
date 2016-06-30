@@ -38,7 +38,7 @@ export const Menu = React.createClass({
         <a href="/channel-land"><li>channel land</li></a>
         <a href="/messages-and-reactions"><li>messages & reactions</li></a>
         <a href="/frequent-speakers"><li>frequent speakers</li></a>
-        <a href="/heartbeat"><li>emoji timeline</li></a>
+        <a href="/emoji-timeline"><li>emoji timeline</li></a>
         <a href="/about"><li>about</li></a>
       </ul>
     </div>;
