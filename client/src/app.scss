@@ -673,28 +673,44 @@ button:focus{
     margin: 2rem 0 1.5rem 0;
     font-weight: bold;
   }
-  .message-body {
-    position:relative;
-    padding: 1rem;
+  .message-wrapper {
     margin: 2rem 0 1.5rem 0;
-    background-color: $color-grey-light;
 
-    div {
-      word-wrap: break-word;
+    .message-number {
+      float: left;
+      background: #000;
+      border-radius: 14px;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      color: white;
+      text-align: center;
+      line-height: 28px;
+      font-size: 0.95rem;
     }
-  }
-  .message-body:after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 15px 10px 0;
-    border-color: #E6E6E6 transparent;
-    display: block;
-    width: 0;
-    z-index: 1;
-    margin-left: -10px;
-    bottom: -15px;
-    left: 10%;
+    .message-body {
+      position:relative;
+      padding: 1rem;
+      margin-left: 35px;
+      background-color: $color-grey-light;
+      
+      div {
+        word-wrap: break-word;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 15px 10px 0;
+        border-color: #E6E6E6 transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        margin-left: -10px;
+        bottom: -15px;
+        left: 10%;
+      }
+    }
   }
   .message-meta .user-name{
     font-size: 0.8rem;

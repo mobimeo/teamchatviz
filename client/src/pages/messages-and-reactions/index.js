@@ -126,6 +126,7 @@ export default React.createClass({
   },
 
   render() {
+    var count = 1;
     const data = this.state.data;
     const nameFilter = this.filters.channelName;
     const channels = data.get('channels').filter(channel => {
@@ -170,9 +171,14 @@ export default React.createClass({
               chartData.map(message => {
                 return <div className="message">
                   <div className="row">
-                    <div className="message-body col-xs-8">
-                      <div>
-                        {emoji.emojify(message.text, (unknown) => emojis[unknown])}
+                    <div className="col-xs-8">
+                      <div className="message-wrapper">
+                        <div className="message-number">{count++}</div> 
+                        <div className="message-body">
+                          <div>
+                            {emoji.emojify(message.text, (unknown) => emojis[unknown])}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="col-xs-4">
