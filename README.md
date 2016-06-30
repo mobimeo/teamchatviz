@@ -74,10 +74,10 @@ Team
 * Concept: [Benedikt Groß](https://github.com/b-g/), [Flore de Crombrugghe](http://lab.moovel.com/people/flore-de-crombrugghe), [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann), [Tilman Häuser](http://lab.moovel.com/people/tilman-haeuser)
 * Direction: [Benedikt Groß](https://github.com/b-g/)
 * Visual Design: [Flore de Crombrugghe](http://lab.moovel.com/people/flore-de-crombrugghe)
-* Frontend Development: [Alex Rudenko](https://github.com/OrKoN), Tobias Lauer
+* Frontend Development: [Alex Rudenko](https://github.com/OrKoN), [Tobias Lauer](https://github.com/TobiasLauer)
 * Backend Development: [Alex Rudenko](https://github.com/OrKoN)
 * Text and Editing: [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann)
-* Project Site: [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann), Josefine Hartung, Tobias Lauer
+* Project Site: [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann), Josefine Hartung, [Tobias Lauer](https://github.com/TobiasLauer)
 
 
 Acknowledgement
