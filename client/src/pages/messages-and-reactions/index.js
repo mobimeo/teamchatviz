@@ -178,6 +178,7 @@ export default React.createClass({
                           <div>
                             {emoji.emojify(message.text, (unknown) => emojis[unknown])}
                           </div>
+                          <div className="open-in">open in slack</div>
                         </div>
                       </div>
                       <div className="row">

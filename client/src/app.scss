@@ -55,7 +55,7 @@ a:focus {
   flex-direction: column;
 }
 main {
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 .content {
   flex: 1;
@@ -697,10 +697,22 @@ button:focus{
     }
     .message-body {
       position:relative;
-      padding: 1rem;
+      padding: 1rem 1rem 1.3rem 1rem;
       margin-left: 36px;
       background-color: $color-grey-light;
       
+      .open-in {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        font-size: 0.75rem;
+        color: $color-grey-medium;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
       div {
         word-wrap: break-word;
       }

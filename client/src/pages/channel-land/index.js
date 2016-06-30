@@ -117,7 +117,7 @@ export default React.createClass({
         </div>
         <div className="row">
           <div className="col-xs-3">
-            <div style={{ height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
+            <div className="left-list-wrapper">
               {
                 channels.map((item, index) => {
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);

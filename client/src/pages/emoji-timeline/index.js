@@ -158,7 +158,7 @@ export default React.createClass({
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
             <div className="channel-list-element" onClick={this.onAllChannelsClick}>All channels </div>
-            <div style={{ height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
+            <div className="left-list-wrapper">
               {
                 channels.map((item, index) => {
                   const onClick = _.bind(this.onChannelClick, this, item);
