@@ -14,12 +14,21 @@ by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://developers.
 
 Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/). Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/). Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/). PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise).
 
-See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
+Nota bene: &#35;slackviz is not created by, affiliated with, or supported by Slack Technologies, Inc.
 
 Project Page
 ------------
-See the project page [moovel.github.io/slackviz](http://moovel.github.io/slackviz/) for more infos.
+See the project page [moovel.github.io/slackviz](http://moovel.github.io/slackviz/) for more infos, screenshots and a screenrecording.
 
+Online Demo
+-----------
+TODO big and bold Link to online demo. 
+
+Create your &#35;slackviz App
+-----------------------------
+1. Create a Heroku instance of &#35;slackviz (use Deploy to Heroku button)
+2. Go to [api.slack.com/apps/new](https://api.slack.com/apps/new) and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret. Specify the following Redirect URI for your Slack App: `http://<your hostname>:<port>/api/auth/slack/callback`
+3. ... TODO
 
 Run on Heroku
 -------------
@@ -49,12 +58,8 @@ DATABASE_URL="<postgresql database URL e.g. postgres://slackviz:slackviz@localho
 The database needs to be created first.
 
 6. `npm start` - start the server
-7.  Open http://localhost:$PORT in your browser
+7.  Open `http://localhost:$PORT` in your browser
 
-Creating a Slack app
---------------------
-
-Go to https://api.slack.com/apps/new and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret. Specify the following Redirect URI for your Slack App: `http://<your hostname>:<port>/api/auth/slack/callback`
 
 Testing
 -------
@@ -63,14 +68,27 @@ Testing
 npm test
 ```
 
-Roadmap
--------
+Team
+----
+* Idea: Thorsten Heilig, [Eileen Mandir](http://lab.moovel.com/people/eileen-mandir), [Benedikt Groß](https://github.com/b-g/)
+* Concept: [Benedikt Groß](https://github.com/b-g/), [Flore de Crombrugghe](http://lab.moovel.com/people/flore-de-crombrugghe), [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann), [Tilman Häuser](http://lab.moovel.com/people/tilman-haeuser)
+* Direction: [Benedikt Groß](https://github.com/b-g/)
+* Visual Design: [Flore de Crombrugghe](http://lab.moovel.com/people/flore-de-crombrugghe)
+* Frontend Development: [Alex Rudenko](https://github.com/OrKoN), Tobias Lauer
+* Backend Development: [Alex Rudenko](https://github.com/OrKoN)
+* Text and Editing: [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann)
+* Project Site: [Raphael Reimann](http://lab.moovel.com/people/raphael-reimann), Josefine Hartung, Tobias Lauer
 
-High-levels goals of the project:
 
-- improve performance
-- develop better visualizations
-- make the client responsive
+Acknowledgement
+---------------
+* Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/) 
+* Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/)
+* Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/)
+* PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise)
+* Fake data for online demo generated with [Faker.js](https://github.com/marak/Faker.js/)
+
+See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
 
 LICENSE
 -------
