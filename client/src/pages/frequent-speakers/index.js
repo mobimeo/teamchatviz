@@ -133,7 +133,7 @@ export default React.createClass({
           </div>
         </div>
         <div className="row" style={{ paddingRight: '20px'}}>
-          <div className="col-xs-3" style={{  height: 'calc(100vh - 15rem)', overflowY: 'scroll' }}>
+          <div className="col-xs-3 left-list-wrapper">
             <div><button onClick={this.onAllChannelsClick} className="channel-list-element">All channels</button></div>
             <hr />
             {

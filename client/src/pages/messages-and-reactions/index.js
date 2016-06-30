@@ -151,7 +151,7 @@ export default React.createClass({
           </div>
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
-          <div className="col-xs-3">
+          <div className="col-xs-3 left-list-wrapper">
             <div className="channel-list-element" onClick={this.onAllChannelsClick}>All channels </div>
             <div>
               {
@@ -180,6 +180,17 @@ export default React.createClass({
                           </div>
                         </div>
                       </div>
+                      <div className="row">
+                        <div className="col-xs-5">
+                          <div className="message-meta">
+                            <div className="user-name">{message.real_name}</div>
+                            <div className="message-time">{moment(message.message_ts).format()}</div>
+                          </div>
+                        </div>
+                        <div className="col-xs-7">
+                          <img className="user-img" src={message.image32}/>
+                        </div>
+                      </div>
                     </div>
                     <div className="col-xs-4">
                       <div className="reactions">{message.reactions.reduce((p, e) => e.count + p, 0)} reactions</div>
@@ -193,15 +204,6 @@ export default React.createClass({
                         }
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-xs-3">
-                      <div className="message-meta">
-                        <div className="user-name">{message.real_name}</div>
-                        <div className="message-time">{moment(message.message_ts).format()}</div>
-                      </div>
-                    </div>
-                    <img className="user-img" src={message.image32}/>
                   </div>
                 </div>
               })
