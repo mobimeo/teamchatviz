@@ -195,9 +195,11 @@ export default React.createClass({
                     </div>
                   </div>
                   <div className="row">
-                    <div className="message-meta col-xs-3">
-                      <div className="user-name">{message.real_name}</div>
-                      <div className="message-time">{moment(message.message_ts).format()}</div>
+                    <div className="col-xs-3">
+                      <div className="message-meta">
+                        <div className="user-name">{message.real_name}</div>
+                        <div className="message-time">{moment(message.message_ts).format()}</div>
+                      </div>
                     </div>
                     <img className="user-img" src={message.image32}/>
                   </div>

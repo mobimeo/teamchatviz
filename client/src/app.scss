@@ -691,7 +691,7 @@ button:focus{
     .message-body {
       position:relative;
       padding: 1rem;
-      margin-left: 35px;
+      margin-left: 36px;
       background-color: $color-grey-light;
       
       div {
@@ -712,16 +712,20 @@ button:focus{
       }
     }
   }
-  .message-meta .user-name{
-    font-size: 0.8rem;
-    color: $color-grey-dark;
-  }
-  .message-meta .message-time{
-    font-size: 0.7rem;
-    color: $color-grey-medium;
-  }
-  .message-meta .user-img{
-    display: inline-block;
+  .message-meta {
+    margin-left: 36px;
+
+    .user-name{
+      font-size: 0.8rem;
+      color: $color-grey-dark;
+    }
+    .message-time{
+      font-size: 0.7rem;
+      color: $color-grey-medium;
+    }
+    .user-img{
+      display: inline-block;
+    }
   }
   .user-img {
    width: 30px;
@@ -734,7 +738,6 @@ button:focus{
       margin: 0 0.3rem 0.5rem 0;
     }
   }
-
 }
 // end messages and reactions
 
