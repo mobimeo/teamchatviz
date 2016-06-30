@@ -85,7 +85,9 @@ footer {
 // end footer/content set up
 
 // chart icons and text styles
-.chart-title {
+.chart-title,
+.chart-title:hover,
+.chart-title:focus {
   color: $color-brand;
   text-decoration: none;
   font-size: 1rem;
