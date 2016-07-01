@@ -523,26 +523,30 @@ button:focus{
 .channel-list-element {
   background-color: transparent;
   margin: 0.2rem 0;
-  border: solid transparent;
+  border: none;
   border-radius: 4px;
-  padding: 0.1rem;
+  padding: 0.3rem;
 
   &.first {
     margin-bottom: 1rem;
   }
+  &.is-current-user {
+    border-left: 4px solid $color-grey-light;
+    border-radius: 0 4px 4px 0;
+  }
 
   &:hover {
-    background-color: $color-accent;
+    background: $color-accent;
     outline: 0;
     pointer-events: auto;
     cursor: pointer;
   }
   &:focus {
-    background-color: $color-accent;
+    background: $color-accent;
     outline: 0;
   }
   &:active {
-    background-color: $color-accent;
+    background: $color-accent;
     outline: 0;
   }
 }
