@@ -138,12 +138,28 @@ export default React.createClass({
     const channels = data.get('channels');
     const emojis = data.get('emojis');
     const rating = data.get('rating');
-    const chartData = data.get('data');
+    let chartData = data.get('data');
     const max = _.maxBy(chartData, item => item.total);
     let maxY = 0;
     if (max) {
       maxY = max.total;
     }
+
+    if (chartData.length > 0) {
+      chartData = [{
+        total: 0,
+        id: moment.utc(chartData[0].id).subtract(1, 'days').format(),
+        emojis: [],
+        fake: true,
+      }].concat(chartData).concat([{
+        total: 0,
+        id: moment.utc(chartData[chartData.length - 1].id).add(1, 'days').format(),
+        emojis: [],
+        fake: true,
+      }]);
+    }
+    const labelValues = chartData.map(i => moment.utc(i.id).unix());
+    console.log(labelValues);
     return <div>
       <Header title="emoji timeline" />
       <main>
@@ -193,39 +209,41 @@ export default React.createClass({
               </div>
             </div>
             <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
-              <XYPlot
-                width={800}
-                height={600}
-                >
-                <LineSeries
-                  data={chartData.map(i => ({
-                    x: moment.utc(i.id).unix(),
-                    y: i.total,
-                  }))}
-                  color='white'
-                  size='1px'
-                  xType='time'
-                  key={'xyPlotLineSeries' + this.props.parentKey}
-                />
-                <HorizontalGridLines  />
-                <XAxis title="time"
-                  labelValues={chartData.map(i => moment.utc(i.id).unix())}
-                  tickValues={chartData.map(i => moment.utc(i.id).unix())}
-                  labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
+              <AutoSizer>{({ height, width }) => (
+                <XYPlot
+                  width={width}
+                  height={600}
+                  >
+                  <LineSeries
+                    data={chartData.map(i => ({
+                      x: moment.utc(i.id).unix(),
+                      y: i.total,
+                    }))}
+                    color='white'
+                    xType='time'
+                    key={'xyPlotLineSeries' + this.props.parentKey}
                   />
-                <YAxis title="total emoji count" />
-                {
-                  chartData.map((d, i) => {
-                    var value = {
-                      x: moment.utc(d.id).unix(),
-                      y: d.total,
-                    };
-                    return <Hint value={value} orientation="bottomright">
-                      <EmojiColumn key={i} item={d} emojis={emojis} maxY={maxY} />
-                    </Hint>;
-                  })
-                }
-              </XYPlot>
+                  <HorizontalGridLines  />
+                  <XAxis title="time"
+                    labelValues={labelValues}
+                    labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
+                    />
+                  <YAxis title="total emoji count" />
+                  {
+                    chartData.map((d, i) => {
+                      var value = {
+                        x: moment.utc(d.id).unix(),
+                        y: d.total,
+                      };
+                      console.log(value);
+                      return <Hint value={value} orientation="bottomright">
+                        <EmojiColumn height={600} key={i} item={d} emojis={emojis} maxY={maxY} />
+                      </Hint>;
+                    })
+                  }
+                </XYPlot>
+              )}
+              </AutoSizer>
             </div>
           </div>
         </div>

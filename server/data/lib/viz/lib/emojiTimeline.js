@@ -57,15 +57,17 @@ const groupByDate = (results, channels, emojis) => {
     count: rating[key],
   }));
   emojiRating.sort((a, b) => b.count - a.count);
+  const data = Object.keys(timeline).map(key => {
+    timeline[key].emojis.sort((a, b) => b.count - a.count);
+    return timeline[key];
+  });
+
   return {
-    data: Object.keys(timeline).map(key => {
-      timeline[key].emojis.sort((a, b) => b.count - a.count);
-      return timeline[key];
-    }),
-    max: max,
-    channels: channels,
+    data,
+    max,
+    channels,
     rating: emojiRating.filter(item => item.count > 0).slice(0, 10),
-    emojis: emojis,
+    emojis,
   };
 };
 

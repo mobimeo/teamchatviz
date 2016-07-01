@@ -51,20 +51,29 @@ export default React.createClass({
     const height = this.state.data.get('height');
     // todo: depends on the chart height
     const totalHeight = (600 - height - 45);
-    return <div key={this.props.key} className="emoji-timeline-column"
-      style={{ height: totalHeight + 'px'}}>
+    const columnEmojis = item
+      .emojis
+      .slice(0, parseInt( totalHeight / 45 ));
+    let className = '';
+
+    if (!item.fake) {
+      className = "emoji-timeline-column" + (columnEmojis.length === 0 ? ' no-background' : ' ')
+    }
+    return <div key={this.props.key} className={className}
+      style={{ height: totalHeight + 'px', width: '4rem' }}>
         {
-          item.emojis
-            .slice(0, parseInt( totalHeight / 60 ))
+          columnEmojis
             .map((reaction, i) => {
               return <Emoji emojis={emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
             })
         }
         {
-          (item.emojis.length > 10 && totalHeight > 50) ?
-          <Emoji style={{ display: 'block' }} name={'...'} count={''} />
+          (columnEmojis.length > 10 && totalHeight > 50) ?
+            <Emoji style={{ display: 'block' }} name={'...'} count={''} />
           : <div></div>
         }
       </div>
   }
 });
+
+

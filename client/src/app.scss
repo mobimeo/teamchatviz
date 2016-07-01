@@ -595,9 +595,12 @@ button:focus{
 }
 .emoji-timeline-column {
   border-top: black 0.25rem solid;
-  // margin: 0.25rem;
   background-color: #fafafa;
 }
+.emoji-timeline-column.no-background {
+  background-color: transparent;
+}
+
 .emoji {
   box-sizing: content-box;
   display: inline-block;
