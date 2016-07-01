@@ -2,7 +2,7 @@
   "apps" : [{
     "name": "slack_viz",
     "script": "index.js",
-    "exec_mode": "fork",
+    "exec_mode": "cluster",
     "instances": 2,
     "env": {
       "PORT": 80,

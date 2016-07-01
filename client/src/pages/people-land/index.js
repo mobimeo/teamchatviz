@@ -136,7 +136,7 @@ export default React.createClass({
                     key={index}
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}
-                    className="channel-list-element">
+                    className={"channel-list-element" + (item.is_current_user ? ' is-current-user' : '')}>
                     {item.name} {item.is_current_user ? ' (you)' : ''}
                   </div>
                 })

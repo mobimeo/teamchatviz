@@ -66,7 +66,8 @@ export default api => {
     const startDate = ctx.query.startDate || null;
     const endDate = ctx.query.endDate || null;
     const channelId = ctx.query.channelId || null;
-    ctx.body = await viz.moodsAndReactions(ctx.req.user.teamId, startDate, endDate, channelId);
+    ctx.body = await viz.moodsAndReactions(ctx.req.user.teamId, startDate, endDate,
+      channelId, ctx.req.user.profile.team);
   });
 
   api.get('/people-land', async(ctx) => {
