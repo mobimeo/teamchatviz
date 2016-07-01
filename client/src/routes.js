@@ -26,6 +26,7 @@ import ChannelLandPage from 'client/pages/channel-land/index.js';
 import MessagesAndReactionsPage from 'client/pages/messages-and-reactions/index.js';
 import FrequentSpeakersPage from 'client/pages/frequent-speakers/index.js';
 import EmojiTimelinePage from 'client/pages/emoji-timeline/index.js';
+import ErrorPage from 'client/pages/error/index.js';
 import MainPage from 'client/pages/main/index.js';
 import { Router, Route, Link, hashHistory, browserHistory } from 'react-router';
 
@@ -34,12 +35,13 @@ export default React.createClass({
     return (<Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={MainPage} />
-        <Route path="/heartbeat" component={HeartbeatPage} />
+        <Route path="/channel-heartbeat" component={HeartbeatPage} />
         <Route path="/people-land" component={PeopleLandPage} />
         <Route path="/channel-land" component={ChannelLandPage} />
         <Route path="/messages-and-reactions" component={MessagesAndReactionsPage} />
         <Route path="/frequent-speakers" component={FrequentSpeakersPage} />
         <Route path="/emoji-timeline" component={EmojiTimelinePage} />
+        <Route path="/error" component={ErrorPage} />
       </Route>
     </Router>);
   }
