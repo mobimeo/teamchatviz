@@ -117,10 +117,10 @@ export default React.createClass({
       <Header title="people land" />
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-6 no-padding">
+          <div className="col-xs-4 col-lg-6 no-padding">
             <SearchBox onChange={this.onSearch} placeholder="search members" />
           </div>
-          <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
+          <div className="col-xs-8 col-lg-6 no-padding text-right">
             <ClusterGroups data={data} onChange={this.onGroupSelection} />
           </div>
         </div>

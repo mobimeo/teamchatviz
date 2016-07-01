@@ -143,10 +143,10 @@ export default React.createClass({
       <Header title="messages and reactions" />
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-6 no-padding">
+          <div className="col-xs-5 col-lg-6 no-padding">
             <SortDropdown onChange={this.onSort} /> <SearchBox onChange={this.onSearch} placeholder="search channel" />
           </div>
-          <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
+          <div className="col-xs-7 col-lg-6 no-padding text-right">
             <DateRangePicker onChange={this.onDateChange} />
           </div>
         </div>

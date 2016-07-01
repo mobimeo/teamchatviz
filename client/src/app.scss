@@ -18,18 +18,26 @@
   USA
 */
 
-// Variables
+// font
 $font-light: 'DINWeb-Light';
 $font-medium: 'DINWeb-Medium';
 
+// colors
 $color-brand: #00B7BF;
 $color-accent: #FFCC33;
 $color-grey-dark: #393B42;
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
 
+// speed
 $speed-faster: 0.2s;
 $speed-fast: 0.3s;
+
+//screen
+$screen-xl: 1200px;
+$screen-lg: 1024px;
+$screen-md: 992px;
+
 
 // html, body main stiling
 html, body {
@@ -61,6 +69,9 @@ main {
   flex: 1;
 }
 
+.text-right {
+  text-align: right;
+}
 footer {
   background-color: white;
   padding: 0.813rem 0 0.813rem 0;
@@ -286,7 +297,11 @@ p.chart-description {
       font-size: 0.875em;
       font-family: sans-serif;
       cursor: pointer;
-      padding: 0.3rem 2rem 0.3rem 2rem;
+      padding: 0.3rem 2rem;
+
+      @media screen and (max-width: $screen-xl) {
+        padding: 0.3rem 1.4rem;
+      }
     }
     .button:first-child{
       border-top-left-radius: 4px;
@@ -342,20 +357,29 @@ p.chart-description {
 .search-box {
   display: inline-block;
   width: 0;
-}
 
-.search-box input {
-  background-color: white;
-  border: 1px solid $color-grey-light;
-  font-size: 0.875em;
-  font-family: sans-serif;
-  cursor: pointer;
-  border-radius: 4px;
-  padding: 0.3em 8em 0.3em 1em;
-}
+  @media screen and (max-width: $screen-lg) {
+    display: block;
+    margin-top: 0.5rem;
+  }
 
-.search-box input:focus {
-  outline: 0;
+  input {
+    background-color: white;
+    border: 1px solid $color-grey-light;
+    font-size: 0.875em;
+    font-family: sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.3em 1em;
+    width: 14rem;
+
+    @media screen and (max-width: $screen-xl) {
+      width: 10rem;
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
 }
 // end search box
 
