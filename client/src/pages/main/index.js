@@ -79,7 +79,7 @@ export default withRouter(React.createClass({
         </div>
         <div className="channels row around-xs">
           <div className="col-xs-4">
-              <Channel linkTo="/heartbeat"
+              <Channel linkTo="/channel-heartbeat"
                 imageName="chartHeartbeat"
                 title="channel heartbeat"
                 description="Compare multiple channel activity aggregated over hours to years" />
