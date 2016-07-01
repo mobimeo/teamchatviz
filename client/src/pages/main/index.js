@@ -61,19 +61,25 @@ export default withRouter(React.createClass({
       </header>
       <main>
         <div className="row site-description">
-          <div className="col-xs-10">
-            <h2>learn and explore your team´s slack jungle</h2>
-            <p>This tool enables you to explore how your Slack team works!</p>
+          <div className="col-xs-6">
+            <p>
+              This tool enables you to explore how your Slack team works!
+              Communication and culture are deeply interwoven in our daily work.
+              These Data vizualisiations help to understand, learn and explore your teams jungle.
+            </p>
           </div>
           {
             isPublic
-              ? <div className="col-xs-2"></div>
-              : <div className="col-xs-2">
-                  <a href="/api/auth/slack-admin">
-                    <img alt="Add to Slack" height="40" width="139"
-                      src="https://platform.slack-edge.com/img/add_to_slack.png"
-                      srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
-                  </a>
+              ? <div className="col-xs-6"></div>
+              : <div className="col-xs-6">
+                  <div className="float-right">
+                    <a href="/api/auth/slack-admin">
+                      <img alt="Add to Slack" height="40" width="139"
+                        src="https://platform.slack-edge.com/img/add_to_slack.png"
+                        srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
+                    </a>
+                    <p className="sm">use admin account to add</p>
+                  </div>
                 </div>
           }
         </div>
