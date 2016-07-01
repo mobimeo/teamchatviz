@@ -23,7 +23,7 @@ import { pgp } from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 
-export default async function(teamId, startDate = null, endDate = null, channelId = null) {
+export default async function(teamId, startDate = null, endDate = null, channelId = null, teamName = null) {
   console.log(`Getting moods and reactions for ${teamId}, ${startDate}, ${endDate}, ${channelId}`);
 
   const opts = {
@@ -68,8 +68,10 @@ export default async function(teamId, startDate = null, endDate = null, channelI
       emojis,
     };
   }
-  const data = await db.any(`SELECT * FROM messages
+  const data = await db.any(`SELECT channels.name as channel_name, messages.*, members.*, messages.id as message_id
+    FROM messages
     INNER JOIN members ON members.id = messages.user_id
+    INNER JOIN channels ON channels.id = messages.channel_id
     WHERE messages.id IN ($1:csv)
     ORDER BY
      CASE messages.id
@@ -79,5 +81,6 @@ export default async function(teamId, startDate = null, endDate = null, channelI
     data,
     channels,
     emojis,
+    teamName,
   };
 };

@@ -102,6 +102,7 @@ export default React.createClass({
         .set('rating', result.rating)
         .set('channel', result.channel)
         .set('emojis', result.emojis)
+        .set('teamName', result.teamName)
     }));
   },
 
@@ -135,6 +136,7 @@ export default React.createClass({
     const chartData = data.get('data');
     const emojis = data.get('emojis');
     const channel = data.get('channel');
+    const teamName = data.get('teamName');
     let days = -1;
     if (this.filters.startDate && this.filters.endDate) {
       days = moment(this.filters.endDate).diff(moment(this.filters.startDate), 'days');
@@ -171,6 +173,7 @@ export default React.createClass({
             </div>
             {
               chartData.map(message => {
+                const href = `https://${teamName}.slack.com/archives/${message.channel_name}/p${message.message_id.replace('.', '')}`;
                 return <div className="message">
                   <div className="row">
                     <div className="col-xs-8">
@@ -180,7 +183,7 @@ export default React.createClass({
                           <div>
                             {emoji.emojify(message.text, (unknown) => emojis[unknown])}
                           </div>
-                          <div className="open-in">open in slack</div>
+                          <div className="open-in"><a href={href} target="_blank">open in slack</a></div>
                         </div>
                       </div>
                       <div className="row">

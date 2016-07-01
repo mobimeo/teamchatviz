@@ -33,7 +33,7 @@ import routes from 'client/routes.js';
 
 import 'normalize.css!';
 import 'flexboxgrid!css';
-import "react-progress-2/main.css!"
+import 'react-progress-2/main.css!';
 import 'client/app.scss!';
 import 'src/burger.scss!';
 
