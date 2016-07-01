@@ -33,6 +33,7 @@ import { Treemap } from 'react-vis';
 import { AutoSizer } from 'react-virtualized';
 import 'react-vis/main.css!';
 import { fetchFrequentSpeakers } from 'client/networking/index.js';
+import 'client/treemap.scss!';
 
 export default React.createClass({
   getInitialState() {
@@ -146,7 +147,12 @@ export default React.createClass({
           </div>
           <div className="col-xs-9" style={{ height: 'calc(100vh - 15rem)' }}>
             <p>
-              { !filters.channelId ? 'all channels' : selectedChannelName} {moment(filters.startDate).format('ll')} - {moment(filters.endDate).format('ll')}
+              { !filters.channelId ? 'all channels ' : '#' + selectedChannelName}
+              for {
+                (filters.startDate && filters.endDate)
+                ? moment(filters.startDate).format('ll') + ' - ' + moment(filters.endDate).format('ll')
+                : ' all times'
+              }
             </p>
             {
               allChannels ? _.chunk(chartData, 4).map((chunk, index) => {
@@ -167,12 +173,18 @@ export default React.createClass({
                   </div>
               }) : <AutoSizer>
                     {({ height, width }) => (
-                      <Treemap height={height} width={width} data={{ title: '', opacity: 1,
-                                  children: chartData.slice(0, 10).map((member, i) => ({
-                                    title: <div>@{member.name} <br /> {member.count} </div>,
-                                    size: member.count,
-                                  }))
-                                }} />
+                      <Treemap height={height}
+                        width={width}
+                        data={{ title: '', opacity: 1,
+                          children: chartData.slice(0, 10).map((member, i) => ({
+                            title: <div className="channel-tree-map">
+                              <img className="channel-tree-map-pic" src={member.image72} />
+                              <span className="channel-tree-map-title">@{member.name}</span>
+                              <br />
+                              <span className="channel-tree-map-count"> {member.count} </span>
+                            </div>,
+                            size: member.count,
+                          })) }} />
                     )}
                 </AutoSizer>
               }
