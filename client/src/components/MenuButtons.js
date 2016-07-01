@@ -46,12 +46,12 @@ export const MenuButtons = React.createClass({
       <div className = { this.state.menuOpened ? 'menu actv' : 'menu' } >
         <ul>
           <li><Link to="/">home</Link></li>
-          <li><Link to="/heartbeat">channel heartbeat</Link></li>
+          <li><Link to="/channel-heartbeat">channel heartbeat</Link></li>
           <li><Link to="/channel-land">channel land</Link></li>
           <li><Link to="/people-land">people land</Link></li>
           <li><Link to="/messages-and-reactions">messages & reactions</Link></li>
           <li><Link to="/frequent-speakers">frequent speakers</Link></li>
-          <li><Link to="/heartbeat">emoji timeline</Link></li>
+          <li><Link to="/emoji-timeline">emoji timeline</Link></li>
           <li><Link to="/about">about</Link></li>
         </ul>
       </div>

@@ -142,7 +142,7 @@ export default React.createClass({
         onMouseEnter={this._onMouseEnter}
         width={width}
         height={100}
-        margin={{left: 0, top: 0, right: 0, bottom: 0}}
+        margin={{left: 0.5, top: 0.5, right: 0.5, bottom: 0.5}}
         yDomain={[0, max + ( max * 0.3 ) ]}
         key={'xyPlot' + this.props.parentKey}
         >

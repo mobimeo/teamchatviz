@@ -153,7 +153,7 @@ export default React.createClass({
                 return <div className="row" key={index}>
                     {
                       chunk.map((member, memberIndex) => {
-                        return <div className="col-xs-3 member" key={memberIndex} style={{ textAlign: 'center' }}>
+                        return <div className={"col-xs-3 member" + (member.is_current_user ? ' is-current-user' : '')} key={memberIndex} style={{ textAlign: 'center' }}>
                           <span className="member-index">{member.count}</span>
                           <br />
                           <img className="member-img" src={member.image72} style={{ borderRadius: '50%' }} />
