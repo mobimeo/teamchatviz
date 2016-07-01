@@ -147,7 +147,7 @@ export default React.createClass({
           </div>
           <div className="col-xs-9" style={{ height: 'calc(100vh - 15rem)' }}>
             <p>
-              { !filters.channelId ? 'all channels ' : '#' + selectedChannelName}
+              { !filters.channelId ? 'all channels ' : '#' + selectedChannelName + ' '}
               for {
                 (filters.startDate && filters.endDate)
                 ? moment(filters.startDate).format('ll') + ' - ' + moment(filters.endDate).format('ll')
