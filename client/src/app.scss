@@ -69,6 +69,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .container.wrap.content {
@@ -502,6 +503,10 @@ button:focus{
   border-radius: 4px;
   padding: 0.1rem;
 
+  &.first {
+    margin-bottom: 1rem;
+  }
+
   &:hover {
     background-color: $color-accent;
     outline: 0;
@@ -519,26 +524,28 @@ button:focus{
 }
 // end channel list
 
+
+.emoji-timeline-plot {
+  margin-top: 2rem;
+}
 .emoji-timeline-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines {
   stroke-dasharray: 2, 2;
 }
-
 .emoji-timeline-column {
   border-top: black 0.25rem solid;
   // margin: 0.25rem;
   background-color: #fafafa;
 }
-
 .emoji {
   box-sizing: content-box;
   display: inline-block;
   margin: 0.5rem 0.2rem;
-  width: 3rem;
+  min-width: 3rem;
   border: 1px solid $color-grey-light;
   border-radius: 4px;
   text-align: center;
   white-space: nowrap;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.05rem 0.1rem;
   z-index: 5;
   background-color: white;
@@ -585,8 +592,16 @@ button:focus{
     .emoji-count {
       align-self: center;
       vertical-align: middle;
+      margin: 0 0.2rem;
+      color: $color-grey-medium;
     }
   }
+}
+
+
+.time-range {
+  color: $color-grey-medium;
+  font-size: 0.8rem;
 }
 
 // frequent speakers

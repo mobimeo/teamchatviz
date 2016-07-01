@@ -151,15 +151,17 @@ export default React.createClass({
           </div>
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
-          <div className="col-xs-3 left-list-wrapper">
-            <div className="channel-list-element" onClick={this.onAllChannelsClick}>All channels </div>
-            <div>
-              {
-                channels.map((d, i) => {
-                  const onClick = _.bind(this.onChannelClick, this, d);
-                  return <div onClick={onClick} className="channel-list-element" key={i}><span>#{d.name}</span></div>;
-                })
-              }
+          <div className="col-xs-3">
+            <div className="left-list-wrapper">
+              <div className="channel-list-element first" onClick={this.onAllChannelsClick}>All channels </div>
+              <div>
+                {
+                  channels.map((d, i) => {
+                    const onClick = _.bind(this.onChannelClick, this, d);
+                    return <div onClick={onClick} className="channel-list-element" key={i}><span>#{d.name}</span></div>;
+                  })
+                }
+              </div>
             </div>
           </div>
           <div className="col-xs-9 messages-reactions">

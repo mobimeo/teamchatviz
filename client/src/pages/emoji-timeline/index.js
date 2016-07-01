@@ -157,8 +157,8 @@ export default React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
-            <div className="channel-list-element" onClick={this.onAllChannelsClick}>All channels </div>
             <div className="left-list-wrapper">
+              <div className="channel-list-element" onClick={this.onAllChannelsClick}>all channels </div>
               {
                 channels.map((item, index) => {
                   const onClick = _.bind(this.onChannelClick, this, item);
@@ -172,7 +172,7 @@ export default React.createClass({
               <div className="col-xs-3">
                 { channel ? '#'+ channel.name : 'all channels' }
               </div>
-              <div className="col-xs-3">
+              <div className="col-xs-6 time-range">
               {
                 (startDate && endDate) ? moment(startDate).format('ll') + ' - ' + moment(endDate).format('ll') : 'all times'
               }
@@ -182,7 +182,7 @@ export default React.createClass({
               <div className="col-xs-3">
                 most used emojis
               </div>
-              <div className="col-xs-3">
+              <div className="col-xs-6">
               {
                 rating
                   .slice(0, 3)
