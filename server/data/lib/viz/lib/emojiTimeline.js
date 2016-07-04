@@ -78,10 +78,10 @@ export default async function(teamId, startDate = null, endDate = null, interval
   if (!endDate) {
     endDate = await getMaxDate(teamId);
   }
-  startDate = moment(startDate).utc().format();
-  endDate = moment(endDate).utc().format();
+  startDate = moment.utc(startDate).format();
+  endDate = moment.utc(endDate).format();
   const days = moment(endDate).diff(moment(startDate), 'days');
-  const intervalDays = days <= 10 ? 1 : parseInt(days / 10) + 1;
+  const intervalDays = days <= 10 ? 1 : parseInt(days / 14) + 1;
   interval =  intervalDays + ' days';
   console.log(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}, ${interval}, ${days}`);
   const opts = {

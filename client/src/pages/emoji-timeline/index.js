@@ -145,21 +145,18 @@ export default React.createClass({
       maxY = max.total;
     }
 
-    if (chartData.length > 0) {
-      chartData = [{
+    if (chartData.length > 1) {
+      const lastPoint = chartData[chartData.length - 1];
+      const preLastPoint = chartData[chartData.length - 2];
+      const diff = moment.utc(lastPoint.id).diff(moment.utc(preLastPoint.id), 'days');
+      chartData = chartData.concat([{
         total: 0,
-        id: moment.utc(chartData[0].id).subtract(1, 'days').format(),
-        emojis: [],
-        fake: true,
-      }].concat(chartData).concat([{
-        total: 0,
-        id: moment.utc(chartData[chartData.length - 1].id).add(1, 'days').format(),
+        id: moment.utc(lastPoint.id).add(diff, 'days').format(),
         emojis: [],
         fake: true,
       }]);
     }
     const labelValues = chartData.map(i => moment.utc(i.id).unix());
-    console.log(labelValues);
     return <div>
       <Header title="emoji timeline" />
       <main>
@@ -235,7 +232,6 @@ export default React.createClass({
                         x: moment.utc(d.id).unix(),
                         y: d.total,
                       };
-                      console.log(value);
                       return <Hint value={value} orientation="bottomright">
                         <EmojiColumn height={600} key={i} item={d} emojis={emojis} maxY={maxY} />
                       </Hint>;
