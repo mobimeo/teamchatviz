@@ -87,7 +87,8 @@ export default React.createClass({
   },
 
   onZoom() {
-    if (d3.event) {
+    if (d3.event
+      && d3.event.sourceEvent) {
       d3.event.sourceEvent.preventDefault()
     }
     var z = this.z;
@@ -123,6 +124,10 @@ export default React.createClass({
     this.z.scale(1);
     this.z.translate([0, 0]);
     this.onZoom();
+  },
+
+  onPointClick(...args) {
+    this.props.onPointClick(...args);
   },
 
   render() {
@@ -189,7 +194,10 @@ export default React.createClass({
             data={points}
             point={this.props.point}
             showTooltip={this.showTooltip}
-            hideTooltip={this.hideTooltip} />
+            hideTooltip={this.hideTooltip}
+            onPointClick={this.onPointClick}
+             />
+            }
           <Tooltip zoom={this.state.data.get('zoom')} tooltip={tooltip} />
         </g>
       </svg>

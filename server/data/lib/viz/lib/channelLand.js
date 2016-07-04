@@ -53,7 +53,12 @@ export default async function(teamId, startDate = null, endDate = null, interval
   for(let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
-  const channels = await db.any(`SELECT * FROM channels WHERE team_id=$(teamId)`, {
+  const channels = await db.any(`SELECT channels.*,
+    members.real_name,
+    members.name as creator
+   FROM channels
+   LEFT JOIN members ON members.id = channels.created_by
+   WHERE channels.team_id=$(teamId)`, {
     teamId,
   });
 

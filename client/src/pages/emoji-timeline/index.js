@@ -138,12 +138,25 @@ export default React.createClass({
     const channels = data.get('channels');
     const emojis = data.get('emojis');
     const rating = data.get('rating');
-    const chartData = data.get('data');
+    let chartData = data.get('data');
     const max = _.maxBy(chartData, item => item.total);
     let maxY = 0;
     if (max) {
       maxY = max.total;
     }
+
+    if (chartData.length > 1) {
+      const lastPoint = chartData[chartData.length - 1];
+      const preLastPoint = chartData[chartData.length - 2];
+      const diff = moment.utc(lastPoint.id).diff(moment.utc(preLastPoint.id), 'days');
+      chartData = chartData.concat([{
+        total: 0,
+        id: moment.utc(lastPoint.id).add(diff, 'days').format(),
+        emojis: [],
+        fake: true,
+      }]);
+    }
+    const labelValues = chartData.map(i => moment.utc(i.id).unix());
     return <div>
       <Header title="emoji timeline" />
       <main>
@@ -162,7 +175,7 @@ export default React.createClass({
               {
                 channels.map((item, index) => {
                   const onClick = _.bind(this.onChannelClick, this, item);
-                  return <div key={index} onClick={onClick} className="channel-list-element">{item.name}</div>
+                  return <div key={index} onClick={onClick} className="channel-list-element">#{item.name}</div>
                 })
               }
             </div>
@@ -193,39 +206,40 @@ export default React.createClass({
               </div>
             </div>
             <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
-              <XYPlot
-                width={800}
-                height={600}
-                >
-                <LineSeries
-                  data={chartData.map(i => ({
-                    x: moment.utc(i.id).unix(),
-                    y: i.total,
-                  }))}
-                  color='white'
-                  size='1px'
-                  xType='time'
-                  key={'xyPlotLineSeries' + this.props.parentKey}
-                />
-                <HorizontalGridLines  />
-                <XAxis title="time"
-                  labelValues={chartData.map(i => moment.utc(i.id).unix())}
-                  tickValues={chartData.map(i => moment.utc(i.id).unix())}
-                  labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
+              <AutoSizer>{({ height, width }) => (
+                <XYPlot
+                  width={width}
+                  height={600}
+                  >
+                  <LineSeries
+                    data={chartData.map(i => ({
+                      x: moment.utc(i.id).unix(),
+                      y: i.total,
+                    }))}
+                    color='white'
+                    xType='time'
+                    key={'xyPlotLineSeries' + this.props.parentKey}
                   />
-                <YAxis title="total emoji count" />
-                {
-                  chartData.map((d, i) => {
-                    var value = {
-                      x: moment.utc(d.id).unix(),
-                      y: d.total,
-                    };
-                    return <Hint value={value} orientation="bottomright">
-                      <EmojiColumn key={i} item={d} emojis={emojis} maxY={maxY} />
-                    </Hint>;
-                  })
-                }
-              </XYPlot>
+                  <HorizontalGridLines  />
+                  <XAxis title="time"
+                    labelValues={labelValues}
+                    labelFormat={(time) => moment.unix(time).utc().format('MMM D')}
+                    />
+                  <YAxis title="total emoji count" />
+                  {
+                    chartData.map((d, i) => {
+                      var value = {
+                        x: moment.utc(d.id).unix(),
+                        y: d.total,
+                      };
+                      return <Hint value={value} orientation="bottomright">
+                        <EmojiColumn height={600} key={i} item={d} emojis={emojis} maxY={maxY} />
+                      </Hint>;
+                    })
+                  }
+                </XYPlot>
+              )}
+              </AutoSizer>
             </div>
           </div>
         </div>

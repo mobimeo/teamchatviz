@@ -33,6 +33,7 @@ export const App = React.createClass({
     fetchConfig()
       .then(cfg => {
         config.public = cfg.public;
+        config.teamName = cfg.teamName;
         this.setState(config);
       });
   },

@@ -21,9 +21,16 @@
 import React from 'react';
 import moment from 'moment';
 
-export default (props) => {
-  return (coords, index) => {
-    const diameter = (props.zoom > 4 ? 0.2 * props.zoom : 1) * (coords.highlighted ? 32 : 18);
+export default React.createClass({
+  onClick() {
+    this.props.onPointClick(this.props.coords);
+  },
+  render() {
+    const props = this.props;
+    const coords = this.props.coords;
+    const index = this.props.index;
+    const diameter = (props.zoom > 4 ? 0.2 * props.zoom : 1)
+      * (coords.highlighted ? 32 : 18);
     const radius = diameter / 2;
     const circleProps = {
       x: props.xScale(coords.x) - radius / props.zoom,
@@ -38,10 +45,13 @@ export default (props) => {
     return <g>
       <defs>
         <clipPath id={'circlePath' + index}>
-          <circle cx={circleProps.x + radius / props.zoom} cy={circleProps.y + radius / props.zoom} r={ radius / props.zoom } />
+          <circle cx={circleProps.x + radius / props.zoom}
+            cy={circleProps.y + radius / props.zoom}
+            r={ radius / props.zoom } />
         </clipPath>
       </defs>
       <image
+        onClick={this.onClick}
         clipPath={'url(#circlePath' + index + ')'}
         xlinkHref={coords.highlighted ? coords.image48 : coords.image24}
         style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
@@ -49,5 +59,5 @@ export default (props) => {
         onMouseOver={props.showTooltip}
         onMouseOut={props.hideTooltip} />
     </g>;
-  };
-};
+  }
+});

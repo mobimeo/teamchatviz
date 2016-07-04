@@ -1,6 +1,6 @@
 /*
   Slack Viz
-  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
+  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70width8, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -21,8 +21,14 @@
 import React from 'react';
 import moment from 'moment';
 
-export default (props) => {
-  return (coords, index) => {
+export default React.createClass({
+  onClick() {
+    this.props.onPointClick(this.props.coords);
+  },
+  render() {
+    const props = this.props;
+    const coords = this.props.coords;
+    const index = this.props.index;
     const diameter = (props.zoom > 4 ? 0.2 * props.zoom : 1) * (coords.highlighted ? 18 : 10);
     const radius = diameter / 2;
     const circleProps = {
@@ -36,9 +42,10 @@ export default (props) => {
       'data-name': '#' + coords.name,
     };
     return <circle
+      onClick={this.onClick}
       style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
       {...circleProps}
       onMouseOver={props.showTooltip}
       onMouseOut={props.hideTooltip} />;
-  };
-};
+  }
+});

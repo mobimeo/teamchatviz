@@ -65,6 +65,7 @@ export default async function(teamId, startDate = null, endDate = null, currentU
       thisUserId: currentUser.id,
     }))
     .map(member => {
+      member.username = member.name,
       member.name = member.first_name && member.last_name
         ? `${member.first_name} ${member.last_name}`
         : `${member.name}`;

@@ -30,6 +30,8 @@ import _ from 'lodash';
 import { Map } from 'immutable';
 import ChannelPoint from 'client/d3-components/ChannelPoint.js';
 import ClusterGroups from 'client/components/ClusterGroups.js';
+import Modal from 'client/components/Modal.js';
+import moment from 'moment';
 
 export default React.createClass({
   getInitialState() {
@@ -41,6 +43,8 @@ export default React.createClass({
         channels: [],
         tooltipIndex: null,
         shownGroups: [],
+        selectedChannel: {},
+        detailsOpened: false,
       })
     };
   },
@@ -86,11 +90,31 @@ export default React.createClass({
     }));
   },
 
+  onPointClick(point) {
+    const channels = this.state.data.get('channels');
+    const channel = channels.find(m => m.id === point.id);
+    this.setState(({data}) => ({
+      data: data
+        .set('selectedChannel', channel)
+        .set('detailsOpened', true)
+    }));
+  },
+
+  closeModal: function() {
+    this.setState(({data}) => ({
+      data: data
+        .set('detailsOpened', false)
+    }));
+  },
+
   render() {
     const data = this.state.data.get('data');
     const channels = this.state.data.get('channels');
     const tooltipIndex = this.state.data.get('tooltipIndex');
     const shownGroups = this.state.data.get('shownGroups');
+    const detailsOpened = this.state.data.get('detailsOpened');
+    const channel = this.state.data.get('selectedChannel');
+    const teamName = this.state.config ? this.state.config.teamName : '';
     data.forEach(item => {
       let found = false;
       channels.forEach(channel => {
@@ -120,9 +144,10 @@ export default React.createClass({
             <div className="left-list-wrapper">
               {
                 channels.map((item, index) => {
+                  const onClick = _.bind(this.onPointClick, this, item);
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
-                  return <div key={index} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">#{item.name}</div>
+                  return <div key={index} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">#{item.name}</div>
                 })
               }
             </div>
@@ -130,9 +155,37 @@ export default React.createClass({
           <div className="col-xs-9">
             <AutoSizer>
               {({ height, width }) => (
-                <HullPlot shownGroups={shownGroups} point={ChannelPoint} showTooltipFor={tooltipIndex} data={data} width={width} height={height} padding={100} />
+                <HullPlot
+                  onPointClick={this.onPointClick}
+                  shownGroups={shownGroups}
+                  point={ChannelPoint}
+                  showTooltipFor={tooltipIndex}
+                  data={data}
+                  width={width}
+                  height={height}
+                  padding={100} />
               )}
             </AutoSizer>
+            <Modal
+              isOpen={detailsOpened}
+            >
+              <div style={{ textAlign: 'right' }}>
+                <a style={{ cursor: 'pointer' }} onClick={this.closeModal}>
+                  <img src="/images/close.svg" style={{ width: '1rem' }} />
+                </a>
+              </div>
+              <h3>#{channel.name}</h3>
+              <p>{channel.purpose ? channel.purpose.value : ''}</p>
+              <p>created by <a target="_blank" href={`https://moovel.slack.com/team/${channel.creator}`}>
+                  {channel.real_name}
+                </a> on {moment(channel.creation_date).format('ll')}
+              </p>
+              <p>
+                <a target="_blank" href={`https://moovel.slack.com/archives/${channel.name}`}>
+                {channel.number_of_members} members (open in Slack)
+                </a>
+              </p>
+            </Modal>
           </div>
         </div>
       </main>

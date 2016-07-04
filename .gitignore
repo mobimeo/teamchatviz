@@ -4,4 +4,5 @@ npm-debug.log*
 .env
 .DS_Store
 deploy.sh
+deploy_real.sh
 install.sh

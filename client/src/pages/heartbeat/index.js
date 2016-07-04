@@ -34,9 +34,7 @@ import 'react-vis/main.css!';
 import 'react-virtualized/styles.css!';
 
 import PlotRow from './lib/PlotRow';
-import PlotHeaderRow from './lib/PlotHeaderRow';
-
-import shallowCompare from 'react-addons-shallow-compare'
+import shallowCompare from 'react-addons-shallow-compare';
 
 export default React.createClass({
   getInitialState() {
@@ -116,12 +114,7 @@ export default React.createClass({
     const chunks = this.state.data.get('chunks').toJS();
     if (index === 0) {
       const data = this.state.data.get('displayedItems').get(0);
-      return <PlotHeaderRow
-        data={data}
-        chunks={chunks}
-        parentKey={'scrollRow' + index}
-        key={'scrollRow' + index}
-        />
+      return <div style={{ height: '40px' }}/>
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
     return <div className="heartbeat-plot">
@@ -146,6 +139,14 @@ export default React.createClass({
 
   render() {
     const data = this.state.data;
+    const displayedItems = data.get('displayedItems');
+    const startDate = this.filters.startDate
+      ? moment.utc(this.filters.startDate)
+      : moment.utc(displayedItems.get(0).heartbeat[0].t);
+    const endDate = this.filters.endDate
+      ? moment.utc(this.filters.endDate)
+      : moment.utc(displayedItems.get(0).heartbeat[displayedItems.get(0).heartbeat.length - 1].t);
+    const isEndToday = moment(endDate).isSame(moment(), 'day');
     return <div>
       <Header title="channel heartbeat" />
       <main>
@@ -159,6 +160,19 @@ export default React.createClass({
           </div>
         </div>
         <div>
+          <div className="row middle-xs" style={{ paddingRight: '20px' }}>
+            <div className="col-xs-2">
+              <span>&nbsp;</span>
+            </div>
+            <div className="col-xs-10">
+              <div className="heartbeat-x-start">
+                { startDate.format('ll') }
+              </div>
+              <div className="heartbeat-x-end">
+                { isEndToday ? 'now' : endDate.format('ll') }
+              </div>
+            </div>
+          </div>
           <WindowScroller>
             {({ height, scrollTop }) => (
               <AutoSizer disableHeight>
@@ -169,7 +183,7 @@ export default React.createClass({
                     height={height}
                     scrollTop={scrollTop}
                     overscanRowCount={5}
-                    rowCount={data.get('displayedItems').size + 1}
+                    rowCount={displayedItems.size + 1}
                     rowHeight={this._getRowHeight}
                     rowRenderer={this.renderItem}
                     width={width}
