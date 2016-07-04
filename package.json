@@ -20,7 +20,7 @@
     "babel"
   ],
   "author": "moovel GmbH",
-  "license": "LGPLv2.1",
+  "license": "LGPL-2.1",
   "contributors": [
     {
       "name": "Oleksii Rudenko",
@@ -37,6 +37,14 @@
     {
       "name": "Benedikt Groß",
       "email": "benedikt.gross@moovel.com"
+    },
+    {
+      "name": "Benedikt Groß",
+      "email": "benedikt.gross@moovel.com"
+    },
+    {
+      "name": "Tobias Lauer",
+      "email": "tobias.lauer@moovel.com"
     }
   ],
   "dependencies": {

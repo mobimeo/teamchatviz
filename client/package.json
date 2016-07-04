@@ -19,6 +19,10 @@
     {
       "name": "Benedikt Groß",
       "email": "benedikt.gross@moovel.com"
+    },
+    {
+      "name": "Tobias Lauer",
+      "email": "tobias.lauer@moovel.com"
     }
   ],
   "jspm": {
@@ -171,7 +175,7 @@
   },
   "keywords": [],
   "author": "Moovel GmbH",
-  "license": "LGPLv2.1",
+  "license": "LGPL-2.1",
   "devDependencies": {
     "jspm": "^0.17.0-beta.22"
   }
