@@ -1,6 +1,6 @@
 /*
   Slack Viz
-  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70width8, Stuttgart, Germany hallo@moovel.com
+  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
