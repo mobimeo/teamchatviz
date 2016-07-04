@@ -1126,14 +1126,15 @@ html {
 
 .bnnr {
   background-image: url(../images/banner.jpg);
-  width: 1799px;
-  height: 860px;
+  width: 100%;
   background-color: black; }
   .bnnr h1 {
     color: #00b7bf;
     text-align: center;
     margin: 0;
-    padding-top: 500px; }
+    padding-top: 500px;
+    font-weight: normal;
+    font-size: 4rem; }
   .bnnr p {
     color: white;
     text-align: center; }
@@ -1149,19 +1150,42 @@ html {
   background-color: #f9f9f9;
   padding: 50px 5%; }
 
+.lght h2 {
+  font-size: 3.2rem;
+  font-weight: normal; }
+.lght h3 {
+  font-size: 2.5rem;
+  font-weight: normal; }
+.lght h4 {
+  margin-top: 5rem;
+  font-size: 2.8rem;
+  font-weight: normal; }
+.lght .txt-lft {
+  padding-right: 5rem; }
+.lght .txt-rght {
+  padding-left: 5rem; }
+.lght .img-lft {
+  margin-left: -30%;
+  width: 130%; }
+.lght .img-rght {
+  margin-left: 5%;
+  width: 130%; }
+
 .drk {
   background-color: #25262e;
   padding: 80px 0; }
   .drk h2 {
-    color: white;
-    margin: 0 0 20px 0; }
+    color: #f9f9f9;
+    margin: 0 0 20px 0;
+    font-weight: normal;
+    font-size: 3rem; }
   .drk p {
     margin: 0;
     color: #666;
-    font-size: 12px; }
+    font-size: 1.5rem; }
   .drk a {
     color: #00b7bf;
-    font-size: 18px; }
+    font-size: 2.2rem; }
 
 .demo-bttn {
   display: inline-block;
@@ -1175,13 +1199,6 @@ html {
   text-decoration: none;
   color: #ffcc33;
   cursor: pointer; }
-
-.img-lft {
-  margin-left: -30%;
-  width: 120%; }
-
-.img-rght {
-  width: 130%; }
 
 .shdw {
   -webkit-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
