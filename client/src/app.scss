@@ -19,8 +19,16 @@
 */
 
 // font
-$font-light: 'DINWeb-Light';
-$font-medium: 'DINWeb-Medium';
+$font-regular: 'Gidole-Regular';
+
+@font-face {
+  font-family: $font-regular;
+  src: url("/fonts/Gidole-Regular.otf");
+  src: url("/fonts/Gidole-Regular.eot");
+  src: url("/fonts/Gidole-Regular.woff");
+  src: url("/fonts/Gidole-Regular.ttf");
+}
+
 
 // colors
 $color-brand: #00B7BF;
@@ -45,8 +53,8 @@ $screen-md: 48rem;
 
 // html, body main stiling
 html, body {
-  font-family: sans-serif;
-  font-size: 16px;
+  font-family: $font-regular, sans-serif;
+  // font-size: 16px;
 }
 
 * {
@@ -141,11 +149,11 @@ footer {
 .chart-description,
 .site-description {
   color: $color-grey-light;
-  font-family: sans-serif;
+  font-family: $font-regular, sans-serif;
 }
 
 .site-description {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   border-bottom: 1px solid $color-grey-light;
   padding: 40px 0;
 
@@ -157,15 +165,15 @@ footer {
     margin: 0;
 
     &.sm {
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       line-height: 1.1rem;
       text-align: center;
     }
   }
 }
 p.chart-description {
-  font-size: 0.750rem;
-  line-height: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
 }
 
 .channels.row {
@@ -226,7 +234,7 @@ p.chart-description {
   border-bottom: 1px $color-grey-light solid;
 
   h1 {
-    font-family: sans-serif;
+    font-family: $font-regular, sans-serif;
     color: $color-grey-dark;
     display: inline-block;
     font-size: 1.625em;
@@ -346,8 +354,8 @@ p.chart-description {
     .button {
       background-color: white;
       border: 1px solid $color-grey-light;
-      font-size: 0.875em;
-      font-family: sans-serif;
+      font-size: 0.9em;
+      font-family: $font-regular, sans-serif;
       cursor: pointer;
       padding: 0.3rem 2rem;
 
@@ -418,8 +426,8 @@ p.chart-description {
   input {
     background-color: white;
     border: 1px solid $color-grey-light;
-    font-size: 0.875em;
-    font-family: sans-serif;
+    font-size: 0.9em;
+    font-family: $font-regular, sans-serif;
     cursor: pointer;
     border-radius: 4px;
     padding: 0.3em 1em;
@@ -447,8 +455,8 @@ p.chart-description {
   display: inline-block;
   background-color: white;
   border: 1px solid $color-grey-light;
-  font-size: 0.875em;
-  font-family: sans-serif;
+  font-size: 0.9em;
+  font-family: $font-regular, sans-serif;
   cursor: pointer;
   border-radius: 4px;
   padding: 0.3em 1em 0.3em 1em;
@@ -519,7 +527,7 @@ p.chart-description {
 
 // cross-hair
 .cross-hair {
-  font-size: 0.750rem;
+  font-size: 0.9rem;
   padding: 0.1rem;
   text-align: center;
 }
@@ -630,7 +638,7 @@ button:focus{
   border-radius: 4px;
   text-align: center;
   white-space: nowrap;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   padding: 0.05rem 0.1rem;
   z-index: 5;
   background-color: white;
@@ -686,7 +694,7 @@ button:focus{
 
 .time-range {
   color: $color-grey-medium;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 // frequent speakers
@@ -703,7 +711,7 @@ button:focus{
   }
   .member-index {
     display: inline-block;
-    font-family: sans-serif;
+    font-family: $font-regular, sans-serif;
     font-size: 1.5rem;
   }
 }
@@ -733,12 +741,12 @@ button:focus{
 
 .heartbeat-x-start {
   float: left;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .heartbeat-x-end {
   float: right;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .heartbeat-y-mark-value {
@@ -813,12 +821,12 @@ button:focus{
   padding-left: 2rem;
 
   h2{
-    font-family: sans-serif;
+    font-family: $font-regular, sans-serif;
     font-size: 1.2rem;
     margin-top: 0.4rem;
   }
   .reactions{
-    font-family: sans-serif;
+    font-family: $font-regular, sans-serif;
     padding-left: 1rem;
     margin: 2rem 0 1.5rem 0;
     font-weight: bold;
@@ -878,11 +886,11 @@ button:focus{
     margin-left: 36px;
 
     .user-name{
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: $color-grey-dark;
     }
     .message-time{
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       color: $color-grey-medium;
     }
     .user-img{
