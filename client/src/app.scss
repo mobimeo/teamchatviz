@@ -34,9 +34,13 @@ $speed-faster: 0.2s;
 $speed-fast: 0.3s;
 
 //screen
-$screen-xl: 1200px;
-$screen-lg: 1024px;
-$screen-md: 992px;
+$screen-xl: 75rem;
+$screen-lg: 62rem;
+$screen-md: 48rem;
+
+// $screen-xl: 76rem;
+// $screen-lg: 65rem;
+// $screen-md: 49rem;
 
 
 // html, body main stiling
@@ -94,9 +98,21 @@ footer {
   z-index: 1;
 }
 
+.container,
 .container.wrap.content {
   position: relative;
+
+  @media only screen and (min-width: 48rem) {
+    width: 46rem;
+  }
+  @media only screen and (min-width: 62rem) {
+    width: 61rem;
+  }
+  @media only screen and (min-width: 75rem) {
+    width: 71rem;
+  }
 }
+
 
 .github-ribbon {
   position: fixed;
@@ -117,7 +133,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.05rem;
 
-  @media screen and (max-width: $screen-md) {
+  @media screen and (max-width: $screen-lg) {
     margin-top: 1rem;
   }
 }
