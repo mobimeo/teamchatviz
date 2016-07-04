@@ -24,14 +24,18 @@ import { Link } from 'react-router';
 export default React.createClass({
   render() {
     return <Link to={this.props.linkTo} className="chart-container">
-      <div className="chart-image-link">
-        <div className={this.props.imageName + ' chart-image'} style={{width: '7.813rem', height: '7.813rem'}}></div>
-      </div>
-      <div>
-        <div className="chart-title">{this.props.title}</div>
-        <p className="chart-description">
-          {this.props.description}
-        </p>
+      <div className="row">
+        <div className="col-md-5">
+          <div className="chart-image-link">
+            <div className={this.props.imageName + ' chart-image'} style={{width: '7.813rem', height: '7.813rem'}}></div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="chart-title">{this.props.title}</div>
+          <p className="chart-description">
+            {this.props.description}
+          </p>
+        </div>
       </div>
     </Link>;
   }

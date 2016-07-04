@@ -116,6 +116,10 @@ footer {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
+
+  @media screen and (max-width: $screen-md) {
+    margin-top: 1rem;
+  }
 }
 
 .chart-description,
