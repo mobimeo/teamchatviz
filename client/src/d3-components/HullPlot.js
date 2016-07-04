@@ -87,7 +87,8 @@ export default React.createClass({
   },
 
   onZoom() {
-    if (d3.event) {
+    if (d3.event
+      && d3.event.sourceEvent) {
       d3.event.sourceEvent.preventDefault()
     }
     var z = this.z;
