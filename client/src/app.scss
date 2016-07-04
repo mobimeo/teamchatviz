@@ -986,3 +986,31 @@ button:focus{
 .loader-60devs .loader-60devs-progress {
   background-color: #00B7BF;
 }
+
+.dialog {
+  display: none;
+  position: fixed;
+  top: 45%;
+  left: 45%;
+  background-color: #393B42;
+  padding: 1rem;
+  color: #E6E6E6;
+  width: 25rem;
+
+  a {
+    color: white;
+  }
+
+  &.visible {
+    display: block;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 6rem;
+  }
+
+  .row {
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+  }
+}

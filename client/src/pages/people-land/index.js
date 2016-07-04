@@ -30,6 +30,7 @@ import _ from 'lodash';
 import { Map } from 'immutable';
 import PersonPoint from 'client/d3-components/PersonPoint.js';
 import ClusterGroups from 'client/components/ClusterGroups.js';
+import Modal from 'client/components/Modal.js';
 
 export default React.createClass({
   getInitialState() {
@@ -43,6 +44,8 @@ export default React.createClass({
         members: [],
         tooltipIndex: null,
         shownGroups: [],
+        detailsOpened: false,
+        selectedUser: {},
       })
     };
   },
@@ -74,17 +77,34 @@ export default React.createClass({
   },
 
   mouseOverListMember(member) {
-    const members = this.state.data.get('members');
+    const points = this.state.data.get('data');
+    points.forEach(item => {
+      if (item.id === member.id) {
+        item.highlighted = true;
+      } else {
+        item.highlighted = false;
+      }
+    })
     this.setState(({data}) => ({
       data: data
         .set('tooltipIndex', member.id)
+        .set('data', points)
     }));
   },
 
   mouseOutListMember(member) {
+    const points = this.state.data.get('data');
+    points.forEach(item => {
+      if (item.id === member.id) {
+        item.highlighted = true;
+      } else {
+        item.highlighted = false;
+      }
+    })
     this.setState(({data}) => ({
       data: data
         .set('tooltipIndex', '')
+        .set('data', points)
     }));
   },
 
@@ -95,11 +115,69 @@ export default React.createClass({
     }));
   },
 
+  onPointClick(point) {
+    const members = this.state.data.get('members');
+    const member = members.find(m => m.id === point.id);
+    this.setState(({data}) => ({
+      data: data
+        .set('selectedUser', member)
+        .set('detailsOpened', true)
+    }));
+  },
+
+  closeModal: function() {
+    this.setState(({data}) => ({
+      data: data
+        .set('detailsOpened', false)
+    }));
+  },
+
   render() {
     const data = this.state.data.get('data');
     const members = this.state.data.get('members');
     const tooltipIndex = this.state.data.get('tooltipIndex');
     const shownGroups = this.state.data.get('shownGroups');
+    const detailsOpened = this.state.data.get('detailsOpened');
+    const user = this.state.data.get('selectedUser');
+    const attributes = [];
+    if (user) {
+      if (user.email) {
+        attributes.push(
+          <div className="row">
+            <div className="col-xs-4">
+              Email
+            </div>
+            <div className="col-xs-8">
+              {user.email}
+            </div>
+          </div>
+        );
+      }
+      if (user.phone) {
+        attributes.push(
+          <div className="row">
+            <div className="col-xs-4">
+              Phone
+            </div>
+            <div className="col-xs-8">
+              {user.phone}
+            </div>
+          </div>
+        );
+      }
+      if (user.skype) {
+        attributes.push(
+          <div className="row">
+            <div className="col-xs-4">
+              Skype
+            </div>
+            <div className="col-xs-8">
+              {user.skype}
+            </div>
+          </div>
+        );
+      }
+    }
     data.forEach(item => {
       let found = false;
       members.forEach(member => {
@@ -132,8 +210,10 @@ export default React.createClass({
                 .map((item, index) => {
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
+                  const onClick = _.bind(this.onPointClick, this, item);
                   return <div
                     key={index}
+                    onClick={onClick}
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}
                     className={"channel-list-element" + (item.is_current_user ? ' is-current-user' : '')}>
@@ -143,12 +223,46 @@ export default React.createClass({
               }
             </div>
           </div>
-          <div className="col-xs-9">
+          <div className="col-xs-9" id="modal-container">
             <AutoSizer>
               {({ height, width }) => (
-                <HullPlot shownGroups={shownGroups} point={PersonPoint} showTooltipFor={tooltipIndex} data={data} width={width} height={height} padding={100} />
+                <HullPlot
+                  shownGroups={shownGroups}
+                  point={PersonPoint}
+                  showTooltipFor={tooltipIndex}
+                  data={data}
+                  width={width}
+                  height={height}
+                  onPointClick={this.onPointClick}
+                  padding={100} />
               )}
             </AutoSizer>
+            <Modal
+              isOpen={detailsOpened}
+            >
+              <div style={{ textAlign: 'right' }}>
+                <a style={{ cursor: 'pointer' }} onClick={this.closeModal}>
+                  <img src="/images/close.svg" style={{ width: '1rem' }} />
+                </a>
+              </div>
+              <div className="row">
+                <div className="col-xs-4">
+                  <img className="" src={user.image72} />
+                </div>
+                <div className="col-xs-8">
+                  <h3>{user.first_name} {user.last_name}</h3>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-4">
+                  Username
+                </div>
+                <div className="col-xs-8">
+                  @{user.username}
+                </div>
+              </div>
+              {attributes}
+            </Modal>
           </div>
         </div>
       </main>

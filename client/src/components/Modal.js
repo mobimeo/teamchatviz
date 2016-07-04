@@ -20,12 +20,11 @@
 
 import React from 'react';
 
-export default (props) => {
-  return <g>
-    {
-      props.data.map((point, i) => {
-        return <props.point coords={point} {...props} index={i} />
-      })
-    }
-  </g>;
-};
+export default React.createClass({
+  render() {
+    const props = this.props;
+    return <div className={`dialog ${props.isOpen?'visible':''}`}>
+     {this.props.children}
+    </div>;
+  }
+})

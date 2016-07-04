@@ -126,6 +126,10 @@ export default React.createClass({
     this.onZoom();
   },
 
+  onPointClick(...args) {
+    this.props.onPointClick(...args);
+  },
+
   render() {
     const props = this.props;
     const showTooltipFor = this.props.showTooltipFor;
@@ -190,7 +194,10 @@ export default React.createClass({
             data={points}
             point={this.props.point}
             showTooltip={this.showTooltip}
-            hideTooltip={this.hideTooltip} />
+            hideTooltip={this.hideTooltip}
+            onPointClick={this.onPointClick}
+             />
+            }
           <Tooltip zoom={this.state.data.get('zoom')} tooltip={tooltip} />
         </g>
       </svg>

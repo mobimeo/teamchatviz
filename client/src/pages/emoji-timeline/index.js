@@ -178,7 +178,7 @@ export default React.createClass({
               {
                 channels.map((item, index) => {
                   const onClick = _.bind(this.onChannelClick, this, item);
-                  return <div key={index} onClick={onClick} className="channel-list-element">{item.name}</div>
+                  return <div key={index} onClick={onClick} className="channel-list-element">#{item.name}</div>
                 })
               }
             </div>
