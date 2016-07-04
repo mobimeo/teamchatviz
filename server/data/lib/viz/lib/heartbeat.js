@@ -83,10 +83,10 @@ export default async function(teamId, startDate = null, endDate = null, interval
     };
   }
 
-  // chunks.push({
-  //   ts: moment(endDate).utc().subtract(1, 'day').format(),
-  //   label: moment(endDate).utc().subtract(1, 'day').format(),
-  // });
+  chunks.push({
+    ts: moment(endDate).utc().subtract(1, 'day').format(),
+    label: moment(endDate).utc().subtract(1, 'day').format(),
+  });
 
   console.log(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
   const tmp = await db.any(`

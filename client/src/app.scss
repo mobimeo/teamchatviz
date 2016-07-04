@@ -711,6 +711,32 @@ button:focus{
   stroke-dasharray: 5, 5;
 }
 
+.heartbeat-x-start {
+  float: left;
+  font-size: 0.875rem;
+}
+
+.heartbeat-x-end {
+  float: right;
+  font-size: 0.875rem;
+}
+
+.heartbeat-y-mark-value {
+  font-size: 0.75rem;
+  position: relative;
+  left: -22px;
+  top: 8px;
+  font-weight: bold;
+}
+
+.heartbeat-y-mark {
+  width: 15px;
+  background-color: $color-grey-light;
+  height: 1px;
+  left: -5px;
+  position: relative;
+}
+
 // menu
 .menu-buttons {
   padding: 0;
@@ -984,7 +1010,7 @@ button:focus{
 
 // progress bar
 .loader-60devs .loader-60devs-progress {
-  background-color: #00B7BF;
+  background-color: $color-brand;
 }
 
 .dialog {

@@ -136,6 +136,18 @@ export default React.createClass({
     }));
 
     const max = maxBy(chartData, i => i.y).y;
+    if (chartData.length > 0) {
+      hints.push(<Hint
+        orientation="topright"
+        value={{
+          x: chartData[0].x,
+          y: max,
+        }}
+        key={'xyPlotTopMark' + this.props.parentKey}>
+          <div className="heartbeat-y-mark-value">{max}</div>
+          <div className="heartbeat-y-mark"></div>
+      </Hint>);
+    }
 
     return <XYPlot
         onMouseLeave={this._onMouseLeave}

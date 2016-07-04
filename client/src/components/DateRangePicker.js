@@ -28,14 +28,18 @@ export const DateRangePicker = React.createClass({
     return {
       data: Map({
         expanded: false,
+        range: {
+          startDate: null,
+          endDate: null,
+        },
         buttons: List([Map({
           id: 1,
           title: 'Last 10 Days',
           selected: true,
           range() {
             return {
-              startDate: moment().subtract(10, 'days').hours(0).minutes(0).seconds(0).milliseconds(0).format(),
-              endDate: moment().format()
+              startDate: moment.utc().subtract(10, 'days').startOf('date').format(),
+              endDate: moment.utc().endOf('date').format(),
             };
           }
         }), Map({
@@ -44,8 +48,8 @@ export const DateRangePicker = React.createClass({
           selected: false,
           range() {
             return {
-              startDate: moment().subtract(30, 'days').hours(0).minutes(0).seconds(0).milliseconds(0).format(),
-              endDate: moment().format()
+              startDate: moment.utc().subtract(30, 'days').startOf('date').format(),
+              endDate: moment.utc().endOf('date').format(),
             };
           }
         }), Map({
@@ -66,12 +70,16 @@ export const DateRangePicker = React.createClass({
   handleSelect(range){
     if (range.startDate.format() !== range.endDate.format()) {
       this.props.onChange({
-        startDate: range.startDate.format(),
-        endDate: range.endDate.format()
+        startDate: range.startDate.startOf('date').format(),
+        endDate: range.endDate.endOf('date').format()
       });
       this.setState(({data}) => ({
         data: data
           .update('expanded', expanded => !expanded)
+          .update('range', () => ({
+            startDate: range.startDate,
+            endDate: range.endDate
+          }))
           .update('buttons', buttons => buttons.map(b => {
             return b.update('selected', () => false);
           }))
@@ -114,7 +122,14 @@ export const DateRangePicker = React.createClass({
           })
         }
       </div>
-      { this.state.data.get('expanded') ? <div className="date-range-container"> <DateRange onChange={this.handleSelect} /> </div> : null }
+      { this.state.data.get('expanded')
+        ? <div className="date-range-container">
+            <DateRange
+              onChange={this.handleSelect}
+              startDate={this.state.data.get('range').startDate}
+              endDate={this.state.data.get('range').endDate} />
+          </div>
+        : null }
     </div>;
   }
 });
