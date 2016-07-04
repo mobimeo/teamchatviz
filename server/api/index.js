@@ -43,8 +43,14 @@ api.get('/user', async(ctx) => {
 });
 
 api.get('/config', async(ctx) => {
+  const user = ctx.req.user;
+  let teamName = 'moovel';
+  if (user) {
+    teamName = user.profile.team;
+  }
   ctx.body = {
     public: config.public,
+    teamName,
   };
 });
 

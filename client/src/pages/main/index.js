@@ -56,7 +56,7 @@ export default withRouter(React.createClass({
     return <div className="page">
       <header className="site-header">
         <h1>
-          moovel slack data viz <img src="/images/beta.png" />
+          {this.props.config.teamName} #slackviz <img src="/images/beta.png" />
         </h1>
       </header>
       <main>
@@ -120,6 +120,11 @@ export default withRouter(React.createClass({
             <Channel linkTo="/emoji-timeline"
               imageName="chartEmojiTimeline"
               title="emoji timeline" description="See the top ten of the most used icons and have an overview of the emoji’s use over time." />
+          </div>
+        </div>
+        <div className="channels row around-xs">
+          <div className="col-xs-12 disclaimer">
+            #slackviz is not created by, affiliated with, or supported by Slack Technologies, Inc.
           </div>
         </div>
       </main>

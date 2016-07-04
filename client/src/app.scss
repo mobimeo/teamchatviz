@@ -51,9 +51,9 @@ html, body {
 }
 
 a,
-a:focus { 
+a:focus {
   color: $color-grey-dark;
-  outline: none; 
+  outline: none;
 }
 
 p {
@@ -157,7 +157,7 @@ p.chart-description {
     height: 100%;
     display: block;
     position: relative;
-    
+
     .chart-image {
       background-size: contain;
       background-repeat: no-repeat;
@@ -254,7 +254,7 @@ p.chart-description {
   line-height: 30px;
 
   > div {
-    display: inline-flex;  
+    display: inline-flex;
     align-items: center;
   }
   span {
@@ -322,7 +322,7 @@ p.chart-description {
     display: inline-block;
     margin-left: 1rem;
     vertical-align: text-bottom;
-    
+
     .button {
       background-color: white;
       border: 1px solid $color-grey-light;
@@ -357,7 +357,7 @@ p.chart-description {
   position: absolute;
   background-color: white;
   z-index: 10;
-  
+
   .rdr-DateRange {
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
 
@@ -433,7 +433,7 @@ p.chart-description {
   border-radius: 4px;
   padding: 0.3em 1em 0.3em 1em;
   margin-right: 10px;
-  
+
   .sort-by {
     color: $color-grey-medium;
   }
@@ -478,7 +478,7 @@ p.chart-description {
       text-decoration: none;
       width: 100%;
       line-height: 1.5rem;
-      
+
       &:hover {
         color: $color-grey-medium;
       }
@@ -797,7 +797,7 @@ button:focus{
       padding: 1rem 1rem 1.3rem 1rem;
       margin-left: 36px;
       background-color: $color-grey-light;
-      
+
       .open-in {
         position: absolute;
         right: 5px;
@@ -878,7 +878,7 @@ button:focus{
   background-color: transparent;
   border: 0;
   overflow: visible;
-  z-index: 30; 
+  z-index: 30;
   position: relative;
 
   &:hover {
@@ -887,7 +887,7 @@ button:focus{
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
-    transform: scale(1.1);    
+    transform: scale(1.1);
   }
 
   .hamburger-box {
@@ -925,9 +925,8 @@ button:focus{
   }
   .hamburger-inner::after {
     bottom: -0.1rem;
-  } 
+  }
 }
-  
 
 .overlay {
   position: absolute;
@@ -976,4 +975,14 @@ button:focus{
   transition: all $speed-faster ease-in-out;
   -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
           transform: translate3d(0, 10px, 0) rotate(-45deg);
+}
+
+// home page disclaimer
+.disclaimer {
+  color: white;
+}
+
+// progress bar
+.loader-60devs .loader-60devs-progress {
+  background: #ff6f00;
 }
