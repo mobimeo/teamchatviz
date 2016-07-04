@@ -36,8 +36,7 @@ html {
 
 .bnnr {
 	background-image: url(../images/banner.jpg);
-	width: 1799px;
-  height: 860px;
+	width: 100%;
 
 	background-color: black;
 
@@ -46,6 +45,8 @@ html {
 		text-align: center;
 		margin: 0;
 		padding-top: 500px;
+    font-weight: normal;
+    font-size: 4rem;
 	}
 	p {
 	color: white;
@@ -63,22 +64,54 @@ html {
 	background-color: $clr-gry-lght;
 	padding: 50px 5%;
 }
+.lght {
+  h2 {
+    font-size: 3.2rem;
+    font-weight: normal;
+  }
+  h3 {
+    font-size: 2.5rem;
+    font-weight: normal; 
+  }
+  h4 {
+    margin-top: 5rem;
+    font-size: 2.8rem;
+    font-weight: normal; 
+  }
+  .txt-lft {
+    padding-right: 5rem;
+  }
+  .txt-rght {
+    padding-left: 5rem;
+  }
+  .img-lft {
+    margin-left: -30%;
+    width: 130%;
+  }
+
+  .img-rght {
+    margin-left: 5%;
+    width: 130%;
+  }
+}
 .drk {
 	background-color: $clr-gry-drk;
 	padding: 80px 0;
 
 	h2 {
-		color: white;
+		color: $clr-gry-lght;
 		margin: 0 0 20px 0;
+    font-weight: normal;
+    font-size: 3rem;
 	}
 	p {
 		margin: 0;
 		color: $clr-gry-medium;
-		font-size: 12px;
+		font-size: 1.5rem;
 	}
 	a {
 		color: $clr-brnd;
-		font-size: 18px;
+		font-size: 2.2rem;
 	}
 }
 .demo-bttn {
@@ -95,14 +128,6 @@ html {
 	cursor: pointer;
 }
 
-.img-lft {
-	margin-left: -30%;
-	width: 120%;
-}
-
-.img-rght {
-	width: 130%;
-}
 .shdw {
 	-webkit-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
 	-moz-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
