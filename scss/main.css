@@ -1125,9 +1125,9 @@ html {
   font-family: sans-serif; }
 
 .bnnr {
-  background-image: url();
-  width: 100%;
-  height: 800px;
+  background-image: url(../images/banner.jpg);
+  width: 1799px;
+  height: 860px;
   background-color: black; }
   .bnnr h1 {
     color: #00b7bf;
@@ -1181,8 +1181,7 @@ html {
   width: 120%; }
 
 .img-rght {
-  margin-left: 10%;
-  width: 120%; }
+  width: 130%; }
 
 .shdw {
   -webkit-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
