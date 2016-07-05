@@ -708,6 +708,9 @@ button:focus{
   }
   .member-img {
     margin: 1rem 0;
+    &.member-show-stats {
+      // todo
+    }
   }
   .member-index {
     display: inline-block;
