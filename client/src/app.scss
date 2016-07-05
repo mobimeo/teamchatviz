@@ -140,10 +140,6 @@ footer {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
-
-  @media screen and (max-width: $screen-lg) {
-    margin-top: 1rem;
-  }
 }
 
 .chart-description,
@@ -165,7 +161,7 @@ footer {
     margin: 0;
 
     &.sm {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       line-height: 1.1rem;
       text-align: center;
     }
@@ -193,6 +189,7 @@ p.chart-description {
       border-radius: 50%;
       background-color: white;
       transition: all $speed-faster ease-in-out;
+      margin-bottom: 1rem;
     }
     .chart-image-link {
       float: left;
