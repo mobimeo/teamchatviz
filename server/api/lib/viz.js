@@ -78,4 +78,16 @@ export default api => {
     const endDate = ctx.query.endDate || null;
     ctx.body = await viz.peopleLand(ctx.req.user.teamId, startDate, endDate, ctx.req.user);
   });
+
+  api.get('/user-stats', async(ctx) => {
+    if (!ctx.req.user) {
+      return ctx.throw(403);
+    }
+    const userId = ctx.query.userId || null;
+    if (!userId) {
+      return ctx.throw(403);
+    }
+    ctx.body = await viz.userStats(ctx.req.user.teamId, userId);
+  });
+
 }

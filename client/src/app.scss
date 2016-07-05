@@ -710,6 +710,7 @@ button:focus{
     margin: 1rem 0;
     &.member-show-stats {
       // todo
+      cursor: pointer;
     }
   }
   .member-index {
