@@ -139,11 +139,13 @@ export default React.createClass({
     }));
   },
 
-  onBackClick() {
+  onBackClick(e) {
+    e.preventDefault();
     this.setState(({data}) => ({
       data: data
         .set('selectedUser', null)
     }));
+    return false;
   },
 
   renderMembers(chartData) {
@@ -182,15 +184,29 @@ export default React.createClass({
 
   renderUserStats(member) {
     const chartData = this.state.data.get('data');
-    return [<div className="user-stats">
-      <button onClick={this.onBackClick}>Back</button>
-      <div>
-        <img src={member.image72} />
-        {member.realname}
-        <br />
-        @{member.name}
+    return [
+      <div className="user-stats middle-xs row">
+        <div className="col-xs-1">
+          <a href="" onClick={this.onBackClick}>
+            <img src="/images/frequent-speakers-back.svg" style={{ width: '1rem' }} />
+          </a>
+        </div>
+        <div className="col-xs-1">
+          <img
+            style={{ width: '2.25rem', borderRadius: '50%' }}
+            src={member.image72} />
+        </div>
+        <div className="col-xs-2">
+          {member.realname}
+          <br />
+          @{member.name}
+        </div>
       </div>
-    </div>, <MemberCard member={member} /> ];
+      ,
+      <br />
+      ,
+      <MemberCard member={member} />
+    ];
   },
 
   renderChartStats() {
@@ -203,10 +219,11 @@ export default React.createClass({
             data={{ title: '', opacity: 1,
               children: chartData.slice(0, 10).map((member, i) => ({
                 title: <div className="channel-tree-map">
-                  <img className="channel-tree-map-pic" src={member.image72} />
-                  <span className="channel-tree-map-title">@{member.name}</span>
-                  <br />
-                  <span className="channel-tree-map-count"> {member.count} </span>
+                  <span className="channel-tree-map-title">
+                    <img className="channel-tree-map-pic" src={member.image72} />
+                    &nbsp; @{member.name}
+                  </span>
+                  <div className="channel-tree-map-count"> {member.count} </div>
                 </div>,
                 size: member.count,
               })) }} />
