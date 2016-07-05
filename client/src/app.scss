@@ -738,6 +738,7 @@ button:focus{
   }
 }
 
+// heartbeat styles
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
   stroke-dasharray: 5, 5;
@@ -769,6 +770,16 @@ button:focus{
   position: relative;
 }
 
+.heartbeat-chart-row:hover {
+  .channel-list-element {
+    background: $color-accent;
+    outline: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all $speed-faster ease-in-out;
+  }
+}
+// end heartbeat styles
 // menu
 .menu-buttons {
   padding: 0;

@@ -129,7 +129,7 @@ export default React.createClass({
       </Hint>);
     }
 
-    const width = (this.state.data.get('width') - 30) > 0 ? this.state.data.get('width') - 30 : 600;
+    const width = (this.state.data.get('width')) > 0 ? this.state.data.get('width') : 600;
     const chartData = data.heartbeat.map(i => ({
       x: moment.utc(i.t).unix(),
       y: i.count,

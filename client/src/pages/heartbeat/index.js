@@ -161,10 +161,10 @@ export default React.createClass({
         </div>
         <div>
           <div className="row middle-xs" style={{ paddingRight: '20px' }}>
-            <div className="col-xs-2">
+            <div className="col-xs-3">
               <span>&nbsp;</span>
             </div>
-            <div className="col-xs-10">
+            <div className="col-xs-9">
               <div className="heartbeat-x-start">
                 { startDate.format('ll') }
               </div>

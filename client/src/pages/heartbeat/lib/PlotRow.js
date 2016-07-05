@@ -24,11 +24,11 @@ import HeartbeatPlot from './HeartbeatPlot.js';
 const PlotRow = React.createClass({
   render() {
     const showChunkHints = this.props.showChunkHints;
-    return <div className="row middle-xs" style={{ paddingRight: '20px' }}>
-      <div className="col-xs-2">
-        <span>#{this.props.data.name}</span>
+    return <div className="row middle-xs heartbeat-chart-row" style={{ paddingRight: '20px' }}>
+      <div className="col-xs-3">
+        <div><button className="channel-list-element">#{this.props.data.name}</button></div>
       </div>
-      <div className="col-xs-10">
+      <div className="col-xs-9">
         <HeartbeatPlot data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>
