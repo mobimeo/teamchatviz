@@ -34,6 +34,7 @@ import { AutoSizer } from 'react-virtualized';
 import 'react-vis/main.css!';
 import { fetchFrequentSpeakers } from 'client/networking/index.js';
 import 'client/treemap.scss!';
+import MemberCard from './lib/MemberCard.js';
 
 export default React.createClass({
   getInitialState() {
@@ -49,6 +50,7 @@ export default React.createClass({
         channels: [],
         data: [],
         allChannels: true,
+        selectedUser: null,
       }),
     };
   },
@@ -112,11 +114,113 @@ export default React.createClass({
     }));
   },
 
+  onMouseOver(member) {
+    member.hovering = true;
+    const newData = this.state.data.get('data');
+    this.setState(({data}) => ({
+      data: data
+        .set('data', newData)
+    }));
+  },
+
+  onMouseOut(member) {
+    member.hovering = false;
+    const newData = this.state.data.get('data');
+    this.setState(({data}) => ({
+      data: data
+        .set('data', newData)
+    }));
+  },
+
+  onUserClick(member) {
+    this.setState(({data}) => ({
+      data: data
+        .set('selectedUser', member)
+    }));
+  },
+
+  onBackClick() {
+    this.setState(({data}) => ({
+      data: data
+        .set('selectedUser', null)
+    }));
+  },
+
+  renderMembers(chartData) {
+    return _.chunk(chartData, 4).map((chunk, index) => {
+      return <div className="row" key={index}>
+        {
+          chunk.map((member, memberIndex) => {
+            var onMouseOver = _.bind(this.onMouseOver, this, member);
+            var onMouseOut = _.bind(this.onMouseOut, this, member);
+            var onClick = _.bind(this.onUserClick, this, member);
+            return <div
+                      onMouseOver={onMouseOver}
+                      onMouseOut={onMouseOut}
+                      onClick={onClick}
+                      className={'col-xs-3 member' + (member.is_current_user ? ' is-current-user' : '')}
+                      key={memberIndex}
+                      style={{ textAlign: 'center' }}>
+              <span className="member-index">{member.count}</span>
+              <br />
+              <img
+                className={'member-img' + (member.hovering ? ' member-show-stats' : '') }
+                src={member.image72}
+                style={{ borderRadius: '50%' }} />
+              <br />
+              {member.realname}
+              <br />
+              @{member.name}
+              <br />
+              { member.is_current_user ? '(you)' : '' }
+            </div>
+          })
+        }
+      </div>
+    })
+  },
+
+  renderUserStats(member) {
+    const chartData = this.state.data.get('data');
+    return [<div className="user-stats">
+      <button onClick={this.onBackClick}>Back</button>
+      <div>
+        <img src={member.image72} />
+        {member.realname}
+        <br />
+        @{member.name}
+      </div>
+    </div>, <MemberCard member={member} /> ];
+  },
+
+  renderChartStats() {
+    const chartData = this.state.data.get('data');
+    return <AutoSizer>
+      {({ height, width }) => (
+        <div className="channel-treemap-chart">
+          <Treemap height={height}
+            width={width}
+            data={{ title: '', opacity: 1,
+              children: chartData.slice(0, 10).map((member, i) => ({
+                title: <div className="channel-tree-map">
+                  <img className="channel-tree-map-pic" src={member.image72} />
+                  <span className="channel-tree-map-title">@{member.name}</span>
+                  <br />
+                  <span className="channel-tree-map-count"> {member.count} </span>
+                </div>,
+                size: member.count,
+              })) }} />
+        </div>
+      )}
+    </AutoSizer>
+  },
+
   render() {
     const data = this.state.data;
     const channels = this.state.data.get('channels');
     const allChannels = this.state.data.get('allChannels');
     const chartData = this.state.data.get('data');
+    const selectedUser = this.state.data.get('selectedUser');
     const filters = this.filters;
     let selectedChannelName = '';
     if (filters.channelId) {
@@ -155,38 +259,9 @@ export default React.createClass({
               }
             </p>
             {
-              allChannels ? _.chunk(chartData, 4).map((chunk, index) => {
-                return <div className="row" key={index}>
-                    {
-                      chunk.map((member, memberIndex) => {
-                        return <div className={"col-xs-3 member" + (member.is_current_user ? ' is-current-user' : '')} key={memberIndex} style={{ textAlign: 'center' }}>
-                          <span className="member-index">{member.count}</span>
-                          <br />
-                          <img className="member-img" src={member.image72} style={{ borderRadius: '50%' }} />
-                          <br />
-                          {member.realname}
-                          <br />
-                          @{member.name}
-                        </div>
-                      })
-                    }
-                  </div>
-              }) : <AutoSizer>
-                    {({ height, width }) => (
-                      <Treemap height={height}
-                        width={width}
-                        data={{ title: '', opacity: 1,
-                          children: chartData.slice(0, 10).map((member, i) => ({
-                            title: <div className="channel-tree-map">
-                              <img className="channel-tree-map-pic" src={member.image72} />
-                              <span className="channel-tree-map-title">@{member.name}</span>
-                              <br />
-                              <span className="channel-tree-map-count"> {member.count} </span>
-                            </div>,
-                            size: member.count,
-                          })) }} />
-                    )}
-                </AutoSizer>
+              allChannels
+                ? ( selectedUser ? this.renderUserStats(selectedUser) : this.renderMembers(chartData) )
+                : this.renderChartStats()
               }
           </div>
         </div>

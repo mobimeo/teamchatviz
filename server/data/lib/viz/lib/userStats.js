@@ -18,20 +18,27 @@
   USA
 */
 
-import heartbeat from './lib/heartbeat';
-import frequentSpeakers from './lib/frequentSpeakers';
-import emojiTimeline from './lib/emojiTimeline';
-import channelLand from './lib/channelLand';
-import moodsAndReactions from './lib/messagesAndReactions';
-import peopleLand from './lib/peopleLand';
-import userStats from './lib/userStats';
+import db from '../../../../db';
+import Promise from 'bluebird';
+import moment from 'moment-timezone';
+import { getMinDate, getMaxDate } from './utils';
 
-export default {
-  heartbeat,
-  frequentSpeakers,
-  emojiTimeline,
-  channelLand,
-  moodsAndReactions,
-  peopleLand,
-  userStats,
+export default async function(teamId, userId) {
+  console.log(`Getting userStats for ${teamId}, ${userId}`);
+  const options = {
+    teamId,
+    userId
+  };
+
+  const data = await db.any(`
+    SELECT channels.id as id, channels.name, COUNT(messages.id)
+    FROM channels INNER JOIN messages ON channels.id = messages.channel_id
+    WHERE channels.team_id = $(teamId) and messages.user_id = $(userId)
+    GROUP BY channels.id, channels.name
+  `, options);
+
+  data.forEach(d => d.count = parseInt(d.count));
+  data.sort((a, b) => b.count - a.count);
+
+  return data;
 };

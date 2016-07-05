@@ -49,11 +49,10 @@ export default React.createClass({
     const maxY = this.props.maxY;
     const emojis = this.props.emojis;
     const height = this.state.data.get('height');
-    // todo: depends on the chart height
-    const totalHeight = (600 - height - 45);
+    const totalHeight = (this.props.height - height - 45);
     const columnEmojis = item
       .emojis
-      .slice(0, parseInt( totalHeight / 45 ));
+      .slice(0, parseInt( totalHeight / 42 ));
     let className = '';
 
     if (!item.fake) {

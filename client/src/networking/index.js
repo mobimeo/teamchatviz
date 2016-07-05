@@ -157,3 +157,16 @@ export const fetchConfig = () => {
     return result;
   });
 }
+
+export const fetchUserStats = (userId) => {
+  Progress.show();
+  return fetch(`/api/user-stats?userId=${userId}`, {
+    credentials: 'same-origin'
+  })
+  .then(onFailure)
+  .then(parseJSON)
+  .then(result => {
+    Progress.hide();
+    return result;
+  });
+}

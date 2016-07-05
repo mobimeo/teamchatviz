@@ -205,11 +205,11 @@ export default React.createClass({
               }
               </div>
             </div>
-            <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
-              <AutoSizer>{({ height, width }) => (
+            <AutoSizer>{({ height, width }) => (
+              <div className="emoji-timeline-plot" style={{ textAlign: 'center' }} >
                 <XYPlot
                   width={width}
-                  height={600}
+                  height={height - 100}
                   >
                   <LineSeries
                     data={chartData.map(i => ({
@@ -233,14 +233,14 @@ export default React.createClass({
                         y: d.total,
                       };
                       return <Hint value={value} orientation="bottomright">
-                        <EmojiColumn height={600} key={i} item={d} emojis={emojis} maxY={maxY} />
+                        <EmojiColumn height={height - 100} key={i} item={d} emojis={emojis} maxY={maxY} />
                       </Hint>;
                     })
                   }
                 </XYPlot>
-              )}
-              </AutoSizer>
-            </div>
+              </div>
+            )}
+            </AutoSizer>
           </div>
         </div>
       </main>
