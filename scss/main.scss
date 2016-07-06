@@ -1,10 +1,10 @@
+@import "lib/bourbon/core/_bourbon.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_variables.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_normalize.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_mixins.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_scaffolding.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_grid.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_responsive-utilities.scss";
-@import "lib/bourbon/core/_bourbon.scss";
 
 // colors
 $clr-brnd: #00b7bf;
@@ -25,7 +25,7 @@ $fnt-sz-xxxl: 60px;
 $fnt-sz-xxl: 48px;
 $fnt-sz-xl: 36px;
 $fnt-sz-l: 30px;
-$fnt-sz-m: 24px;
+$fnt-sz-m: 20px;
 $fnt-sz-s: 18px;
 $fnt-sz-xs: 16px;
 $fnt-sz-xxs: 14px;
@@ -44,19 +44,26 @@ p {
   background: url(../images/banner-placeholder.jpg) center no-repeat black;
   background-size: cover;
 	width: 100%;
-  height: 700px;
+  height: 800px;
 
   .cntnt {
     position: relative;
     top: 50%;
-    //@include transform(translateY(50%));
+    transform: translateY(-50%);
 
+    img {
+      max-height: 200px;
+      margin: 0 auto 40px;
+      text-align: center;
+      display: block;
+      position: relative;
+    }
     h1 {
       color: $clr-brnd;
       text-align: center;
       margin: 0;
       font-weight: normal;
-      font-size: 7rem;
+      font-size: 6rem;
     }
     p {
       color: white;
@@ -73,21 +80,24 @@ p {
 }
 
 .container {
-	width: 80%;
+	// width: 1370px;
 }
 .row {
+  margin-top: 50px;
 
   &.spc-tp {
     margin-top: 100px;
   }
 }
 .lght {
-	margin: 70px 10%;
-	background-color: $clr-gry-lght;
-	padding: 50px 5%;
+	margin-top: 70px;
+  margin-bottom: 70px;
+	background: $clr-gry-lght;
+	padding: 100px 7%;
 }
 .lght {
   h2 {
+    margin: 0 0 40px;
     font-size: 4.5rem;
     line-height: 5.0rem;
     font-weight: normal;
@@ -111,13 +121,12 @@ p {
     padding-left: 5rem;
   }
   .img-lft {
-    margin-left: -30%;
-    width: 130%;
+    margin-left: -35%;
+    width: 140%;
   }
-
   .img-rght {
-    margin-left: 5%;
-    width: 130%;
+    margin-right: -35%;
+    width: 140%;
   }
 }
 .drk {
@@ -170,7 +179,8 @@ p {
 footer {
   background: $clr-gry-drk;
   color: white;
-  padding: 120px 0 180px;
+  padding: 80px 0 100px;
+  margin-top: 100px;
 
   h2 {
     font-size: $fnt-sz-m;
