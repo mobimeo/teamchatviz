@@ -19,6 +19,16 @@ $scrn-md: 991px;
 $scrn-sm: 767px;
 $scrn-xs: 568px;
 
+// font
+$font-regular: 'Gidole-Regular';
+@font-face {
+  font-family: $font-regular;
+  src: url("../fonts/Gidole-Regular.otf");
+  src: url("../fonts/Gidole-Regular.eot");
+  src: url("../fonts/Gidole-Regular.woff");
+  src: url("../fonts/Gidole-Regular.ttf");
+}
+
 // font size
 $fnt-sz-xxxl: 60px;
 $fnt-sz-xxl: 48px;
@@ -30,12 +40,14 @@ $fnt-sz-xs: 16px;
 $fnt-sz-xxs: 14px;
 
 
-html {
-	font-family: sans-serif;
+html, body {
+  font-family: $font-regular;
+  font-size: $fnt-sz-xs;
 }
 
 p {
   line-height: 1.6em;
+  font-size: $fnt-sz-xs;
 }
 
 .bnnr {
@@ -51,7 +63,7 @@ p {
     transform: translateY(-50%);
 
     img {
-      max-height: 200px;
+      max-height: 180px;
       margin: 0 auto 40px;
       text-align: center;
       display: block;
@@ -62,7 +74,7 @@ p {
       text-align: center;
       margin: 0;
       font-weight: normal;
-      font-size: 6rem;
+      font-size: 5rem;
     }
     p {
       color: white;
@@ -97,20 +109,22 @@ p {
 .lght {
   h2 {
     margin: 0 0 40px;
-    font-size: 4.5rem;
-    line-height: 5.0rem;
+    font-size: 3.2rem;
+    line-height: 3.7rem;
     font-weight: normal;
-    max-width: 70%;
+    max-width: 80%;
   }
   h3 {
-    font-size: 2.5rem;
+    font-size: 2.0rem;
+    line-height: 2.5rem;
     font-weight: normal; 
     margin-bottom: 120px;
     color: $clr-gry-medium;
   }
   h4 {
-    margin: 0 0 2rem 0;
-    font-size: 2.8rem;
+    margin: 0 0 1.4rem 0;
+    font-size: 1.9rem;
+    line-height: 2.4rem;
     font-weight: normal; 
   }
   .txt-lft {
@@ -136,7 +150,8 @@ p {
 		color: $clr-gry-lght;
 		margin: 0 0 20px 0;
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 3.0rem;
+    line-height: 3.5rem;
 	}
 	p {
 		margin: 0;
