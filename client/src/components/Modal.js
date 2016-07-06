@@ -19,12 +19,31 @@
 */
 
 import React from 'react';
+import onClickOutside from 'react-onclickoutside';
 
-export default React.createClass({
+export default onClickOutside(React.createClass({
+  getInitialState() {
+    return {
+      isOpen: false,
+    };
+  },
+  handleClickOutside(evt) {
+    if (this.state.isOpen) {
+      this.setState({
+        isOpen: false,
+      });
+      this.props.closed();
+    }
+  },
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isOpen: nextProps.isOpen,
+    });
+  },
   render() {
-    const props = this.props;
-    return <div className={`dialog ${props.isOpen?'visible':''}`}>
-     {this.props.children}
+    const state = this.state;
+    return <div className={`dialog ${state.isOpen?'visible':''}`}>
+      {this.props.children}
     </div>;
   }
-})
+}))

@@ -168,6 +168,7 @@ export default React.createClass({
             </AutoSizer>
             <Modal
               isOpen={detailsOpened}
+              closed={this.closeModal}
             >
               <div style={{ textAlign: 'right' }}>
                 <a style={{ cursor: 'pointer' }} onClick={this.closeModal}>
@@ -176,12 +177,12 @@ export default React.createClass({
               </div>
               <h3>#{channel.name}</h3>
               <p>{channel.purpose ? channel.purpose.value : ''}</p>
-              <p>created by <a target="_blank" href={`https://moovel.slack.com/team/${channel.creator}`}>
+              <p>created by <a target="_blank" href={`https://${teamName}.slack.com/team/${channel.creator}`}>
                   {channel.real_name}
                 </a> on {moment(channel.creation_date).format('ll')}
               </p>
               <p>
-                <a target="_blank" href={`https://moovel.slack.com/archives/${channel.name}`}>
+                <a target="_blank" href={`https://${teamName}.slack.com/archives/${channel.name}`}>
                 {channel.number_of_members} members (open in Slack)
                 </a>
               </p>

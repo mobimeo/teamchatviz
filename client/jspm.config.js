@@ -97,6 +97,7 @@ SystemJS.config({
     "react-date-range": "npm:react-date-range@0.2.4",
     "react-dom": "npm:react-dom@15.1.0",
     "react-modal": "npm:react-modal@1.4.0",
+    "react-onclickoutside": "npm:react-onclickoutside@5.3.1",
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.5.1",
     "react-virtualized": "npm:react-virtualized@7.11.5",
@@ -701,6 +702,11 @@ SystemJS.config({
         "exenv": "npm:exenv@1.2.0",
         "element-class": "npm:element-class@0.2.2",
         "lodash.assign": "npm:lodash.assign@3.2.0"
+      }
+    },
+    "npm:react-onclickoutside@5.3.1": {
+      "map": {
+        "object-assign": "npm:object-assign@4.1.0"
       }
     }
   }

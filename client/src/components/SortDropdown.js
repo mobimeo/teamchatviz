@@ -21,8 +21,9 @@
 import React from 'react';
 import { Map, List } from 'immutable';
 import moment from 'moment';
+import onClickOutside from 'react-onclickoutside';
 
-export const SortDropdown = React.createClass({
+export const SortDropdown = onClickOutside(React.createClass({
   getInitialState() {
     return {
       data: Map({
@@ -82,6 +83,12 @@ export const SortDropdown = React.createClass({
     };
   },
 
+  handleClickOutside(evt) {
+    this.setState(({data}) => ({
+      data: data.update('active', () => false)
+    }));
+  },
+
   onToggle() {
     this.setState(({data}) => ({
       data: data.update('active', (value) => !value)
@@ -123,4 +130,4 @@ export const SortDropdown = React.createClass({
       </div>
     </div>;
   }
-});
+}));

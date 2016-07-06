@@ -44,6 +44,7 @@
       "react-button-group": "npm:react-button-group@^1.0.2",
       "react-date-range": "npm:react-date-range@^0.2.4",
       "react-modal": "npm:react-modal@^1.4.0",
+      "react-onclickoutside": "npm:react-onclickoutside@^5.3.1",
       "react-progress-2": "npm:react-progress-2@^4.2.1",
       "react-router": "npm:react-router@^2.4.1",
       "react-virtualized": "npm:react-virtualized@^7.3.3",

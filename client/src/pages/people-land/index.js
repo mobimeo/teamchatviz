@@ -125,7 +125,7 @@ export default React.createClass({
     }));
   },
 
-  closeModal: function() {
+  closeModal() {
     this.setState(({data}) => ({
       data: data
         .set('detailsOpened', false)
@@ -239,6 +239,7 @@ export default React.createClass({
             </AutoSizer>
             <Modal
               isOpen={detailsOpened}
+              closed={this.closeModal}
             >
               <div style={{ textAlign: 'right' }}>
                 <a style={{ cursor: 'pointer' }} onClick={this.closeModal}>
