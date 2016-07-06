@@ -4,5 +4,6 @@ npm-debug.log*
 .env
 .DS_Store
 css/.sass-cache
+scss/.sass-cache
 deploy.sh
 install.sh
