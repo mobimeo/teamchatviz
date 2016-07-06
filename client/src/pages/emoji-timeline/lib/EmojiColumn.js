@@ -56,7 +56,9 @@ export default React.createClass({
 
   getMultiplyForEmoji(reaction) {
     let multiply = 1;
-    if (reaction.count > 100) {
+    if (reaction.count > 1000) {
+      multiply = Math.floor(reaction.count / 100);
+    } else if (reaction.count > 100) {
       multiply = Math.floor(reaction.count / 30);
     } else if (reaction.count > 10) {
       multiply = Math.floor(reaction.count / 10);
