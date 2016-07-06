@@ -4,6 +4,7 @@
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_scaffolding.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_grid.scss";
 @import "lib/bootstrap/assets/stylesheets/bootstrap/_responsive-utilities.scss";
+@import "lib/bourbon/core/_bourbon.scss";
 
 // colors
 $clr-brnd: #00b7bf;
@@ -34,30 +35,51 @@ html {
 	font-family: sans-serif;
 }
 
-.bnnr {
-	background-image: url(../images/banner.jpg);
-	width: 100%;
-
-	background-color: black;
-
-	h1 {
-		color: $clr-brnd;
-		text-align: center;
-		margin: 0;
-		padding-top: 500px;
-    font-weight: normal;
-    font-size: 4rem;
-	}
-	p {
-	color: white;
-	text-align: center;
-	}
+p {
+  line-height: 1.6em;
 }
+
+.bnnr {
+	// background: url(../images/banner.jpg) center no-repeat black;
+  background: url(../images/banner-placeholder.jpg) center no-repeat black;
+  background-size: cover;
+	width: 100%;
+  height: 700px;
+
+  .cntnt {
+    position: relative;
+    top: 50%;
+    //@include transform(translateY(50%));
+
+    h1 {
+      color: $clr-brnd;
+      text-align: center;
+      margin: 0;
+      font-weight: normal;
+      font-size: 7rem;
+    }
+    p {
+      color: white;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
 .container {
 	width: 80%;
 }
 .row {
-	margin-top: 50px;
+
+  &.spc-tp {
+    margin-top: 100px;
+  }
 }
 .lght {
 	margin: 70px 10%;
@@ -66,15 +88,19 @@ html {
 }
 .lght {
   h2 {
-    font-size: 3.2rem;
+    font-size: 4.5rem;
+    line-height: 5.0rem;
     font-weight: normal;
+    max-width: 70%;
   }
   h3 {
     font-size: 2.5rem;
     font-weight: normal; 
+    margin-bottom: 120px;
+    color: $clr-gry-medium;
   }
   h4 {
-    margin-top: 5rem;
+    margin: 0 0 2rem 0;
     font-size: 2.8rem;
     font-weight: normal; 
   }
@@ -116,8 +142,8 @@ html {
 }
 .demo-bttn {
 	display: inline-block;
-	margin: 10px 0;
-	padding: 10px 15px;
+	margin: 20px 0 0;
+	padding: 15px 30px;
 	background-color: black;
 	color: white;
 	border-radius: 50px;
@@ -129,15 +155,15 @@ html {
 }
 
 .shdw {
-	-webkit-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
-	-moz-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
-	box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
+	// -webkit-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
+	// -moz-box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
+	// box-shadow: 10px 10px 67px -10px rgba(37,38,46,0.52);
 }
 .ppl {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto 12px;
 	max-width: 100px;
+  border-radius: 50%;
 }
 
 // footer

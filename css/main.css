@@ -1124,26 +1124,38 @@ hr {
 html {
   font-family: sans-serif; }
 
+p {
+  line-height: 1.6em; }
+
 .bnnr {
-  background-image: url(../images/banner.jpg);
+  background: url(../images/banner-placeholder.jpg) center no-repeat black;
+  background-size: cover;
   width: 100%;
-  background-color: black; }
-  .bnnr h1 {
-    color: #00b7bf;
-    text-align: center;
-    margin: 0;
-    padding-top: 500px;
-    font-weight: normal;
-    font-size: 4rem; }
-  .bnnr p {
-    color: white;
-    text-align: center; }
+  height: 700px; }
+  .bnnr .cntnt {
+    position: relative;
+    top: 50%; }
+    .bnnr .cntnt h1 {
+      color: #00b7bf;
+      text-align: center;
+      margin: 0;
+      font-weight: normal;
+      font-size: 7rem; }
+    .bnnr .cntnt p {
+      color: white;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em; }
+
+.vertical-align {
+  display: flex;
+  align-items: center; }
 
 .container {
   width: 80%; }
 
-.row {
-  margin-top: 50px; }
+.row.spc-tp {
+  margin-top: 100px; }
 
 .lght {
   margin: 70px 10%;
@@ -1151,13 +1163,17 @@ html {
   padding: 50px 5%; }
 
 .lght h2 {
-  font-size: 3.2rem;
-  font-weight: normal; }
+  font-size: 4.5rem;
+  line-height: 5.0rem;
+  font-weight: normal;
+  max-width: 70%; }
 .lght h3 {
   font-size: 2.5rem;
-  font-weight: normal; }
+  font-weight: normal;
+  margin-bottom: 120px;
+  color: #666; }
 .lght h4 {
-  margin-top: 5rem;
+  margin: 0 0 2rem 0;
   font-size: 2.8rem;
   font-weight: normal; }
 .lght .txt-lft {
@@ -1189,8 +1205,8 @@ html {
 
 .demo-bttn {
   display: inline-block;
-  margin: 10px 0;
-  padding: 10px 15px;
+  margin: 20px 0 0;
+  padding: 15px 30px;
   background-color: black;
   color: white;
   border-radius: 50px; }
@@ -1200,16 +1216,11 @@ html {
   color: #ffcc33;
   cursor: pointer; }
 
-.shdw {
-  -webkit-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
-  -moz-box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52);
-  box-shadow: 10px 10px 67px -10px rgba(37, 38, 46, 0.52); }
-
 .ppl {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100px; }
+  margin: 0 auto 12px;
+  max-width: 100px;
+  border-radius: 50%; }
 
 footer {
   background: #25262e;
