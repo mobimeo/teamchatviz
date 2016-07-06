@@ -1,6 +1,6 @@
 /*
   Slack Viz
-  Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
+  Copyright (C) 1016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -49,7 +49,7 @@ export default async function(teamId, startDate = null, endDate = null, channelI
     ${startDate ? ' AND DATE(messages.message_ts) >= $(startDate)::timestamp' : ''}
     ${endDate ? ' AND DATE(messages.message_ts) <= $(endDate)::timestamp' : ''}
     GROUP BY messages.id
-    ORDER BY c DESC LIMIT 20`, opts);
+    ORDER BY c DESC LIMIT 10`, opts);
 
   const channels = await db.any(`SELECT channels.id, channels.name, creation_date as "creationDate",
     members.real_name as "creatorName", number_of_members as "numberOfMembers"

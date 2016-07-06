@@ -37,7 +37,9 @@ export const Emoji = (props) => {
   return <div style={props.style} className="emoji">
     <div className="emoji-container">
       {
-        multiply < 2 ? <div className="emoji-character"> {character} </div> :
+        multiply < 2
+        ? <div className="emoji-character">{character}</div>
+        :
           <div className="emoji-stack">
             {
               Array.from({

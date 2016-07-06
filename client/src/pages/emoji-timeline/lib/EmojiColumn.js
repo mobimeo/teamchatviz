@@ -22,6 +22,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Emoji } from 'client/components/Emoji.js';
 import { Map, List } from 'immutable';
+import moment from 'moment';
 
 export default React.createClass({
   getInitialState() {
@@ -34,43 +35,96 @@ export default React.createClass({
 
   componentDidMount() {
     this.setState(({data}) => ({
-      data: data.update('height', () => parseFloat(ReactDOM.findDOMNode(this).parentNode.style.top.replace('px', '')))
+      data: data.update('height', () => parseFloat(ReactDOM.findDOMNode(this).parentNode.offsetHeight))
     }));
   },
 
   componentWillReceiveProps() {
     this.setState(({data}) => ({
-      data: data.update('height', () => parseFloat(ReactDOM.findDOMNode(this).parentNode.style.top.replace('px', '')))
+      data: data.update('height', () => parseFloat(ReactDOM.findDOMNode(this).parentNode.offsetHeight))
     }));
+  },
+
+  getEmojiHeight(item) {
+    let height = 27.78;
+    const multiply = this.getMultiplyForEmoji(item);
+    if (multiply >= 2) {
+      height = 27.78 + 15.99 + (multiply - 2) * 5.99;
+    }
+    return height;
+  },
+
+  getMultiplyForEmoji(reaction) {
+    let multiply = 1;
+    if (reaction.count > 100) {
+      multiply = Math.floor(reaction.count / 30);
+    } else if (reaction.count > 10) {
+      multiply = Math.floor(reaction.count / 10);
+    }
+    return multiply;
   },
 
   render() {
     const item = this.props.item;
-    const maxY = this.props.maxY;
     const emojis = this.props.emojis;
-    const height = this.state.data.get('height');
-    const totalHeight = (this.props.height - height - 45);
-    const columnEmojis = item
-      .emojis
-      .slice(0, parseInt( totalHeight / 42 ));
-    let className = '';
-
-    if (!item.fake) {
-      className = "emoji-timeline-column" + (columnEmojis.length === 0 ? ' no-background' : ' ')
+    const totalHeight = this.state.data.get('height') - 200;
+    if (totalHeight < 0) {
+      return <div />;
     }
-    return <div key={this.props.key} className={className}
-      style={{ height: totalHeight + 'px', width: '4rem' }}>
+    const max = this.props.max;
+    const approxHeight = (item.total / max.total) * totalHeight;
+    let numberOfIcons = 0;
+    item
+      .emojis
+      .reduce((acc, curr, currentIndex, all) => {
+        let height = this.getEmojiHeight(curr) + 11;
+        if (acc - height >= 30) {
+          numberOfIcons++;
+        }
+        return acc - height;
+      }, approxHeight - 30);
+
+    return <div style={{
+        width: '4rem',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end'
+      }}>
+        <div style={{ textAlign: 'center' }} >
+          { item.total }
+        </div>
+        <div className={'emoji-timeline-column'} style={{
+            zIndex: 1,
+            height: approxHeight + 'px'
+          }}>
         {
-          columnEmojis
+          item
+            .emojis
+            .slice(0, numberOfIcons)
             .map((reaction, i) => {
-              return <Emoji emojis={emojis} style={{ display: 'block' }} name={reaction.name} count={reaction.count} />;
+              const multiply = this.getMultiplyForEmoji(reaction);
+              return <Emoji
+                multiply={multiply}
+                emojis={emojis}
+                style={{ display: 'block' }}
+                name={reaction.name}
+                count={reaction.count} />;
             })
         }
         {
-          (columnEmojis.length > 10 && totalHeight > 50) ?
-            <Emoji style={{ display: 'block' }} name={'...'} count={''} />
-          : <div></div>
+          item.emojis.length > numberOfIcons && approxHeight > 60
+          ? <Emoji
+                multiply={1}
+                emojis={emojis}
+                style={{ display: 'block' }}
+                name={'...'} />
+          : null
         }
+        </div>
+        <div style={{ textAlign: 'center', zIndex: 2, backgroundColor: 'white' }} >
+          { moment.utc(item.id).format('ll') }
+        </div>
       </div>
   }
 });

@@ -656,6 +656,8 @@ button:focus{
       }
     }
     .emoji-stack {
+      min-width: 1.3rem;
+
       .emoji-character:first-child {
         position: relative;
         top: 10px;
@@ -665,7 +667,7 @@ button:focus{
 
       .emoji-character:last-child {
         position: relative;
-        top: -10px;
+        top: -12px;
         opacity: 0.4;
         height: 1rem;
         line-height: 1rem;
@@ -685,6 +687,9 @@ button:focus{
       margin: 0 0.2rem;
       color: $color-grey-medium;
     }
+  }
+  &.dots {
+    height: 1.75rem;
   }
 }
 
