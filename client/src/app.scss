@@ -28,7 +28,7 @@ $color-accent: #FFCC33;
 $color-grey-dark: #393B42;
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
-
+$color-delimiter: rgba(217, 217, 217, 0.33);
 // speed
 $speed-faster: 0.2s;
 $speed-fast: 0.3s;
@@ -41,6 +41,11 @@ $screen-md: 48rem;
 // $screen-xl: 76rem;
 // $screen-lg: 65rem;
 // $screen-md: 49rem;
+
+$font-light: 300;
+$font-normal: 400;
+$font-semi-bold: 600;
+$font-bold: 700;
 
 
 // html, body main stiling
@@ -87,15 +92,44 @@ main {
 .float-right {
   float: right;
 }
+
 footer {
   background-color: white;
-  padding: 0.813rem 0 0.813rem 0;
   font-size: 0.8em;
-  border-top: 1px solid $color-grey-light;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1;
+}
+
+.client-app.dark footer {
+  background-color: $color-grey-dark;
+  font-weight: $font-light;
+  color: white;
+  font-size: 0.938rem;
+  line-height: 1.250rem;
+  .container.wrap {
+    padding: 0.813rem 0 0.813rem 0;
+    border-top: 1px solid $color-delimiter;
+    a {
+      color: white;
+    }
+  }
+}
+
+.client-app.white footer {
+  background-color: white;
+  font-weight: $font-light;
+  color: $color-grey-dark;
+  font-size: 0.938rem;
+  line-height: 1.250rem;
+  .container.wrap {
+    padding: 0.813rem 0 0.813rem 0;
+    border-top: 1px solid $color-delimiter;
+    .disclaimer {
+      display: none;
+    }
+  }
 }
 
 .container,
@@ -129,47 +163,48 @@ footer {
 .chart-title:focus {
   color: $color-brand;
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.125rem;
+  font-weight: $font-semi-bold;
+  line-height: 1.438rem;
   letter-spacing: 0.05rem;
 }
 
 .chart-description {
-  color: $color-grey-light;
+  color: white;
   font-family: $font-regular, sans-serif;
 }
 
 .site-description {
-  color: $color-grey-medium;
-  font-family: $font-regular, sans-serif;
+  color: white;
+  font-weight: $font-light;
 }
 
 .site-description {
   font-size: 0.9rem;
-  border-bottom: 2.5px solid $color-grey-medium;
-  padding: 1rem 0 2rem 0;
+  border-bottom: 1px solid $color-delimiter;
+  border-top: 1px solid $color-delimiter;
+  padding: 2.5rem 0 2.5rem 0;
 
-  h2 {
-    font-size: 1.25rem;
-    margin: 0 0 10px;
-  }
   p {
-    color: $color-grey-light;
+    color: white;
     margin: 0;
-    font-size: 1.2rem;
-    line-height: 2rem;
-    font-weight: lighter;
+    font-size: 1.0625rem;
+    line-height: 1.4375rem;
+    font-weight: $font-light;
     &.sm {
-      font-size: 0.7rem;
-      line-height: 1.1rem;
+      font-size: 0.625rem;
       text-align: center;
+      font-weight: $font-light;
+      color: white;
     }
   }
 }
 
 p.chart-description {
-  font-size: 1rem;
-  line-height: 1.3rem;
+  font-size: 0.938rem;
+  line-height: 1.250rem;
+  font-weight: $font-light;
+  padding-right: 2rem;
 }
 
 .channels.row {
@@ -191,6 +226,8 @@ p.chart-description {
       background-color: white;
       transition: all $speed-faster ease-in-out;
       margin-bottom: 1rem;
+      width: 6.250em;
+      height: 6.250em;
     }
     .chart-image-link {
       float: left;
@@ -229,24 +266,24 @@ p.chart-description {
 // site-header
 .site-header {
   padding: 0.406rem 0 0.406rem 0;
-  border-bottom: 2.5px $color-grey-medium solid;
 
   h1 {
     font-family: $font-regular, sans-serif;
+    font-weight: $font-normal;
     color: $color-grey-dark;
     display: inline-block;
     font-size: 1.625rem;
     margin: 30px 0;
 
     img {
-      width:1.7rem;
-      float:right;
-      margin-top: 0.1rem;
+      width: 1.7rem;
+      float: right;
+      margin-top: 0.25rem;
       margin-left: 1rem;
     }
     .site-name {
       font-family: $font-regular, sans-serif;
-      font-weight: lighter;
+      font-weight: $font-light;
     }
   }
 
@@ -1074,12 +1111,6 @@ button:focus{
   transition: all $speed-faster ease-in-out;
   -webkit-transform: translate3d(0, 10px, 0) rotate(-45deg);
           transform: translate3d(0, 10px, 0) rotate(-45deg);
-}
-
-// home page disclaimer
-.disclaimer {
-  color: white;
-  font-size: 15pt;
 }
 
 // progress bar

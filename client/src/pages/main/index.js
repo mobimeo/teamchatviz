@@ -56,7 +56,7 @@ export default withRouter(React.createClass({
     return <div className="page">
       <header className="site-header">
         <h1>
-          {this.props.config.teamName} <span className="site-name">#slackviz</span> <img src="/images/beta.png" />
+          {this.props.config.teamName} <span className="site-name">#slackviz</span> <img src="/images/beta.svg" />
         </h1>
       </header>
       <main>
@@ -122,13 +122,8 @@ export default withRouter(React.createClass({
               title="emoji timeline" description="See the top ten of the most used icons and have an overview of the emoji’s use over time." />
           </div>
         </div>
-        <div className="channels row around-xs">
-          <div className="col-xs-12 disclaimer">
-            #slackviz is not created by, affiliated with, or supported by Slack Technologies, Inc.
-          </div>
-        </div>
       </main>
-      <a href="https://github.com/moovel/slackviz"><img className="github-ribbon" src="/images/github-ribbon.png" alt="Fork me on GitHub" /></a>
+      <a href="https://github.com/moovel/slackviz"><img className="github-ribbon" src="/images/github-ribbon.svg" alt="Fork me on GitHub" /></a>
     </div>;
   }
 }));

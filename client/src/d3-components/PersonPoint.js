@@ -50,6 +50,13 @@ export default React.createClass({
             r={ radius / props.zoom } />
         </clipPath>
       </defs>
+      {
+        coords.highlighted
+        ? <circle fill="#FFCC33" cx={circleProps.x + radius / props.zoom}
+          cy={circleProps.y + radius / props.zoom}
+          r={ radius / props.zoom + 2 / props.zoom } />
+        : null
+      }
       <image
         onClick={this.onClick}
         clipPath={'url(#circlePath' + index + ')'}

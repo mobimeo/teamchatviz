@@ -96,7 +96,6 @@ export default React.createClass({
     const data = this.props.data || {
       heartbeat: [],
     };
-    const showChunkHints = this.props.showChunkHints || false;
     const chValues = this.state.data.get('crosshairValues');
     const tooltipStyles = {
       background: '#393B42',

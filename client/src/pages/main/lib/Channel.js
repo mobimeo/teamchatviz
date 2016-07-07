@@ -25,12 +25,12 @@ export default React.createClass({
   render() {
     return <Link to={this.props.linkTo} className="chart-container">
       <div className="row">
-        <div className="col-md-5 col-xs-12">
+        <div className="col-md-4 col-xs-12">
           <div className="chart-image-link">
-            <div className={this.props.imageName + ' chart-image'} style={{width: '7.813rem', height: '7.813rem'}}></div>
+            <div className={this.props.imageName + ' chart-image'}></div>
           </div>
         </div>
-        <div className="col-md-6 col-xs-12">
+        <div className="col-md-8 col-xs-12">
           <div className="chart-title">{this.props.title}</div>
           <p className="chart-description">
             {this.props.description}

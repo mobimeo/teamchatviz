@@ -46,12 +46,12 @@ export const App = React.createClass({
       <footer>
         <div className="container wrap content">
           <div className="row">
-            <div className="col-xs-12">
-                <div className="box">
-                  2016 &copy; made by&nbsp;
-                  <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>&nbsp;
-                  & <a href="https://developers.moovel.com/" target="_blank">moovel dev. team</a>
-                </div>
+            <div className="col-xs-6 made-by">
+              made by&nbsp; <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>&nbsp;
+              & <a href="https://developers.moovel.com/" target="_blank">moovel dev. team</a>
+            </div>
+            <div className="col-xs-6 disclaimer">
+              #slackviz is not created by, affiliated with, or supported by Slack Technologies, Inc.
             </div>
           </div>
         </div>
