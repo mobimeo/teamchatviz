@@ -28,11 +28,12 @@ export default React.createClass({
     if (this.props.tooltip.display ===  true) {
       let { x, y } = this.props.tooltip;
       const zoom = this.props.zoom;
+      const name = this.props.tooltip.name;
       const textStyle = {
         fontSize: 15 / zoom,
         fontWeight: 'bold',
       };
-      var width = 170 / zoom;
+      var width = name.length * 10 / zoom;
       var height = 30 / zoom;
       var transformText = `translate(${width/2}, ${height/2 + 5/zoom})`;
       var transformArrow = '';
@@ -51,7 +52,7 @@ export default React.createClass({
         <rect class="shadow" is width={width} height={height} fill="#393b42"/>
         <polygon class="shadow" is points={pointsArrow} transform={transformArrow} fill="#393b42" />
         <text is transform={transformText}>
-          <tspan is x="0" text-anchor="middle" font-size={textStyle.fontSize} fill="#ffffff">{this.props.tooltip.name}</tspan>
+          <tspan is x="0" text-anchor="middle" font-size={textStyle.fontSize} fill="#ffffff">{name}</tspan>
         </text>
       </g>;
     } else {

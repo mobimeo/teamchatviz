@@ -195,15 +195,18 @@ export default React.createClass({
       <Header title="people land" />
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-4 col-lg-6 no-padding">
+          <div className="col-xs-2 no-padding">
             <SearchBox onChange={this.onSearch} placeholder="search members" />
           </div>
-          <div className="col-xs-8 col-lg-6 no-padding text-right">
-            <ClusterGroups data={data} onChange={this.onGroupSelection} />
+          <div className="col-xs-10 no-padding row between-xs middle-xs">
+            <div className="chart-page-subtitle col-xs no-padding">
+              users clustered by their channel membership
+            </div>
+            <ClusterGroups customClassName="col-xs" data={data} onChange={this.onGroupSelection} />
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-3">
+          <div className="col-xs-2">
             <div className="left-list-wrapper">
               {
                 members
@@ -223,7 +226,7 @@ export default React.createClass({
               }
             </div>
           </div>
-          <div className="col-xs-9" id="modal-container">
+          <div className="col-xs-10" id="modal-container">
             <AutoSizer>
               {({ height, width }) => (
                 <HullPlot
@@ -241,9 +244,9 @@ export default React.createClass({
               isOpen={detailsOpened}
               closed={this.closeModal}
             >
-              <div style={{ textAlign: 'right' }}>
-                <a style={{ cursor: 'pointer' }} onClick={this.closeModal}>
-                  <img src="/images/close.svg" style={{ width: '1rem' }} />
+              <div className="dialog-close-button">
+                <a onClick={this.closeModal}>
+                  <img src="/images/close.svg" />
                 </a>
               </div>
               <div className="row">

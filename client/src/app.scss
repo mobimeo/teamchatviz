@@ -347,8 +347,9 @@ p.chart-description {
 
 // cluster-groups
 .cluster-groups {
-  font-size: 0.9rem;
+  font-size: 0.750em;
   line-height: 30px;
+  text-align: right;
 
   > div {
     display: inline-flex;
@@ -377,7 +378,10 @@ p.chart-description {
     }
   }
   .cluster-groups-all {
-    margin-right: 15px;
+    margin-right: 1rem;
+    div {
+      margin-right: 0.3rem;
+    }
   }
 }
 .cluster-plot {
@@ -456,6 +460,8 @@ p.chart-description {
   position: absolute;
   background-color: white;
   z-index: 10;
+  padding-top: 1rem;
+  right: 0;
 
   .rdr-DateRange {
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
@@ -501,7 +507,7 @@ p.chart-description {
     cursor: pointer;
     border-radius: 4px;
     padding: 0.375rem 1rem 0.375rem 1rem;
-    width: 14rem;
+    width: 8rem;
 
     @media screen and (max-width: $screen-xl) {
       width: 10rem;
@@ -520,7 +526,6 @@ p.chart-description {
 }
 
 
-// sort-dropdown
 .sort-dropdown {
   float: left;
   background-color: white;
@@ -561,13 +566,13 @@ p.chart-description {
   .dropdown {
     position: absolute;
     top: 140%;
-    left: -6%; /* Size */
+    left: -8.2%; /* Size */
     right: 0; /* Size */
     width: 100%;
     background: #fff;
     opacity: 0;
     pointer-events: none;
-    margin: 0;
+    margin: 0.33rem 0;
     padding: 0;
 
     li {
@@ -845,6 +850,12 @@ button:focus{
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
   stroke-dasharray: 2, 4;
+}
+
+.heartbeat-plot .rv-xy-plot__inner .rv-xy-plot__grid-lines line {
+  stroke-width: 0.5px;
+  stroke: #D9D9D9;
+  opacity: 0.37;
 }
 
 .heartbeat-x-start {
@@ -1166,10 +1177,22 @@ button:focus{
   top: 45%;
   left: 45%;
   background-color: #393B42;
-  padding: 1rem;
-  color: #E6E6E6;
-  width: 25rem;
+  padding: 1.5rem;
+  color: white;
+  width: 17.188rem;
+  border-radius: 0.2rem;
 
+  div {
+    color: white;
+    font-weight: $font-normal;
+    font-size: 0.750rem;
+  }
+  h3 {
+    margin-top: 0;
+    color: white;
+    font-weight: $font-semi-bold;
+    font-size: 0.875rem;
+  }
   a {
     color: white;
   }
@@ -1180,10 +1203,57 @@ button:focus{
 
   img {
     border-radius: 50%;
-    width: 6rem;
+    width: 4.500rem;
   }
 
   .row {
-    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
   }
+
+  .dialog-close-button {
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+    a {
+      cursor: pointer;
+      img {
+        width: 1rem;
+      }
+    }
+  }
+}
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 20px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $color-grey-light;
+}
+::-webkit-scrollbar-thumb:active {
+  background: $color-grey-dark;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

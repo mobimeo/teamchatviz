@@ -67,9 +67,9 @@ export default React.createClass({
       };
     });
     const selected = this.state.data.get('selected');
-    return <div className="cluster-groups">
+    return <div className={'cluster-groups ' + this.props.customClassName}>
       <div className="cluster-groups-all">
-        <div>Groups</div>
+        <div>groups</div>
         <button className={ selected.length === 0 ? 'is-active' : '' } onClick={this.onAllClick}>all</button>
       </div>
       {
