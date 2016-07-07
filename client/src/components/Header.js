@@ -24,7 +24,7 @@ import { Link } from 'react-router';
 import { MenuButtons } from './MenuButtons';
 
 export const Header = (props) => {
-  return <header className="site-header">
+  return <header className="page-header">
     <div className="row">
       <div className="col-xs-9">
         <Link to="/">

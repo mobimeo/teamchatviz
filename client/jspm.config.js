@@ -101,7 +101,7 @@ SystemJS.config({
     "react-progress-2": "npm:react-progress-2@4.2.1",
     "react-router": "npm:react-router@2.5.1",
     "react-virtualized": "npm:react-virtualized@7.11.5",
-    "react-vis": "npm:react-vis@0.3.4",
+    "react-vis": "npm:react-vis@0.4.2",
     "scss": "github:mobilexag/plugin-sass@0.4.6",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
@@ -532,14 +532,6 @@ SystemJS.config({
         "react-menus": "npm:react-menus@1.1.1"
       }
     },
-    "npm:react-vis@0.3.4": {
-      "map": {
-        "d3": "npm:d3@3.5.17",
-        "deep-equal": "npm:deep-equal@1.0.1",
-        "global": "npm:global@4.3.0",
-        "warning": "npm:warning@2.1.0"
-      }
-    },
     "npm:react@15.1.0": {
       "map": {
         "fbjs": "npm:fbjs@0.8.3",
@@ -707,6 +699,65 @@ SystemJS.config({
     "npm:react-onclickoutside@5.3.1": {
       "map": {
         "object-assign": "npm:object-assign@4.1.0"
+      }
+    },
+    "npm:react-vis@0.4.2": {
+      "map": {
+        "global": "npm:global@4.3.0",
+        "deep-equal": "npm:deep-equal@1.0.1",
+        "warning": "npm:warning@2.1.0",
+        "d3-color": "npm:d3-color@0.4.2",
+        "d3-shape": "npm:d3-shape@0.6.1",
+        "d3-scale": "npm:d3-scale@0.7.2",
+        "d3-collection": "npm:d3-collection@0.1.2",
+        "d3-axis": "npm:d3-axis@0.3.2",
+        "d3-array": "npm:d3-array@0.7.1",
+        "d3-transition": "npm:d3-transition@0.2.10",
+        "d3-selection": "npm:d3-selection@0.7.3",
+        "d3-hierarchy": "npm:d3-hierarchy@0.2.4"
+      }
+    },
+    "npm:d3-scale@0.7.2": {
+      "map": {
+        "d3-color": "npm:d3-color@0.4.2",
+        "d3-collection": "npm:d3-collection@0.2.0",
+        "d3-format": "npm:d3-format@0.5.1",
+        "d3-time-format": "npm:d3-time-format@0.3.2",
+        "d3-array": "npm:d3-array@0.7.1",
+        "d3-time": "npm:d3-time@0.2.6",
+        "d3-interpolate": "npm:d3-interpolate@0.8.3"
+      }
+    },
+    "npm:d3-shape@0.6.1": {
+      "map": {
+        "d3-path": "npm:d3-path@0.1.5"
+      }
+    },
+    "npm:d3-axis@0.3.2": {
+      "map": {
+        "d3-scale": "npm:d3-scale@0.7.2",
+        "d3-transition": "npm:d3-transition@0.2.10",
+        "d3-selection": "npm:d3-selection@0.7.3"
+      }
+    },
+    "npm:d3-time-format@0.3.2": {
+      "map": {
+        "d3-time": "npm:d3-time@0.2.6"
+      }
+    },
+    "npm:d3-interpolate@0.8.3": {
+      "map": {
+        "d3-color": "npm:d3-color@0.4.2"
+      }
+    },
+    "npm:d3-transition@0.2.10": {
+      "map": {
+        "d3-color": "npm:d3-color@0.4.2",
+        "d3-interpolate": "npm:d3-interpolate@0.8.3",
+        "d3-selection": "npm:d3-selection@0.7.3",
+        "d3-timer": "npm:d3-timer@0.4.4",
+        "d3-ease": "npm:d3-ease@0.7.0",
+        "d3-dispatch": "npm:d3-dispatch@0.4.4"
       }
     }
   }

@@ -41,6 +41,7 @@ export default React.createClass({
         crosshairValues: [],
         width: 0,
         seriesColor: '#9B9B9B',
+        seriesWidth: '1px',
       })
     };
   },
@@ -68,7 +69,8 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .update('crosshairValues', () => this._crosshairValues)
-        .update('seriesColor', () => '#9B9B9B'),
+        .update('seriesColor', () => '#9B9B9B')
+        .update('seriesWidth', () => '1px'),
     }));
   },
 
@@ -79,7 +81,9 @@ export default React.createClass({
   _onMouseEnter() {
     this._crosshairValues = [];
     this.setState(({data}) => ({
-      data: data.update('seriesColor', () => '#00B7BF')
+      data: data
+        .update('seriesColor', () => '#00B7BF')
+        .update('seriesWidth', () => '2px'),
     }));
   },
 
@@ -97,27 +101,13 @@ export default React.createClass({
       heartbeat: [],
     };
     const chValues = this.state.data.get('crosshairValues');
-    const tooltipStyles = {
-      background: '#393B42',
-      width: '90px',
-      color: 'white',
-      position: 'absolute',
-      left: '-47px',
-      top: '-50px',
-      fontSize: '10px'
-    };
-    const pointerStyles = {
-      position: 'absolute',
-      left: '-12px',
-      top: '-13px',
-    };
     const hints = [];
     if (chValues[0]) {
       hints.push(<Hint
         orientation="topleft"
         value={chValues[0]}
         key={'xyPlotHint' + this.props.parentKey}>
-        <div style={tooltipStyles} className="cross-hair arrow_box">
+        <div className="cross-hair arrow_box">
           {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
           <br />
           {chValues[0] ? chValues[0].y : 0} messages
@@ -127,7 +117,7 @@ export default React.createClass({
         orientation="topleft"
         value={chValues[0]}
         key={'xyPlotHintPointer' + this.props.parentKey}>
-          <img style={pointerStyles} width="25" src="/images/pointer.png" />
+          <img className="cross-hair-pointer" width="25" src="/images/pointer.png" />
       </Hint>);
     }
 
@@ -177,8 +167,8 @@ export default React.createClass({
           onNearestX={this._onNearestXs[0]}
           data={chartData}
           color={this.state.data.get('seriesColor')}
-          size='1px'
           xType='time'
+          strokeWidth={this.state.data.get('seriesWidth')}
           key={'xyPlotLineSeries' + this.props.parentKey}
         />
         {hints}

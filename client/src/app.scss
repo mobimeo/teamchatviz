@@ -29,6 +29,7 @@ $color-grey-dark: #393B42;
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
 $color-delimiter: rgba(217, 217, 217, 0.33);
+$color-delimiter-darker: rgba(217, 217, 217, 0.7);
 // speed
 $speed-faster: 0.2s;
 $speed-fast: 0.3s;
@@ -51,12 +52,13 @@ $font-bold: 700;
 // html, body main stiling
 html, body {
   font-family: $font-regular, sans-serif;
-  // font-size: 16px;
+  font-size: 16px;
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: $color-grey-dark;
 }
 
 a,
@@ -95,7 +97,7 @@ main {
 
 footer {
   background-color: white;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -111,6 +113,9 @@ footer {
   .container.wrap {
     padding: 0.813rem 0 0.813rem 0;
     border-top: 1px solid $color-delimiter;
+    div {
+      color: white;
+    }
     a {
       color: white;
     }
@@ -121,8 +126,8 @@ footer {
   background-color: white;
   font-weight: $font-light;
   color: $color-grey-dark;
-  font-size: 0.938rem;
-  line-height: 1.250rem;
+  font-size: 0.563em;
+  line-height: 0.688em;
   .container.wrap {
     padding: 0.813rem 0 0.813rem 0;
     border-top: 1px solid $color-delimiter;
@@ -167,6 +172,11 @@ footer {
   font-weight: $font-semi-bold;
   line-height: 1.438rem;
   letter-spacing: 0.05rem;
+}
+
+.chart-page-subtitle {
+  font-size: 0.813rem;
+  font-weight: $font-light;
 }
 
 .chart-description {
@@ -226,8 +236,8 @@ p.chart-description {
       background-color: white;
       transition: all $speed-faster ease-in-out;
       margin-bottom: 1rem;
-      width: 6.250em;
-      height: 6.250em;
+      width: 6.250rem;
+      height: 6.250rem;
     }
     .chart-image-link {
       float: left;
@@ -284,10 +294,24 @@ p.chart-description {
     .site-name {
       font-family: $font-regular, sans-serif;
       font-weight: $font-light;
+      color: white;
     }
   }
-
-
+}
+.page-header {
+  padding: 0.406rem 0 0.406rem 0;
+  border-bottom: 1px solid $color-delimiter-darker;
+  h1 {
+    font-size: 1.625rem;
+    font-weight: $font-semi-bold;
+    color: $color-grey-dark;
+    display: inline-block;
+    margin: 30px 0;
+    .site-name {
+      font-family: $font-regular, sans-serif;
+      font-weight: $font-light;
+    }
+  }
   .back {
     width: 1.5rem;
     margin-right: 1.8rem;
@@ -390,6 +414,8 @@ p.chart-description {
     max-width: 1.5rem;
     max-height: 1.5rem;
     cursor: pointer;
+    top: 0.09rem;
+    position: relative;
   }
   .button-group {
     display: inline-block;
@@ -399,7 +425,7 @@ p.chart-description {
     .button {
       background-color: white;
       border: 1px solid $color-grey-light;
-      font-size: 0.9em;
+      font-size: 0.750em;
       font-family: $font-regular, sans-serif;
       cursor: pointer;
       padding: 0.3rem 2rem;
@@ -460,8 +486,7 @@ p.chart-description {
 
 // search box
 .search-box {
-  display: inline-block;
-  width: 0;
+  float: left;
 
   @media screen and (max-width: $screen-lg) {
     display: block;
@@ -471,11 +496,11 @@ p.chart-description {
   input {
     background-color: white;
     border: 1px solid $color-grey-light;
-    font-size: 0.9em;
+    font-size: 0.750rem;
     font-family: $font-regular, sans-serif;
     cursor: pointer;
     border-radius: 4px;
-    padding: 0.3em 1em;
+    padding: 0.375rem 1rem 0.375rem 1rem;
     width: 14rem;
 
     @media screen and (max-width: $screen-xl) {
@@ -497,14 +522,14 @@ p.chart-description {
 
 // sort-dropdown
 .sort-dropdown {
-  display: inline-block;
+  float: left;
   background-color: white;
   border: 1px solid $color-grey-light;
-  font-size: 0.9em;
+  font-size: 0.750rem;
   font-family: $font-regular, sans-serif;
   cursor: pointer;
   border-radius: 4px;
-  padding: 0.3em 1em 0.3em 1em;
+  padding: 0.375rem 1rem 0.375rem 1rem;
   margin-right: 10px;
 
   .sort-by {
@@ -513,11 +538,10 @@ p.chart-description {
 }
 
 .select-box {
-  display: inline-block;
   position: relative;
   outline: none;
   cursor: pointer;
-  width: 16rem;
+  width: 12.500rem;
 
   &:active {
     background-color: transparent;
@@ -527,8 +551,9 @@ p.chart-description {
     position: absolute;
     right: -0.5rem;
     background-image: url("/images/arrow.png");
-    width: 1rem;
-    height: 1rem;
+    width: 0.601rem;
+    height: 0.601rem;
+    top: 0.135rem;
     position: absolute;
     background-position: center center;
     background-size: cover;
@@ -562,7 +587,7 @@ p.chart-description {
     pointer-events: auto;
     border: 1px solid $color-grey-light;
     border-radius: 4px;
-    padding: 0.3em 1em 0.3em 1em;
+    padding: 0.3rem 1rem 0.3rem 1rem;
     z-index: 200;
   }
 }
@@ -571,14 +596,26 @@ p.chart-description {
 
 // cross-hair
 .cross-hair {
-  font-size: 0.9rem;
-  padding: 0.1rem;
+  font-size: 0.750rem;
+  padding: 0.625rem 0.5rem 0.625rem 0.5rem;
   text-align: center;
   z-index: 10;
   color: white;
+  background-color: $color-grey-dark;
+  width: 5.000rem;
+  position: absolute;
+  left: 3.08rem;
+  top: -1rem;
+  border-radius: 0.125rem;
 }
-// end cross-hair
 
+.cross-hair-pointer {
+  position: absolute;
+  left: -12px;
+  top: -13px;
+}
+
+// end cross-hair
 
 .arrow_box {
   position: relative;
@@ -633,6 +670,8 @@ button:focus{
   border-radius: 4px;
   padding: 0.3rem;
   transition: all $speed-faster ease-in-out;
+  font-size: 0.813em;
+  font-weight: $font-normal;
 
   &.first {
     margin-bottom: 1rem;
@@ -805,21 +844,24 @@ button:focus{
 // heartbeat styles
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(1),
 .heartbeat-plot .rv-xy-plot__inner > .rv-xy-plot__grid-lines:nth-child(2) {
-  stroke-dasharray: 5, 5;
+  stroke-dasharray: 2, 4;
 }
 
 .heartbeat-x-start {
   float: left;
-  font-size: 0.9rem;
+  font-size: 0.625rem;
+  font-weight: $font-light;
 }
 
 .heartbeat-x-end {
   float: right;
-  font-size: 0.9rem;
+  font-size: 0.625rem;
+  font-weight: $font-light;
 }
 
 .heartbeat-y-mark-value {
-  font-size: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: $font-light;
   position: relative;
   left: -22px;
   top: 8px;

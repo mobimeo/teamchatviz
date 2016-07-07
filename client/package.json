@@ -48,7 +48,7 @@
       "react-progress-2": "npm:react-progress-2@^4.2.1",
       "react-router": "npm:react-router@^2.4.1",
       "react-virtualized": "npm:react-virtualized@^7.3.3",
-      "react-vis": "npm:react-vis@^0.3.4",
+      "react-vis": "npm:react-vis@^0.4.2",
       "scss": "github:mobilexag/plugin-sass@^0.4.5",
       "whatwg-fetch": "npm:whatwg-fetch@^1.0.0"
     },

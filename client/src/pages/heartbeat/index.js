@@ -114,7 +114,7 @@ export default React.createClass({
     const chunks = this.state.data.get('chunks').toJS();
     if (index === 0) {
       const data = this.state.data.get('displayedItems').get(0);
-      return <div style={{ height: '40px' }}/>
+      return <div style={{ height: '50px' }}/>
     }
     const data = this.state.data.get('displayedItems').get(index - 1);
     return <div className="heartbeat-plot">
@@ -128,7 +128,7 @@ export default React.createClass({
 
   _getRowHeight({ index }) {
     if (index === 0) {
-      return 40;
+      return 50;
     }
     return 100;
   },
@@ -160,11 +160,19 @@ export default React.createClass({
           </div>
         </div>
         <div>
-          <div className="row middle-xs" style={{ paddingRight: '20px' }}>
-            <div className="col-xs-3">
+          <div className="row middle-xs" style={{ paddingRight: '20px', position: 'relative', top: '0.7rem' }}>
+            <div className="col-xs-2">
               <span>&nbsp;</span>
             </div>
-            <div className="col-xs-9">
+            <div className="col-xs-10 chart-page-subtitle">
+              Amount of total messages per channel
+            </div>
+          </div>
+          <div className="row middle-xs" style={{ paddingRight: '20px', position: 'relative', top: '2.5rem' }}>
+            <div className="col-xs-2">
+              <span>&nbsp;</span>
+            </div>
+            <div className="col-xs-10">
               <div className="heartbeat-x-start">
                 { startDate.format('ll') }
               </div>
