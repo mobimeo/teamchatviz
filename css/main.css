@@ -1139,13 +1139,25 @@ p {
   background: url(../images/banner-placeholder.jpg) center no-repeat black;
   background-size: cover;
   width: 100%;
-  height: 800px; }
+  height: 800px;
+  position: relative; }
+  @media screen and (max-width: 767px) {
+    .bnnr {
+      height: 568px; } }
+  .bnnr .arrw {
+    position: absolute;
+    bottom: 4%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-height: 16px; }
   .bnnr .cntnt {
     position: relative;
     top: 50%;
     transform: translateY(-50%); }
     .bnnr .cntnt img {
-      max-height: 180px;
+      width: 300px;
+      max-width: 60%;
       margin: 0 auto 40px;
       text-align: center;
       display: block;
@@ -1155,17 +1167,27 @@ p {
       text-align: center;
       margin: 0;
       font-weight: normal;
-      font-size: 5rem; }
+      font-size: 4.5rem; }
+      @media screen and (max-width: 767px) {
+        .bnnr .cntnt h1 {
+          font-size: 2.4rem; } }
     .bnnr .cntnt p {
       color: white;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin: 0; }
+      @media screen and (max-width: 767px) {
+        .bnnr .cntnt p {
+          font-size: 18px; } }
 
 .vertical-align {
   display: flex;
   align-items: center; }
+  @media screen and (max-width: 991px) {
+    .vertical-align {
+      display: block;
+      align-items: top; } }
 
 .row {
   margin-top: 50px; }
@@ -1177,34 +1199,68 @@ p {
   margin-bottom: 70px;
   background: #f9f9f9;
   padding: 100px 7%; }
+  @media screen and (max-width: 767px) {
+    .lght {
+      padding: 50px 5%; } }
 
 .lght h2 {
   margin: 0 0 40px;
   font-size: 3.2rem;
-  line-height: 3.7rem;
+  line-height: 1.25em;
   font-weight: normal;
   max-width: 80%; }
+  @media screen and (max-width: 991px) {
+    .lght h2 {
+      font-size: 2.4rem; } }
+  @media screen and (max-width: 767px) {
+    .lght h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px; } }
 .lght h3 {
   font-size: 2.0rem;
-  line-height: 2.5rem;
+  line-height: 1.5em;
   font-weight: normal;
   margin-bottom: 120px;
   color: #666; }
+  @media screen and (max-width: 991px) {
+    .lght h3 {
+      font-size: 1.6rem; } }
+  @media screen and (max-width: 767px) {
+    .lght h3 {
+      font-size: 18px;
+      margin-bottom: 40px; } }
 .lght h4 {
   margin: 0 0 1.4rem 0;
   font-size: 1.9rem;
-  line-height: 2.4rem;
+  line-height: 1.4em;
   font-weight: normal; }
+  @media screen and (max-width: 767px) {
+    .lght h4 {
+      font-size: 1.6rem; } }
 .lght .txt-lft {
   padding-right: 5rem; }
+  @media screen and (max-width: 991px) {
+    .lght .txt-lft {
+      padding-right: 15px; } }
 .lght .txt-rght {
   padding-left: 5rem; }
+  @media screen and (max-width: 991px) {
+    .lght .txt-rght {
+      padding-left: 15px; } }
 .lght .img-lft {
   margin-left: -35%;
-  width: 140%; }
+  width: 130%; }
+  @media screen and (max-width: 991px) {
+    .lght .img-lft {
+      width: 100%;
+      margin: 0 0 40px; } }
 .lght .img-rght {
   margin-right: -35%;
-  width: 140%; }
+  width: 130%; }
+  @media screen and (max-width: 991px) {
+    .lght .img-rght {
+      width: 100%;
+      margin: 0 0 40px; } }
 
 .drk {
   background-color: #25262e;
@@ -1215,6 +1271,13 @@ p {
     font-weight: normal;
     font-size: 3.0rem;
     line-height: 3.5rem; }
+    @media screen and (max-width: 991px) {
+      .drk h2 {
+        font-size: 2.4rem;
+        line-height: 1.3em; } }
+    @media screen and (max-width: 991px) {
+      .drk h2 {
+        font-size: 1.6rem; } }
   .drk p {
     margin: 0;
     color: #666;
@@ -1222,6 +1285,12 @@ p {
   .drk a {
     color: #00b7bf;
     font-size: 2.2rem; }
+    @media screen and (max-width: 991px) {
+      .drk a {
+        font-size: 1.6rem; } }
+    @media screen and (max-width: 767px) {
+      .drk a {
+        font-size: 18px; } }
 
 .demo-bttn {
   display: inline-block;
@@ -1236,19 +1305,36 @@ p {
   color: #ffcc33;
   cursor: pointer; }
 
+.shdw {
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1); }
+  @media screen and (max-width: 767px) {
+    .shdw {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); } }
+
 .ppl {
-  display: block;
-  margin: 0 auto 12px;
-  max-width: 100px;
-  border-radius: 50%; }
+  min-height: 220px; }
+  .ppl img {
+    display: block;
+    margin: 20px auto 12px;
+    max-width: 100px;
+    border-radius: 50%; }
+    @media screen and (max-width: 767px) {
+      .ppl img {
+        margin: 40px auto 12px; }
+        .ppl img.first-child {
+          margin-top: 0; } }
 
 footer {
   background: #25262e;
   color: white;
   padding: 80px 0 100px;
   margin-top: 100px; }
+  @media screen and (max-width: 991px) {
+    footer {
+      margin: 0;
+      padding: 0; } }
   footer h2 {
-    font-size: 20px;
+    font-size: 18px;
     text-transform: none;
     letter-spacing: 0em;
     margin: 10px 0 40px; }
