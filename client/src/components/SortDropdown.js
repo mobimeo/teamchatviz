@@ -112,7 +112,8 @@ export const SortDropdown = onClickOutside(React.createClass({
   render() {
     var data = this.state.data;
     var active = data.get('active');
-    var selected = data.get('options').find(option => option.get('selected') === true);
+    var selected = data.get('options')
+      .find(option => option.get('selected') === true);
     var placeholder = data.get('placeholder');
     return <div className="sort-dropdown">
       <div className={ active ? 'select-box active' : 'select-box'} onClick={this.onToggle} >

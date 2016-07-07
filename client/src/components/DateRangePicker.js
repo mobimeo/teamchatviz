@@ -125,6 +125,12 @@ export const DateRangePicker = React.createClass({
       { this.state.data.get('expanded')
         ? <div className="date-range-container">
             <DateRange
+              theme={{
+                DayInRange: {
+                  background: '#ffebad',
+                  color: 'black'
+                },
+              }}
               onChange={this.handleSelect}
               startDate={this.state.data.get('range').startDate}
               endDate={this.state.data.get('range').endDate} />

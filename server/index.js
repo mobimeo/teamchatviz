@@ -71,11 +71,11 @@ apiApp.use(convert(session({
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
 
-import { getOne as getOneUser } from './repositories/user';
+import { getOne as getOneUser, makeUserAMember as makeUserAMember } from './repositories/user';
 
 apiApp.use(async (ctx, next) => {
   if (config.public) {
-    const user = await getOneUser();
+    const user = await makeUserAMember(await getOneUser());
     ctx.login(user);
     await next();
   } else {

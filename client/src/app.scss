@@ -19,16 +19,8 @@
 */
 
 // font
-$font-regular: 'Gidole-Regular';
-
-@font-face {
-  font-family: $font-regular;
-  src: url("/fonts/Gidole-Regular.otf");
-  src: url("/fonts/Gidole-Regular.eot");
-  src: url("/fonts/Gidole-Regular.woff");
-  src: url("/fonts/Gidole-Regular.ttf");
-}
-
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600,200);
+$font-regular: 'Source Sans Pro';
 
 // colors
 $color-brand: #00B7BF;
@@ -137,29 +129,36 @@ footer {
 .chart-title:focus {
   color: $color-brand;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
 }
 
-.chart-description,
-.site-description {
+.chart-description {
   color: $color-grey-light;
   font-family: $font-regular, sans-serif;
 }
 
 .site-description {
+  color: $color-grey-medium;
+  font-family: $font-regular, sans-serif;
+}
+
+.site-description {
   font-size: 0.9rem;
-  border-bottom: 1px solid $color-grey-light;
-  padding: 40px 0;
+  border-bottom: 2.5px solid $color-grey-medium;
+  padding: 1rem 0 2rem 0;
 
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     margin: 0 0 10px;
   }
   p {
+    color: $color-grey-light;
     margin: 0;
-
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: lighter;
     &.sm {
       font-size: 0.7rem;
       line-height: 1.1rem;
@@ -167,6 +166,7 @@ footer {
     }
   }
 }
+
 p.chart-description {
   font-size: 1rem;
   line-height: 1.3rem;
@@ -181,6 +181,7 @@ p.chart-description {
     height: 100%;
     display: block;
     position: relative;
+    text-decoration: none;
 
     .chart-image {
       background-size: contain;
@@ -228,23 +229,29 @@ p.chart-description {
 // site-header
 .site-header {
   padding: 0.406rem 0 0.406rem 0;
-  border-bottom: 1px $color-grey-light solid;
+  border-bottom: 2.5px $color-grey-medium solid;
 
   h1 {
     font-family: $font-regular, sans-serif;
     color: $color-grey-dark;
     display: inline-block;
-    font-size: 1.625em;
+    font-size: 1.625rem;
     margin: 30px 0;
 
-    img{
+    img {
       width:1.7rem;
       float:right;
-      margin-top:5px;
+      margin-top: 0.1rem;
       margin-left: 1rem;
     }
+    .site-name {
+      font-family: $font-regular, sans-serif;
+      font-weight: lighter;
+    }
   }
-  .back{
+
+
+  .back {
     width: 1.5rem;
     margin-right: 1.8rem;
     margin-bottom: -0.3rem;
@@ -267,8 +274,12 @@ p.chart-description {
   background-color: $color-grey-dark;
 }
 
-.client-app.dark .site-header h1{
+.client-app.dark .site-header h1 {
   color: white;
+}
+
+.client-app.white .site-header {
+  border-bottom: 1px $color-grey-light solid;
 }
 // end main page colors
 
@@ -469,27 +480,26 @@ p.chart-description {
   position: relative;
   outline: none;
   cursor: pointer;
-  width: 17.5rem;
+  width: 16rem;
 
   &:active {
     background-color: transparent;
   }
   &:after {
     content: "";
-    width: 0;
-    height: 0;
     position: absolute;
-    right: 16px;
-    top: 50%;
-    margin-top: -6px;
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent black;
+    right: -0.5rem;
+    background-image: url("/images/arrow.png");
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
   }
   .dropdown {
     position: absolute;
     top: 140%;
-    left: -7.5%; /* Size */
+    left: -6%; /* Size */
     right: 0; /* Size */
     width: 100%;
     background: #fff;
@@ -527,6 +537,8 @@ p.chart-description {
   font-size: 0.9rem;
   padding: 0.1rem;
   text-align: center;
+  z-index: 10;
+  color: white;
 }
 // end cross-hair
 
@@ -770,11 +782,12 @@ button:focus{
 }
 
 .heartbeat-y-mark-value {
-  font-size: 0.75rem;
+  font-size: 0.5rem;
   position: relative;
   left: -22px;
   top: 8px;
-  font-weight: bold;
+  font-weight: ligher;
+  z-index: 0;
 }
 
 .heartbeat-y-mark {
@@ -782,7 +795,9 @@ button:focus{
   background-color: $color-grey-light;
   height: 1px;
   left: -5px;
+  top: 0.2px;
   position: relative;
+  z-index: 0;
 }
 
 .heartbeat-chart-row:hover {

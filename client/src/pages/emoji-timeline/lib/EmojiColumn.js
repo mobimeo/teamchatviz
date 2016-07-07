@@ -56,6 +56,10 @@ export default React.createClass({
 
   getMultiplyForEmoji(reaction) {
     let multiply = 1;
+    const totalHeight = this.state.data.get('height') - 200;
+    if (totalHeight < 800) {
+      return multiply;
+    }
     if (reaction.count > 1000) {
       multiply = Math.floor(reaction.count / 100);
     } else if (reaction.count > 100) {

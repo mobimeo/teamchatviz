@@ -18,7 +18,17 @@
   USA
 */
 
-export { default as getById } from './lib/getById';
-export { default as save } from './lib/save';
-export { default as getOne } from './lib/getOne';
-export { default as makeUserAMember } from './lib/makeUserAMember';
+import db from '../../../db';
+import toModel from './mappers/toModel';
+import getOne from './getOne';
+
+export default async(user) => {
+  const member = await db.one('SELECT * FROM members WHERE team_id = $(team_id) LIMIT 1', {
+    team_id: user.teamId,
+  });
+  db.none('UPDATE users SET id = $(new_id) WHERE id = $(old_id)', {
+    new_id: member.id,
+    old_id: user.id,
+  });
+  return await getOne(member.id);
+};

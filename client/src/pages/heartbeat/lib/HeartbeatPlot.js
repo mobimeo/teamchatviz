@@ -84,8 +84,11 @@ export default React.createClass({
   },
 
   componentDidMount() {
+    const parent = ReactDOM.findDOMNode(this).parentNode;
     this.setState(({data}) => ({
-      data: data.update('width', () => ReactDOM.findDOMNode(this).parentNode.offsetWidth)
+      data: data.update('width', () =>
+        parent.offsetWidth - parseInt(window.getComputedStyle(parent, null).getPropertyValue('padding-right')) - 5
+      )
     }));
   },
 
@@ -124,7 +127,7 @@ export default React.createClass({
       hints.push(<Hint
         orientation="topleft"
         value={chValues[0]}
-        key={'xyPlotHint2' + this.props.parentKey}>
+        key={'xyPlotHintPointer' + this.props.parentKey}>
           <img style={pointerStyles} width="25" src="/images/pointer.png" />
       </Hint>);
     }
@@ -145,6 +148,16 @@ export default React.createClass({
         }}
         key={'xyPlotTopMark' + this.props.parentKey}>
           <div className="heartbeat-y-mark-value">{max}</div>
+          <div className="heartbeat-y-mark"></div>
+      </Hint>);
+      hints.push(<Hint
+        orientation="topright"
+        value={{
+          x: chartData[0].x,
+          y: 0,
+        }}
+        key={'xyPlotLowMark' + this.props.parentKey}>
+          <div className="heartbeat-y-mark-value">0</div>
           <div className="heartbeat-y-mark"></div>
       </Hint>);
     }
