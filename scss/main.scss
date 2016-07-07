@@ -118,9 +118,6 @@ p {
   }
 }
 
-.container {
-	// width: 1370px;
-}
 .row {
   margin-top: 50px;
 
@@ -209,6 +206,39 @@ p {
     @media screen and (max-width: $scrn-md) {
       width: 100%;
       margin: 0 0 40px;
+    }
+  }
+  .img-wrppr {
+    position: relative;
+
+    .icn {
+      width: 140px;
+      height: 140px;
+      position: absolute;
+      bottom: -30px;
+      right: 0px;
+
+      @media screen and (max-width: $scrn-md) {
+        width: 130px;
+        height: 130px;
+        bottom: 0px;
+      }
+      @media screen and (max-width: $scrn-sm) {
+        width: 90px;
+        height: 90px;
+        bottom: 20px;
+      }
+    }
+    &.lft {
+      .icn {
+        right: auto;
+        left: -30px;
+
+        @media screen and (max-width: $scrn-md) {
+          left: auto;
+          right: 0;
+        }
+      }
     }
   }
 }
