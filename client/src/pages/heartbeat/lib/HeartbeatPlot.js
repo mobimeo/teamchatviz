@@ -36,12 +36,13 @@ export default React.createClass({
       this._onNearestX.bind(this, 1)
     ];
 
+    const propsData = this.props.data;
     return {
       data: Map({
         crosshairValues: [],
         width: 0,
-        seriesColor: '#9B9B9B',
-        seriesWidth: '1px',
+        seriesColor: propsData.selected ? '#00B7BF' : '#9B9B9B',
+        seriesWidth: propsData.selected ? '2px' : '1px',
       })
     };
   },
@@ -65,12 +66,13 @@ export default React.createClass({
    * @private
    */
   _onMouseLeave() {
+    const propsData = this.props.data;
     this._crosshairValues = [];
     this.setState(({data}) => ({
       data: data
         .update('crosshairValues', () => this._crosshairValues)
-        .update('seriesColor', () => '#9B9B9B')
-        .update('seriesWidth', () => '1px'),
+        .update('seriesColor', () => propsData.selected ? '#00B7BF' : '#9B9B9B')
+        .update('seriesWidth', () => propsData.selected ? '2px' : '1px'),
     }));
   },
 
@@ -79,6 +81,7 @@ export default React.createClass({
    * @private
    */
   _onMouseEnter() {
+    const propsData = this.props.data;
     this._crosshairValues = [];
     this.setState(({data}) => ({
       data: data
@@ -93,6 +96,15 @@ export default React.createClass({
       data: data.update('width', () =>
         parent.offsetWidth - parseInt(window.getComputedStyle(parent, null).getPropertyValue('padding-right')) - 5
       )
+    }));
+  },
+
+  componentWillReceiveProps(newProps) {
+    const propsData = newProps.data;
+    this.setState(({data}) => ({
+      data: data
+        .update('seriesColor', () => propsData.selected ? '#00B7BF' : '#9B9B9B')
+        .update('seriesWidth', () => propsData.selected ? '2px' : '1px'),
     }));
   },
 
@@ -139,16 +151,18 @@ export default React.createClass({
           <div className="heartbeat-y-mark-value">{max}</div>
           <div className="heartbeat-y-mark"></div>
       </Hint>);
-      hints.push(<Hint
-        orientation="topright"
-        value={{
-          x: chartData[0].x,
-          y: 0,
-        }}
-        key={'xyPlotLowMark' + this.props.parentKey}>
-          <div className="heartbeat-y-mark-value">0</div>
-          <div className="heartbeat-y-mark"></div>
-      </Hint>);
+      if (max !== 0) {
+        hints.push(<Hint
+          orientation="topright"
+          value={{
+            x: chartData[0].x,
+            y: 0,
+          }}
+          key={'xyPlotLowMark' + this.props.parentKey}>
+            <div className="heartbeat-y-mark-value">0</div>
+            <div className="heartbeat-y-mark"></div>
+        </Hint>);
+      }
     }
 
     return <XYPlot

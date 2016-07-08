@@ -81,6 +81,10 @@ export default React.createClass({
       .filter(item => {
         return channelName === '' || item.name.toLowerCase().indexOf(channelName.toLowerCase()) !== -1;
       });
+    const anySelected = displayedItems.some(item => item.selected === true);
+    if (!anySelected) {
+      displayedItems[0].selected = true;
+    }
     this.setState(({data}) => ({
       data: data
         .set('items', List(result.data))
@@ -122,8 +126,24 @@ export default React.createClass({
         data={data}
         chunks={chunks}
         parentKey={'scrollRow' + data.id}
+        onSelected={this.onChannelSelection}
         key={'scrollRow' + data.id} />
     </div>;
+  },
+
+  onChannelSelection(channel) {
+    const newData = this.state.data.get('items').toJS();
+    newData.forEach(item => {
+      if (channel.id == item.id) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+    })
+    this.updateState({
+      data: newData,
+      chunks: this.state.data.get('chunks').toJS(),
+    });
   },
 
   _getRowHeight({ index }) {

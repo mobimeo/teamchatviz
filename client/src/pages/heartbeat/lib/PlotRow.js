@@ -22,14 +22,23 @@ import React from 'react';
 import HeartbeatPlot from './HeartbeatPlot.js';
 
 const PlotRow = React.createClass({
+  onChannelClick() {
+    this.props.onSelected(this.props.data);
+  },
   render() {
     const showChunkHints = this.props.showChunkHints;
-    return <div className="row middle-xs heartbeat-chart-row" style={{ paddingRight: '20px' }}>
+    return <div className="row middle-xs heartbeat-chart-row">
       <div className="col-xs-2">
-        <div><button className="channel-list-element">#{this.props.data.name}</button></div>
+        <div>
+          <button
+            className={'channel-list-element ' + (this.props.data.selected ? 'selected' : '')}
+            onClick={this.onChannelClick}>
+            #{this.props.data.name}
+          </button>
+        </div>
       </div>
       <div className="col-xs-10">
-        <HeartbeatPlot data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
+        <HeartbeatPlot selected={this.props.data.selected} data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>
   }

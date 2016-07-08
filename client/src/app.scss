@@ -701,6 +701,14 @@ button:focus{
     background: $color-accent;
     outline: 0;
   }
+
+  &.selected {
+    background: $color-accent;
+    outline: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all $speed-faster ease-in-out;
+  }
 }
 // end channel list
 
