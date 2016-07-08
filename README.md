@@ -22,6 +22,8 @@ See the project page [moovel.github.io/slackviz](http://moovel.github.io/slackvi
 
 Online Demo
 -----------
+Currently supported browsers: latest Chrome/Chromium or Safari.
+
 TODO big and bold Link to online demo. 
 
 Create your &#35;slackviz App
