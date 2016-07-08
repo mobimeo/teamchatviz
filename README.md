@@ -26,11 +26,12 @@ Currently supported browsers: latest Chrome/Chromium or Safari.
 
 TODO big and bold Link to online demo. 
 
-Create your &#35;slackviz App
+Running your own instance of &#35;slackviz App
 -----------------------------
-1. Create a Heroku instance of &#35;slackviz (use Deploy to Heroku button)
-2. Go to [api.slack.com/apps/new](https://api.slack.com/apps/new) and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret. Specify the following Redirect URI for your Slack App: `http://<your hostname>:<port>/api/auth/slack/callback`
-3. ... TODO
+1. Go to [api.slack.com/apps/new](https://api.slack.com/apps/new) and create a new app. Go to the App Credentials tab of the newly created app to get client id and client secret. Specify the following Redirect URI for your Slack App: `http://<hostname of your server>/api/auth/slack/callback`
+2. Create a Heroku instance of &#35;slackviz using the Deploy to Heroku button below. Specify the choosen hostname, client id and client secret during the creation of the Heroku instance.
+3. Navigate to `http://<hostname of your server>` and press Add to Slack button. Grant all required permissions to the Slack app that you created on step #1. 
+4. The data about your team will be loaded in the background and will visualizations will be available soon.
 
 Run on Heroku
 -------------
