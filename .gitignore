@@ -3,7 +3,9 @@ jspm_packages
 npm-debug.log*
 .env
 .DS_Store
+.sass-cache
 css/.sass-cache
 scss/.sass-cache
 deploy.sh
+deploy_real.sh
 install.sh
