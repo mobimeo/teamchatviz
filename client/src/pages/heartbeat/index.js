@@ -168,7 +168,11 @@ export default React.createClass({
       : moment.utc(displayedItems.get(0).heartbeat[displayedItems.get(0).heartbeat.length - 1].t);
     const isEndToday = moment(endDate).isSame(moment(), 'day');
     return <div>
-      <Header title="channel heartbeat" />
+      <Header title="channel heartbeat">
+        <span className="chart-page-subtitle">
+          Amount of total messages per channel
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-5 col-lg-6 no-padding">
@@ -180,19 +184,11 @@ export default React.createClass({
           </div>
         </div>
         <div>
-          <div className="row middle-xs" style={{ paddingRight: '20px', position: 'relative', top: '0.7rem' }}>
-            <div className="col-xs-2">
-              <span>&nbsp;</span>
-            </div>
-            <div className="col-xs-10 chart-page-subtitle">
-              Amount of total messages per channel
-            </div>
-          </div>
           <div className="row middle-xs" style={{ paddingRight: '20px', position: 'relative', top: '2.5rem' }}>
-            <div className="col-xs-2">
+            <div className="col-xs-3">
               <span>&nbsp;</span>
             </div>
-            <div className="col-xs-10">
+            <div className="col-xs-9">
               <div className="heartbeat-x-start">
                 { startDate.format('ll') }
               </div>

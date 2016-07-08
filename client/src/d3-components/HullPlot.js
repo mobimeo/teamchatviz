@@ -168,10 +168,11 @@ export default React.createClass({
         return {
           points,
           groupName: key,
+          color: groupData[key][0].color,
         }
       });
     const hulls = groups.map(gr => {
-      return <Hull points={gr.points} color={gr.points[0].color} />
+      return <Hull points={gr.points} color={gr.color} />
     });
 
     const shownGroupNames = groups.map(gr => gr.groupName);

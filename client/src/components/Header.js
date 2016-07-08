@@ -35,6 +35,7 @@ export const Header = (props) => {
             {props.title}
           </h1>
         </Link>
+        {props.children}
       </div>
       <div className="col-xs-3">
         <MenuButtons />

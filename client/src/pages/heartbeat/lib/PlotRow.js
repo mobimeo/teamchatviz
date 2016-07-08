@@ -28,8 +28,8 @@ const PlotRow = React.createClass({
   render() {
     const showChunkHints = this.props.showChunkHints;
     return <div className="row middle-xs heartbeat-chart-row">
-      <div className="col-xs-2">
-        <div>
+      <div className="col-xs-3">
+        <div className="channel-name-alignment">
           <button
             className={'channel-list-element ' + (this.props.data.selected ? 'selected' : '')}
             onClick={this.onChannelClick}>
@@ -37,7 +37,7 @@ const PlotRow = React.createClass({
           </button>
         </div>
       </div>
-      <div className="col-xs-10">
+      <div className="col-xs-9">
         <HeartbeatPlot selected={this.props.data.selected} data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
       </div>
     </div>

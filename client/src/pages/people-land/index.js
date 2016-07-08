@@ -192,21 +192,22 @@ export default React.createClass({
       }
     });
     return <div>
-      <Header title="people land" />
+      <Header title="people land">
+        <span className="chart-page-subtitle">
+          users clustered by their channel membership
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-2 no-padding">
+          <div className="col-xs-3 no-padding">
             <SearchBox onChange={this.onSearch} placeholder="search members" />
           </div>
-          <div className="col-xs-10 no-padding row between-xs middle-xs">
-            <div className="chart-page-subtitle col-xs no-padding">
-              users clustered by their channel membership
-            </div>
+          <div className="col-xs-9 no-padding row between-xs middle-xs">
             <ClusterGroups customClassName="col-xs" data={data} onChange={this.onGroupSelection} />
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-2">
+          <div className="col-xs-3">
             <div className="left-list-wrapper">
               {
                 members
@@ -214,19 +215,21 @@ export default React.createClass({
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
                   const onClick = _.bind(this.onPointClick, this, item);
-                  return <div
-                    key={index}
-                    onClick={onClick}
-                    onMouseOver={onMouseOver}
-                    onMouseOut={onMouseOut}
-                    className={"channel-list-element" + (item.is_current_user ? ' is-current-user' : '')}>
-                    {item.name} {item.is_current_user ? ' (you)' : ''}
-                  </div>
+                  return <div>
+                    <button
+                      key={index}
+                      onClick={onClick}
+                      onMouseOver={onMouseOver}
+                      onMouseOut={onMouseOut}
+                      className={"channel-list-element" + (item.is_current_user ? ' is-current-user' : '')}>
+                      {item.name} {item.is_current_user ? ' (you)' : ''}
+                    </button>
+                  </div>;
                 })
               }
             </div>
           </div>
-          <div className="col-xs-10" id="modal-container">
+          <div className="col-xs-9" id="modal-container">
             <AutoSizer>
               {({ height, width }) => (
                 <HullPlot

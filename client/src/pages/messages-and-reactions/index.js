@@ -142,7 +142,11 @@ export default React.createClass({
       days = moment(this.filters.endDate).diff(moment(this.filters.startDate), 'days');
     }
     return <div>
-      <Header title="messages and reactions" />
+      <Header title="messages and reactions">
+        <span className="chart-page-subtitle">
+          top 10 messages by amount of reactions
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-5 col-lg-6 no-padding">
@@ -155,22 +159,29 @@ export default React.createClass({
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
             <div className="left-list-wrapper">
-              <div className="channel-list-element first" onClick={this.onAllChannelsClick}>All channels </div>
+              <div>
+                <button className="channel-list-element first" onClick={this.onAllChannelsClick}>all channels
+                </button>
+              </div>
               <div>
                 {
                   channels.map((d, i) => {
                     const onClick = _.bind(this.onChannelClick, this, d);
-                    return <div onClick={onClick} className="channel-list-element" key={i}><span>#{d.name}</span></div>;
+                    return <div>
+                      <button
+                        onClick={onClick}
+                        className="channel-list-element"
+                        key={i}>
+                        <span>#{d.name}</span>
+                      </button>
+                    </div>;
                   })
                 }
               </div>
             </div>
           </div>
           <div className="col-xs-9 messages-reactions">
-            <h2>{ channel ? channel.name : 'All channels'}</h2>
-            <div>
-              Top rated messages for {days === -1 ? 'all times' : days + ' days'}
-            </div>
+            <h2 className="in-page-channel-name">{ channel ? '#' + channel.name : 'all channels'}</h2>
             {
               chartData.map(message => {
                 const href = `https://${teamName}.slack.com/archives/${message.channel_name}/p${message.message_id.replace('.', '')}`;
@@ -183,17 +194,17 @@ export default React.createClass({
                           <div>
                             {emoji.emojify(message.text, (unknown) => emojis[unknown])}
                           </div>
-                          <div className="open-in"><a href={href} target="_blank">open in slack</a></div>
+                          <div className="open-in"><a href={href} target="_blank">open in slack</a> > </div>
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col-xs-5">
+                        <div className="col-xs-4">
                           <div className="message-meta">
                             <div className="user-name">{message.real_name}</div>
-                            <div className="message-time">{moment(message.message_ts).format()}</div>
+                            <div className="message-time">{moment(message.message_ts).format('LLL')}</div>
                           </div>
                         </div>
-                        <div className="col-xs-7">
+                        <div className="col-xs-8">
                           <img className="user-img" src={message.image32}/>
                         </div>
                       </div>

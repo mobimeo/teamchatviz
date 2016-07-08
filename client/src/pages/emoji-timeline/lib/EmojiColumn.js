@@ -56,7 +56,7 @@ export default React.createClass({
 
   getMultiplyForEmoji(reaction) {
     let multiply = 1;
-    const totalHeight = this.state.data.get('height') - 200;
+    const totalHeight = this.state.data.get('height') - 50;
     if (totalHeight < 800) {
       return multiply;
     }
@@ -73,7 +73,7 @@ export default React.createClass({
   render() {
     const item = this.props.item;
     const emojis = this.props.emojis;
-    const totalHeight = this.state.data.get('height') - 200;
+    const totalHeight = this.state.data.get('height') - 50;
     if (totalHeight < 0) {
       return <div />;
     }
@@ -97,7 +97,7 @@ export default React.createClass({
         flexDirection: 'column',
         justifyContent: 'flex-end'
       }}>
-        <div style={{ textAlign: 'center' }} >
+        <div className="emoji-timeline-top">
           { item.total }
         </div>
         <div className={'emoji-timeline-column'} style={{
@@ -128,7 +128,7 @@ export default React.createClass({
           : null
         }
         </div>
-        <div style={{ textAlign: 'center', zIndex: 2, backgroundColor: 'white' }} >
+        <div className={ 'emoji-timeline-x' } >
           { moment.utc(item.id).format('ll') }
         </div>
       </div>

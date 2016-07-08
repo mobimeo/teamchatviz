@@ -26,13 +26,17 @@ $font-regular: 'Source Sans Pro';
 $color-brand: #00B7BF;
 $color-accent: #FFCC33;
 $color-grey-dark: #393B42;
+$color-grey-dark-tr: rgba(57, 59, 66, 0.8);
 $color-grey-medium: #9B9B9B;
 $color-grey-light: #E6E6E6;
+$color-grey-light-tr: rgba(230, 230, 230, 0.4);
 $color-delimiter: rgba(217, 217, 217, 0.33);
 $color-delimiter-darker: rgba(217, 217, 217, 0.7);
 // speed
 $speed-faster: 0.2s;
 $speed-fast: 0.3s;
+
+$border-radius: 0.2rem;
 
 //screen
 $screen-xl: 75rem;
@@ -106,7 +110,7 @@ footer {
 
 .client-app.dark footer {
   background-color: $color-grey-dark;
-  font-weight: $font-light;
+  font-weight: $font-normal;
   color: white;
   font-size: 0.938rem;
   line-height: 1.250rem;
@@ -124,10 +128,10 @@ footer {
 
 .client-app.white footer {
   background-color: white;
-  font-weight: $font-light;
+  font-weight: $font-normal;
   color: $color-grey-dark;
-  font-size: 0.563em;
-  line-height: 0.688em;
+  font-size: 0.938rem;
+  line-height: 1.250rem;
   .container.wrap {
     padding: 0.813rem 0 0.813rem 0;
     border-top: 1px solid $color-delimiter;
@@ -158,7 +162,7 @@ footer {
   top: 0;
   right: 0;
   border: 0;
-  width: 149px;
+  width: 175px;
 }
 // end footer/content set up
 
@@ -168,15 +172,16 @@ footer {
 .chart-title:focus {
   color: $color-brand;
   text-decoration: none;
-  font-size: 1.125rem;
+  font-size: 1.250rem;
   font-weight: $font-semi-bold;
   line-height: 1.438rem;
   letter-spacing: 0.05rem;
 }
 
 .chart-page-subtitle {
-  font-size: 0.813rem;
-  font-weight: $font-light;
+  font-size: 1rem;
+  font-weight: $font-normal;
+  padding-left: 1rem;
 }
 
 .chart-description {
@@ -186,7 +191,7 @@ footer {
 
 .site-description {
   color: white;
-  font-weight: $font-light;
+  font-weight: $font-normal;
 }
 
 .site-description {
@@ -198,13 +203,13 @@ footer {
   p {
     color: white;
     margin: 0;
-    font-size: 1.0625rem;
-    line-height: 1.4375rem;
-    font-weight: $font-light;
+    font-size: 1.125rem;
+    line-height: 1.6rem;
+    font-weight: $font-normal;
     &.sm {
-      font-size: 0.625rem;
+      font-size: 0.7rem;
       text-align: center;
-      font-weight: $font-light;
+      font-weight: $font-normal;
       color: white;
     }
   }
@@ -213,7 +218,7 @@ footer {
 p.chart-description {
   font-size: 0.938rem;
   line-height: 1.250rem;
-  font-weight: $font-light;
+  font-weight: $font-normal;
   padding-right: 2rem;
 }
 
@@ -282,13 +287,13 @@ p.chart-description {
     font-weight: $font-normal;
     color: $color-grey-dark;
     display: inline-block;
-    font-size: 1.625rem;
+    font-size: 2.3rem;
     margin: 30px 0;
 
     img {
       width: 1.7rem;
       float: right;
-      margin-top: 0.25rem;
+      margin-top: 0.7rem;
       margin-left: 1rem;
     }
     .site-name {
@@ -302,7 +307,7 @@ p.chart-description {
   padding: 0.406rem 0 0.406rem 0;
   border-bottom: 1px solid $color-delimiter-darker;
   h1 {
-    font-size: 1.625rem;
+    font-size: 2.3rem;
     font-weight: $font-semi-bold;
     color: $color-grey-dark;
     display: inline-block;
@@ -315,7 +320,7 @@ p.chart-description {
   .back {
     width: 1.5rem;
     margin-right: 1.8rem;
-    margin-bottom: -0.3rem;
+    margin-bottom: -0.2rem;
     transition: all $speed-faster ease-in-out;
 
     &:hover {
@@ -347,7 +352,7 @@ p.chart-description {
 
 // cluster-groups
 .cluster-groups {
-  font-size: 0.750em;
+  font-size: 1rem;
   line-height: 30px;
   text-align: right;
 
@@ -418,7 +423,7 @@ p.chart-description {
     max-width: 1.5rem;
     max-height: 1.5rem;
     cursor: pointer;
-    top: 0.09rem;
+    top: 0.03rem;
     position: relative;
   }
   .button-group {
@@ -429,7 +434,7 @@ p.chart-description {
     .button {
       background-color: white;
       border: 1px solid $color-grey-light;
-      font-size: 0.750em;
+      font-size: 1rem;
       font-family: $font-regular, sans-serif;
       cursor: pointer;
       padding: 0.3rem 2rem;
@@ -502,15 +507,15 @@ p.chart-description {
   input {
     background-color: white;
     border: 1px solid $color-grey-light;
-    font-size: 0.750rem;
+    font-size: 1rem;
     font-family: $font-regular, sans-serif;
     cursor: pointer;
     border-radius: 4px;
     padding: 0.375rem 1rem 0.375rem 1rem;
-    width: 8rem;
+    width: 100%;
 
     @media screen and (max-width: $screen-xl) {
-      width: 10rem;
+      width: 100%;
     }
     &:focus {
       outline: 0;
@@ -530,7 +535,7 @@ p.chart-description {
   float: left;
   background-color: white;
   border: 1px solid $color-grey-light;
-  font-size: 0.750rem;
+  font-size: 1rem;
   font-family: $font-regular, sans-serif;
   cursor: pointer;
   border-radius: 4px;
@@ -546,7 +551,7 @@ p.chart-description {
   position: relative;
   outline: none;
   cursor: pointer;
-  width: 12.500rem;
+  width: 16rem;
 
   &:active {
     background-color: transparent;
@@ -558,7 +563,7 @@ p.chart-description {
     background-image: url("/images/arrow.png");
     width: 0.601rem;
     height: 0.601rem;
-    top: 0.135rem;
+    top: 0.26rem;
     position: absolute;
     background-position: center center;
     background-size: cover;
@@ -675,14 +680,14 @@ button:focus{
   border-radius: 4px;
   padding: 0.3rem;
   transition: all $speed-faster ease-in-out;
-  font-size: 0.813em;
+  font-size: 1rem;
   font-weight: $font-normal;
 
   &.first {
     margin-bottom: 1rem;
   }
   &.is-current-user {
-    border-left: 4px solid $color-grey-light;
+    border-left: 4px solid $color-grey-medium;
     border-radius: 0 4px 4px 0;
   }
 
@@ -712,6 +717,7 @@ button:focus{
 }
 // end channel list
 
+// emoji
 
 .emoji-timeline-plot {
   margin-top: 2rem;
@@ -720,11 +726,28 @@ button:focus{
   stroke-dasharray: 2, 2;
 }
 .emoji-timeline-column {
-  border-top: black 0.25rem solid;
+  border-top: $color-grey-dark-tr 0.20rem solid;
   background-color: #fafafa;
 }
 .emoji-timeline-column.no-background {
   background-color: transparent;
+}
+
+.emoji-timeline-x {
+  text-align: center;
+  z-index: 2;
+  background-color: white;
+  font-size: 0.8rem;
+  font-weight: $font-normal;
+  max-width: 3rem;
+  margin: 0.25rem auto;
+}
+
+.emoji-timeline-top {
+  text-align: center;
+  z-index: 2;
+  font-weight: $font-semi-bold;
+  margin-bottom: 0.2rem;
 }
 
 .emoji {
@@ -801,13 +824,20 @@ button:focus{
 }
 
 // frequent speakers
+
+.frequent-speakers-dates {
+  font-size: 0.8rem;
+  font-weight: $font-normal;
+  margin-left: 2rem;
+}
+
 .member{
   margin: 1rem 0;
   font-size: 0.9rem;
 
   &.is-current-user {
-    border-left: 4px solid $color-grey-light;
-    border-right: 4px solid $color-grey-light;
+    border-left: 4px solid $color-grey-medium;
+    border-right: 4px solid $color-grey-medium;
   }
   .member-img {
     margin: 1rem 0;
@@ -821,18 +851,61 @@ button:focus{
     font-family: $font-regular, sans-serif;
     font-size: 1.5rem;
   }
+  .member-you {
+    font-size: 1.1rem;
+    font-weight: $font-semi-bold;
+  }
 }
 
-.channel-tree-map-pic {
-  width: 2rem;
-  border-radius: 50%;
-  vertical-align: middle;
+.user-stats {
+  margin: 2rem 0 0 0;
 }
 
-.channel-tree-map-count {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 0.8rem;
+.user-treemap-chart {
+  margin-top: 1rem;
+}
+
+.channel-treemap-chart {
+  margin-top: 1rem;
+}
+
+.channel-tree-map {
+  margin: 1rem;
+
+  .channel-tree-map-pic {
+    width: 2rem;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
+  .channel-tree-map-count {
+    font-size: 1.3rem;
+    font-weight: $font-bold;
+    margin-top: 0.8rem;
+  }
+
+  .channel-tree-map-title {
+    font-size: 1rem;
+    font-weight: $font-normal;
+    margin-top: 0.8rem;
+  }
+
+}
+
+.user-tree-map {
+  margin: 1rem;
+
+  .user-tree-map-count {
+    font-size: 1.3rem;
+    font-weight: $font-bold;
+    margin-top: 0.8rem;
+  }
+
+  .user-tree-map-title {
+    font-size: 1rem;
+    font-weight: $font-normal;
+    margin-top: 0.8rem;
+  }
 }
 
 // end frequent speakers
@@ -860,32 +933,39 @@ button:focus{
   stroke-dasharray: 2, 4;
 }
 
+.heartbeat-plot  {
+  svg {
+    z-index: 5;
+  }
+}
+
 .heartbeat-plot .rv-xy-plot__inner .rv-xy-plot__grid-lines line {
   stroke-width: 0.5px;
   stroke: #D9D9D9;
-  opacity: 0.37;
+  opacity: 1;
 }
 
 .heartbeat-x-start {
   float: left;
-  font-size: 0.625rem;
-  font-weight: $font-light;
+  font-size: 0.8rem;
+  font-weight: $font-normal;
 }
 
 .heartbeat-x-end {
   float: right;
-  font-size: 0.625rem;
-  font-weight: $font-light;
+  font-size: 0.8rem;
+  font-weight: $font-normal;
 }
 
 .heartbeat-y-mark-value {
-  font-size: 0.625rem;
-  font-weight: $font-light;
+  font-size: 0.8rem;
+  font-weight: $font-normal;
   position: relative;
-  left: -22px;
-  top: 8px;
+  left: -2rem;
+  top: 0.5rem;
   font-weight: ligher;
-  z-index: 0;
+  z-index: -1;
+  text-align: right;
 }
 
 .heartbeat-y-mark {
@@ -895,7 +975,7 @@ button:focus{
   left: -5px;
   top: 0.2px;
   position: relative;
-  z-index: 0;
+  z-index: -1;
 }
 
 .heartbeat-chart-row:hover {
@@ -906,6 +986,11 @@ button:focus{
     cursor: pointer;
     transition: all $speed-faster ease-in-out;
   }
+}
+
+.channel-name-alignment {
+  position: relative;
+  top: 0.3rem;
 }
 // end heartbeat styles
 // menu
@@ -960,20 +1045,25 @@ button:focus{
 // end menu
 
 // messages and reactions
-.messages-reactions{
+.in-page-channel-name {
+  font-size: 1.25rem;
+  font-weight: $font-normal;
+  margin-top: 0.4rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  display: inline;
+}
+
+.messages-reactions {
   padding-left: 2rem;
 
-  h2{
-    font-family: $font-regular, sans-serif;
-    font-size: 1.2rem;
-    margin-top: 0.4rem;
-  }
-  .reactions{
-    font-family: $font-regular, sans-serif;
+  .reactions {
+    font-size: 1.1rem;
+    font-weight: $font-semi-bold;
     padding-left: 1rem;
     margin: 2rem 0 1.5rem 0;
-    font-weight: bold;
   }
+
   .message-wrapper {
     margin: 2rem 0 1.5rem 0;
 
@@ -991,19 +1081,20 @@ button:focus{
     }
     .message-body {
       position:relative;
-      padding: 1rem 1rem 1.3rem 1rem;
+      padding: 1.5rem 1.5rem 1.5rem 1.5rem;
       margin-left: 36px;
-      background-color: $color-grey-light;
+      background-color: $color-grey-light-tr;
+      font-size: 1rem;
+      border-radius: $border-radius;
 
       .open-in {
         position: absolute;
-        right: 5px;
-        bottom: 5px;
+        right: 0.6rem;
+        bottom: 0.6rem;
         font-size: 0.75rem;
-        color: $color-grey-medium;
+        color: $color-grey-dark;
 
         &:hover {
-          text-decoration: underline;
           cursor: pointer;
         }
       }
@@ -1015,7 +1106,7 @@ button:focus{
         position: absolute;
         border-style: solid;
         border-width: 15px 10px 0;
-        border-color: #E6E6E6 transparent;
+        border-color: $color-grey-light-tr transparent;
         display: block;
         width: 0;
         z-index: 1;
@@ -1188,18 +1279,18 @@ button:focus{
   padding: 1.5rem;
   color: white;
   width: 17.188rem;
-  border-radius: 0.2rem;
+  border-radius: $border-radius;
 
   div {
     color: white;
     font-weight: $font-normal;
-    font-size: 0.750rem;
+    font-size: 0.938rem;
   }
   h3 {
     margin-top: 0;
     color: white;
     font-weight: $font-semi-bold;
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
   a {
     color: white;

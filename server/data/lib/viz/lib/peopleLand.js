@@ -85,6 +85,7 @@ export default async function(teamId, startDate = null, endDate = null, currentU
       name: member.name,
       image24: member.image24,
       image48: member.image48,
+      image72: member.image72,
       highlighted: member.is_current_user,
       x: row[0]*1000,
       y: row[1]*1000
@@ -95,7 +96,7 @@ export default async function(teamId, startDate = null, endDate = null, currentU
     const name = `Group ${i+1}`;
     cluster.forEach(index => {
       data[index].group = name;
-      data[index].color = colors[i];
+      data[index].color = colors[i % colors.length];
     });
   });
 

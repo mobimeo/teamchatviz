@@ -141,7 +141,11 @@ export default React.createClass({
     let chartData = data.get('data');
     const max = _.maxBy(chartData, item => item.total);
     return <div>
-      <Header title="emoji timeline" />
+      <Header title="emoji timeline">
+        <span className="chart-page-subtitle">
+          top 3 emojis and total emoji count
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-5 col-lg-6 no-padding">
@@ -154,11 +158,23 @@ export default React.createClass({
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
             <div className="left-list-wrapper">
-              <div className="channel-list-element first" onClick={this.onAllChannelsClick}>all channels </div>
+              <div>
+                <button
+                  className="channel-list-element first"
+                  onClick={this.onAllChannelsClick}>all channels
+                </button>
+              </div>
               {
                 channels.map((item, index) => {
                   const onClick = _.bind(this.onChannelClick, this, item);
-                  return <div key={index} onClick={onClick} className="channel-list-element">#{item.name}</div>
+                  return <div>
+                    <button
+                      key={index}
+                      onClick={onClick}
+                      className="channel-list-element">
+                      #{item.name}
+                    </button>
+                  </div>
                 })
               }
             </div>
@@ -166,7 +182,7 @@ export default React.createClass({
           <div className="col-xs-9">
             <div className="row">
               <div className="col-xs-3">
-                { channel ? '#'+ channel.name : 'all channels' }
+                <h2 className="in-page-channel-name">{ channel ? '#'+ channel.name : 'all channels' } </h2>
               </div>
               <div className="col-xs-6 time-range">
               {
@@ -175,17 +191,14 @@ export default React.createClass({
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-3">
-                most used emojis
-              </div>
-              <div className="col-xs-6">
-              {
-                rating
-                  .slice(0, 3)
-                  .map((reaction, i) => {
-                    return <Emoji emojis={emojis} name={reaction.name} count={reaction.count} />;
-                  })
-              }
+              <div className="col-xs-12">
+                {
+                  rating
+                    .slice(0, 3)
+                    .map((reaction, i) => {
+                      return <Emoji emojis={emojis} name={reaction.name} count={reaction.count} />;
+                    })
+                }
               </div>
             </div>
             <AutoSizer>{({ height, width }) => (

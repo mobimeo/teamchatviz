@@ -42,7 +42,7 @@ export default React.createClass({
         crosshairValues: [],
         width: 0,
         seriesColor: propsData.selected ? '#00B7BF' : '#9B9B9B',
-        seriesWidth: propsData.selected ? '2px' : '1px',
+        seriesWidth: propsData.selected ? '2.5px' : '1px',
       })
     };
   },
@@ -72,7 +72,7 @@ export default React.createClass({
       data: data
         .update('crosshairValues', () => this._crosshairValues)
         .update('seriesColor', () => propsData.selected ? '#00B7BF' : '#9B9B9B')
-        .update('seriesWidth', () => propsData.selected ? '2px' : '1px'),
+        .update('seriesWidth', () => propsData.selected ? '2.5px' : '1px'),
     }));
   },
 
@@ -86,7 +86,7 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .update('seriesColor', () => '#00B7BF')
-        .update('seriesWidth', () => '2px'),
+        .update('seriesWidth', () => '2.5px'),
     }));
   },
 
@@ -94,7 +94,7 @@ export default React.createClass({
     const parent = ReactDOM.findDOMNode(this).parentNode;
     this.setState(({data}) => ({
       data: data.update('width', () =>
-        parent.offsetWidth - parseInt(window.getComputedStyle(parent, null).getPropertyValue('padding-right')) - 5
+        parent.offsetWidth - parseInt(window.getComputedStyle(parent, null).getPropertyValue('padding-right')) - 25
       )
     }));
   },
@@ -104,7 +104,7 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .update('seriesColor', () => propsData.selected ? '#00B7BF' : '#9B9B9B')
-        .update('seriesWidth', () => propsData.selected ? '2px' : '1px'),
+        .update('seriesWidth', () => propsData.selected ? '2.5px' : '1px'),
     }));
   },
 
@@ -170,7 +170,7 @@ export default React.createClass({
         onMouseEnter={this._onMouseEnter}
         width={width}
         height={100}
-        margin={{left: 0.5, top: 0.5, right: 0.5, bottom: 0.5}}
+        margin={{left: 1.25, top: 1.25, right: 1.25, bottom: 1.25}}
         yDomain={[0, max + ( max * 0.3 ) ]}
         key={'xyPlot' + this.props.parentKey}
         >

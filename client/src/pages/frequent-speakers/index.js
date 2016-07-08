@@ -149,6 +149,9 @@ export default React.createClass({
   },
 
   renderMembers(chartData) {
+    const topMember = _.maxBy(chartData, (item) => {
+      return item.count;
+    })
     return _.chunk(chartData, 4).map((chunk, index) => {
       return <div className="row" key={index}>
         {
@@ -156,6 +159,7 @@ export default React.createClass({
             var onMouseOver = _.bind(this.onMouseOver, this, member);
             var onMouseOut = _.bind(this.onMouseOut, this, member);
             var onClick = _.bind(this.onUserClick, this, member);
+            const width = 33 + (72 - 33) * member.count / topMember.count;
             return <div
                       onMouseOver={onMouseOver}
                       onMouseOut={onMouseOut}
@@ -165,16 +169,18 @@ export default React.createClass({
                       style={{ textAlign: 'center' }}>
               <span className="member-index">{member.count}</span>
               <br />
-              <img
-                className={'member-img' + (member.hovering ? ' member-show-stats' : '') }
-                src={member.image72}
-                style={{ borderRadius: '50%' }} />
+              <div style={{ width: '78px', height: '78px', textAlign: 'center', margin: '0 auto' }}>
+                <img
+                  className={'member-img' + (member.hovering ? ' member-show-stats' : '') }
+                  src={member.image72}
+                  style={{ borderRadius: '50%', width: width + 'px' }} />
+              </div>
               <br />
               {member.realname}
               <br />
               @{member.name}
               <br />
-              { member.is_current_user ? '(you)' : '' }
+              { member.is_current_user ? <span className="member-you">(you)</span> : '' }
             </div>
           })
         }
@@ -191,11 +197,10 @@ export default React.createClass({
             <img src="/images/frequent-speakers-back.svg" style={{ width: '1rem' }} />
           </a>
         </div>
-        <div className="col-xs-1">
           <img
+            className="col-xs-1"
             style={{ width: '2.25rem', borderRadius: '50%' }}
             src={member.image72} />
-        </div>
         <div className="col-xs-2">
           {member.realname}
           <br />
@@ -244,7 +249,11 @@ export default React.createClass({
       selectedChannelName = channels.find(ch => ch.id === filters.channelId).name;
     }
     return <div>
-      <Header title="frequent speakers" />
+      <Header title="frequent speakers">
+        <span className="chart-page-subtitle">
+          amount of public messages per channel and user
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
           <div className="col-xs-5 col-lg-6 no-padding">
@@ -257,24 +266,38 @@ export default React.createClass({
         <div className="row" style={{ paddingRight: '20px'}}>
           <div className="col-xs-3">
             <div className="left-list-wrapper">
-              <div><button onClick={this.onAllChannelsClick} className="channel-list-element first">All channels</button></div>
-              <hr />
-              {
-                channels.map((d, i) => {
-                  return <div onClick={_.bind(this.onChannelClick, this, d)} key={i}><button className="channel-list-element">#{d.name}</button></div>;
-                })
-              }
+              <div>
+                <button className="channel-list-element first" onClick={this.onAllChannelsClick}>all channels
+                </button>
+              </div>
+              <div>
+                {
+                  channels.map((d, i) => {
+                    const onClick = _.bind(this.onChannelClick, this, d);
+                    return <div>
+                      <button
+                        onClick={onClick}
+                        className="channel-list-element"
+                        key={i}>
+                        <span>#{d.name}</span>
+                      </button>
+                    </div>;
+                  })
+                }
+              </div>
             </div>
           </div>
           <div className="col-xs-9" style={{ height: 'calc(100vh - 15rem)' }}>
-            <p>
+            <h2 className="in-page-channel-name">
               { !filters.channelId ? 'all channels ' : '#' + selectedChannelName + ' '}
-              for {
+            </h2>
+            <span className="frequent-speakers-dates">
+              {
                 (filters.startDate && filters.endDate)
                 ? moment(filters.startDate).format('ll') + ' - ' + moment(filters.endDate).format('ll')
                 : ' all times'
               }
-            </p>
+            </span>
             {
               allChannels
                 ? ( selectedUser ? this.renderUserStats(selectedUser) : this.renderMembers(chartData) )

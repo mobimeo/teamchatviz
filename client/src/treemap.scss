@@ -1,69 +1,85 @@
 .channel-treemap-chart {
   .rv-treemap__leaf:nth-child(1n) {
     color: black !important;
-    background-color: #f19442 !important;
+    background-color: #3366cc !important;
   }
   .rv-treemap__leaf:nth-child(2n) {
     color: black !important;
-    background-color: #4188d4 !important;
+    background-color: #dc3912 !important;
   }
   .rv-treemap__leaf:nth-child(3n) {
     color: black !important;
-    background-color: #be67d9 !important;
+    background-color: #ff9900 !important;
   }
   .rv-treemap__leaf:nth-child(4n) {
     color: black !important;
-    background-color: #68bfbc !important;
+    background-color: #109618 !important;
   }
   .rv-treemap__leaf:nth-child(5n) {
     color: black !important;
-    background-color: #f19442 !important;
+    background-color: #990099 !important;
   }
   .rv-treemap__leaf:nth-child(6n) {
     color: black !important;
-    background-color: #4188d4 !important;
+    background-color: #0099c6 !important;
   }
   .rv-treemap__leaf:nth-child(7n) {
     color: black !important;
-    background-color: #be67d9 !important;
+    background-color: #dd4477 !important;
   }
-  .rv-treemap__leaf:nth-child(7n) {
+  .rv-treemap__leaf:nth-child(8n) {
     color: black !important;
-    background-color: #68bfbc !important;
+    background-color: #66aa00 !important;
+  }
+  .rv-treemap__leaf:nth-child(9n) {
+    color: black !important;
+    background-color: #b82e2e !important;
+  }
+  .rv-treemap__leaf:nth-child(10n) {
+    color: black !important;
+    background-color: #316395 !important;
   }
 }
 
 .user-treemap-chart {
   .rv-treemap__leaf:nth-child(1n) {
-    color: black !important;
-    background-color: #00898F !important;
+    color: white !important;
+    background-color: #005c60 !important;
   }
   .rv-treemap__leaf:nth-child(2n) {
-    color: black !important;
-    background-color: #66D4D9 !important;
+    color: white !important;
+    background-color: #00898f !important;
   }
   .rv-treemap__leaf:nth-child(3n) {
     color: black !important;
-    background-color: #99E2E5 !important;
+    background-color: #00b7bf !important;
   }
   .rv-treemap__leaf:nth-child(4n) {
     color: black !important;
-    background-color: #CCF1F2 !important;
+    background-color: #32c5cb !important;
   }
   .rv-treemap__leaf:nth-child(5n) {
     color: black !important;
-    background-color: #00898F !important;
+    background-color: #66d3d8 !important;
   }
   .rv-treemap__leaf:nth-child(6n) {
     color: black !important;
-    background-color: #66D4D9 !important;
+    background-color: #7fdbdf !important;
   }
   .rv-treemap__leaf:nth-child(7n) {
     color: black !important;
-    background-color: #99E2E5 !important;
+    background-color: #99e2e5 !important;
   }
-  .rv-treemap__leaf:nth-child(7n) {
+  .rv-treemap__leaf:nth-child(8n) {
     color: black !important;
-    background-color: #CCF1F2 !important;
+    background-color: #b2e9eb !important;
+  }
+  .rv-treemap__leaf:nth-child(9n) {
+    color: black !important;
+    background-color: #ccf0f2 !important;
+  }
+  .rv-treemap__leaf:nth-child(10n) {
+    color: black !important;
+    background-color: #e5f7f8 !important;
   }
 }

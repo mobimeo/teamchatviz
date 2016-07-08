@@ -129,13 +129,17 @@ export default React.createClass({
       }
     });
     return <div>
-      <Header title="channel land" />
+      <Header title="channel land">
+        <span className="chart-page-subtitle">
+          channels clustered by members
+        </span>
+      </Header>
       <main>
         <div className="row between-xs widgets">
-          <div className="col-xs-6 no-padding">
+          <div className="col-xs-3 no-padding">
             <SearchBox onChange={this.onSearch} placeholder="search channels" />
           </div>
-          <div className="col-xs-6 no-padding" style={{textAlign: 'right'}}>
+          <div className="col-xs-9 no-padding" style={{textAlign: 'right'}}>
             <ClusterGroups data={data} onChange={this.onGroupSelection} />
           </div>
         </div>
@@ -147,7 +151,16 @@ export default React.createClass({
                   const onClick = _.bind(this.onPointClick, this, item);
                   const onMouseOver = _.bind(this.mouseOverListMember, this, item);
                   const onMouseOut = _.bind(this.mouseOutListMember, this, item);
-                  return <div key={index} onClick={onClick} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-list-element">#{item.name}</div>
+                  return <div>
+                    <button
+                      key={index}
+                      onClick={onClick}
+                      onMouseOver={onMouseOver}
+                      onMouseOut={onMouseOut}
+                      className="channel-list-element">
+                      #{item.name}
+                    </button>
+                  </div>;
                 })
               }
             </div>
