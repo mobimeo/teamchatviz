@@ -114,7 +114,7 @@ export default React.createClass({
     const shownGroups = this.state.data.get('shownGroups');
     const detailsOpened = this.state.data.get('detailsOpened');
     const channel = this.state.data.get('selectedChannel');
-    const teamName = this.state.config ? this.state.config.teamName : '';
+    const teamName = this.props.config ? this.props.config.teamName : '';
     data.forEach(item => {
       let found = false;
       channels.forEach(channel => {
