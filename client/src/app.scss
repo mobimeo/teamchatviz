@@ -1017,7 +1017,7 @@ button:focus{
 
   &.actv {
     opacity: 1;
-    width: 16rem;
+    width: 17.5rem;
     transition: all $speed-faster ease-in-out;
   }
 
@@ -1031,6 +1031,7 @@ button:focus{
       text-decoration: none;
       display: block;
       padding-left: 3rem;
+      font-size: 1.15rem;
       transition: all $speed-faster ease-in-out;
 
       &:hover,
