@@ -85,9 +85,11 @@ p {
   min-height: 100vh;
   flex-direction: column;
 }
+
 main {
-  padding-bottom: 100px;
+  padding-bottom: 3.5rem;
 }
+
 .content {
   flex: 1;
 }
@@ -532,7 +534,7 @@ p.chart-description {
 
 
 .left-list-wrapper {
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 16rem);
   overflow-y: scroll;
 }
 

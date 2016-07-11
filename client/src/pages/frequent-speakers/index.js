@@ -56,10 +56,15 @@ export default React.createClass({
   },
 
   componentDidMount() {
+    this.refs.sidebar.style.height = this.refs.main.offsetHeight + 'px';
     fetchFrequentSpeakers(this.filters.startDate, this.filters.endDate, this.filters.channelId)
       .then(result => {
         this.updateState(result);
       })
+  },
+
+  componentDidUpdate(prevProps, prevState) {
+    this.refs.sidebar.style.height = this.refs.main.offsetHeight + 'px';
   },
 
   onDateChange(range) {
@@ -277,7 +282,7 @@ export default React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px'}}>
           <div className="col-xs-3">
-            <div className="left-list-wrapper">
+            <div className="left-list-wrapper" ref="sidebar">
               <div>
                 <button className="channel-list-element first" onClick={this.onAllChannelsClick}>all channels
                 </button>
@@ -299,7 +304,10 @@ export default React.createClass({
               </div>
             </div>
           </div>
-          <div className="col-xs-9" style={{ height: 'calc(100vh - 15rem)' }}>
+          <div className="col-xs-9" ref="main"  style={
+              !allChannels
+              ? { height: 'calc(100vh - 10rem)' }
+              : ( selectedUser ? { height: 'calc(100vh - 10rem)' } : {} ) }>
             <h2 className="in-page-channel-name">
               { !filters.channelId ? 'all channels ' : '#' + selectedChannelName + ' '}
             </h2>

@@ -64,11 +64,16 @@ export default React.createClass({
   },
 
   componentDidMount() {
+    this.refs.sidebar.style.height = this.refs.main.offsetHeight + 'px';
     fetchMessagesAndReactions(this.filters)
       .then(result => {
         result.emojis = indexEmojis(result.emojis);
         this.updateState(result);
       });
+  },
+
+  componentDidUpdate(prevProps, prevState) {
+    this.refs.sidebar.style.height = this.refs.main.offsetHeight + 'px';
   },
 
   onDateChange(range) {
@@ -158,7 +163,7 @@ export default React.createClass({
         </div>
         <div className="row" style={{ paddingRight: '20px' }}>
           <div className="col-xs-3">
-            <div className="left-list-wrapper">
+            <div className="left-list-wrapper" ref="sidebar">
               <div>
                 <button className="channel-list-element first" onClick={this.onAllChannelsClick}>all channels
                 </button>
@@ -180,7 +185,7 @@ export default React.createClass({
               </div>
             </div>
           </div>
-          <div className="col-xs-9 messages-reactions">
+          <div className="col-xs-9 messages-reactions" ref="main">
             <h2 className="in-page-channel-name">{ channel ? '#' + channel.name : 'all channels'}</h2>
             {
               chartData.map(message => {
