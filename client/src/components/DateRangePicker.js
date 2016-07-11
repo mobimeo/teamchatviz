@@ -34,7 +34,7 @@ export const DateRangePicker = React.createClass({
         },
         buttons: List([Map({
           id: 1,
-          title: 'Last 10 Days',
+          title: 'last 10 days',
           selected: false,
           range() {
             return {
@@ -44,7 +44,7 @@ export const DateRangePicker = React.createClass({
           }
         }), Map({
           id: 2,
-          title: 'Last 30 Days',
+          title: 'last 30 days',
           selected: true,
           range() {
             return {
@@ -54,7 +54,7 @@ export const DateRangePicker = React.createClass({
           }
         }), Map({
           id: 3,
-          title: 'All times',
+          title: 'all times',
           selected: false,
           range() {
             return {
