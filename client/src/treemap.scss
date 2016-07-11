@@ -43,15 +43,15 @@
 
 .user-treemap-chart {
   .rv-treemap__leaf:nth-child(1n) {
-    color: white !important;
     background-color: #005c60 !important;
+    color: white !important;
   }
   .rv-treemap__leaf:nth-child(2n) {
     color: white !important;
     background-color: #00898f !important;
   }
   .rv-treemap__leaf:nth-child(3n) {
-    color: black !important;
+    color: white !important;
     background-color: #00b7bf !important;
   }
   .rv-treemap__leaf:nth-child(4n) {
@@ -82,4 +82,31 @@
     color: black !important;
     background-color: #e5f7f8 !important;
   }
+}
+
+.rv-treemap__leaf__content {
+  color: inherit;
+  padding: 0;
+  height: 100%;
+}
+.user-tree-map {
+  color: inherit;
+  cursor: pointer;
+}
+.user-tree-map-title {
+  color: inherit;
+}
+.user-tree-map-count {
+  color: inherit;
+}
+
+.channel-tree-map {
+  color: inherit;
+  cursor: pointer;
+}
+.channel-tree-map-title {
+  color: inherit;
+}
+.channel-tree-map-count {
+  color: inherit;
 }

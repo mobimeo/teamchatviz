@@ -875,10 +875,6 @@ button:focus{
   margin: 2rem 0 0 0;
 }
 
-.user-treemap-chart {
-  margin-top: 1rem;
-}
-
 .channel-treemap-chart {
   margin-top: 1rem;
 }
@@ -1284,6 +1280,17 @@ button:focus{
 // progress bar
 .loader-60devs .loader-60devs-progress {
   background-color: $color-brand;
+}
+
+.treemap-status-container {
+  height: 2rem;
+  width: 100%;
+  text-align: right;
+  .treemap-status {
+    color: $color-grey-dark;
+    font-weight: $font-normal;
+    font-size: 0.938rem;
+  }
 }
 
 .dialog {
