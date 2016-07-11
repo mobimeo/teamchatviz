@@ -58,6 +58,7 @@ export default React.createClass({
         data: [],
         rating: [],
         emojis: {},
+        interval: 1,
       }),
     };
   },
@@ -107,6 +108,7 @@ export default React.createClass({
         .set('data', result.data)
         .set('rating', result.rating)
         .set('emojis', result.emojis)
+        .set('interval', result.interval)
     }));
   },
 
@@ -140,6 +142,7 @@ export default React.createClass({
     const rating = data.get('rating');
     let chartData = data.get('data');
     const max = _.maxBy(chartData, item => item.total);
+    const interval = data.get('interval');
     return <div>
       <Header title="emoji timeline">
         <span className="chart-page-subtitle">
@@ -205,7 +208,7 @@ export default React.createClass({
               <div
                 style={{
                   width: width + 'px',
-                  height: (height - 100 ) + 'px',
+                  height: (height - 100) + 'px',
                   display: 'flex',
                   justifyContent: 'space-around',
                   alignItems: 'stretch',
@@ -221,6 +224,7 @@ export default React.createClass({
                       key={i}
                       item={d}
                       emojis={emojis}
+                      interval={interval}
                       max={max}
                        />
                   })

@@ -114,13 +114,22 @@ export default React.createClass({
     };
     const chValues = this.state.data.get('crosshairValues');
     const hints = [];
+    const interval = this.props.interval;
     if (chValues[0]) {
+      const startDate = moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY");
+      const endDate = moment.unix(chValues[0] ? chValues[0].x : 0)
+        .add(interval, 'days')
+        .format("D MMM YYYY");
       hints.push(<Hint
         orientation="topleft"
         value={chValues[0]}
         key={'xyPlotHint' + this.props.parentKey}>
         <div className="cross-hair arrow_box">
-          {moment.unix(chValues[0] ? chValues[0].x : 0).format("D MMM YYYY")}
+          { startDate } {
+            interval > 1
+            ? ' — ' + endDate
+            : ''
+          }
           <br />
           {chValues[0] ? chValues[0].y : 0} messages
         </div>

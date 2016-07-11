@@ -50,6 +50,7 @@ export default React.createClass({
         displayedItems: List([]),
         items: List([]),
         chunks: List([]),
+        interval: 1,
       })
     };
   },
@@ -90,6 +91,7 @@ export default React.createClass({
         .set('items', List(result.data))
         .set('displayedItems', List(displayedItems))
         .set('chunks', List(result.chunks))
+        .set('interval', result.interval)
     }));
     this._VirtualScroll.forceUpdate();
   },
@@ -116,6 +118,7 @@ export default React.createClass({
 
   renderItem({ index, isScrolling }) {
     const chunks = this.state.data.get('chunks').toJS();
+    const interval = this.state.data.get('interval');
     if (index === 0) {
       const data = this.state.data.get('displayedItems').get(0);
       return <div style={{ height: '50px' }}/>
@@ -127,6 +130,7 @@ export default React.createClass({
         chunks={chunks}
         parentKey={'scrollRow' + data.id}
         onSelected={this.onChannelSelection}
+        interval={interval}
         key={'scrollRow' + data.id} />
     </div>;
   },

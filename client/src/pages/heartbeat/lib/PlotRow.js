@@ -38,7 +38,14 @@ const PlotRow = React.createClass({
         </div>
       </div>
       <div className="col-xs-9">
-        <HeartbeatPlot selected={this.props.data.selected} data={this.props.data} showChunkHints={showChunkHints} chunks={this.props.chunks} key={this.props.parentKey} parentKey={this.props.parentKey}/>
+        <HeartbeatPlot
+          selected={this.props.data.selected}
+          data={this.props.data}
+          showChunkHints={showChunkHints}
+          chunks={this.props.chunks}
+          key={this.props.parentKey}
+          interval={this.props.interval}
+          parentKey={this.props.parentKey} />
       </div>
     </div>
   }

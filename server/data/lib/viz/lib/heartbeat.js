@@ -111,5 +111,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
     });
   const result = groupByChannel(tmp);
   result.chunks = chunks;
+  result.interval = parseInt(interval);
   return result;
 };

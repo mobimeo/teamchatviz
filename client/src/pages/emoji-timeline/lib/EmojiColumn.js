@@ -71,9 +71,10 @@ export default React.createClass({
   },
 
   render() {
+    const interval = this.props.interval;
     const item = this.props.item;
     const emojis = this.props.emojis;
-    const totalHeight = this.state.data.get('height') - 50;
+    const totalHeight = this.state.data.get('height') -  (interval > 1 ? 90 : 50);
     if (totalHeight < 0) {
       return <div />;
     }
@@ -90,6 +91,9 @@ export default React.createClass({
         return acc - height;
       }, approxHeight - 30);
 
+
+    const startDate = moment.utc(item.id).format('ll');
+    const endDate = moment.utc(item.id).add(interval, 'days').format('ll');
     return <div style={{
         width: '4rem',
         overflow: 'hidden',
@@ -129,7 +133,12 @@ export default React.createClass({
         }
         </div>
         <div className={ 'emoji-timeline-x' } >
-          { moment.utc(item.id).format('ll') }
+          { startDate }
+          {
+            interval > 1
+            ? ' — ' + endDate
+            : ''
+          }
         </div>
       </div>
   }

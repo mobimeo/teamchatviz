@@ -121,5 +121,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
     return obj;
   }, {});
 
-  return groupByDate(tmp, channels, emojis);
+  const result = groupByDate(tmp, channels, emojis);
+  result.interval = parseInt(interval);
+  return result;
 };
