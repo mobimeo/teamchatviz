@@ -363,11 +363,17 @@ p.chart-description {
   font-size: 1rem;
   line-height: 30px;
   text-align: right;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 
   > div {
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
   }
+
   span {
     width: 6px;
     height: 6px;
@@ -431,7 +437,7 @@ p.chart-description {
     max-width: 1.5rem;
     max-height: 1.5rem;
     cursor: pointer;
-    top: 0.03rem;
+    top: -0.05rem;
     position: relative;
   }
   .button-group {
@@ -734,7 +740,7 @@ button:focus{
   stroke-dasharray: 2, 2;
 }
 .emoji-timeline-column {
-  border-top: $color-grey-dark-tr 0.20rem solid;
+  border-top: $color-grey-dark 0.20rem solid;
   background-color: #fafafa;
 }
 .emoji-timeline-column.no-background {
@@ -957,6 +963,7 @@ button:focus{
   float: left;
   font-size: 0.8rem;
   font-weight: $font-normal;
+  margin-left: 0.35rem;
 }
 
 .heartbeat-x-end {

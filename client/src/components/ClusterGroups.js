@@ -70,14 +70,19 @@ export default React.createClass({
     return <div className={'cluster-groups ' + this.props.customClassName}>
       <div className="cluster-groups-all">
         <div>groups</div>
-        <button className={ selected.length === 0 ? 'is-active' : '' } onClick={this.onAllClick}>all</button>
+        <button
+          className={ selected.length === 0 ? 'is-active' : '' }
+          onClick={this.onAllClick}>all</button>
       </div>
       {
         groups.map(group => {
           const onClick = bind(this.onGroupClick, this, group);
           return <div className="cluster-groups-button">
             <span style={{ background: group.color }}></span>
-            <button className={ selected.length !== 0 && selected.indexOf(group.id) !== -1 ? 'is-active' : '' }  onClick={onClick}>{group.id}</button>
+            <button
+              className={ selected.length !== 0
+                && selected.indexOf(group.id) !== -1 ? 'is-active' : '' }
+                onClick={onClick}>{group.id}</button>
           </div>;
         })
       }
