@@ -1,4 +1,5 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1121,14 +1122,8 @@ hr {
 @media print {
   .hidden-print {
     display: none !important; } }
-@font-face {
-  font-family: "Gidole-Regular";
-  src: url("../fonts/Gidole-Regular.otf");
-  src: url("../fonts/Gidole-Regular.eot");
-  src: url("../fonts/Gidole-Regular.woff");
-  src: url("../fonts/Gidole-Regular.ttf"); }
 html, body {
-  font-family: "Gidole-Regular";
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 16px; }
 
 p {
@@ -1205,7 +1200,7 @@ p {
 
 .lght h2 {
   margin: 0 0 40px;
-  font-size: 3.2rem;
+  font-size: 3rem;
   line-height: 1.25em;
   font-weight: normal;
   max-width: 80%; }
@@ -1261,6 +1256,31 @@ p {
     .lght .img-rght {
       width: 100%;
       margin: 0 0 40px; } }
+.lght .img-wrppr {
+  position: relative; }
+  .lght .img-wrppr .icn {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    bottom: -30px;
+    right: 0px; }
+    @media screen and (max-width: 991px) {
+      .lght .img-wrppr .icn {
+        width: 130px;
+        height: 130px;
+        bottom: 0px; } }
+    @media screen and (max-width: 767px) {
+      .lght .img-wrppr .icn {
+        width: 90px;
+        height: 90px;
+        bottom: 20px; } }
+  .lght .img-wrppr.lft .icn {
+    right: auto;
+    left: -30px; }
+    @media screen and (max-width: 991px) {
+      .lght .img-wrppr.lft .icn {
+        left: auto;
+        right: 0; } }
 
 .drk {
   background-color: #25262e;
@@ -1270,7 +1290,7 @@ p {
     margin: 0 0 20px 0;
     font-weight: normal;
     font-size: 3.0rem;
-    line-height: 3.5rem; }
+    line-height: 1.25em; }
     @media screen and (max-width: 991px) {
       .drk h2 {
         font-size: 2.4rem;
@@ -1360,7 +1380,8 @@ footer {
     color: #f9f9f9; }
     footer p.sm {
       font-size: 14px;
-      line-height: 2em; }
+      line-height: 1.5em;
+      font-weight: 300; }
     footer p.oneln {
       line-height: 0.4em; }
       @media screen and (max-width: 1199px) {

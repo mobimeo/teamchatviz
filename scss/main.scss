@@ -20,19 +20,14 @@ $scrn-sm: 767px;
 $scrn-xs: 568px;
 
 // font
-$font-regular: 'Gidole-Regular';
-@font-face {
-  font-family: $font-regular;
-  src: url("../fonts/Gidole-Regular.otf");
-  src: url("../fonts/Gidole-Regular.eot");
-  src: url("../fonts/Gidole-Regular.woff");
-  src: url("../fonts/Gidole-Regular.ttf");
-}
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+
+$font-regular: 'Source Sans Pro', sans-serif;
 
 // font size
 $fnt-sz-xxxl: 60px;
 $fnt-sz-xxl: 4.5rem;
-$fnt-sz-xl: 3.2rem;
+$fnt-sz-xl: 3.0rem;
 $fnt-sz-l: 2.4rem;
 $fnt-sz-m: 1.6rem;
 $fnt-sz-s: 18px;
@@ -118,9 +113,6 @@ p {
   }
 }
 
-.container {
-	// width: 1370px;
-}
 .row {
   margin-top: 50px;
 
@@ -211,6 +203,39 @@ p {
       margin: 0 0 40px;
     }
   }
+  .img-wrppr {
+    position: relative;
+
+    .icn {
+      width: 140px;
+      height: 140px;
+      position: absolute;
+      bottom: -30px;
+      right: 0px;
+
+      @media screen and (max-width: $scrn-md) {
+        width: 130px;
+        height: 130px;
+        bottom: 0px;
+      }
+      @media screen and (max-width: $scrn-sm) {
+        width: 90px;
+        height: 90px;
+        bottom: 20px;
+      }
+    }
+    &.lft {
+      .icn {
+        right: auto;
+        left: -30px;
+
+        @media screen and (max-width: $scrn-md) {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
 }
 .drk {
 	background-color: $clr-gry-drk;
@@ -221,7 +246,7 @@ p {
 		margin: 0 0 20px 0;
     font-weight: normal;
     font-size: 3.0rem;
-    line-height: 3.5rem;
+    line-height: 1.25em;
 
     @media screen and (max-width: $scrn-md) {
       font-size: $fnt-sz-l;
@@ -339,7 +364,8 @@ footer {
 
     &.sm {
       font-size: $fnt-sz-xxs;
-      line-height: 2em;
+      line-height: 1.5em;
+      font-weight: 300;
     }
     &.oneln {
       line-height: 0.4em;
