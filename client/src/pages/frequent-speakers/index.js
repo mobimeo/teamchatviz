@@ -35,6 +35,7 @@ import 'react-vis/main.css!';
 import { fetchFrequentSpeakers } from 'client/networking/index.js';
 import 'client/treemap.scss!';
 import MemberCard from './lib/MemberCard.js';
+import NoData from 'client/components/NoData.js';
 
 export default React.createClass({
   getInitialState() {
@@ -169,7 +170,7 @@ export default React.createClass({
     const topMember = _.maxBy(chartData, (item) => {
       return item.count;
     })
-    return _.chunk(chartData, 4).map((chunk, index) => {
+    return chartData.length > 0 ? _.chunk(chartData, 4).map((chunk, index) => {
       return <div className="row" key={index}>
         {
           chunk.map((member, memberIndex) => {
@@ -202,7 +203,7 @@ export default React.createClass({
           })
         }
       </div>
-    })
+    }) : <NoData />
   },
 
   renderUserStats(member) {
@@ -233,7 +234,7 @@ export default React.createClass({
 
   renderChartStats() {
     const chartData = this.state.data.get('data');
-    return <AutoSizer>
+    return chartData.length > 0 ? <AutoSizer>
       {({ height, width }) => (
         <div className="channel-treemap-chart">
           <Treemap height={height}
@@ -251,7 +252,7 @@ export default React.createClass({
               })) }} />
         </div>
       )}
-    </AutoSizer>
+    </AutoSizer> : <NoData />
   },
 
   render() {

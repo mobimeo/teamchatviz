@@ -4,6 +4,7 @@ import { AutoSizer } from 'react-virtualized';
 import { Treemap } from 'react-vis';
 import { Map } from 'immutable';
 import { fetchUserStats } from 'client/networking/index.js';
+import NoData from 'client/components/NoData.js';
 
 export default React.createClass({
   getInitialState() {
@@ -37,7 +38,7 @@ export default React.createClass({
   },
   render() {
     const chartData = this.state.data.get('chartData');
-    return <AutoSizer>
+    return chartData.length > 0 ? <AutoSizer>
       {({ height, width }) => (
         <div className="user-treemap-chart">
           <Treemap height={height - 200}
@@ -53,6 +54,6 @@ export default React.createClass({
               })) }} />
         </div>
       )}
-    </AutoSizer>;
+    </AutoSizer> : <NoData />;
   }
 })

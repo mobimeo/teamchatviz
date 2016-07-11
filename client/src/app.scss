@@ -1372,3 +1372,13 @@ button:focus{
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+// no data found
+.no-data {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1.5rem;
+  background-color: $color-grey-light-tr;
+  font-weight: $font-semi-bold;
+  font-size: 1rem;
+}

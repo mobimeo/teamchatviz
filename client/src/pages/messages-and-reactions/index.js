@@ -33,6 +33,7 @@ import emoji from 'node-emoji';
 import 'react-vis/main.css!';
 import { Header } from 'client/components/Header.js';
 import { fetchMessagesAndReactions } from 'client/networking/index.js';
+import NoData from 'client/components/NoData.js';
 
 function indexEmojis(emojis) {
   return emojis.reduce((obj, val, key) => {
@@ -188,7 +189,8 @@ export default React.createClass({
           <div className="col-xs-9 messages-reactions" ref="main">
             <h2 className="in-page-channel-name">{ channel ? '#' + channel.name : 'all channels'}</h2>
             {
-              chartData.map(message => {
+              chartData.length > 0
+              ? chartData.map(message => {
                 const href = `https://${teamName}.slack.com/archives/${message.channel_name}/p${message.message_id.replace('.', '')}`;
                 return <div className="message">
                   <div className="row">
@@ -229,6 +231,7 @@ export default React.createClass({
                   </div>
                 </div>
               })
+              : <NoData />
             }
           </div>
         </div>
