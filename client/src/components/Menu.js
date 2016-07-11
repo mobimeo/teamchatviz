@@ -39,7 +39,7 @@ export const Menu = React.createClass({
         <a href="/messages-and-reactions"><li>messages & reactions</li></a>
         <a href="/frequent-speakers"><li>frequent speakers</li></a>
         <a href="/emoji-timeline"><li>emoji timeline</li></a>
-        <a href="/about"><li>about</li></a>
+        <a href="https://moovel.github.io/slackviz/"><li>about</li></a>
       </ul>
     </div>;
   }
