@@ -58,14 +58,17 @@ export default React.createClass({
   render() {
     const data = this.props.data;
     const groupsData = _.groupBy(data, 'group');
-    const groups = Object.keys(groupsData).map((key, i) => {
-      const id = i + 1;
-      const color = groupsData[key][0].color;
-      return {
-        id,
-        color,
-      };
-    });
+    const groups = Object
+      .keys(groupsData)
+      .sort()
+      .map((key, i) => {
+        const id = i + 1;
+        const color = groupsData[key][0].color;
+        return {
+          id,
+          color,
+        };
+      });
     const selected = this.state.data.get('selected');
     return <div className={'cluster-groups ' + this.props.customClassName}>
       <div className="cluster-groups-all">

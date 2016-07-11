@@ -104,6 +104,7 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .set('detailsOpened', false)
+        .set('selectedChannel', {})
     }));
   },
 
@@ -157,7 +158,8 @@ export default React.createClass({
                       onClick={onClick}
                       onMouseOver={onMouseOver}
                       onMouseOut={onMouseOut}
-                      className="channel-list-element">
+                      className={'channel-list-element' + 
+                      (channel && item.id == channel.id ? ' selected' : '') }>
                       #{item.name}
                     </button>
                   </div>;

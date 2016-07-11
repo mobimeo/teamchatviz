@@ -46,12 +46,12 @@ export const MenuButtons = React.createClass({
       <div className = { this.state.menuOpened ? 'menu actv' : 'menu' } >
         <ul>
           <li><Link to="/">home</Link></li>
-          <li><Link to="/channel-heartbeat">channel heartbeat</Link></li>
-          <li><Link to="/channel-land">channel land</Link></li>
-          <li><Link to="/people-land">people land</Link></li>
-          <li><Link to="/messages-and-reactions">messages & reactions</Link></li>
-          <li><Link to="/frequent-speakers">frequent speakers</Link></li>
-          <li><Link to="/emoji-timeline">emoji timeline</Link></li>
+          <li><Link to="channel-heartbeat" activeClassName="active">channel heartbeat</Link></li>
+          <li><Link to="channel-land" activeClassName="active">channel land</Link></li>
+          <li><Link to="people-land" activeClassName="active">people land</Link></li>
+          <li><Link to="messages-and-reactions" activeClassName="active">messages & reactions</Link></li>
+          <li><Link to="frequent-speakers" activeClassName="active">frequent speakers</Link></li>
+          <li><Link to="emoji-timeline" activeClassName="active">emoji timeline</Link></li>
           <li><a href="https://moovel.github.io/slackviz/">about</a></li>
         </ul>
       </div>

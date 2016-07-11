@@ -116,10 +116,13 @@ export default React.createClass({
   onPointClick(point) {
     const members = this.state.data.get('members');
     const member = members.find(m => m.id === point.id);
+    const points = this.state.data.get('data');
     this.setState(({data}) => ({
       data: data
         .set('selectedUser', member)
+        .set('tooltipIndex', member.id)
         .set('detailsOpened', true)
+        .set('data', points)
     }));
   },
 
@@ -127,6 +130,7 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .set('detailsOpened', false)
+        .set('tooltipIndex', '')
     }));
   },
 
@@ -224,7 +228,9 @@ export default React.createClass({
                       onClick={onClick}
                       onMouseOver={onMouseOver}
                       onMouseOut={onMouseOut}
-                      className={"channel-list-element" + (item.is_current_user ? ' is-current-user' : '')}>
+                      className={"channel-list-element" + 
+                      (item.is_current_user ? ' is-current-user' : '') + 
+                      (user && item.id == user.id ? ' selected' : '') }>
                       {item.name} {item.is_current_user ? ' (you)' : ''}
                     </button>
                   </div>;

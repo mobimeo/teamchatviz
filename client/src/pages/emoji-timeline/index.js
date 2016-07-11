@@ -33,6 +33,7 @@ import { Emoji } from 'client/components/Emoji.js';
 import { fetchEmojiTimeline } from 'client/networking/index.js';
 import { AutoSizer } from 'react-virtualized';
 import EmojiColumn from './lib/EmojiColumn.js';
+import NoData from 'client/components/NoData.js';
 
 import { Hint, XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Crosshair } from 'react-vis';
 
@@ -174,7 +175,7 @@ export default React.createClass({
                     <button
                       key={index}
                       onClick={onClick}
-                      className="channel-list-element">
+                      className={'channel-list-element' + (channel && item.id == channel.id ? ' selected' : '') } >
                       #{item.name}
                     </button>
                   </div>
@@ -204,7 +205,7 @@ export default React.createClass({
                 }
               </div>
             </div>
-            <AutoSizer>{({ height, width }) => (
+            { chartData.length > 0 ?  <AutoSizer>{({ height, width }) => (
               <div
                 style={{
                   width: width + 'px',
@@ -232,6 +233,7 @@ export default React.createClass({
               </div>
             )}
             </AutoSizer>
+            : <NoData /> }
           </div>
         </div>
       </main>

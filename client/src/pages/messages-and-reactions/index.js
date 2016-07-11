@@ -176,7 +176,7 @@ export default React.createClass({
                     return <div>
                       <button
                         onClick={onClick}
-                        className="channel-list-element"
+                        className={'channel-list-element' + (channel && d.id == channel.id ? ' selected' : '') }
                         key={i}>
                         <span>#{d.name}</span>
                       </button>

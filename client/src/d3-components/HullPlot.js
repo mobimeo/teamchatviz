@@ -157,6 +157,7 @@ export default React.createClass({
 
     const groupData = _.groupBy(props.data, 'group');
     const groups = Object.keys(groupData)
+      .sort()
       .filter((group, id) => {
         if (shownGroups.length === 0) {
           return true;

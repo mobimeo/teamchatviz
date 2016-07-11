@@ -1046,7 +1046,8 @@ button:focus{
       transition: all $speed-faster ease-in-out;
 
       &:hover,
-      &:focus {
+      &:focus,
+      &.active {
         background-color: $color-accent;
         color: $color-grey-dark;
         transition: all $speed-faster ease-in-out;

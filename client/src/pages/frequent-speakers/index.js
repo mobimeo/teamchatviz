@@ -279,7 +279,7 @@ export default React.createClass({
                   size: member.count,
                 }
               })
-            }} /> qq
+            }} />
         </div>
       )}
     </AutoSizer> : <NoData />
@@ -337,8 +337,8 @@ export default React.createClass({
           </div>
           <div className="col-xs-9" ref="main"  style={
               !allChannels
-              ? { height: 'calc(100vh - 10rem)' }
-              : ( selectedUser ? { height: 'calc(100vh - 10rem)' } : {} ) }>
+              ? { height: 'calc(100vh - 18rem)' }
+              : ( selectedUser ? { height: 'calc(100vh - 16rem)' } : {} ) }>
             <h2 className="in-page-channel-name">
               { !filters.channelId ? 'all channels ' : '#' + selectedChannelName + ' '}
             </h2>
