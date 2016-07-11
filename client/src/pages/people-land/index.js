@@ -46,6 +46,7 @@ export default React.createClass({
         shownGroups: [],
         detailsOpened: false,
         selectedUser: {},
+        currentUser: {},
       })
     };
   },
@@ -60,6 +61,7 @@ export default React.createClass({
         this.allMembers = sortedMembers;
         this.setState(({data}) => ({
           data: data
+            .set('currentUser', currentUser.length > 0 ? currentUser[0] : {})
             .set('data', result.data)
             .set('members', sortedMembers)
         }));
@@ -92,14 +94,10 @@ export default React.createClass({
     }));
   },
 
-  mouseOutListMember(member) {
+  mouseOutListMember() {
     const points = this.state.data.get('data');
     points.forEach(item => {
-      if (item.id === member.id) {
-        item.highlighted = true;
-      } else {
-        item.highlighted = false;
-      }
+      item.highlighted = false;
     })
     this.setState(({data}) => ({
       data: data
@@ -133,6 +131,7 @@ export default React.createClass({
   },
 
   render() {
+    const currentUser = this.state.data.get('currentUser');
     const data = this.state.data.get('data');
     const members = this.state.data.get('members');
     const tooltipIndex = this.state.data.get('tooltipIndex');
@@ -190,7 +189,11 @@ export default React.createClass({
       } else {
         item.grayedOut = false;
       }
+      if (currentUser.id === item.id) {
+        item.permanent_highlight = true;
+      }
     });
+
     return <div>
       <Header title="people land">
         <span className="chart-page-subtitle">

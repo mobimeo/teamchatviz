@@ -15,7 +15,19 @@ export default React.createClass({
   },
   componentDidMount() {
     const member = this.props.member;
-    fetchUserStats(member.user_id)
+    const filters = this.props.filters;
+    fetchUserStats(member.user_id, filters)
+      .then(results => {
+        this.setState(({data}) => ({
+          data: data
+            .set('chartData', results)
+        }));
+      })
+  },
+  componentWillReceiveProps(next) {
+    const member = next.member;
+    const filters = next.filters;
+    fetchUserStats(member.user_id, filters)
       .then(results => {
         this.setState(({data}) => ({
           data: data

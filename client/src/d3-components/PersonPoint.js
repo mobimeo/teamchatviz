@@ -30,7 +30,7 @@ export default React.createClass({
     const coords = this.props.coords;
     const index = this.props.index;
     const diameter = (props.zoom > 4 ? props.zoom * 0.3 : 1)
-      * (coords.highlighted ? 48 : 18);
+      * (coords.highlighted || coords.permanent_highlight ? 48 : 18);
     const radius = diameter / 2;
     const circleProps = {
       x: props.xScale(coords.x) - radius / props.zoom,
@@ -57,10 +57,17 @@ export default React.createClass({
           r={ radius / props.zoom + 4 / props.zoom } />
         : null
       }
+      {
+        coords.permanent_highlight
+        ? <circle fill="#9B9B9B" cx={circleProps.x + radius / props.zoom}
+          cy={circleProps.y + radius / props.zoom}
+          r={ radius / props.zoom + 4 / props.zoom } />
+        : null
+      }
       <image
         onClick={this.onClick}
         clipPath={'url(#circlePath' + index + ')'}
-        xlinkHref={coords.highlighted ? coords.image72 : coords.image48}
+        xlinkHref={coords.highlighted || coords.permanent_highlight ? coords.image72 : coords.image48}
         style={{ cursor: 'pointer', opacity: coords.grayedOut ? 0.2 : 1 }}
         {...circleProps}
         onMouseOver={props.showTooltip}

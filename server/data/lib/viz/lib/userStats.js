@@ -23,17 +23,26 @@ import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
 
-export default async function(teamId, userId) {
+export default async function(teamId, userId, startDate = null, endDate = null) {
   console.log(`Getting userStats for ${teamId}, ${userId}`);
   const options = {
     teamId,
     userId
   };
 
+  if (startDate) {
+    options.startDate = startDate;
+  }
+  if (endDate) {
+    options.endDate = endDate;
+  }
+
   const data = await db.any(`
     SELECT channels.id as id, channels.name, COUNT(messages.id)
     FROM channels INNER JOIN messages ON channels.id = messages.channel_id
     WHERE channels.team_id = $(teamId) and messages.user_id = $(userId)
+    ${ startDate ? ' AND messages.message_ts >= $(startDate)' : ''}
+    ${ endDate ? ' AND messages.message_ts <= $(endDate)' : ''}
     GROUP BY channels.id, channels.name
   `, options);
 

@@ -18,7 +18,6 @@
   USA
 */
 
-
 import 'systemjs-hot-reloader/default-listener.js';
 
 export function __reload(m) {

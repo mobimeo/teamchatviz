@@ -158,9 +158,11 @@ export const fetchConfig = () => {
   });
 }
 
-export const fetchUserStats = (userId) => {
+export const fetchUserStats = (userId, filters) => {
   Progress.show();
-  return fetch(`/api/user-stats?userId=${userId}`, {
+  const startDate = filters.startDate;
+  const endDate = filters.endDate;
+  return fetch(`/api/user-stats?userId=${userId}&startDate=${startDate?startDate:''}&endDate=${endDate?endDate:''}`, {
     credentials: 'same-origin'
   })
   .then(onFailure)

@@ -40,7 +40,7 @@ export default React.createClass({
   getInitialState() {
     this.filters = {
       channelName: '',
-      startDate: moment.utc().subtract(10, 'days').startOf('date').format(),
+      startDate: moment.utc().subtract(30, 'days').startOf('date').format(),
       endDate: moment.utc().endOf('date').format(),
       sortOption: null,
       channelId: null,
@@ -95,6 +95,10 @@ export default React.createClass({
 
   onAllChannelsClick() {
     this.filters.channelId = null;
+    this.setState(({data}) => ({
+      data: data
+        .set('selectedUser', null)
+    }));
     fetchFrequentSpeakers(this.filters.startDate, this.filters.endDate, this.filters.channelId)
       .then(result => {
         this.updateState(result);
@@ -109,7 +113,15 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .set('channels', sortedChannels.filter(ch => channelName === '' || ch.name.toLowerCase().indexOf(channelName) !== -1))
-        .set('data', result.data)
+        .set('data', result.data.sort((a, b) => {
+          if (a.is_current_user) {
+            return -1;
+          }
+          if (b.is_current_user) {
+            return 1;
+          }
+          return b.count - a.count;
+        }))
         .set('allChannels', result.allChannels)
     }));
   },
@@ -210,7 +222,7 @@ export default React.createClass({
       ,
       <br />
       ,
-      <MemberCard member={member} />
+      <MemberCard member={member} filters={this.filters} />
     ];
   },
 

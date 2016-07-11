@@ -87,7 +87,9 @@ export default api => {
     if (!userId) {
       return ctx.throw(403);
     }
-    ctx.body = await viz.userStats(ctx.req.user.teamId, userId);
+    const startDate = ctx.query.startDate || null;
+    const endDate = ctx.query.endDate || null;
+    ctx.body = await viz.userStats(ctx.req.user.teamId, userId, startDate, endDate);
   });
 
 }

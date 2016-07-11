@@ -114,6 +114,7 @@ footer {
   color: white;
   font-size: 0.938rem;
   line-height: 1.250rem;
+  z-index: 5;
   .container.wrap {
     padding: 0.813rem 0 0.813rem 0;
     border-top: 1px solid $color-delimiter;
@@ -132,6 +133,7 @@ footer {
   color: $color-grey-dark;
   font-size: 0.938rem;
   line-height: 1.250rem;
+  z-index: 5;
   .container.wrap {
     padding: 0.813rem 0 0.813rem 0;
     border-top: 1px solid $color-delimiter;
@@ -139,6 +141,10 @@ footer {
       display: none;
     }
   }
+}
+
+.disclaimer {
+  text-align: right;
 }
 
 .container,

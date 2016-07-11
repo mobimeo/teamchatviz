@@ -47,7 +47,7 @@ export default React.createClass({
       channel: null,
       channelName: '',
       sortOption: null,
-      startDate: moment.utc().subtract(10, 'days').startOf('date').format(),
+      startDate: moment.utc().subtract(30, 'days').startOf('date').format(),
       endDate: moment.utc().endOf('date').format(),
     };
     return {
@@ -57,7 +57,7 @@ export default React.createClass({
         rating: [],
         emojis: {},
         channel: null,
-        startDate: moment().subtract(10, 'days').startOf('date').format(),
+        startDate: moment().subtract(30, 'days').startOf('date').format(),
         endDate: moment().endOf('date').format(),
       }),
     };

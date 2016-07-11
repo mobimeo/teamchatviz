@@ -181,6 +181,12 @@ export default React.createClass({
       ? props.data
       : props.data.filter(p => shownGroupNames.indexOf(p.group) !== -1);
 
+    points.sort((a, b) => {
+      const ca = +a.highlighted + +(a.permanent_highlight || false);
+      const cb = +b.highlighted + +(b.permanent_highlight || false);
+      return ca - cb;
+    });
+
     return <div className="cluster-plot" style={{ width: props.width, height: props.height }}>
       <svg ref="svg" width={props.width - 2} height={props.height - 2}>
         <g>
