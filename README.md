@@ -96,6 +96,7 @@ Acknowledgement
 * Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/)
 * PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise)
 * Fake data for online demo generated with [Faker.js](https://github.com/marak/Faker.js/)
+* Open source font "Source Sans Pro" [source-sans-pro](https://github.com/adobe-fonts/source-sans-pro)
 
 See the full list of dependencies in the [client's package.json](package.json) and [server's package.json](client/package.json).
 
