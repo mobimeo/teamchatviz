@@ -14,7 +14,7 @@ by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://moovel.com)
 
 Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/). Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/). Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/). PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise).
 
-Nota bene: &#35;viz4slack is not created by, affiliated with, or supported by Slack Technologies, Inc.
+Nota bene: &#35;viz4slack is not created by, affiliated with, or supported by Slack Technologies, Inc. Please comply with your applicable data protection and labour law regulations when using our tool.
 
 Project Page
 ------------
