@@ -79,7 +79,7 @@ export default React.createClass({
       return <div />;
     }
     const max = this.props.max;
-    const approxHeight = (item.total / max.total) * totalHeight;
+    const approxHeight = max.total !== 0 ? (item.total / max.total) * totalHeight : 0;
     let numberOfIcons = 0;
     item
       .emojis

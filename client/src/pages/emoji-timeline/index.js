@@ -205,7 +205,7 @@ export default React.createClass({
                 }
               </div>
             </div>
-            { chartData.length > 0 ?  <AutoSizer>{({ height, width }) => (
+            { chartData.length === 0 || max.total === 0 ? <NoData /> : <AutoSizer>{({ height, width }) => (
               <div
                 style={{
                   width: width + 'px',
@@ -232,8 +232,7 @@ export default React.createClass({
                 }
               </div>
             )}
-            </AutoSizer>
-            : <NoData /> }
+            </AutoSizer>}
           </div>
         </div>
       </main>

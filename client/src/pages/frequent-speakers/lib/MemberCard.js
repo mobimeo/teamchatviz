@@ -73,8 +73,6 @@ export default React.createClass({
                 const onMouseOut = _.bind(this.onMouseOut, this, channel);
                 return {
                   title: <div style={{ width: '100%', height: '100%' }} className="user-tree-map" onMouseOver={onMouseOver} onMouseOut={onMouseOut} >
-                    <span className="user-tree-map-title">@{channel.name}</span>
-                    <br />
                     <span className="user-tree-map-count"> {channel.count} </span>
                   </div>,
                   size: channel.count,

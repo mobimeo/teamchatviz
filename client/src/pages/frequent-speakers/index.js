@@ -262,7 +262,7 @@ export default React.createClass({
               })
             }
           </div>
-          <Treemap height={height}
+          <Treemap height={height - 75}
             width={width}
             data={{ title: '', opacity: 1,
               children: chartData.map((member, i) => {
@@ -270,10 +270,6 @@ export default React.createClass({
                 const onMouseOut = _.bind(this.onMouseOutTreemap, this, member);
                 return {
                   title: <div style={{ width: '100%', height: '100%' }} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-tree-map">
-                    <span className="channel-tree-map-title">
-                      <img className="channel-tree-map-pic" src={member.image72} />
-                      &nbsp; @{member.name}
-                    </span>
                     <div className="channel-tree-map-count"> {member.count} </div>
                   </div>,
                   size: member.count,
