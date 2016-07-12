@@ -57,7 +57,7 @@ export default React.createClass({
   getMultiplyForEmoji(reaction) {
     let multiply = 1;
     const totalHeight = this.state.data.get('height') - 50;
-    if (totalHeight < 550) {
+    if (totalHeight < 400) {
       return multiply;
     }
     if (reaction.count > 1000) {
@@ -92,8 +92,8 @@ export default React.createClass({
       }, approxHeight - 30);
 
 
-    const startDate = moment.utc(item.id).format('ll');
-    const endDate = moment.utc(item.id).add(interval, 'days').format('ll');
+    const startDate = moment.utc(item.id).format('D MMM');
+    const endDate = moment.utc(item.id).add(interval, 'days').format('D MMM');
     return <div style={{
         width: '4rem',
         overflow: 'hidden',

@@ -184,16 +184,12 @@ export default React.createClass({
             </div>
           </div>
           <div className="col-xs-9">
-            <div className="row">
-              <div className="col-xs-3">
-                <h2 className="in-page-channel-name">{ channel ? '#'+ channel.name : 'all channels' } </h2>
-              </div>
-              <div className="col-xs-6 time-range">
-              {
-                (startDate && endDate) ? moment(startDate).format('ll') + ' - ' + moment(endDate).format('ll') : 'all times'
-              }
-              </div>
-            </div>
+            <h2 className="in-page-channel-name">{ channel ? '#'+ channel.name : 'all channels' } </h2>
+            <span className="frequent-speakers-dates">
+                {
+                  (startDate && endDate) ? moment(startDate).format('ll') + ' - ' + moment(endDate).format('ll') : 'all times'
+                }
+            </span>
             <div className="row">
               <div className="col-xs-12">
                 {

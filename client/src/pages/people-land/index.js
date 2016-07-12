@@ -80,17 +80,10 @@ export default React.createClass({
 
   mouseOverListMember(member) {
     const points = this.state.data.get('data');
-    points.forEach(item => {
-      if (item.id === member.id) {
-        item.highlighted = true;
-      } else {
-        item.highlighted = false;
-      }
-    })
     this.setState(({data}) => ({
       data: data
         .set('tooltipIndex', member.id)
-        .set('data', points)
+        .set('data', this.getHighlightedPoints(points, member))
     }));
   },
 
@@ -102,7 +95,7 @@ export default React.createClass({
     this.setState(({data}) => ({
       data: data
         .set('tooltipIndex', '')
-        .set('data', points)
+        .set('data', this.getHighlightedPoints(points, this.state.data.get('selectedUser')))
     }));
   },
 
@@ -122,8 +115,19 @@ export default React.createClass({
         .set('selectedUser', member)
         .set('tooltipIndex', member.id)
         .set('detailsOpened', true)
-        .set('data', points)
+        .set('data', this.getHighlightedPoints(points, member))
     }));
+  },
+
+  getHighlightedPoints(points, member) {
+    points.forEach(item => {
+      if (item.id === member.id) {
+        item.highlighted = true;
+      } else {
+        item.highlighted = false;
+      }
+    });
+    return points;
   },
 
   closeModal() {

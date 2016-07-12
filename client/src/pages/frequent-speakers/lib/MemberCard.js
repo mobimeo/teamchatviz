@@ -7,6 +7,54 @@ import { fetchUserStats } from 'client/networking/index.js';
 import NoData from 'client/components/NoData.js';
 import _ from 'lodash';
 
+const MIN_HEIGHT = 700;
+
+const TreemapCell = React.createClass({
+  getInitialState() {
+    return {
+      width: 0,
+    };
+  },
+  componentDidMount() {
+    const parent = ReactDOM.findDOMNode(this).parentNode.parentNode;
+    this.setState({
+      width: parent.style.width,
+      height: parent.style.height
+    });
+  },
+  componentWillReceiveProps() {
+    const parent = ReactDOM.findDOMNode(this).parentNode.parentNode;
+    this.setState({
+      width: parent.style.width,
+      height: parent.style.height
+    });
+  },
+  render() {
+    const width = this.state.width;
+    const height = this.state.height;
+    const item = this.props.item;
+    const onMouseOver = this.props.onMouseOver;
+    const onMouseOut = this.props.onMouseOut;
+    const total = this.props.total;
+    let sizeClass = '';
+    if (parseInt(width) < 40 || parseInt(height) < 40) {
+      sizeClass += ' xs';
+    }
+    if (parseInt(width) < 16 || parseInt(height) < 16) {
+      sizeClass += ' xxs';
+    }
+    return <div
+      style={{ width, height }}
+      className={'user-tree-map bg'
+        + item.count % 10
+        + sizeClass}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut} >
+      <span className="user-tree-map-count">{item.count}</span>
+    </div>
+  }
+});
+
 export default React.createClass({
   getInitialState() {
     return {
@@ -57,8 +105,11 @@ export default React.createClass({
       return acc + curr.count;
     }, 0);
     return chartData.length > 0 ? <AutoSizer>
-      {({ height, width }) => (
-        <div className="user-treemap-chart" style={{ width: width + 'px' }}>
+      {({ height, width }) => {
+        if (height < MIN_HEIGHT) {
+          height = MIN_HEIGHT;
+        }
+        return <div className="user-treemap-chart" style={{ width: width + 'px' }}>
           <div className="treemap-status-container" style={{ width: width + 'px' }}>
             {
               chartData.map((channel, i) => {
@@ -75,21 +126,17 @@ export default React.createClass({
                 const onMouseOver = _.bind(this.onMouseOver, this, channel);
                 const onMouseOut = _.bind(this.onMouseOut, this, channel);
                 return {
-                  title: <div
-                    style={{ width: '100%', height: '100%' }}
-                    className={'user-tree-map bg'
-                      + i%10
-                      + ((channel.count / total < 0.01) ? ' xs' : '')}
+                  title: <TreemapCell
+                    item={channel}
+                    total={total}
                     onMouseOver={onMouseOver}
-                    onMouseOut={onMouseOut} >
-                    <span className="user-tree-map-count">{channel.count}</span>
-                  </div>,
+                    onMouseOut={onMouseOut} />,
                   size: channel.count,
                 }
               })
             }} />
         </div>
-      )}
+      }}
     </AutoSizer> : <NoData />;
   }
 })
