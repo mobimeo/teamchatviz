@@ -6,3 +6,4 @@ npm-debug.log*
 deploy.sh
 deploy_real.sh
 install.sh
+.sass-cache
