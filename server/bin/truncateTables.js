@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
-  Slack Viz
+  #teamchatviz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
