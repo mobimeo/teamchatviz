@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "description": "Client Web App for #teamchatviz",
+  "description": "Client Web App for #viz4slack",
   "main": "index.js",
   "contributors": [
     {
