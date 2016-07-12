@@ -48,7 +48,7 @@ export const App = React.createClass({
           <div className="row">
             <div className="col-xs-6 made-by">
               2016 &copy; made by&nbsp; <a href="http://lab.moovel.com/" target="_blank">moovel lab</a>&nbsp;
-              & <a href="https://developers.moovel.com/" target="_blank">moovel dev. team</a>
+              & <a href="https://moovel.com/" target="_blank">moovel dev. team</a>
             </div>
             <div className="col-xs-6 disclaimer">
               #viz4slack is not created by, affiliated with, or supported by Slack Technologies, Inc.
