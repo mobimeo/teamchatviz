@@ -71,11 +71,11 @@ export default React.createClass({
   },
 
   componentDidMount: function() {
-    this.updateZoom = _.throttle((zoom) => {
+    this.updateZoom = (zoom) => {
       this.setState(({data}) => ({
         data: data.update('zoom', () => zoom)
       }));
-    }, 200);
+    };
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
     var zoom = d3.behavior.zoom()
@@ -83,7 +83,6 @@ export default React.createClass({
       .on('zoom', this.onZoom);
     selection.call(zoom);
     this.z = zoom;
-    console.log(ReactDOM.findDOMNode(this.refs.svg));
     const svg = ReactDOM.findDOMNode(this.refs.svg);
     if (typeof svg.focus === 'function') {
       svg.focus();
@@ -93,14 +92,14 @@ export default React.createClass({
   onZoom() {
     if (d3.event
       && d3.event.sourceEvent) {
-      d3.event.sourceEvent.preventDefault()
+      d3.event.sourceEvent.preventDefault();
     }
     var z = this.z;
     var zoom = z.scale();
-    this.updateZoom(zoom);
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
-    selection.attr('transform', 'translate(' + z.translate() + ')scale(' + z.scale() + ')')
+    selection.attr('transform', 'translate(' + z.translate() + ') scale(' + z.scale() + ')');
+    this.updateZoom(zoom);
   },
 
   incrementZoom() {
