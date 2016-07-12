@@ -52,9 +52,11 @@ export const Emoji = (props) => {
             }
           </div>
       }
+      { character == '...' ? '' :
       <span className="emoji-count">
         {props.count}
       </span>
+    }
     </div>
   </div>;
 }
