@@ -1,7 +1,7 @@
 &#35;viz4slack
 ==============
 
-by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://developers.moovel.com)
+by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://moovel.com)
 
 &#35;viz4slack enables you to explore how your [Slack](https://slack.com/) team works:
 
