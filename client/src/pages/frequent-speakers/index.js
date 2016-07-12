@@ -37,6 +37,8 @@ import 'client/treemap.scss!';
 import MemberCard from './lib/MemberCard.js';
 import NoData from 'client/components/NoData.js';
 
+const MIN_HEIGHT = 700;
+
 export default React.createClass({
   getInitialState() {
     this.filters = {
@@ -254,8 +256,11 @@ export default React.createClass({
       return acc + curr.count;
     }, 0);
     return chartData.length > 0 ? <AutoSizer>
-      {({ height, width }) => (
-        <div className="channel-treemap-chart" style={{ width: width + 'px' }}>
+      {({ height, width }) => {
+        if (height < MIN_HEIGHT) {
+          height = MIN_HEIGHT;
+        }
+        return <div className="channel-treemap-chart" style={{ width: width + 'px' }}>
           <div className="treemap-status-container" style={{ width: width + 'px' }}>
             {
               chartData.map((member, i) => {
@@ -278,7 +283,9 @@ export default React.createClass({
                   }}
                   onMouseOver={onMouseOver}
                   onMouseOut={onMouseOut}
-                  className="channel-tree-map">
+                  className={'channel-tree-map bg'
+                      + member.count%10
+                      + ((member.count / total < 0.01) ? ' xs' : '')}>
                     <div className="channel-tree-map-count"> {member.count} </div>
                   </div>,
                   size: member.count,
@@ -286,7 +293,7 @@ export default React.createClass({
               })
             }} />
         </div>
-      )}
+      }}
     </AutoSizer> : <NoData />
   },
 

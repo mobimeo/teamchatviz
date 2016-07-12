@@ -1,45 +1,45 @@
-.channel-treemap-chart {
-  .rv-treemap__leaf:nth-child(1n) {
-    color: black !important;
-    background-color: #70A6DF !important;
-  }
-  .rv-treemap__leaf:nth-child(2n) {
-    color: black !important;
-    background-color: #68BFBC !important;
-  }
-  .rv-treemap__leaf:nth-child(3n) {
-    color: black !important;
-    background-color: #F5AF71 !important;
-  }
-  .rv-treemap__leaf:nth-child(4n) {
-    color: black !important;
-    background-color: #E167A5 !important;
-  }
-  .rv-treemap__leaf:nth-child(5n) {
-    color: black !important;
-    background-color: #BE67D9 !important;
-  }
-  .rv-treemap__leaf:nth-child(6n) {
-    color: black !important;
-    background-color: #A3CA78 !important;
-  }
-  .rv-treemap__leaf:nth-child(7n) {
-    color: black !important;
-    background-color: #EB7971 !important;
-  }
-  .rv-treemap__leaf:nth-child(8n) {
-    color: black !important;
-    background-color: #BA8F6F !important;
-  }
-  .rv-treemap__leaf:nth-child(9n) {
-    color: black !important;
-    background-color: #FDC2C2 !important;
-  }
-  .rv-treemap__leaf:nth-child(10n) {
-    color: black !important;
-    background-color: #B0B1B4 !important;
-  }
-}
+// .channel-treemap-chart {
+//   .rv-treemap__leaf:nth-child(1n) {
+//     color: black !important;
+//     background-color: #70A6DF !important;
+//   }
+//   .rv-treemap__leaf:nth-child(2n) {
+//     color: black !important;
+//     background-color: #68BFBC !important;
+//   }
+//   .rv-treemap__leaf:nth-child(3n) {
+//     color: black !important;
+//     background-color: #F5AF71 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(4n) {
+//     color: black !important;
+//     background-color: #E167A5 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(5n) {
+//     color: black !important;
+//     background-color: #BE67D9 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(6n) {
+//     color: black !important;
+//     background-color: #A3CA78 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(7n) {
+//     color: black !important;
+//     background-color: #EB7971 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(8n) {
+//     color: black !important;
+//     background-color: #BA8F6F !important;
+//   }
+//   .rv-treemap__leaf:nth-child(9n) {
+//     color: black !important;
+//     background-color: #FDC2C2 !important;
+//   }
+//   .rv-treemap__leaf:nth-child(10n) {
+//     color: black !important;
+//     background-color: #B0B1B4 !important;
+//   }
+// }
 
 // .user-treemap-chart {
 //   .rv-treemap__leaf:nth-child(1n) {
@@ -83,6 +83,10 @@
 //     background-color: #e5f7f8 !important;
 //   }
 // }
+
+.rv-treemap {
+  padding-bottom: 5rem;
+}
 
 .rv-treemap__leaf__content {
   color: inherit;
