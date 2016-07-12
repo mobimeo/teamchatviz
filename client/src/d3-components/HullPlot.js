@@ -83,7 +83,11 @@ export default React.createClass({
       .on('zoom', this.onZoom);
     selection.call(zoom);
     this.z = zoom;
-    ReactDOM.findDOMNode(this.refs.svg).focus();
+    console.log(ReactDOM.findDOMNode(this.refs.svg));
+    const svg = ReactDOM.findDOMNode(this.refs.svg);
+    if (typeof svg.focus === 'function') {
+      svg.focus();
+    }
   },
 
   onZoom() {
