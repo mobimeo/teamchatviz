@@ -250,6 +250,9 @@ export default React.createClass({
   renderChartStats() {
     const chartData = this.state.data.get('data');
     const showTooltipFor = this.state.data.get('showTooltipFor');
+    const total = chartData.reduce((acc, curr) => {
+      return acc + curr.count;
+    }, 0);
     return chartData.length > 0 ? <AutoSizer>
       {({ height, width }) => (
         <div className="channel-treemap-chart" style={{ width: width + 'px' }}>
@@ -269,7 +272,13 @@ export default React.createClass({
                 const onMouseOver = _.bind(this.onMouseOverTreemap, this, member);
                 const onMouseOut = _.bind(this.onMouseOutTreemap, this, member);
                 return {
-                  title: <div style={{ width: '100%', height: '100%' }} onMouseOver={onMouseOver} onMouseOut={onMouseOut} className="channel-tree-map">
+                  title: <div style={{
+                    width: '100%',
+                    height: '100%'
+                  }}
+                  onMouseOver={onMouseOver}
+                  onMouseOut={onMouseOut}
+                  className="channel-tree-map">
                     <div className="channel-tree-map-count"> {member.count} </div>
                   </div>,
                   size: member.count,

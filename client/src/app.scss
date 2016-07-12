@@ -903,18 +903,58 @@ button:focus{
 }
 
 .user-tree-map {
-  margin: 1rem;
-
+  padding: 1rem;
   .user-tree-map-count {
     font-size: 1.3rem;
     font-weight: $font-bold;
-    margin-top: 0.8rem;
+    padding-top: 0.8rem;
   }
-
-  .user-tree-map-title {
-    font-size: 1rem;
-    font-weight: $font-normal;
-    margin-top: 0.8rem;
+  &.xs {
+    padding: 0.25rem;
+    .user-tree-map-count {
+      font-size: 0.8rem;
+      padding-top: 0.25rem;
+    }
+  }
+  &.bg0 {
+    color: white;
+    background-color: #005c60;
+  }
+  &.bg1 {
+    color: white;
+    background-color: #00898f;
+  }
+  &.bg2 {
+    color: white;
+    background-color: #00b7bf;
+  }
+  &.bg3 {
+    color: $color-grey-dark;
+    background-color: #32c5cb;
+  }
+  &.bg4 {
+    color: $color-grey-dark;
+    background-color: #66d3d8;
+  }
+  &.bg5 {
+    color: $color-grey-dark;
+    background-color: #7fdbdf;
+  }
+  &.bg6 {
+    color: $color-grey-dark;
+    background-color: #99e2e5;
+  }
+  &.bg7 {
+    color: $color-grey-dark;
+    background-color: #b2e9eb;
+  }
+  &.bg8 {
+    color: $color-grey-dark;
+    background-color: #ccf0f2;
+  }
+  &.bg9 {
+    color: $color-grey-dark;
+    background-color: #e5f7f8;
   }
 }
 

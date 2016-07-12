@@ -56,7 +56,7 @@ export default withRouter(React.createClass({
     return <div className="page">
       <header className="site-header">
         <h1>
-          {this.props.config.teamName} <span className="site-name">#slackviz</span> <img src="/images/beta.svg" />
+          {this.props.config.teamName} <span className="site-name">#teamchatviz</span> <img src="/images/beta.svg" />
         </h1>
       </header>
       <main>
@@ -123,7 +123,7 @@ export default withRouter(React.createClass({
           </div>
         </div>
       </main>
-      <a href="https://github.com/moovel/slackviz"><img className="github-ribbon" src="/images/github-ribbon.svg" alt="Fork me on GitHub" /></a>
+      <a href="https://github.com/moovel/teamchatviz"><img className="github-ribbon" src="/images/github-ribbon.svg" alt="Fork me on GitHub" /></a>
     </div>;
   }
 }));

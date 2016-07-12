@@ -52,7 +52,7 @@ export const MenuButtons = React.createClass({
           <li><Link to="messages-and-reactions" activeClassName="active">messages & reactions</Link></li>
           <li><Link to="frequent-speakers" activeClassName="active">frequent speakers</Link></li>
           <li><Link to="emoji-timeline" activeClassName="active">emoji timeline</Link></li>
-          <li><a href="https://moovel.github.io/slackviz/">about</a></li>
+          <li><a href="https://moovel.github.io/teamchatviz/">about</a></li>
         </ul>
       </div>
       <div className = { this.state.menuOpened ? 'overlay actv' : 'overlay' } onClick={this.toggleMenu}></div>
