@@ -845,19 +845,31 @@ button:focus{
   margin-left: 2rem;
 }
 
-.member{
+.member {
   margin: 1rem 0;
   font-size: 0.9rem;
-
+  
   &.is-current-user {
     border-left: 4px solid $color-grey-medium;
     border-right: 4px solid $color-grey-medium;
   }
-  .member-img {
-    margin: 1rem 0;
-    &.member-show-stats {
-      // todo
-      cursor: pointer;
+  .member-img-wrapper {
+    text-align: center;
+    margin: 1rem auto;
+    position: relative;
+    overflow: hidden !important;
+    border-radius: 50%;
+    background: $color-accent;
+
+    .member-img {
+      transition: all $speed-faster ease-in-out;
+      border-radius: 50%;
+
+      // &.member-show-stats {
+      //   // todo
+      //   cursor: pointer;
+      //   opacity: 0.5;
+      // }
     }
   }
   .member-index {
@@ -868,6 +880,14 @@ button:focus{
   .member-you {
     font-size: 1.1rem;
     font-weight: $font-semi-bold;
+  }
+  &:hover {
+    cursor: pointer;
+
+    .member-img-wrapper .member-img {
+      opacity: 0.5;
+      transition: all $speed-faster ease-in-out;
+    }
   }
 }
 

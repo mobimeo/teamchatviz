@@ -188,11 +188,11 @@ export default React.createClass({
                       style={{ textAlign: 'center' }}>
               <span className="member-index">{member.count}</span>
               <br />
-              <div style={{ width: '78px', height: '78px', textAlign: 'center', margin: '0 auto' }}>
+              <div className="member-img-wrapper" style={{ width: width + 'px', height: width + 'px' }}>
                 <img
-                  className={'member-img' + (member.hovering ? ' member-show-stats' : '') }
+                  className='member-img'
                   src={member.image72}
-                  style={{ borderRadius: '50%', width: width + 'px' }} />
+                  style={{ width: width + 'px', height: width + 'px'}} />
               </div>
               <br />
               {member.realname}
