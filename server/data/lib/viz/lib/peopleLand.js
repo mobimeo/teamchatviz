@@ -18,13 +18,16 @@
   USA
 */
 
-import db from '../../../../db';
 import Promise from 'bluebird';
+import db from '../../../../db';
+import config from '../../../../config';
 import tsnejs from 'tsne/tsne';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
 import logger from 'winston';
+
+
 
 export default async function(teamId, startDate = null, endDate = null, currentUser = null, interval = '1 day') {
   logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
@@ -45,21 +48,21 @@ export default async function(teamId, startDate = null, endDate = null, currentU
 
   const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   const userIds = Object.keys(groupedByUser);
+  logger.profile('tsne');
   const dists = userIds.map(key => {
     return groupedByUser[key].map(row => row.is_member === true ? 10 : 5);
   });
-
-  logger.profile('tsne');
   tsne.initDataRaw(dists);
-  for (let k = 0; k < 500; k++) {
-    tsne.step(); // every time you call this, solution gets better
+  for (let k = 0; k < config.viz.tSNEIterations; k++) {
+    tsne.step();
   }
-
   const solution = tsne.getSolution();
   logger.profile('tsne');
 
   const members = (await db
-    .any(`SELECT *, (CASE id WHEN $(thisUserId) THEN 1 ELSE 0 END) as is_current_user FROM members
+    .any(`SELECT *,
+          (CASE id WHEN $(thisUserId) THEN 1 ELSE 0 END) as is_current_user
+        FROM members
         WHERE team_id=$(teamId)
           AND id <> 'USLACKBOT'`, {
       teamId,

@@ -18,8 +18,9 @@
   USA
 */
 
-import db from '../../../../db';
 import Promise from 'bluebird';
+import db from '../../../../db';
+import config from '../../../../config';
 import tsnejs from 'tsne/tsne';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
@@ -28,32 +29,33 @@ import logger from 'winston';
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
-
-  const rawData = await db.any(`SELECT membership.channel_id, membership.user_id, membership.is_member FROM membership
-    INNER JOIN channels ON membership.channel_id = channels.id AND channels.team_id = $(teamId)
+  const rawData = await db.any(`SELECT membership.channel_id,
+    membership.user_id, membership.is_member
+    FROM membership
+    INNER JOIN channels ON membership.channel_id = channels.id
+      AND channels.team_id = $(teamId)
     WHERE membership.team_id = $(teamId) AND membership.user_id <> 'USLACKBOT';`,
     {
       teamId,
     });
-
   const groupedByChannel = groupBy(rawData, row => row.channel_id);
-
-  const opt = {
+  const tSNEOpts = {
     epsilon: 10, // epsilon is learning rate (10 = default)
     perplexity: 30, // roughly how many neighbors each point influences (30 = default)
     dim: 2, // dimensionality of the embedding (2 = default)
   };
-
-  const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
+  const tsne = new tsnejs.tSNE(tSNEOpts); // create a tSNE instance
   const channelIds = Object.keys(groupedByChannel);
   const dists = channelIds.map(key => {
+    // TODO use number of messages in a channel
     return groupedByChannel[key].map(row => row.is_member === true ? 10 : 5);
   });
 
   tsne.initDataRaw(dists);
-  for(let k = 0; k < 500; k++) {
-    tsne.step(); // every time you call this, solution gets better
+  for(let k = 0; k < config.viz.tSNEIterations; k++) {
+    tsne.step();
   }
+
   const channels = await db.any(`SELECT channels.*,
     members.real_name,
     members.name as creator
@@ -67,7 +69,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const numberOfClusters = 2 + Math.floor(channels.length / 50);
   const dbscan = new clustering.KMEANS();
   const clusters = dbscan.run(solution, numberOfClusters);
-
   const data = solution.map((row, i) => {
     return {
       id: channelIds[i],

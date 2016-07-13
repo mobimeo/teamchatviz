@@ -19,6 +19,7 @@
 */
 
 import logger from 'winston';
+
 logger.emitErrs = true;
 logger.level = process.env.LOG_LEVEL || 'info';
 
@@ -30,6 +31,9 @@ const cfg = {
   public: process.env.PUBLIC === 'true',
   logQueries: process.env.LOG_QUERIES === 'true',
   logLevel: logger.level,
+  viz: {
+    tSNEIterations: process.env.VIZ_TSNE_ITERATION || 500,
+  }
 };
 
 logger.info('Started with the following params', cfg);
