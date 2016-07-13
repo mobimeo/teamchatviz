@@ -22,6 +22,7 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
+import logger from 'winston';
 
 const groupByChannel = (results) => {
   const channels = {};
@@ -88,7 +89,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
     label: moment(endDate).utc().subtract(1, 'day').format(),
   });
 
-  console.log(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
+  logger.info(`Getting Heartbeat for ${teamId}, ${startDate}, ${endDate}`);
   const tmp = await db.any(`
     SELECT cr.t, cr.id, cr.name, cr.number_of_members, cr.creation_date, cr.created_by, members.real_name, SUM(COALESCE(data.c, 0)) as c FROM (
       SELECT DATE(t) as t, id, name, number_of_members, creation_date, created_by FROM generate_series($(startDate)::timestamp, $(endDate), interval $(interval)) as t

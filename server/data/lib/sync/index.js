@@ -24,6 +24,7 @@ import members from './lib/members';
 import membership from './lib/membership';
 import emojis from './lib/emojis';
 import faker from 'faker';
+import logger from 'winston';
 
 const configure = (user, anonymize) => {
   if (!anonymize) {
@@ -129,7 +130,7 @@ const all = (user, { anonymize }) => {
       membership(user.accessToken, user.teamId, members, channels, getters),
     ]);
   })
-  .catch(err => console.log(err, err.stack));
+  .catch(err => logger.info(err, err.stack));
 }
 
 export default {

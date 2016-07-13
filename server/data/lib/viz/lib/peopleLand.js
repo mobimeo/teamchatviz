@@ -24,9 +24,10 @@ import tsnejs from 'tsne/tsne';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
+import logger from 'winston';
 
 export default async function(teamId, startDate = null, endDate = null, currentUser = null, interval = '1 day') {
-  console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
+  logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
 
   const rawData = await db.any(`SELECT user_id, channel_id, is_member FROM membership
     WHERE team_id = $(teamId) AND user_id <> 'USLACKBOT';`,
@@ -48,14 +49,14 @@ export default async function(teamId, startDate = null, endDate = null, currentU
     return groupedByUser[key].map(row => row.is_member === true ? 10 : 5);
   });
 
-  console.time('tsne');
+  logger.profile('tsne');
   tsne.initDataRaw(dists);
   for (let k = 0; k < 500; k++) {
     tsne.step(); // every time you call this, solution gets better
   }
 
   const solution = tsne.getSolution();
-  console.timeEnd('tsne');
+  logger.profile('tsne');
 
   const members = (await db
     .any(`SELECT *, (CASE id WHEN $(thisUserId) THEN 1 ELSE 0 END) as is_current_user FROM members
@@ -72,11 +73,11 @@ export default async function(teamId, startDate = null, endDate = null, currentU
       return member;
     });
 
-  console.time('k-means');
+  logger.profile('k-means');
   const numberOfClusters = 2 + Math.floor(members.length / 50);
   const dbscan = new clustering.KMEANS();
   const clusters = dbscan.run(solution, numberOfClusters);
-  console.timeEnd('k-means');
+  logger.profile('k-means');
 
   const data = solution.map((row, i) => {
     const member = members.find(ch => ch.id === userIds[i]);

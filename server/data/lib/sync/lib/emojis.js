@@ -24,12 +24,13 @@ import db from '../../../../db';
 import { save as saveEmoji, getAll as getAll, deleteAll as deleteAll } from '../../../../repositories/emoji';
 import moment from 'moment-timezone';
 import Promise from 'bluebird';
+import logger from 'winston';
 
 export default (token, teamId, getters) => {
-  console.log('syncing emojis', token, teamId);
+  logger.info('syncing emojis', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
-      console.log('Started syncing emojis');
+      logger.info('Started syncing emojis');
       web
         .emoji
         .list((err, result) => {

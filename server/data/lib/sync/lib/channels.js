@@ -24,12 +24,13 @@ import db from '../../../../db';
 import { save as saveChannel, getById as getChannelById } from '../../../../repositories/channel';
 import moment from 'moment-timezone';
 import Promise from 'bluebird';
+import logger from 'winston';
 
 export default (token, teamId, getters) => {
-  console.log('syncing channels', token, teamId);
+  logger.info('syncing channels', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
-      console.log('Started syncing channels');
+      logger.info('Started syncing channels');
       web
         .channels
         .list({

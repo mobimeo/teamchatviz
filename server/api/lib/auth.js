@@ -47,7 +47,7 @@ export default api => {
         if (user === false) {
           ctx.redirect('/error')
         } else {
-          ctx.login(user);
+          ctx.infoin(user);
           ctx.redirect(ctx.session.returnURL ? ctx.session.returnURL : '/');
           if (ctx.query.state === 'admin') {
             sync.all(user, {
@@ -57,7 +57,7 @@ export default api => {
         }
       })(ctx);
     } catch (err) {
-      console.log('callback error', err, err.stack);
+      console.info('callback error', err, err.stack);
     }
   });
 }

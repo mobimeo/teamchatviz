@@ -24,9 +24,10 @@ import tsnejs from 'tsne/tsne';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
+import logger from 'winston';
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
-  console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
+  logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
 
   const rawData = await db.any(`SELECT membership.channel_id, membership.user_id, membership.is_member FROM membership
     INNER JOIN channels ON membership.channel_id = channels.id AND channels.team_id = $(teamId)

@@ -22,9 +22,10 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
+import logger from 'winston';
 
 export default async function(teamId, userId, startDate = null, endDate = null) {
-  console.log(`Getting userStats for ${teamId}, ${userId}`);
+  logger.info(`Getting userStats for ${teamId}, ${userId}`);
   const options = {
     teamId,
     userId

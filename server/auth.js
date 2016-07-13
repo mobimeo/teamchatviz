@@ -54,6 +54,9 @@ const handleUser = (accessToken, refreshToken, profile, done) => {
     .catch(err => done(err));
 };
 
+/**
+* Additional permissions to load team's data
+*/
 passport.use('slack-admin', new PassportSlack.Strategy({
     clientID: config.slackClientId,
     clientSecret: config.slackClientSecret,
@@ -73,6 +76,9 @@ passport.use('slack-admin', new PassportSlack.Strategy({
   handleUser
 ));
 
+/**
+* Look only users
+*/
 passport.use('slack', new PassportSlack.Strategy({
     clientID: config.slackClientId,
     clientSecret: config.slackClientSecret,

@@ -18,18 +18,20 @@
   USA
 */
 
-console.log({
-  slackClientId: process.env.SLACK_CLIENT_ID || null,
-  slackClientSecret: process.env.SLACK_CLIENT_SECRET || null,
-  dbUrl: process.env.DATABASE_URL || null,
-  anonymize: process.env.ANONYMIZE === 'true',
-  public: process.env.PUBLIC === 'true',
-});
+import logger from 'winston';
+logger.emitErrs = true;
+logger.level = process.env.LOG_LEVEL || 'info';
 
-export default {
+const cfg = {
   slackClientId: process.env.SLACK_CLIENT_ID || null,
   slackClientSecret: process.env.SLACK_CLIENT_SECRET || null,
   dbUrl: process.env.DATABASE_URL || null,
   anonymize: process.env.ANONYMIZE === 'true',
   public: process.env.PUBLIC === 'true',
+  logQueries: process.env.LOG_QUERIES === 'true',
+  logLevel: logger.level,
 };
+
+logger.info('Started with the following params', cfg);
+
+export default cfg;

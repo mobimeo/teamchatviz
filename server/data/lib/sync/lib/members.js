@@ -22,12 +22,13 @@ import { WebClient } from '@slack/client';
 import db from '../../../../db';
 import { save as saveMember, getById as getMemberById } from '../../../../repositories/member';
 import Promise from 'bluebird';
+import logger from 'winston';
 
 export default (token, teamId, getters) => {
-  console.log('syncing users', token, teamId);
+  logger.info('syncing users', token, teamId);
   const web = new WebClient(token);
   return Promise.fromCallback(cb => {
-      console.log('Started syncing users');
+      logger.info('Started syncing users');
       web
         .users
         .list({}, (err, result) => {
@@ -60,7 +61,7 @@ export default (token, teamId, getters) => {
                       image48: getters.getImage48(member.profile.image_48),
                       image72: getters.getImage72(member.profile.image_72),
                       image192: getters.getImage192(member.profile.image_192),
-                    }).catch(err => console.error(err));
+                    }).catch(err => logger.error(err));
                   }
                 });
           });

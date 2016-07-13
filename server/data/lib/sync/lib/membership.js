@@ -21,9 +21,10 @@
 import { WebClient } from '@slack/client';
 import { save as saveMembership } from '../../../../repositories/membership';
 import Promise from 'bluebird';
+import logger from 'winston';
 
 export default (token, teamId, members, channels, getters) => {
-  console.log('syncing membership', token, teamId);
+  logger.info('syncing membership', token, teamId);
   const web = new WebClient(token);
   const ids = members.map(member => member.id);
   return Promise.all(channels.map(channel => {

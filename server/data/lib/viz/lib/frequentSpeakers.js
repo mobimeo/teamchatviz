@@ -22,9 +22,10 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
+import logger from 'winston';
 
 export default async function(teamId, startDate = null, endDate = null, channelId = null, currentUser = null, interval = '1 day') {
-  console.log(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}, ${channelId}, ${interval}`);
+  logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}, ${channelId}, ${interval}`);
 
   if (!startDate) {
     startDate = await getMinDate(teamId);

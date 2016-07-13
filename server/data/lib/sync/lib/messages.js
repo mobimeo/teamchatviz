@@ -24,6 +24,7 @@ import db from '../../../../db';
 import { save as saveMessage, getById as getMessageById } from '../../../../repositories/message';
 import { save as saveReaction } from '../../../../repositories/reaction';
 import Promise from 'bluebird';
+import logger from 'winston';
 
 const syncReactions = (teamId, channelId, message, getters) => {
   if (!message.reactions) {
@@ -66,7 +67,7 @@ const fetchPage = (web, channel, teamId, getters, params) => {
                     reactions: JSON.stringify(message.reactions),
                   })
                   .then(() => syncReactions(teamId, channel.id, message, getters))
-                  .catch(err => console.error(err));
+                  .catch(err => logger.error(err));
                 }
               });
           });
@@ -93,16 +94,16 @@ const syncChannelHistory = (web, channel, teamId, getters) => {
 }
 
 export default async(token, teamId, channels, getters) => {
-  console.log('syncing messages', token, teamId);
+  logger.info('syncing messages', token, teamId);
   const web = new WebClient(token);
   return await Promise.fromCallback(cb => {
-      console.log('Started syncing messages');
-      console.time('messageSync');
+      logger.info('Started syncing messages');
+      logger.profile('messageSync');
       return Promise.all(channels.map(channel => {
         return syncChannelHistory(web, channel, teamId, getters);
       })).then(() => {
-        console.log('Done syncing messages');
-        console.timeEnd('messageSync');
+        logger.info('Done syncing messages');
+        logger.profile('messageSync');
         cb();
       }).catch(err => cb(err));
     });

@@ -28,14 +28,3 @@ export default [
   '#EE7913',
   '#CD0269'
 ];
-
-    // const opacity = {
-    //   '#8C450F': '#E8DACF',
-    //   '#66A61E': '#E0EDD2',
-    //   '#DE1F12': '#F8D2D0',
-    //   '#9202BF': '#E9CCF2',
-    //   '#116AC9': '#CFE1F4',
-    //   '#04948F': '#CDEAE9',
-    //   '#EE7913': '#FCE4D0',
-    //   '#CD0269': '#F5CCE1',
-    // };

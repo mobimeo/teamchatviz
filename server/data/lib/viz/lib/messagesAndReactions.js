@@ -22,9 +22,10 @@ import db from '../../../../db';
 import { pgp } from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
+import logger from 'winston';
 
 export default async function(teamId, startDate = null, endDate = null, channelId = null, teamName = null) {
-  console.log(`Getting moods and reactions for ${teamId}, ${startDate}, ${endDate}, ${channelId}`);
+  logger.info(`Getting moods and reactions for ${teamId}, ${startDate}, ${endDate}, ${channelId}`);
 
   const opts = {
     teamId,

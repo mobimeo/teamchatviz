@@ -47,7 +47,7 @@ const errorHandler = async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    console.log(err, ctx.path);
+    console.info(err, ctx.path);
     if (401 == err.status) {
       ctx.status = 401;
       ctx.set('WWW-Authenticate', 'Basic');
@@ -76,7 +76,7 @@ import { getOne as getOneUser, makeUserAMember as makeUserAMember } from './repo
 apiApp.use(async (ctx, next) => {
   if (config.public) {
     const user = await makeUserAMember(await getOneUser());
-    ctx.login(user);
+    ctx.infoin(user);
     await next();
   } else {
     await next();

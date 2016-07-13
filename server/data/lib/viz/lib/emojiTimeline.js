@@ -22,6 +22,7 @@ import db from '../../../../db';
 import Promise from 'bluebird';
 import moment from 'moment-timezone';
 import { getMinDate, getMaxDate } from './utils';
+import logger from 'winston';
 
 const groupByDate = (results, channels, emojis) => {
   const timeline = {};
@@ -83,7 +84,7 @@ export default async function(teamId, startDate = null, endDate = null, interval
   const days = moment(endDate).diff(moment(startDate), 'days');
   const intervalDays = days <= 10 ? 1 : parseInt(days / 12) + 1;
   interval =  intervalDays + ' days';
-  console.log(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}, ${interval}, ${days}`);
+  logger.info(`Getting EmojiTimeline for ${teamId}, ${startDate}, ${endDate}, ${interval}, ${days}`);
   const opts = {
     startDate,
     endDate,
