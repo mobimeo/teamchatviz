@@ -1,5 +1,5 @@
 /*
-  #viz4slack
+  #teamchatviz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
@@ -51,7 +51,7 @@ export const App = React.createClass({
               & <a href="https://moovel.com/" target="_blank">moovel dev. team</a>
             </div>
             <div className="col-xs-6 disclaimer">
-              #viz4slack is not created by, affiliated with, or supported by Slack Technologies, Inc.
+              #teamchatviz is not created by, affiliated with, or supported by Slack Technologies, Inc.
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 /*
-  #viz4slack
+  #teamchatviz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
@@ -47,7 +47,7 @@ export default api => {
         if (user === false) {
           ctx.redirect('/error')
         } else {
-          ctx.infoin(user);
+          ctx.login(user);
           ctx.redirect(ctx.session.returnURL ? ctx.session.returnURL : '/');
           if (ctx.query.state === 'admin') {
             sync.all(user, {

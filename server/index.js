@@ -1,5 +1,5 @@
 /*
-  #viz4slack
+  #teamchatviz
   Copyright (C) 2016 Moovel Group GmbH, Haupstaetter str. 149, 70188, Stuttgart, Germany hallo@moovel.com
 
   This library is free software; you can redistribute it and/or
@@ -76,7 +76,7 @@ import { getOne as getOneUser, makeUserAMember as makeUserAMember } from './repo
 apiApp.use(async (ctx, next) => {
   if (config.public) {
     const user = await makeUserAMember(await getOneUser());
-    ctx.infoin(user);
+    ctx.login(user);
     await next();
   } else {
     await next();
