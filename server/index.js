@@ -37,6 +37,9 @@ import ms from 'ms';
 import config from './config';
 import errorHandler from './error';
 import demoAuth from './demo-auth';
+import conditional from 'koa-conditional-get';
+import etag from 'koa-etag';
+import compress from 'koa-compress';
 
 if (!config.sessionSecret) {
   throw new Error('Define config.sessionSecret');
@@ -45,7 +48,7 @@ if (!config.sessionSecret) {
 const apiApp = new Koa();
 apiApp.keys = [ config.sessionSecret ];
 apiApp.use(errorHandler);
-apiApp.use(cors());
+apiApp.use(compress());
 apiApp.use(bodyParser());
 apiApp.use(convert(session({
   store: pgStore,
@@ -68,6 +71,9 @@ if (config.basicAuthUser) {
   app.use(basicAuth);
 }
 app.use(mount('/api', apiApp));
+app.use(conditional());
+app.use(etag());
+app.use(compress());
 app.use(mount('/', koaStatic(__dirname + '/../client')));
 app.use(async (ctx) => {
   // return index.html for anything that is not handled
