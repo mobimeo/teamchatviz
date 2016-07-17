@@ -35,29 +35,15 @@ import fs from 'fs';
 import auth from 'koa-basic-auth';
 import ms from 'ms';
 import config from './config';
+import errorHandler from './error';
+import demoAuth from './demo-auth';
+
+if (!config.sessionSecret) {
+  throw new Error('Define config.sessionSecret');
+}
 
 const apiApp = new Koa();
-const app = new Koa();
-
-apiApp.keys = app.keys = ['secret'];
-
-const basicAuth = auth({ name: 'lab', pass: 'topsecret' });
-
-const errorHandler = async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    console.info(err, ctx.path);
-    if (401 == err.status) {
-      ctx.status = 401;
-      ctx.set('WWW-Authenticate', 'Basic');
-      ctx.body = 'cant haz that';
-    } else {
-      throw err;
-    }
-  }
-};
-
+apiApp.keys = [ config.sessionSecret ];
 apiApp.use(errorHandler);
 apiApp.use(cors());
 apiApp.use(bodyParser());
@@ -70,27 +56,21 @@ apiApp.use(convert(session({
 })));
 apiApp.use(passport.initialize());
 apiApp.use(passport.session());
-
-import { getOne as getOneUser, makeUserAMember as makeUserAMember } from './repositories/user';
-
-apiApp.use(async (ctx, next) => {
-  if (config.public) {
-    const user = await makeUserAMember(await getOneUser());
-    ctx.login(user);
-    await next();
-  } else {
-    await next();
-  }
-});
-
+apiApp.use(demoAuth);
 apiApp.use(api.routes());
 apiApp.use(api.allowedMethods());
 
+const app = new Koa();
+app.keys = [ config.sessionSecret ];
 app.use(errorHandler);
-app.use(basicAuth);
+if (config.basicAuthUser) {
+  const basicAuth = auth({ name: config.basicAuthUser, pass: config.basicAuthPassword });
+  app.use(basicAuth);
+}
 app.use(mount('/api', apiApp));
 app.use(mount('/', koaStatic(__dirname + '/../client')));
 app.use(async (ctx) => {
+  // return index.html for anything that is not handled
   ctx.body = await Promise.fromCallback(cb => fs.readFile(__dirname + '/../client/index.html', 'utf-8', cb));
 });
 

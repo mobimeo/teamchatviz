@@ -33,7 +33,10 @@ const cfg = {
   logLevel: logger.level,
   viz: {
     tSNEIterations: process.env.VIZ_TSNE_ITERATION || 500,
-  }
+  },
+  basicAuthUser: process.env.BASIC_AUTH_USER || null,
+  basicAuthPassword: process.env.BASIC_AUTH_PASSWORD || null,
+  sessionSecret: process.env.SESSION_SECRET || null,
 };
 
 logger.info('Started with the following params', cfg);

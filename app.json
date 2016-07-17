@@ -21,7 +21,7 @@
   "env": {
      "HEROKU_URL": {
        "description": "The URL of this Heroku app.",
-       "value": "https://YOURAPPNAME.herokuapp.com"
+       "value": "https://YOURAPPNAME.herokuapp.com",
      },
      "SLACK_CLIENT_ID": {
        "description": "ID of your Slack app",
@@ -30,6 +30,33 @@
      "SLACK_CLIENT_SECRET": {
        "description": "Secret of your Slack app",
        "required": true
-     }
+     },
+     "BASIC_AUTH_USER": {
+       "description": "Protect your instance with basic auth. Leave empty to keep unprotected",
+       "value": null
+     },
+     "BASIC_AUTH_PASSWORD": {
+       "description": "Specify the password for the basic auth user",
+       "value": null
+     },
+     "ANONYMIZE": {
+       "description": "Loads fake data into the database if true",
+       "required": true,
+       "value": false
+     },
+     "PUBLIC": {
+       "description": "Skips Slack OAuth if true",
+       "required": true,
+       "value": false
+     },
+     "PORT": {
+       "description": "The port for your instances",
+       "required": true,
+       "value": 80
+     },
+     "SESSION_SECRET": {
+       "description": "Secret key to encrypt session cookies",
+       "required": true
+     },
    }
 }
