@@ -56,7 +56,7 @@ export default withRouter(React.createClass({
     return <div className="page">
       <header className="site-header">
         <h1>
-          {this.props.config.teamName} <span className="site-name">#teamchatviz</span> <img src="/images/beta.svg" />
+          {this.props.config.teamName}&nbsp;<span className="site-name">#teamchatviz</span> <img src="/images/beta.svg" />
         </h1>
       </header>
       <main>

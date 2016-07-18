@@ -225,6 +225,11 @@ export default React.createClass({
           <br />
           @{member.name}
         </div>
+        <div className="col-xs-2">
+          {member.count} messages
+          <br />
+          &nbsp;
+        </div>
       </div>
       ,
       <br />
