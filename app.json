@@ -57,6 +57,6 @@
      "SESSION_SECRET": {
        "description": "Secret key to encrypt session cookies",
        "required": true
-     },
+     }
    }
 }
