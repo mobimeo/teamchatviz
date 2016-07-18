@@ -10,7 +10,8 @@
     "up": "db-migrate up",
     "down": "db-migrate down",
     "create": "db-migrate create",
-    "install": "napa karpathy/tsnejs:tsne"
+    "install": "napa karpathy/tsnejs:tsne",
+    "postinstall": "if [ $BUILD_ASSETS ]; then npm run up && cd client && npm install && npm run build && cp -r dist ../client-dist && cd .. && rm -rf client && mv client-dist client; fi"
   },
   "keywords": [
     "slack",
