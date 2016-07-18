@@ -99,6 +99,8 @@ export default React.createClass({
     }));
   },
   render() {
+    const MIN_HEIGHT = 700;
+    const PADDING_BOTTOM = 200;
     const chartData = this.state.data.get('chartData');
     const showTooltipFor = this.state.data.get('showTooltipFor');
     const total = chartData.reduce((acc, curr) => {
@@ -119,7 +121,7 @@ export default React.createClass({
               })
             }
           </div>
-          <Treemap height={height - 200}
+          <Treemap height={height - PADDING_BOTTOM}
             width={width}
             data={{ title: '', opacity: 1,
               children: chartData.map((channel, i) => {

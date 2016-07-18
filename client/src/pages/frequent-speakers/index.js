@@ -35,9 +35,8 @@ import 'react-vis/main.css!';
 import { fetchFrequentSpeakers } from 'client/networking/index.js';
 import 'client/treemap.scss!';
 import MemberCard from './lib/MemberCard.js';
+import ChannelCard from './lib/ChannelCard.js';
 import NoData from 'client/components/NoData.js';
-
-const MIN_HEIGHT = 700;
 
 export default React.createClass({
   getInitialState() {
@@ -54,7 +53,6 @@ export default React.createClass({
         data: [],
         allChannels: true,
         selectedUser: null,
-        showTooltipFor: null,
       }),
     };
   },
@@ -251,50 +249,7 @@ export default React.createClass({
 
   renderChartStats() {
     const chartData = this.state.data.get('data');
-    const showTooltipFor = this.state.data.get('showTooltipFor');
-    const total = chartData.reduce((acc, curr) => {
-      return acc + curr.count;
-    }, 0);
-    return chartData.length > 0 ? <AutoSizer>
-      {({ height, width }) => {
-        if (height < MIN_HEIGHT) {
-          height = MIN_HEIGHT;
-        }
-        return <div className="channel-treemap-chart" style={{ width: width + 'px' }}>
-          <div className="treemap-status-container" style={{ width: width + 'px' }}>
-            {
-              chartData.map((member, i) => {
-                return member.user_id === showTooltipFor
-                  ? <span className="treemap-status">@{member.name} ({member.count})</span>
-                  : null;
-              })
-            }
-          </div>
-          <Treemap height={height - 75}
-            width={width}
-            data={{ title: '', opacity: 1,
-              children: chartData.map((member, i) => {
-                const onMouseOver = _.bind(this.onMouseOverTreemap, this, member);
-                const onMouseOut = _.bind(this.onMouseOutTreemap, this, member);
-                return {
-                  title: <div style={{
-                    width: '100%',
-                    height: '100%'
-                  }}
-                  onMouseOver={onMouseOver}
-                  onMouseOut={onMouseOut}
-                  className={'channel-tree-map bg'
-                      + member.count%10
-                      + ((member.count / total < 0.01) ? ' xs' : '')}>
-                    <div className="channel-tree-map-count"> {member.count} </div>
-                  </div>,
-                  size: member.count,
-                }
-              })
-            }} />
-        </div>
-      }}
-    </AutoSizer> : <NoData />
+    return <ChannelCard chartData={chartData} />
   },
 
   render() {
