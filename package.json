@@ -104,5 +104,8 @@
     "devDependencies": {
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.12"
     }
+  },
+  "engines": {
+    "node": "4.x"
   }
 }
