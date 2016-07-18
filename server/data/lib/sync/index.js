@@ -60,6 +60,7 @@ const configure = (user, anonymize) => {
     let nextTeamId = 0;
     let nextMemberId = 0;
     return () => {
+      let imageUrlCache = null;
       return {
         getChannelId: (id) => {
           if (!(id in channelIds)) {
@@ -107,11 +108,14 @@ const configure = (user, anonymize) => {
         getSkype: () => faker.phone.phoneNumber(),
         getEmail: () => faker.internet.email(),
         getPhone: () => faker.phone.phoneNumber(),
-        getImage24: () => faker.image.avatar(),
-        getImage32: () => faker.image.avatar(),
-        getImage48: () => faker.image.avatar(),
-        getImage72: () => faker.image.avatar(),
-        getImage192: () => faker.image.avatar(),
+        getImage24: () => {
+          imageUrlCache = faker.image.avatar();
+          return imageUrlCache;
+        },
+        getImage32: () => imageUrlCache,
+        getImage48: () => imageUrlCache,
+        getImage72: () => imageUrlCache,
+        getImage192: () => imageUrlCache,
         getMessageText: () => faker.lorem.paragraph(),
       }
     }
