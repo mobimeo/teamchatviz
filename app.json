@@ -1,7 +1,7 @@
 {
-  "name": "slackviz",
-  "description": "Slack Data Vizualization App",
-  "repository": "https://github.com/moovel/slackviz",
+  "name": "teamchatviz",
+  "description": "Team Chat Vizualization App",
+  "repository": "https://github.com/moovel/teamchatviz",
   "logo": "",
   "keywords": [
     "slack",

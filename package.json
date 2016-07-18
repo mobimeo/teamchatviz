@@ -1,8 +1,8 @@
 {
-  "name": "slackviz",
+  "name": "teamchatviz",
   "version": "0.1.0",
   "description": "Slack Data Vizualization App",
-  "repository": "https://github.com/moovel/slackviz",
+  "repository": "https://github.com/moovel/teamchatviz",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ignore node_modules --ignore client index.js",
@@ -95,8 +95,8 @@
     ]
   },
   "jspm": {
-    "name": "slackviz",
-    "main": "slackviz.js",
+    "name": "teamchatviz",
+    "main": "teamchatviz.js",
     "directories": {
       "lib": "src"
     },

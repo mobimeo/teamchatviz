@@ -1,8 +1,8 @@
 SystemJS.config({
   transpiler: "plugin-babel",
   packages: {
-    "slackviz": {
-      "main": "slackviz.js",
+    "teamchatviz": {
+      "main": "teamchatviz.js",
       "meta": {
         "*.js": {
           "loader": "plugin-babel"
