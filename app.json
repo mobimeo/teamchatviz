@@ -15,7 +15,7 @@
     "heroku-postgresql"
   ],
   "scripts": {
-    "postdeploy": "do stuff",
+    "postdeploy": ""
   },
   "image": "heroku/nodejs:argon",
   "env": {
