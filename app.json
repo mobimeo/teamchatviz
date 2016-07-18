@@ -42,17 +42,17 @@
      "ANONYMIZE": {
        "description": "Loads fake data into the database if true",
        "required": true,
-       "value": false
+       "value": "false"
      },
      "PUBLIC": {
        "description": "Skips Slack OAuth if true",
        "required": true,
-       "value": false
+       "value": "false"
      },
      "PORT": {
        "description": "The port for your instances",
        "required": true,
-       "value": 80
+       "value": "80"
      },
      "SESSION_SECRET": {
        "description": "Secret key to encrypt session cookies",
