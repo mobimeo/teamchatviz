@@ -57,6 +57,10 @@
      "SESSION_SECRET": {
        "description": "Secret key to encrypt session cookies",
        "required": true
+     },
+     "NPM_CONFIG_PRODUCTION": {
+       "description": "NPM_CONFIG_PRODUCTION",
+       "value": "false"
      }
    }
 }

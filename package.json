@@ -76,8 +76,7 @@
     "passport-slack": "0.0.6",
     "pg-monitor": "^0.5.8",
     "pg-promise": "^4.7.5",
-    "winston": "^2.2.0",
-    "napa": "^2.3.0"
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "babel-register": "^6.7.2",
@@ -86,7 +85,8 @@
     "db-migrate-pg": "^0.1.10",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.2",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "napa": "^2.3.0"
   },
   "babel": {
     "presets": [
