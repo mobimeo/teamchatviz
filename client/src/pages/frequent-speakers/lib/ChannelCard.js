@@ -93,11 +93,11 @@ export default React.createClass({
               if (clientX + 350 >= borderX) {
                 position = 'left';
               }
-              console.log(member);
               return member.user_id === showTooltipFor
                 ? <div className="treemap-tooltip" style={{
                   position: 'fixed',
                   zIndex: 100,
+                  width: 250 + 'px',
                   left: position === 'right' ? clientX + 25 : clientX - 300,
                   top: clientY - 100
                 }}>

@@ -107,7 +107,9 @@ export default React.createClass({
                 ? <div className="treemap-tooltip" style={{
                   position: 'fixed',
                   zIndex: 100,
-                  left: position === 'right' ? clientX + 25 : clientX - 250,
+                  width: 200 + 'px',
+                  textAlign: 'center',
+                  left: position === 'right' ? clientX + 25 : clientX - 200,
                   top: clientY - 75
                 }}>#{channel.name} ({channel.count})</div>
                 : null;

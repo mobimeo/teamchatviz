@@ -848,7 +848,7 @@ button:focus{
 .member {
   margin: 1rem 0;
   font-size: 0.9rem;
-  
+
   &.is-current-user {
     border-left: 4px solid $color-grey-medium;
     border-right: 4px solid $color-grey-medium;
@@ -864,17 +864,11 @@ button:focus{
     .member-img {
       transition: all $speed-faster ease-in-out;
       border-radius: 50%;
-
-      // &.member-show-stats {
-      //   // todo
-      //   cursor: pointer;
-      //   opacity: 0.5;
-      // }
     }
   }
   .member-index {
     display: inline-block;
-    font-family: $font-regular, sans-serif;
+    font-weight: $font-semi-bold;
     font-size: 1.5rem;
   }
   .member-you {
@@ -1414,7 +1408,6 @@ button:focus{
   background-color: #393B42;
   padding: 1rem;
   color: white;
-  width: 15rem;
   border-radius: $border-radius;
 
   div {
