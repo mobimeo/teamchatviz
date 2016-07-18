@@ -77,7 +77,7 @@
     "pg-monitor": "^0.5.8",
     "pg-promise": "^4.7.5",
     "winston": "^2.2.0",
-    "napa": "^2.3.0",
+    "napa": "^2.3.0"
   },
   "devDependencies": {
     "babel-register": "^6.7.2",
