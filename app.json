@@ -15,7 +15,7 @@
     "heroku-postgresql"
   ],
   "scripts": {
-    "postdeploy": "npm run up && cd client && npm run build"
+    "postdeploy": "npm run up && cd client && npm run build && cp -r dist ../client-dist && cd .. && rm -rf client && mv client-dist client"
   },
   "image": "heroku/nodejs:argon",
   "env": {
