@@ -64,6 +64,11 @@
       "description": "Build client app",
       "value": "true",
       "required": true
+    },
+    "PGSSLMODE": {
+      "description": "PGSSLMODE",
+      "value": "require",
+      "required": true
     }
   }
 }
