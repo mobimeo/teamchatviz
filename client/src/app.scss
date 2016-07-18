@@ -914,87 +914,17 @@ button:focus{
     }
   }
 
-  // &.bg0 { background-color: #036360; }
-  // &.bg1 { background-color: #036865; }
-  // &.bg2 { background-color: #036d6a ; }
-  // &.bg3 { background-color: #03726f ; }
-  // &.bg4 { background-color: #037773 ; }
-  // &.bg5 { background-color: #037c78 ; }
-  // &.bg6 { background-color: #03817d ; }
-  // &.bg7 { background-color: #038682 ; }
-  // &.bg8 { background-color: #048b87 ; }
-  // &.bg9 { background-color: #04908c ; }
-  // &.bg10 { background-color: #049590 ; }
-  // &.bg11 { background-color: #049a95 ; }
-  // &.bg12 { background-color: #049f9a ; }
-  // &.bg13 { background-color: #04a49f ; }
-  // &.bg14 { background-color: #04a9a4 ; }
-  // &.bg15 { background-color: #04aea8 ; }
-  // &.bg16 { background-color: #05b3ad ; }
-  // &.bg17 { background-color: #05b8b2 ; }
-  // &.bg18 { background-color: #05bdb7 ; }
-  // &.bg19 { background-color: #05c2bc ; }
-  // &.bg20 { background-color: #05c7c0 ; }
-  // &.bg21 { background-color: #05ccc5 ; }
-  // &.bg22 { background-color: #05d1ca ; }
-  // &.bg23 { background-color: #05d6cf ; }
-  // &.bg24 { background-color: #06dbd4 ; }
-  // &.bg25 { background-color: #06e0d8 ; }
-  // &.bg26 { background-color: #06e5dd ; }
-  // &.bg27 { background-color: #06eae2 ; }
-  // &.bg28 { background-color: #06efe7 ; }
-  // &.bg29 { background-color: #06f4ec ; }
-  // &.bg30 { background-color: #06f9f1 ; }
-  // &.bg31 { background-color: #0bf9f1 ; }
-  // &.bg32 { background-color: #10f9f1 ; }
-  // &.bg33 { background-color: #15f9f1 ; }
-  // &.bg34 { background-color: #1af9f2 ; }
-  // &.bg35 { background-color: #1ff9f2 ; }
-  // &.bg36 { background-color: #24f9f2 ; }
-  // &.bg37 { background-color: #29faf3 ; }
-  // &.bg38 { background-color: #2efaf3 ; }
-  // &.bg39 { background-color: #33faf3 ; }
-  // &.bg40 { background-color: #38faf3 ; }
-  // &.bg41 { background-color: #3dfaf4 ; }
-  // &.bg42 { background-color: #42faf4 ; }
-  // &.bg42 { background-color: #47faf4 ; }
-  // &.bg43 { background-color: #4cfaf5 ; }
-  // &.bg44 { background-color: #51fbf5 ; }
-  // &.bg45 { background-color: #56fbf5 ; }
-  // &.bg46 { background-color: #5bfbf5 ; }
-  // &.bg47 { background-color: #60fbf6 ; }
-  // &.bg48 { background-color: #65fbf6 ; }
-  // &.bg49 { background-color: #6afbf6 ; }
-  // &.bg50 { background-color: #6ffbf7 ; }
-  // &.bg51 { background-color: #74fbf7 ; }
-  // &.bg52 { background-color: #79fcf7 ; }
-  // &.bg53 { background-color: #7efcf7 ; }
-  // &.bg54 { background-color: #83fcf8 ; }
-  // &.bg55 { background-color: #88fcf8 ; }
-  // &.bg56 { background-color: #8dfcf8 ; }
-  // &.bg57 { background-color: #92fcf9 ; }
-  // &.bg58 { background-color: #97fcf9 ; }
-  // &.bg59 { background-color: #9cfcf9 ; }
-  // &.bg60 { background-color: #a1fdfa ; }
-  // &.bg61 { background-color: #a5fdfa ; }
-  // &.bg62 { background-color: #aafdfa ; }
-  // &.bg63 { background-color: #affdfa ; }
-  // &.bg64 { background-color: #b4fdfb ; }
-  // &.bg65 { background-color: #b9fdfb ; }
-  // &.bg66 { background-color: #befdfb ; }
-  // &.bg67 { background-color: #c3fdfc ; }
-  // &.bg68 { background-color: #c8fefc ; }
-  // &.bg69 { background-color: #cdfefc ; }
-  // &.bg70 { background-color: #d2fefc ; }
-  // &.bg71 { background-color: #d7fefd ; }
-  // &.bg72 { background-color: #dcfefd ; }
-  // &.bg72 { background-color: #e1fefd ; }
-  // &.bg73 { background-color: #e6fefe ; }
-  // &.bg74 { background-color: #ebfefe ; }
-  // &.bg75 { background-color: #f0fffe ; }
-  // &.bg76 { background-color: #f5fffe ; }
-  // &.bg77 { background-color: #faffff ; }
-  // &.bg78 { background-color: #ffffff ; }
+  &.xxs {
+    padding: 0;
+    .channel-tree-map-count {
+      font-size: 0.6rem;
+      padding-top: 0;
+      position: relative;
+      top: -0.15rem;
+      padding-left: 0.15rem;
+    }
+  }
+
   &.bg0 {
     color: white;
     background-color: #70A6DF;
@@ -1051,7 +981,7 @@ button:focus{
       padding-top: 0.15rem;
     }
   }
-  &.xs.xxs {
+  &.xxs {
     padding: 0;
     .user-tree-map-count {
       font-size: 0.6rem;
@@ -1061,87 +991,7 @@ button:focus{
       padding-left: 0.15rem;
     }
   }
-  // &.bg0 { background-color: #036360; }
-  // &.bg1 { background-color: #036865; }
-  // &.bg2 { background-color: #036d6a ; }
-  // &.bg3 { background-color: #03726f ; }
-  // &.bg4 { background-color: #037773 ; }
-  // &.bg5 { background-color: #037c78 ; }
-  // &.bg6 { background-color: #03817d ; }
-  // &.bg7 { background-color: #038682 ; }
-  // &.bg8 { background-color: #048b87 ; }
-  // &.bg9 { background-color: #04908c ; }
-  // &.bg10 { background-color: #049590 ; }
-  // &.bg11 { background-color: #049a95 ; }
-  // &.bg12 { background-color: #049f9a ; }
-  // &.bg13 { background-color: #04a49f ; }
-  // &.bg14 { background-color: #04a9a4 ; }
-  // &.bg15 { background-color: #04aea8 ; }
-  // &.bg16 { background-color: #05b3ad ; }
-  // &.bg17 { background-color: #05b8b2 ; }
-  // &.bg18 { background-color: #05bdb7 ; }
-  // &.bg19 { background-color: #05c2bc ; }
-  // &.bg20 { background-color: #05c7c0 ; }
-  // &.bg21 { background-color: #05ccc5 ; }
-  // &.bg22 { background-color: #05d1ca ; }
-  // &.bg23 { background-color: #05d6cf ; }
-  // &.bg24 { background-color: #06dbd4 ; }
-  // &.bg25 { background-color: #06e0d8 ; }
-  // &.bg26 { background-color: #06e5dd ; }
-  // &.bg27 { background-color: #06eae2 ; }
-  // &.bg28 { background-color: #06efe7 ; }
-  // &.bg29 { background-color: #06f4ec ; }
-  // &.bg30 { background-color: #06f9f1 ; }
-  // &.bg31 { background-color: #0bf9f1 ; }
-  // &.bg32 { background-color: #10f9f1 ; }
-  // &.bg33 { background-color: #15f9f1 ; }
-  // &.bg34 { background-color: #1af9f2 ; }
-  // &.bg35 { background-color: #1ff9f2 ; }
-  // &.bg36 { background-color: #24f9f2 ; }
-  // &.bg37 { background-color: #29faf3 ; }
-  // &.bg38 { background-color: #2efaf3 ; }
-  // &.bg39 { background-color: #33faf3 ; }
-  // &.bg40 { background-color: #38faf3 ; }
-  // &.bg41 { background-color: #3dfaf4 ; }
-  // &.bg42 { background-color: #42faf4 ; }
-  // &.bg42 { background-color: #47faf4 ; }
-  // &.bg43 { background-color: #4cfaf5 ; }
-  // &.bg44 { background-color: #51fbf5 ; }
-  // &.bg45 { background-color: #56fbf5 ; }
-  // &.bg46 { background-color: #5bfbf5 ; }
-  // &.bg47 { background-color: #60fbf6 ; }
-  // &.bg48 { background-color: #65fbf6 ; }
-  // &.bg49 { background-color: #6afbf6 ; }
-  // &.bg50 { background-color: #6ffbf7 ; }
-  // &.bg51 { background-color: #74fbf7 ; }
-  // &.bg52 { background-color: #79fcf7 ; }
-  // &.bg53 { background-color: #7efcf7 ; }
-  // &.bg54 { background-color: #83fcf8 ; }
-  // &.bg55 { background-color: #88fcf8 ; }
-  // &.bg56 { background-color: #8dfcf8 ; }
-  // &.bg57 { background-color: #92fcf9 ; }
-  // &.bg58 { background-color: #97fcf9 ; }
-  // &.bg59 { background-color: #9cfcf9 ; }
-  // &.bg60 { background-color: #a1fdfa ; }
-  // &.bg61 { background-color: #a5fdfa ; }
-  // &.bg62 { background-color: #aafdfa ; }
-  // &.bg63 { background-color: #affdfa ; }
-  // &.bg64 { background-color: #b4fdfb ; }
-  // &.bg65 { background-color: #b9fdfb ; }
-  // &.bg66 { background-color: #befdfb ; }
-  // &.bg67 { background-color: #c3fdfc ; }
-  // &.bg68 { background-color: #c8fefc ; }
-  // &.bg69 { background-color: #cdfefc ; }
-  // &.bg70 { background-color: #d2fefc ; }
-  // &.bg71 { background-color: #d7fefd ; }
-  // &.bg72 { background-color: #dcfefd ; }
-  // &.bg72 { background-color: #e1fefd ; }
-  // &.bg73 { background-color: #e6fefe ; }
-  // &.bg74 { background-color: #ebfefe ; }
-  // &.bg75 { background-color: #f0fffe ; }
-  // &.bg76 { background-color: #f5fffe ; }
-  // &.bg77 { background-color: #faffff ; }
-  // &.bg78 { background-color: #ffffff ; }
+
   &.bg0 {
     color: white;
     background-color: #005c60;
@@ -1558,6 +1408,43 @@ button:focus{
     font-weight: $font-normal;
     font-size: 0.938rem;
   }
+}
+
+.treemap-tooltip {
+  background-color: #393B42;
+  padding: 1rem;
+  color: white;
+  width: 15rem;
+  border-radius: $border-radius;
+
+  div {
+    color: white;
+    font-weight: $font-normal;
+    font-size: 0.938rem;
+  }
+  h3 {
+    margin: 0;
+    color: white;
+    font-weight: $font-semi-bold;
+    font-size: 1rem;
+  }
+  a {
+    color: white;
+  }
+
+  &.visible {
+    display: block;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 3rem;
+  }
+
+  .row {
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  }
+
 }
 
 .dialog {

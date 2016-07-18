@@ -6,54 +6,7 @@ import { Map } from 'immutable';
 import { fetchUserStats } from 'client/networking/index.js';
 import NoData from 'client/components/NoData.js';
 import _ from 'lodash';
-
-const MIN_HEIGHT = 700;
-
-const TreemapCell = React.createClass({
-  getInitialState() {
-    return {
-      width: 0,
-    };
-  },
-  componentDidMount() {
-    const parent = ReactDOM.findDOMNode(this).parentNode.parentNode;
-    this.setState({
-      width: parent.style.width,
-      height: parent.style.height
-    });
-  },
-  componentWillReceiveProps() {
-    const parent = ReactDOM.findDOMNode(this).parentNode.parentNode;
-    this.setState({
-      width: parent.style.width,
-      height: parent.style.height
-    });
-  },
-  render() {
-    const width = this.state.width;
-    const height = this.state.height;
-    const item = this.props.item;
-    const onMouseOver = this.props.onMouseOver;
-    const onMouseOut = this.props.onMouseOut;
-    const total = this.props.total;
-    let sizeClass = '';
-    if (parseInt(width) < 40 || parseInt(height) < 40) {
-      sizeClass += ' xs';
-    }
-    if (parseInt(width) < 16 || parseInt(height) < 16) {
-      sizeClass += ' xxs';
-    }
-    return <div
-      style={{ width, height }}
-      className={'user-tree-map bg'
-        + item.count % 10
-        + sizeClass}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut} >
-      <span className="user-tree-map-count">{item.count}</span>
-    </div>
-  }
-});
+import TreemapCell from './TreemapCell.js';
 
 export default React.createClass({
   getInitialState() {
@@ -61,20 +14,26 @@ export default React.createClass({
       data: Map({
         chartData: [],
         showTooltipFor: null,
+        clientX: 0,
+        clientY: 0,
+        parent: null,
       })
     };
   },
   componentDidMount() {
     const member = this.props.member;
     const filters = this.props.filters;
+    const parent = ReactDOM.findDOMNode(this).parentNode;
     fetchUserStats(member.user_id, filters)
       .then(results => {
         this.setState(({data}) => ({
           data: data
             .set('chartData', results)
+            .set('parent', parent)
         }));
       })
   },
+
   componentWillReceiveProps(next) {
     const member = next.member;
     const filters = next.filters;
@@ -86,23 +45,48 @@ export default React.createClass({
         }));
       })
   },
-  onMouseOver(channel) {
+
+  onMouseOver(channel, e) {
+    e.persist();
     this.setState(({data}) => ({
       data: data
         .set('showTooltipFor', channel.name)
+        .set('clientX', e.clientX)
+        .set('clientY', e.clientY)
     }));
   },
+
+  onMouseMove(e) {
+    e.persist();
+    this.setState(({data}) => ({
+      data: data
+        .set('clientX', e.clientX)
+        .set('clientY', e.clientY)
+    }));
+  },
+
   onMouseOut() {
     this.setState(({data}) => ({
       data: data
         .set('showTooltipFor', null)
     }));
   },
+
   render() {
     const MIN_HEIGHT = 700;
-    const PADDING_BOTTOM = 200;
+    const PADDING_BOTTOM = 125;
     const chartData = this.state.data.get('chartData');
     const showTooltipFor = this.state.data.get('showTooltipFor');
+    const clientX = this.state.data.get('clientX');
+    const clientY = this.state.data.get('clientY');
+    let parent = this.state.data.get('parent');
+    let parentx = 0, parenty = 0;
+    if (parent && parent.offsetParent) {
+      do {
+        parentx += parent.offsetLeft;
+        parenty += parent.offsetTop;
+      } while (parent = parent.offsetParent);
+    }
     const total = chartData.reduce((acc, curr) => {
       return acc + curr.count;
     }, 0);
@@ -112,15 +96,23 @@ export default React.createClass({
           height = MIN_HEIGHT;
         }
         return <div className="user-treemap-chart" style={{ width: width + 'px' }}>
-          <div className="treemap-status-container" style={{ width: width + 'px' }}>
-            {
-              chartData.map((channel, i) => {
-                return channel.name === showTooltipFor
-                  ? <span className="treemap-status">@{channel.name} ({channel.count})</span>
-                  : null;
-              })
-            }
-          </div>
+          {
+            chartData.map((channel, i) => {
+              const borderX = width + parentx;
+              let position = 'right';
+              if (clientX + 350 >= borderX) {
+                position = 'left';
+              }
+              return channel.name === showTooltipFor
+                ? <div className="treemap-tooltip" style={{
+                  position: 'fixed',
+                  zIndex: 100,
+                  left: position === 'right' ? clientX + 25 : clientX - 250,
+                  top: clientY - 75
+                }}>#{channel.name} ({channel.count})</div>
+                : null;
+            })
+          }
           <Treemap height={height - PADDING_BOTTOM}
             width={width}
             data={{ title: '', opacity: 1,
@@ -129,8 +121,10 @@ export default React.createClass({
                 const onMouseOut = _.bind(this.onMouseOut, this, channel);
                 return {
                   title: <TreemapCell
+                    cntClassName="user-tree-map"
                     item={channel}
                     total={total}
+                    onMouseMove={this.onMouseMove}
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut} />,
                   size: channel.count,
