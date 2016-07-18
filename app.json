@@ -33,11 +33,11 @@
      },
      "BASIC_AUTH_USER": {
        "description": "Protect your instance with basic auth. Leave empty to keep unprotected",
-       "value": null
+       "value": ""
      },
      "BASIC_AUTH_PASSWORD": {
        "description": "Specify the password for the basic auth user",
-       "value": null
+       "value": ""
      },
      "ANONYMIZE": {
        "description": "Loads fake data into the database if true",
