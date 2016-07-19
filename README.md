@@ -24,7 +24,7 @@ Online Demo
 -----------
 Online demo app under [teamchatviz-demo.moovel.com](http://teamchatviz-demo.moovel.com/) (with fake Slack team data, generated with Faker.js). 
 
-Currently supported browsers: latest Chrome/Chromium or Safari. 
+Currently supported browsers: latest Chrome/Chromium, Firefox or Safari. 
 
 Running your own instance of &#35;teamchatviz App
 -----------------------------
