@@ -266,7 +266,10 @@ export default React.createClass({
     const filters = this.filters;
     let selectedChannelName = '';
     if (filters.channelId) {
-      selectedChannelName = channels.find(ch => ch.id === filters.channelId).name;
+      const selectedChannel = channels.find(ch => ch.id === filters.channelId);
+      if (selectedChannel) {
+        selectedChannelName = selectedChannel.name;
+      }
     }
     return <div>
       <Header title="frequent speakers">

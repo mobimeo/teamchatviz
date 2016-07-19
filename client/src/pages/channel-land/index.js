@@ -170,15 +170,17 @@ export default React.createClass({
           <div className="col-xs-9">
             <AutoSizer>
               {({ height, width }) => (
-                <HullPlot
-                  onPointClick={this.onPointClick}
-                  shownGroups={shownGroups}
-                  point={ChannelPoint}
-                  showTooltipFor={tooltipIndex}
-                  data={data}
-                  width={width}
-                  height={height}
-                  padding={100} />
+                data.length > 0
+                  ? <HullPlot
+                      onPointClick={this.onPointClick}
+                      shownGroups={shownGroups}
+                      point={ChannelPoint}
+                      showTooltipFor={tooltipIndex}
+                      data={data}
+                      width={width}
+                      height={height}
+                      padding={100} />
+                  : null
               )}
             </AutoSizer>
             <Modal

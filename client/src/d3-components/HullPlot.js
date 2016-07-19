@@ -34,7 +34,11 @@ export default React.createClass({
     showTooltipFor: React.PropTypes.string,
     shownGroups: React.PropTypes.array,
   },
+
   getInitialState() {
+    this.zoom = null;
+    this.previousScale = 1;
+    this.previousTranslate = [0, 0];
     return {
       data: Map({
         tooltip: {
@@ -43,10 +47,11 @@ export default React.createClass({
           x: 0,
           y: 0,
         },
-        zoom: 1,
+        scale: 1,
       })
     };
   },
+
   showTooltip(e) {
     var tooltip = {
       display: true,
@@ -70,19 +75,22 @@ export default React.createClass({
     }));
   },
 
+  updateScale(scale) {
+    this.previousScale = scale;
+    this.setState(({data}) => ({
+      data: data.update('scale', () => scale)
+    }));
+  },
+
   componentDidMount: function() {
-    this.updateZoom = (zoom) => {
-      this.setState(({data}) => ({
-        data: data.update('zoom', () => zoom)
-      }));
-    };
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
     var zoom = d3.behavior.zoom()
+      .size([ this.props.width, this.props.height ])
       .scaleExtent([1, 10])
       .on('zoom', this.onZoom);
     selection.call(zoom);
-    this.z = zoom;
+    this.zoom = zoom;
     const svg = ReactDOM.findDOMNode(this.refs.svg);
     if (typeof svg.focus === 'function') {
       svg.focus();
@@ -90,43 +98,44 @@ export default React.createClass({
   },
 
   onZoom() {
-    if (d3.event
-      && d3.event.sourceEvent) {
-      d3.event.sourceEvent.preventDefault();
-    }
-    var z = this.z;
-    var zoom = z.scale();
     var el = ReactDOM.findDOMNode(this);
     var selection = d3.select(el).select('g');
-    selection.attr('transform', 'translate(' + z.translate() + ') scale(' + z.scale() + ')');
-    this.updateZoom(zoom);
+    if (d3.event && d3.event.sourceEvent) {
+      d3.event.sourceEvent.preventDefault();
+    }
+    var zoom = this.zoom;
+    var scale = zoom.scale();
+    selection.attr('transform', 'translate(' + zoom.translate() + ') scale(' + zoom.scale() + ')');
+    this.updateScale(scale);
   },
 
   incrementZoom() {
-    var newZoom = this.state.data.get('zoom') + 1;
-    if (newZoom > 10) {
-      newZoom = 10;
+    var newScale = this.state.data.get('scale') + 1;
+    if (newScale > 10) {
+      newScale = 10;
     }
-    this.z.scale(newZoom);
-    this.z.translate([ - this.props.width / 2 * (newZoom - 1), - this.props.height / 2 * (newZoom - 1)]);
+    this.zoom.scale(newScale);
+    this.zoom.translate([ - this.props.width / 2 * (newScale - 1), - this.props.height / 2 * (newScale - 1)]);
     this.onZoom();
-    this.onZoom();
+    this.updateScale(newScale);
   },
 
   decrementZoom() {
-    var newZoom = this.state.data.get('zoom') - 1;
-    if (newZoom < 1) {
-      newZoom = 1;
+    var newScale = this.state.data.get('scale') - 1;
+    if (newScale < 1) {
+      newScale = 1;
     }
-    this.z.translate([ - this.props.width / 2 * (newZoom - 1), - this.props.height / 2 * (newZoom - 1)]);
-    this.z.scale(newZoom);
+    this.zoom.translate([ - this.props.width / 2 * (newScale - 1), - this.props.height / 2 * (newScale - 1)]);
+    this.zoom.scale(newScale);
     this.onZoom();
+    this.updateScale(newScale);
   },
 
   resetZoom() {
-    this.z.scale(1);
-    this.z.translate([0, 0]);
+    this.zoom.scale(1);
+    this.zoom.translate([0, 0]);
     this.onZoom();
+    this.updateScale(1);
   },
 
   onPointClick(...args) {
@@ -175,6 +184,7 @@ export default React.createClass({
           color: groupData[key][0].color,
         }
       });
+
     const hulls = groups.map(gr => {
       return <Hull points={gr.points} color={gr.color} />
     });
@@ -192,24 +202,23 @@ export default React.createClass({
     });
 
     return <div className="cluster-plot" style={{ width: props.width, height: props.height }}>
-      <svg ref="svg" width={props.width - 2} height={props.height - 2}>
-        <g>
-          <path fill="transparent" d={`M0 0 H ${props.width - 2} V ${props.height - 2} H 0 L 0 0`}> </path>
+      <svg ref="svg" width={props.width} height={props.height}>
+        <g key="top-level-svg-group">
+          <path fill="transparent" d={`M0 0 H ${props.width} V ${props.height} H 0 L 0 0`}> </path>
           {
             hulls
           }
           <PointGroup
-            zoom={this.state.data.get('zoom')}
+            zoom={this.state.data.get('scale')}
             {...props}
             {...scales}
             data={points}
             point={this.props.point}
             showTooltip={this.showTooltip}
             hideTooltip={this.hideTooltip}
-            onPointClick={this.onPointClick}
-             />
-            }
-          <Tooltip zoom={this.state.data.get('zoom')} tooltip={tooltip} />
+            onPointClick={this.onPointClick} />
+
+          <Tooltip zoom={this.state.data.get('scale')} tooltip={tooltip} />
         </g>
       </svg>
       <div className="zoom-controls">
