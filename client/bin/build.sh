@@ -3,7 +3,7 @@
 rm -rf dist
 mkdir dist
 cp index.prod.html dist/index.html
-jspm install
+# jspm install
 jspm bundle client.js app-bundle.js --minify --skip-source-maps
 cp app-bundle.js dist/
 cp jspm_packages/system*.js dist/

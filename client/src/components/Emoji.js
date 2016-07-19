@@ -21,6 +21,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import emoji from 'node-emoji';
+import twemoji from 'twemoji';
+import platform from 'platform';
+
+const hasAppleEmojii = platform.os.family.startsWith('OS X') || platform.os.family.startsWith('iOS');
 
 export const Emoji = (props) => {
   const emojis = props.emojis || {};
@@ -33,6 +37,21 @@ export const Emoji = (props) => {
     } else {
       character = '...';
     }
+  } else if (!hasAppleEmojii) {
+    var img = twemoji.parse(character);
+    // based on https://blog.datawallet.io/emojis-in-react-d733d3ae120b#.h5psserju
+    const elem = img
+      .split(/ /g)
+      .map(x => x.match(/^(.+?)="(.+?)"/))
+      .filter(Boolean)
+      .reduce((obj, [ _, key, val ]) => ({
+        ...obj,
+        [key]: val
+      }), {});
+
+    character = <img
+       src={elem.src}
+       alt={elem.alt} />;
   }
   return <div style={props.style} className="emoji">
     <div className="emoji-container">
