@@ -50,6 +50,7 @@ export default async function(teamId, startDate = null, endDate = null, currentU
   const userIds = Object.keys(groupedByUser);
   logger.profile('tsne');
   const dists = userIds.map(key => {
+    // TODO use number of messages in a channel
     return groupedByUser[key].map(row => row.is_member === true ? 10 : 5);
   });
   tsne.initDataRaw(dists);
