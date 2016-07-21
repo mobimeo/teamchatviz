@@ -21,16 +21,17 @@
 import Promise from 'bluebird';
 import db from '../../../../db';
 import config from '../../../../config';
-import tsnejs from 'tsne/tsne';
+import TSNE from 'tsne-js';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
 import logger from 'winston';
+import NodeCache from 'node-cache';
 
-
+const tsneCache = new NodeCache({ stdTTL: 60 * 24, checkperiod: 120 });
 
 export default async function(teamId, startDate = null, endDate = null, currentUser = null, interval = '1 day') {
-  logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
+  logger.info(`Getting PeopleLand for ${teamId}, ${startDate}, ${endDate}`);
 
   const rawData = await db.any(`SELECT user_id, channel_id, is_member FROM membership
     WHERE team_id = $(teamId) AND user_id <> 'USLACKBOT';`,
@@ -46,19 +47,33 @@ export default async function(teamId, startDate = null, endDate = null, currentU
     dim: 2, // dimensionality of the embedding (2 = default)
   };
 
-  const tsne = new tsnejs.tSNE(opt); // create a tSNE instance
+
   const userIds = Object.keys(groupedByUser);
-  logger.profile('tsne');
-  const dists = userIds.map(key => {
-    // TODO use number of messages in a channel
-    return groupedByUser[key].map(row => row.is_member === true ? 10 : 5);
-  });
-  tsne.initDataRaw(dists);
-  for (let k = 0; k < config.viz.tSNEIterations; k++) {
-    tsne.step();
+
+  var solution = tsneCache.get('tsne.PeopleLand.' + teamId);
+  if ( solution == undefined ){
+    logger.profile('tsne');
+    const tsne = new TSNE({
+      dim: 2,
+      perplexity: 30.0,
+      earlyExaggeration: 4.0,
+      learningRate: 100.0,
+      nIter: 200,
+      metric: 'jaccard'
+    });
+    const dists = userIds.map(key => {
+      return groupedByUser[key].map(row => row.is_member === true);
+    });
+    tsne.init({
+      data: dists,
+      type: 'dense'
+    });
+    tsne.run();
+    tsne.rerun();
+    solution = tsne.getOutputScaled();
+    logger.profile('tsne');
+    tsneCache.set('tsne.PeopleLand.' + teamId, solution);
   }
-  const solution = tsne.getSolution();
-  logger.profile('tsne');
 
   const members = (await db
     .any(`SELECT *,

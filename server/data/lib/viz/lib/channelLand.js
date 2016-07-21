@@ -21,14 +21,17 @@
 import Promise from 'bluebird';
 import db from '../../../../db';
 import config from '../../../../config';
-import tsnejs from 'tsne/tsne';
+import TSNE from 'tsne-js';
 import { groupBy } from 'lodash';
 import clustering from 'density-clustering';
 import colors from './clusterColors.js';
 import logger from 'winston';
+import NodeCache from 'node-cache';
+
+const tsneCache = new NodeCache({ stdTTL: 60 * 24, checkperiod: 120 });
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
-  logger.info(`Getting FrequentSpeakers for ${teamId}, ${startDate}, ${endDate}`);
+  logger.info(`Getting ChannelLand for ${teamId}, ${startDate}, ${endDate}`);
   const rawData = await db.any(`SELECT membership.channel_id,
     membership.user_id, membership.is_member
     FROM membership
@@ -39,21 +42,32 @@ export default async function(teamId, startDate = null, endDate = null, interval
       teamId,
     });
   const groupedByChannel = groupBy(rawData, row => row.channel_id);
-  const tSNEOpts = {
-    epsilon: 10, // epsilon is learning rate (10 = default)
-    perplexity: 30, // roughly how many neighbors each point influences (30 = default)
-    dim: 2, // dimensionality of the embedding (2 = default)
-  };
-  const tsne = new tsnejs.tSNE(tSNEOpts); // create a tSNE instance
   const channelIds = Object.keys(groupedByChannel);
-  const dists = channelIds.map(key => {
-    // TODO use number of messages in a channel
-    return groupedByChannel[key].map(row => row.is_member === true ? 10 : 5);
-  });
 
-  tsne.initDataRaw(dists);
-  for(let k = 0; k < config.viz.tSNEIterations; k++) {
-    tsne.step();
+  var solution = tsneCache.get('tsne.ChannelLand.' + teamId);
+  if ( solution == undefined ) {
+    logger.profile('tsne');
+    const tsne = new TSNE({
+      dim: 2,
+      perplexity: 30.0,
+      earlyExaggeration: 4.0,
+      learningRate: 100.0,
+      nIter: 200,
+      metric: 'jaccard'
+    });
+
+    const dists = channelIds.map(key => {
+      return groupedByChannel[key].map(row => row.is_member === true);
+    });
+    tsne.init({
+      data: dists,
+      type: 'dense'
+    });
+    tsne.run();
+    tsne.rerun();
+    solution = tsne.getOutputScaled();
+    logger.profile('tsne');
+    tsneCache.set('tsne.ChannelLand.' + teamId, solution);
   }
 
   const channels = await db.any(`SELECT channels.*,
@@ -65,7 +79,6 @@ export default async function(teamId, startDate = null, endDate = null, interval
     teamId,
   });
 
-  const solution = tsne.getSolution();
   const numberOfClusters = 2 + Math.floor(channels.length / 50);
   const dbscan = new clustering.KMEANS();
   const clusters = dbscan.run(solution, numberOfClusters);
