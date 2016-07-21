@@ -28,7 +28,7 @@ import colors from './clusterColors.js';
 import logger from 'winston';
 import NodeCache from 'node-cache';
 
-const tsneCache = new NodeCache({ stdTTL: 60 * 24, checkperiod: 120 });
+const tsneCache = new NodeCache({ stdTTL: 60 * 60 * 24, checkperiod: 120 });
 
 export default async function(teamId, startDate = null, endDate = null, interval = '1 day') {
   logger.info(`Getting ChannelLand for ${teamId}, ${startDate}, ${endDate}`);
