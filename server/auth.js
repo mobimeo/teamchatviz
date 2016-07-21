@@ -22,7 +22,7 @@ import passport from 'koa-passport';
 import PassportSlack from 'passport-slack';
 import config from './config';
 import db from './db';
-import { save, getById } from './repositories/user';
+import { save, getById, updateAccessToken } from './repositories/user';
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -48,7 +48,19 @@ const handleUser = (accessToken, refreshToken, profile, done) => {
         };
         return save(user).then(() => done(null, user));
       } else {
-        done(null, user);
+        const user = {
+          id: profile.id,
+          teamId: profile._json.team_id,
+          profile: profile._json,
+          accessToken: profile.accessToken,
+        };
+        updateAccessToken(user)
+          .then(() => {
+            return getById(profile.id)
+              .then(user => {
+                done(null, user);
+              })
+          });
       }
     })
     .catch(err => done(err));

@@ -26,7 +26,7 @@ export default async(user) => {
   const member = await db.one('SELECT * FROM members WHERE team_id = $(team_id) LIMIT 1', {
     team_id: user.teamId,
   });
-  db.none('UPDATE users SET id = $(new_id) WHERE id = $(old_id)', {
+  await db.none('UPDATE users SET id = $(new_id) WHERE id = $(old_id)', {
     new_id: member.id,
     old_id: user.id,
   });

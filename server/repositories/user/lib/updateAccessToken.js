@@ -18,8 +18,14 @@
   USA
 */
 
-export { default as getById } from './lib/getById';
-export { default as save } from './lib/save';
-export { default as getOne } from './lib/getOne';
-export { default as makeUserAMember } from './lib/makeUserAMember';
-export { default as updateAccessToken } from './lib/updateAccessToken';
+import db from '../../../db';
+import toModel from './mappers/toModel';
+import getOne from './getOne';
+
+export default async(user) => {
+  await db.none('UPDATE users SET access_token = $(accessToken) WHERE id = $(id) AND team_id = $(teamId)', {
+    id: user.id,
+    teamId: user.teamId,
+    accessToken: user.accessToken,
+  });
+};
