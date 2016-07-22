@@ -3,6 +3,8 @@
 
 by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://moovel.com)
 
+![](/demo.gif)
+
 &#35;teamchatviz enables you to explore how your [Slack](https://slack.com/) team works:
 
  - channel heartbeat
@@ -11,8 +13,6 @@ by [moovel lab](http://lab.moovel.com) and [moovel dev team](https://moovel.com)
  - frequent speakers
  - messages & reactions
  - emoji timeline
-
-![](/demo.gif)
 
 Client app is built with [React](https://facebook.github.io/react/) and [JSPM](http://jspm.io/). Vizualisations leverage [react-vis](https://github.com/uber/react-vis) and [d3](https://d3js.org/). Server is written in ES6+ using [Koa 2](https://github.com/koajs/koa) and [Babel](https://babeljs.io/). PostgreSQL is used a database with the help of [pg-promise](https://www.npmjs.com/package/pg-promise).
 
