@@ -40,6 +40,8 @@ Run on Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/moovel/teamchatviz/tree/master)
 
+Never heard of Heroku? Here's how to install it: [https://youtu.be/8lzdCWoiDbY](https://youtu.be/8lzdCWoiDbY)
+
 Development Setup
 -----------------
 
