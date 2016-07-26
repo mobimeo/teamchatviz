@@ -5,7 +5,7 @@ const errorHandler = async (ctx, next) => {
     if (401 == err.status) {
       ctx.status = 401;
       ctx.set('WWW-Authenticate', 'Basic');
-      ctx.body = 'cant haz that';
+      ctx.body = 'Unauthorized';
     } else {
       throw err;
     }
