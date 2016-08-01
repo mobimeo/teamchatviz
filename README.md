@@ -53,26 +53,39 @@ You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm instal
 4. `cd ..`
 5. Create `.env` file with the following content:
 
+  ```
+  PORT=3333
+  SLACK_CLIENT_ID="<client id of your slack app>"
+  SLACK_CLIENT_SECRET="<slack app secret>"
+  DATABASE_URL="<postgresql database URL e.g. postgres://teamchatviz:teamchatviz@localhost/teamchatviz>"
+  PUBLIC="false"
+  ANONYMIZE="false"
+  ```
+  
+  If PUBLIC === true the data loaded into the system will be public and will not require authentication via Slack. If ANONYMIZE === true the data loaded into the system will be replaced with the fake data using Faker.js. Anonymization will happen only on the initial data loading and before the data reaches the database.
+  
+  If PUBLIC === true, Add to Slack button on the Main page is hidden and login is disabled. If you change the PUBLIC setting for an existing instance, the changes will apply only after a restart of the server. 
+
+6. Create database as described in the next section and apply database migration by running `npm run up`
+7. `npm start` - start the server
+8.  Open `http://localhost:$PORT` in your browser
+
+Create a PostgreSQL database
+-------
+
+In order to create a database in PostgreSQL you need to start `psql` client. On Linux systems you can run `sudo -u postgres psql` for this. On OS X you can start it [via the UI of Postgres.app](https://cloud.githubusercontent.com/assets/2119400/17279216/c6df3120-5723-11e6-961d-d6ed26d5b35e.png).
+
+Then you may run the following commands to create a user called `teamchatviz` with the password `teamchatviz` and a database called `teamchatviz`:
+
+```sh
+CREATE DATABASE teamchatviz;
+CREATE ROLE teamchatviz WITH LOGIN CREATEDB PASSWORD 'teamchatviz';
+ALTER USER teamchatviz VALID UNTIL 'infinity';
+ALTER DATABASE teamchatviz OWNER TO teamchatviz;
+GRANT ALL ON DATABASE teamchatviz TO teamchatviz;
+\c teamchatviz
+ALTER SCHEMA public OWNER TO teamchatviz;
 ```
-PORT=3333
-SLACK_CLIENT_ID="<client id of your slack app>"
-SLACK_CLIENT_SECRET="<slack app secret>"
-DATABASE_URL="<postgresql database URL e.g. postgres://teamchatviz:teamchatviz@localhost/teamchatviz>"
-PUBLIC="false"
-ANONYMIZE="false"
-```
-
-If PUBLIC === true the data loaded into the system will be public and will not require authentication via Slack. If ANONYMIZE === true the data loaded into the system will be replaced with the fake data using Faker.js. Anonymization will happen only on the initial data loading and before the data reaches the database.
-
-If PUBLIC === true, Add to Slack button on the Main page is hidden and login is disabled. If you change the PUBLIC setting for an existing instance, the changes will apply only after a restart of the server. 
-
-6. Run db migrations `npm run up`
-
-The database needs to be created first.
-
-6. `npm start` - start the server
-7.  Open `http://localhost:$PORT` in your browser
-
 
 Testing
 -------
