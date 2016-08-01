@@ -47,10 +47,10 @@ Development Setup
 
 You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm install jspm@beta -g`).
 
-1. `git clone git@github.com:moovel/teamchatviz.git` and `cd teamchatviz`
-2. `npm install` - install server npm dependencies
-3. `cd client && npm install && jspm install` - install client dependencies
-4. `cd ..`
+1. `git clone git@github.com:moovel/teamchatviz.git` and `cd teamchatviz`.
+2. `npm install` - install server npm dependencies.
+3. `cd client && npm install && jspm install` - install client dependencies.
+4. `cd ..`.
 5. Create `.env` file with the following content:
 
   ```
@@ -66,9 +66,9 @@ You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm instal
   
   If PUBLIC === true, Add to Slack button on the Main page is hidden and login is disabled. If you change the PUBLIC setting for an existing instance, the changes will apply only after a restart of the server. 
 
-6. Create database as described in the next section and apply database migration by running `npm run up`
-7. `npm start` - start the server
-8.  Open `http://localhost:$PORT` in your browser
+6. Create database as described in the next section and apply database migration by running `npm run up`.
+7. `npm start` - start the server.
+8.  Open `http://localhost:$PORT` in your browser.
 
 Create a PostgreSQL database
 -------
