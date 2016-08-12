@@ -60,6 +60,7 @@ You need a recent Node JS version (4+) installed and JSPM 0.17 Beta (`npm instal
   DATABASE_URL="<postgresql database URL e.g. postgres://teamchatviz:teamchatviz@localhost/teamchatviz>"
   PUBLIC="false"
   ANONYMIZE="false"
+  SESSION_SECRET="secret"
   ```
   
   If PUBLIC === true the data loaded into the system will be public and will not require authentication via Slack. If ANONYMIZE === true the data loaded into the system will be replaced with the fake data using Faker.js. Anonymization will happen only on the initial data loading and before the data reaches the database.
