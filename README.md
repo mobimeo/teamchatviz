@@ -42,6 +42,10 @@ Run on Heroku
 
 Never heard of Heroku? Here's how to install it: [https://youtu.be/8lzdCWoiDbY](https://youtu.be/8lzdCWoiDbY)
 
+Run with Docker
+-------------
+See [docker image](https://hub.docker.com/r/xqua/teamchatviz/) by [Xqua](https://github.com/Xqua)
+
 Development Setup
 -----------------
 
