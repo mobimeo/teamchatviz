@@ -65,7 +65,7 @@ export default withRouter(React.createClass({
             <p>
               This tool enables you to explore how your Slack team works!
               Communication and culture are deeply interwoven in our daily work.
-              These Data vizualisiations help to understand, learn and explore your teams jungle.
+              These Data visualizations help to understand, learn and explore your teams jungle.
             </p>
           </div>
           {
