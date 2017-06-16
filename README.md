@@ -24,7 +24,7 @@ See the project page [moovel.github.io/teamchatviz](http://moovel.github.io/team
 
 Online Demo
 -----------
-Online demo app under [teamchatviz-demo.moovel.com](http://teamchatviz-demo.moovel.com/) (with fake Slack team data, generated with Faker.js). 
+Online demo app under [teamchatviz-demo.moovel.com](https://teamchatviz-demo.moovel.com/) (with fake Slack team data, generated with Faker.js). 
 
 Currently supported browsers: latest Chrome/Chromium, Firefox or Safari. 
 
