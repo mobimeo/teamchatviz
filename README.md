@@ -1,3 +1,5 @@
+# ⚠️⚠️⚠️ DEPRECATED: The new home is now [here](https://github.com/move-lab/teamchatviz)
+
 &#35;teamchatviz
 ==============
 
