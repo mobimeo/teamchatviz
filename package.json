@@ -71,7 +71,7 @@
     "koa-pg-session": "2.0.1",
     "koa-router": "7.0.1",
     "koa-static": "3.0.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.19",
     "moment-timezone": "0.5.11",
     "ms": "0.7.2",
     "node-cache": "3.2.1",
